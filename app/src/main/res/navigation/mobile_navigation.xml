@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="edu.aha.agualimpiafinal.inicio.inicio"
+        android:label="Inicio"
+        tools:layout="@layout/inicio_fragment" />
+
+    <fragment
+        android:id="@+id/nav_registrar"
+        android:name="edu.aha.agualimpiafinal.registrar.registrar"
+        android:label="Registrar"
+        tools:layout="@layout/registrar_fragment" />
+
+    <fragment
+        android:id="@+id/nav_lista"
+        android:name="edu.aha.agualimpiafinal.lista.lista"
+        android:label="Lista"
+        tools:layout="@layout/lista_fragment" />
+
+    <fragment
+        android:id="@+id/nav_comomedir"
+        android:name="edu.aha.agualimpiafinal.comomedir.comomedir"
+        android:label="¿Como medir?"
+        tools:layout="@layout/comomedir_fragment" />
+
+    <fragment
+        android:id="@+id/nav_nosotros"
+        android:name="edu.aha.agualimpiafinal.nosotros.nosotros"
+        android:label="Sobre Nosotros"
+        tools:layout="@layout/nosotros_fragment" />
+</navigation>

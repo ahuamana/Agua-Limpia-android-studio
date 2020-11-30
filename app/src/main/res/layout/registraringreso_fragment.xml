@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registraringreso.registraringreso"
+    android:orientation="vertical"
+    android:id="@+id/REcontenedorRegistrarIngreso"
+    android:padding="10dp"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro Microbiologico"
+            android:gravity="center"
+            android:textSize="25dp"
+            ></TextView>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"></Space>
+
+        <EditText
+            android:id="@+id/RIedtcantidadmuestra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cantidad de Muestra (ml)"
+            android:textSize="20dp"
+            android:inputType="number"
+            ></EditText>
+        <EditText
+            android:id="@+id/RIedttiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiempo (minutos)"
+            android:textSize="20dp"
+            android:inputType="number"
+            ></EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/RIedtLatitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Latitud "
+                android:textSize="20dp"
+                ></EditText>
+
+            <EditText
+                android:id="@+id/RIedtLongitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Longitud"
+                android:textSize="20dp"
+                ></EditText>
+
+            <ImageButton
+                android:id="@+id/RIbtngeolocalizacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_location"
+                ></ImageButton>
+
+        </LinearLayout>
+
+
+
+        <EditText
+            android:id="@+id/RIedtBQV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resultado (BQV)"
+            android:textSize="20dp"
+            ></EditText>
+        <Button
+            android:id="@+id/RIbtntomarfoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomar Foto"></Button>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></ImageView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"></Space>
+
+        <Button
+            android:id="@+id/RIbtnRegistrar"
+            android:layout_width="match_parent"
+            android:textColor="@color/white"
+            android:background="@color/lightblue"
+            android:layout_height="wrap_content"
+            android:text="REGISTRAR"></Button>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"></Space>
+        <Button
+            android:id="@+id/RIbtnLimpiar"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LIMPIAR"></Button>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"></Space>
+
+        
+    </LinearLayout>
+
+</LinearLayout>

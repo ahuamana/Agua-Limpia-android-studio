@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_inicioprincipal"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_registrar"
+            android:icon="@drawable/ic_plus"
+            android:title="Registrar" />
+        <item
+            android:id="@+id/nav_lista"
+            android:icon="@drawable/ic_listar"
+            android:title="Lista" />
+        <item
+            android:id="@+id/nav_comomedir"
+            android:icon="@drawable/ic_comomedir"
+            android:title="Como Medir?" />
+        <item
+            android:id="@+id/nav_nosotros"
+            android:icon="@drawable/ic_about"
+            android:title="Nosotros" />
+
+    </group>
+</menu>

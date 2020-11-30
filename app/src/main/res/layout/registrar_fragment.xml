@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registrar.registrar"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:id="@+id/REcontenedorRegistrar"
+    >
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            ></Space>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Tipo de Muestreo"
+            android:textSize="24dp"
+            ></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+
+        >
+
+        <Button
+            android:id="@+id/REbtnfisioquimico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fisioquimico"></Button>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            ></Space>
+
+        <Button
+            android:id="@+id/REbtnmicrobiologico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MICROBIOLOGICO"
+            ></Button>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
