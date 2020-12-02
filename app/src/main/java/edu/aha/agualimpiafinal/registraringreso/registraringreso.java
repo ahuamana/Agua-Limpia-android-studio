@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -339,6 +340,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
                     Glide.with(getActivity())
                             .load(rutaFoto)
+                            .placeholder(R.mipmap.ic_launcher)
                             .into(RIimgfoto);
 
 
