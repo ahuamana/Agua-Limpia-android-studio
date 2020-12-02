@@ -24,7 +24,7 @@
             ></TextView>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="40dp"></Space>
+            android:layout_height="5dp"></Space>
 
         <EditText
             android:id="@+id/RIedtcantidadmuestra"
@@ -86,11 +86,13 @@
             android:hint="Resultado (BQV)"
             android:textSize="20dp"
             ></EditText>
-        <Button
-            android:id="@+id/RIbtntomarfoto"
+        <ImageButton
+            android:id="@+id/RIbtncargarfoto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tomar Foto"></Button>
+            android:layout_height="50dp"
+            android:src="@drawable/ic_camera"
+            android:scaleType="fitCenter"
+            android:text="Tomar Foto"></ImageButton>
 
     </LinearLayout>
 
@@ -104,6 +106,7 @@
 
         
         <ImageView
+            android:id="@+id/RIimgFoto"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"></ImageView>

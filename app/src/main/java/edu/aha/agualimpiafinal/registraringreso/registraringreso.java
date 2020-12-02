@@ -6,14 +6,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,34 +24,66 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Objects;
 
+import edu.aha.agualimpiafinal.Entidades.Ingreso;
 import edu.aha.agualimpiafinal.R;
+
+import static android.app.Activity.RESULT_OK;
 
 public class registraringreso extends Fragment implements View.OnClickListener {
 
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
+    String ValorURL;
 
 
+    ImageView RIimgfoto;
+    EditText RICantidad, RITiempo, RIBQV;
+    Button RIbtnregistrar,RIbtnlimpiar;
+    ImageButton RIbtncargarfoto;
+
+
+    //Referencias Real Database
+    private DatabaseReference mDatabase;
+    private FirebaseDatabase firebaseDatabase;
+    FirebaseAuth mAuth;
+
+    //referencias al storage
+    private StorageReference mstorage;
+    private static final int GALLERY_INTENT = 1;
+    private ProgressDialog progressDialog;
 
     private FusedLocationProviderClient ubicacion;
-    double longitudeBest, latitudeBest;
-    double longitudeGPS, latitudeGPS;
-    double longitudeNetwork, latitudeNetwork;
+
+    //Shared preferences
+    String fullname, email;
+
 
     private RegistraringresoViewModel mViewModel;
 
@@ -61,13 +96,74 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.registraringreso_fragment, container, false);
 
+        /////Inicio de Firebase
+
+
+        //Obtener la Basede Datos de FireBase
+        mDatabase=FirebaseDatabase.getInstance().getReference();
+        //Obtener el Storage de Android
+        FirebaseApp.initializeApp(getActivity());
+        mstorage = FirebaseStorage.getInstance().getReference();
+
+        //realizar la conexion a FireBase
+        InicializarFireBase();
+
+
+
+
+        /////fin de firebase
+
+
+        //Cargar SharePreferences
+        cargarPreferencias();
+
+
+        //crear nuevo progressDialog (necesario para mostrar dialogo al cargar la foto)
+        progressDialog = new ProgressDialog(getContext());
+
+       //edittext
        RItvlatitud = vista.findViewById(R.id.RIedtLatitud);
        RItvlongitud = vista.findViewById(R.id.RIedtLongitud);
+       RICantidad=vista.findViewById(R.id.RIedtcantidadmuestra);
+       RITiempo=vista.findViewById(R.id.RIedttiempo);
+       RIBQV=vista.findViewById(R.id.RIedtBQV);
+
+       //Image View
+        RIimgfoto= vista.findViewById(R.id.RIimgFoto);
+
+        //botones
+       RIbtnregistrar=vista.findViewById(R.id.RIbtnRegistrar);
+       RIbtnlimpiar=vista.findViewById(R.id.RIbtnLimpiar);
+       RIbtncargarfoto=vista.findViewById(R.id.RIbtncargarfoto);
+
+
+
+       //imageboton
        RIbtnLocalization = vista.findViewById(R.id.RIbtngeolocalizacion);
 
+       //clickListenes para botones
        RIbtnLocalization.setOnClickListener(this);
+       RIbtnregistrar.setOnClickListener(this);
+       RIbtncargarfoto.setOnClickListener(this);
+       RIbtnlimpiar.setOnClickListener(this);
+
+
+
+
+
+
+
 
         return vista;
+    }
+
+    private void InicializarFireBase() {
+
+        FirebaseApp.initializeApp(getContext());
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        mDatabase=firebaseDatabase.getReference();
+
+
     }
 
     @Override
@@ -85,18 +181,41 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         {
 
             case R.id.RIbtngeolocalizacion:
-
             {
-
                 //Toast.makeText(getActivity(), "Probando", Toast.LENGTH_SHORT).show();
                 getLocation();
-
-
-
                 //llamar al metodo para obtener la localizacion
+                break;
+            }
+
+
+            case R.id.RIbtnRegistrar:
+            {
+                //Toast.makeText(getActivity(), "Probando Boton Registro", Toast.LENGTH_SHORT).show();
+                ////Registrar Pedido a Firebase
+                registrarMuestraAnalizada();
+                break;
+            }
+
+            case R.id.RIbtncargarfoto:
+            {
+
+                ////Cargar Foto a Firebase
+
+                uploadFoto();
 
                 break;
             }
+
+            case R.id.RIbtnLimpiar:
+            {
+
+                ////Limpiar Campos
+                limpiarcampos();
+
+                break;
+            }
+
 
 
 
@@ -105,6 +224,135 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
 
 
+
+
+
+    }
+
+    private void uploadFoto() {
+
+
+        Intent i = new Intent(Intent.ACTION_PICK);
+        i.setType("image/*");
+        startActivityForResult(i, GALLERY_INTENT);
+
+
+    }
+
+    private void limpiarcampos() {
+
+        RICantidad.setText("");
+        RITiempo.setText("");
+        RItvlatitud.setText("");
+        RItvlongitud.setText("");
+        RIBQV.setText("");
+        ValorURL="";
+        RIimgfoto.setImageResource(0);
+
+
+    }
+
+    private void cargarPreferencias() {
+
+        SharedPreferences preferences = getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+
+        fullname= preferences.getString("spfullname","");
+        email= preferences.getString("spEmail","");
+
+    }
+
+
+
+    private void registrarMuestraAnalizada() {
+
+
+
+
+        //Validar campos vacios
+        if(!TextUtils.isEmpty(RICantidad.getText().toString()) ||  !TextUtils.isEmpty(RITiempo.getText().toString())  )
+
+        {
+
+            //Guardar Todos los campos para enviar a firebase
+            ////enviar datos a firebase -
+            int cantidad= Integer.parseInt (RICantidad.getText().toString());
+            int minutos=  Integer.parseInt (RITiempo.getText().toString());
+            double latitud = Double.parseDouble(RItvlatitud.getText().toString());
+            double longitud = Double.parseDouble(RItvlongitud.getText().toString());
+            String resultadoBQV = RIBQV.getText().toString();
+            String fotopath = ValorURL;
+
+
+
+            String id = mDatabase.push().getKey();
+
+            Ingreso objEntrega=new Ingreso(id,cantidad,minutos,latitud,longitud,resultadoBQV,fotopath,fullname,email);
+            mDatabase.child("Muestrass").child(id).setValue(objEntrega);
+            Toast.makeText(getContext(), "Muestra Añadida!", Toast.LENGTH_SHORT).show();
+            limpiarcampos();
+
+        }
+        else {
+            Toast.makeText(getActivity(), "Completar los campos vacios", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //inicio de if
+
+        if(requestCode==GALLERY_INTENT&& resultCode==RESULT_OK)
+        {
+
+            progressDialog.setTitle("Subiendo Imagen");
+            progressDialog.setMessage("Subiendo Foto a FireBase");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            Uri mipath = data.getData();
+
+            //RIimgfoto.setImageURI(mipath);
+
+            StorageReference filePath = mstorage.child("MuestraFotos").child(mipath.getLastPathSegment());
+
+            filePath.putFile(mipath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                   //inicio on successlistener
+
+                    progressDialog.dismiss();
+                    Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+
+                    while (!urlTask.isSuccessful());
+
+                    Uri rutaFoto = urlTask.getResult();
+
+                    //Para guardar y mostrar la foto de firebase
+                    ValorURL=rutaFoto.toString();
+                    //Uri.parse(ValorURL);
+
+
+                    Glide.with(getActivity())
+                            .load(rutaFoto)
+                            .into(RIimgfoto);
+
+
+                    Toast.makeText(getContext(), "Foto Agregada", Toast.LENGTH_SHORT).show();
+                    Log.e("test","Valor foto: "+ValorURL);
+
+
+                    //fin on successlistener
+                }
+            });
+
+
+            //fin de if
+        }
 
 
 
@@ -153,6 +401,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
             }
 
         }
+
 
 
 
