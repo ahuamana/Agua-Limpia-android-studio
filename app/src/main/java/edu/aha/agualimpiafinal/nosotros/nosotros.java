@@ -11,12 +11,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 
 public class nosotros extends Fragment {
 
     private NosotrosViewModel mViewModel;
+
+
 
     public static nosotros newInstance() {
         return new nosotros();
@@ -25,7 +31,12 @@ public class nosotros extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.nosotros_fragment, container, false);
+
+        View vista = inflater.inflate(R.layout.nosotros_fragment, container, false);
+
+
+
+        return vista;
     }
 
     @Override

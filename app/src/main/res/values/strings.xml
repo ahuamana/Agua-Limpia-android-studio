@@ -10,4 +10,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+
+    <string name="datoconcentracion">Las muestras de agua se filtran a través de una unidad de filtro cerrada Millipore 0.22 PES express donde las bacterias se recolectan en la superficie de la membrana. Esto hace que nuestra tecnología tenga una ventaja única sobre otras, ya que el filtrado elimina las posibles interferencias de fondo y la celda cerrada reduce la manipulación de muestras.</string>
+    <string name="datoreaccion">La unidad de filtrado está saturada con un excedente de sustrato enzimático. \nEl sustrato de la enzima reacciona con una enzima bacteriana natural y se libera un compuesto fluorescente. El tiempo de reacción es de aproximadamente 15 a 30 minutos según la aplicación.</string>
+    <string name="datomedicion">La cantidad de fluorescencia se mide utilizando un fluorómetro de mano que funciona con pilas. Cuanto más fluorescencia se produzca, más bacterias habrá en la muestra. \nEl resultado se informa como un valor Bactiquant (BQV). \nEl BQV se define como la fluorescencia generada en una muestra de agua de 250 ml en 30 minutos a 23 o C (73,4 o F). Aunque el volumen de la muestra y los tiempos de reacción se pueden modificar para cumplir con una aplicación específica, los resultados analíticos siempre se ajustan a las condiciones estándar.</string>
+
 </resources>

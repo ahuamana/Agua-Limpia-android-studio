@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splash.splashmain"
+    android:padding="15dp"
+
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp"></Space>
+
+            <TextView
+                android:id="@+id/txtlogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bienvenido a \nAgua Limpia"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="46dp"
+                android:textColor="@color/primaryTextColor"
+                android:paddingTop="20dp"
+                android:layout_gravity="top|center_horizontal"
+                ></TextView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></Space>
+
+            <ImageView
+                android:id="@+id/imglogo"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center|bottom"
+                android:src="@drawable/logoagua"
+                android:paddingBottom="30dp"
+                ></ImageView>
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+</FrameLayout>

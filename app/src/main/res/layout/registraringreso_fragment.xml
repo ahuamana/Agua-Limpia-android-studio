@@ -9,19 +9,73 @@
     android:padding="10dp"
     >
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registro Microbiologico"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:scrollHorizontally="true"
+        ></TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/RIedtLatitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Latitud "
+            android:textSize="20dp"
+            android:scrollHorizontally="true"
+            ></EditText>
+
+        <EditText
+            android:id="@+id/RIedtLongitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Longitud"
+            android:textSize="20dp"
+            android:scrollHorizontally="true"
+            ></EditText>
+
+        <ImageButton
+            android:id="@+id/RIbtngeolocalizacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_location"
+            ></ImageButton>
+
+    </LinearLayout>
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollHorizontally="true"
+        >
+
+
+
+    
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registro Microbiologico"
-            android:gravity="center"
-            android:textSize="25dp"
-            ></TextView>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="5dp"></Space>
@@ -33,6 +87,7 @@
             android:hint="Cantidad de Muestra (ml)"
             android:textSize="20dp"
             android:inputType="number"
+            android:scrollHorizontally="true"
             ></EditText>
         <EditText
             android:id="@+id/RIedttiempo"
@@ -41,43 +96,8 @@
             android:hint="Tiempo (minutos)"
             android:textSize="20dp"
             android:inputType="number"
+            android:scrollHorizontally="true"
             ></EditText>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <EditText
-                android:id="@+id/RIedtLatitud"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="Latitud "
-                android:textSize="20dp"
-                ></EditText>
-
-            <EditText
-                android:id="@+id/RIedtLongitud"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="Longitud"
-                android:textSize="20dp"
-                ></EditText>
-
-            <ImageButton
-                android:id="@+id/RIbtngeolocalizacion"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_location"
-                ></ImageButton>
-
-        </LinearLayout>
-
-
 
         <EditText
             android:id="@+id/RIedtBQV"
@@ -85,6 +105,7 @@
             android:layout_height="wrap_content"
             android:hint="Resultado (BQV)"
             android:textSize="20dp"
+            android:scrollHorizontally="true"
             ></EditText>
         <ImageButton
             android:id="@+id/RIbtncargarfoto"
@@ -94,21 +115,14 @@
             android:scaleType="fitCenter"
             android:text="Tomar Foto"></ImageButton>
 
-    </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"></Space>
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        
         <ImageView
             android:id="@+id/RIimgFoto"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             android:layout_weight="1"></ImageView>
 
         <Space
@@ -136,7 +150,13 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"></Space>
 
-        
+
     </LinearLayout>
+
+
+    </ScrollView>
+
+
+
 
 </LinearLayout>

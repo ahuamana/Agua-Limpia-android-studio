@@ -14,38 +14,46 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-
-        >
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            ></Space>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Tipo de Muestreo"
-            android:textSize="24dp"
-            ></TextView>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="3"
 
         >
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scrollHorizontally="true"
+            ></Space>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="TIPO DE MUESTREO"
+            android:textSize="24dp"
+            android:scrollHorizontally="true"
+            ></TextView>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scrollHorizontally="true"
+            ></Space>
+
+
+
+
         <Button
             android:id="@+id/REbtnfisioquimico"
-            android:layout_width="match_parent"
+            android:layout_width="2in"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="Fisioquimico"></Button>
+            android:textStyle="bold"
+            android:text="Fisioquimico"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_botom"
+            android:scrollHorizontally="true"
+            ></Button>
 
         <Space
             android:layout_width="match_parent"
@@ -54,9 +62,14 @@
 
         <Button
             android:id="@+id/REbtnmicrobiologico"
-            android:layout_width="match_parent"
+            android:layout_width="2in"
+            android:layout_gravity="center"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="MICROBIOLOGICO"
+            android:textColor="@color/white"
+            android:background="@drawable/custom_botom"
+            android:scrollHorizontally="true"
             ></Button>
 
 

@@ -38,15 +38,18 @@ public class begining extends AppCompatActivity {
 
                 //if(!TextUtils.isEmpty(RICantidad.getText().toString()) ||  !TextUtils.isEmpty(RITiempo.getText().toString())  )
 
-                if(!TextUtils.isEmpty(BEedtEmail.getText().toString()) || !TextUtils.isEmpty(BEfullname.getText().toString())  ) {
+                if(!TextUtils.isEmpty(BEedtEmail.getText().toString())) {
 
-                    guardarPreferencias();
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
 
-                } else {
-                    Toast.makeText(begining.this, "Rellene los campos vacios", Toast.LENGTH_SHORT).show();
-                }
+                    if (!TextUtils.isEmpty(BEfullname.getText().toString()))
+                    {
+                        guardarPreferencias();
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                    } else {Toast.makeText(begining.this, "Rellene los campos vacios", Toast.LENGTH_SHORT).show();}
+
+
+                } else {Toast.makeText(begining.this, "Rellene los campos vacios", Toast.LENGTH_SHORT).show();}
 
             }
         });

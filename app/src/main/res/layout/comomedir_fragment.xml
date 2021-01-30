@@ -1,13 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".comomedir.comomedir">
+    tools:context=".comomedir.comomedir"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TRES SENCILLOS PASOS"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="25dp"
+                ></TextView>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp"></Space>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="1. Concentración \n2. Reacción \n3. Medición"
+                android:textColor="@color/lightblue"
+                android:textStyle="bold|italic"
+
+                ></TextView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp"></Space>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONCENTRACIÓN"
+                android:gravity="center"
+                android:textColor="@color/primarystatusbar"
+                android:textSize="20dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="@string/datoconcentracion"
+                android:textSize="15dp"
+                android:gravity="fill_horizontal"
+                ></TextView>
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/imgconce"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REACCIÓN"
+                android:gravity="center"
+                android:textColor="@color/primarystatusbar"
+                android:textSize="20dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="@string/datoreaccion"
+                android:textSize="15dp"
+                android:gravity="fill_horizontal"
+                ></TextView>
+
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/imgreac"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></ImageView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MEDICIÓN"
+                android:gravity="center"
+                android:textColor="@color/primarystatusbar"
+                android:textSize="20dp"
+                ></TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="@string/datomedicion"
+                android:textSize="15dp"
+                android:gravity="fill_horizontal"
+                ></TextView>
+
+            <ImageView
+                android:scaleType="fitXY"
+
+                android:id="@+id/imgmedi"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></ImageView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="15dp"></Space>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

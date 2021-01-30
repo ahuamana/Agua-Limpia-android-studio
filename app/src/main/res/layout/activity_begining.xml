@@ -9,95 +9,97 @@
     >
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         >
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"></Space>
 
-        <ImageView
-            android:layout_gravity="bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:src="@drawable/logoagua"
-            ></ImageView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        >
-
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:text="EMAIL"
-
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="25dp"
-            android:layout_height="wrap_content"></TextView>
-
-        <EditText
-            android:id="@+id/BEemail"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_width="2in"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:inputType="textEmailAddress"
-            android:layout_height="wrap_content"></EditText>
-
-        <Space
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
+            android:layout_height="match_parent"
+            >
 
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:text="NOMBRE COMPLETO"
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"></Space>
 
-            android:gravity="center_vertical|center_horizontal"
-            android:textSize="25dp"
-            android:layout_height="wrap_content"></TextView>
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/logoagua"
+                ></ImageView>
 
-        <EditText
-            android:id="@+id/BEfullname"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_width="2in"
-            android:inputType="text"
-            android:textSize="20dp"
-            android:textAlignment="center"
-            android:layout_height="wrap_content"></EditText>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:text="EMAIL"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="25dp"
+                android:layout_height="wrap_content"
+                ></TextView>
+
+            <EditText
+                android:id="@+id/BEemail"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_width="2in"
+                android:textSize="20dp"
+                android:textAlignment="center"
+                android:inputType="textEmailAddress"
+                android:layout_height="wrap_content"
+                android:scrollHorizontally="true"
+                ></EditText>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"></Space>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:text="NOMBRE COMPLETO"
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="25dp"
+                android:layout_height="wrap_content"></TextView>
 
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
+            <EditText
+                android:id="@+id/BEfullname"
+                android:layout_width="2in"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:inputType="text"
+                android:scrollHorizontally="true"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                ></EditText>
 
-        <Button
-            android:id="@+id/btnbegining"
-            android:layout_gravity="center"
-            android:layout_width="2in"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:background="@drawable/custom_botom"
-            android:text="Ingresar"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"></Space>
+               <Button
+                    android:id="@+id/btnbegining"
+                    android:layout_gravity="center"
+                    android:layout_width="2in"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:background="@drawable/custom_botom"
+                    android:text="Ingresar"
+                    android:scrollHorizontally="true"
+                    />
 
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        ></LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
 
 
 

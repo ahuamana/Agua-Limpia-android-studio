@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    android:background="@drawable/headerwhite"
+    android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
+
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -19,23 +21,33 @@
         android:layout_gravity="center"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/logoagua" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logoagua"
+        tools:layout_editor_absoluteX="65dp" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="31dp"
+        android:layout_gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textColor="@color/colorPrimary"
         android:text="AGUA LIMPIA"
-        android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="151dp" />
 
     <TextView
-        android:layout_gravity="center"
-
         android:id="@+id/textView"
+
         android:layout_width="wrap_content"
-        android:textColor="@color/secondaryDarkColor"
         android:layout_height="wrap_content"
-        android:text="nicolasalikhan@gmail.com" />
+        android:layout_gravity="center"
+        android:text="nicolasalikhan@gmail.com"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="129dp" />
 </LinearLayout>

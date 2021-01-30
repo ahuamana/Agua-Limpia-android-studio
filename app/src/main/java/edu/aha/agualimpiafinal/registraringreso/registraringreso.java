@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,7 +41,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -84,6 +90,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     //Shared preferences
     String fullname, email;
+
+
 
 
     private RegistraringresoViewModel mViewModel;
@@ -362,28 +370,34 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     private void getLocation() {
 
+        ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
 
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
+           ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
+
             //Capturar ultima ubicacion
+
+            getCurrentLocation();
+
             //Toast.makeText(getActivity(), "Tenemos Permisos", Toast.LENGTH_SHORT).show();
 
-            ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
-            ubicacion.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
 
-                    double latitude = location.getLatitude();
-                    double longitud = location.getLongitude();
-
-                    RItvlatitud.setText("");
-                    RItvlongitud.setText("");
-                    RItvlatitud.setText(String.valueOf(latitude));
-                    RItvlongitud.setText(String.valueOf(longitud));
-
-
-                }
-            });
+//            ubicacion.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+//                @Override
+//                public void onSuccess(Location location) {
+//
+//                    double latitude = location.getLatitude();
+//                    double longitud = location.getLongitude();
+//
+//                    RItvlatitud.setText("");
+//                    RItvlongitud.setText("");
+//                    RItvlatitud.setText(String.valueOf(latitude));
+//                    RItvlongitud.setText(String.valueOf(longitud));
+//
+//
+//                }
+//            });
 
 
 
@@ -415,6 +429,77 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     }
 
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            //when location is enabled
+            //get last location
+
+            ubicacion.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    //Inicialize location
+                    final Location location = task.getResult();
+
+                    //check condicion
+                    if (location != null) {
+                        //set latitude
+                        RItvlatitud.setText(String.valueOf(location.getLatitude()));
+                        //set longitud
+                        RItvlongitud.setText(String.valueOf(location.getLongitude()));
+
+                    } else {
+
+                        final LocationRequest locationRequest = new LocationRequest()
+                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(10000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+                        LocationCallback locationCallback = new LocationCallback() {
+
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                super.onLocationResult(locationResult);
+
+                                //Iniciar location
+                                Location location1 = locationResult.getLastLocation();
+                                //set latitude
+                                RItvlatitud.setText(String.valueOf(location.getLatitude()));
+                                //set longitud
+                                RItvlongitud.setText(String.valueOf(location.getLongitude()));
+
+                            }
+                        };
+
+                        //fin else
+                        //Solicitar Location updates
+                        ubicacion.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+
+
+                    }
+                    //fin condition
+
+
+                }
+            });
+
+            //fin get last location
+
+        } else {
+
+            //when location services is not enabled
+            //Open Location  setting
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)  );
+
+
+        }
+
+
+    }
 
 
 }
