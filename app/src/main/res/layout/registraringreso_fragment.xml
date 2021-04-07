@@ -10,70 +10,64 @@
     >
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registro Microbiologico"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:scrollHorizontally="true"
-        ></TextView>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-        <EditText
-            android:id="@+id/RIedtLatitud"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Latitud "
-            android:textSize="20dp"
-            android:scrollHorizontally="true"
-            ></EditText>
-
-        <EditText
-            android:id="@+id/RIedtLongitud"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:hint="Longitud"
-            android:textSize="20dp"
-            android:scrollHorizontally="true"
-            ></EditText>
-
-        <ImageButton
-            android:id="@+id/RIbtngeolocalizacion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_location"
-            ></ImageButton>
-
-    </LinearLayout>
-
-
-
-
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:scrollHorizontally="true"
         >
-
-
 
     
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro Microbiologico"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:scrollHorizontally="true"
+            android:paddingBottom="15dp"
+            ></TextView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/RIedtLatitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Latitud "
+                android:textSize="20dp"
+                android:scrollHorizontally="true"
+                ></EditText>
+
+            <EditText
+                android:id="@+id/RIedtLongitud"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:hint="Longitud"
+                android:textSize="20dp"
+                android:scrollHorizontally="true"
+                ></EditText>
+
+            <ImageButton
+                android:id="@+id/RIbtngeolocalizacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_location"
+                ></ImageButton>
+
+        </LinearLayout>
 
 
         <Space
@@ -148,7 +142,7 @@
             android:text="LIMPIAR"></Button>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
+            android:layout_height="50dp"></Space>
 
 
     </LinearLayout>

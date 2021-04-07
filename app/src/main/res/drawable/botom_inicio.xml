@@ -4,6 +4,10 @@
     <item>
 
         <shape>
+            <size
+                android:height="40dp"
+                android:width="40dp"
+                ></size>
 
             <gradient
                 android:startColor="@color/secondaryDarkColor"
@@ -11,8 +15,7 @@
                 ></gradient>
 
             <corners
-                android:radius="500dp"
-
+                android:radius="20dp"
                 ></corners>
 
         </shape>
