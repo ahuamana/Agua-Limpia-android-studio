@@ -54,12 +54,24 @@ public class ViewAdapter extends PagerAdapter {
         TextView txtcircle1 = view.findViewById(R.id.txtslider1);
         TextView txtcircle2 = view.findViewById(R.id.txtslider2);
         TextView txtcircle3 = view.findViewById(R.id.txtslider3);
+        TextView txtsaltar = view.findViewById(R.id.txtsaltar);
 
         //inicio del evento click
         btnempezar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Al hacer click en el botom
+                Intent i = new Intent(context, begining.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
+        //fin del evento click
+
+        //inicio del evento click saltar
+        txtsaltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent i = new Intent(context, begining.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
