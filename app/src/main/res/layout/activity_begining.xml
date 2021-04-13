@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".begining.begining"
     android:orientation="vertical"
     >
@@ -13,94 +14,168 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            android:orientation="vertical">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="40dp"></Space>
 
             <ImageView
-                android:layout_gravity="bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:id="@+id/imageView3"
+                android:layout_width="162dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="36dp"
                 android:src="@drawable/logoagua"
-                ></ImageView>
-
-            <TextView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:text="EMAIL"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="25dp"
-                android:layout_height="wrap_content"
-                ></TextView>
-
-            <EditText
-                android:id="@+id/BEemail"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_width="2in"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:inputType="textEmailAddress"
-                android:layout_height="wrap_content"
-                android:scrollHorizontally="true"
-                ></EditText>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20dp"></Space>
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                tools:layout_editor_absoluteX="16dp"></Space>
 
-            <TextView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:text="NOMBRE COMPLETO"
-                android:gravity="center_vertical|center_horizontal"
-                android:textSize="25dp"
-                android:layout_height="wrap_content"></TextView>
+            <LinearLayout
 
-
-            <EditText
-                android:id="@+id/BEfullname"
-                android:layout_width="2in"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:inputType="text"
-                android:scrollHorizontally="true"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                ></EditText>
-
-            <Space
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"></Space>
-               <Button
-                    android:id="@+id/btnbegining"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                app:layout_constraintVertical_bias="1.0">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="Bienvenido"
+                    android:textSize="25dp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/BEfirstname"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_graybackground"
+                        android:hint="Nombre"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDarkColor"
+                        android:textColorHint="#9A9797"
+                        android:textSize="15dp"></EditText>
+
+                    <EditText
+                        android:id="@+id/BEmiddlename"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_graybackground"
+                        android:hint="Alias"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDarkColor"
+                        android:textColorHint="#9A9797"
+                        android:textSize="15dp"></EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/BElastname"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_graybackground"
+                        android:hint="Apellidos"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDarkColor"
+                        android:textColorHint="#9A9797"
+                        android:textSize="15dp"></EditText>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/BEemail"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_graybackground"
+                        android:hint="Correo electrónico"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:singleLine="true"
+                        android:textColor="@color/primaryDarkColor"
+                        android:textColorHint="#9A9797"
+                        android:textSize="15dp"></EditText>
+                </LinearLayout>
+
+
+
+
+                <Button
+                    android:id="@+id/btnbegining"
                     android:layout_width="2in"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:layout_gravity="center"
                     android:background="@drawable/custom_botom"
-                    android:text="Ingresar"
                     android:scrollHorizontally="true"
-                    />
+                    android:text="Ingresar"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
-
-
-        </LinearLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
 
-
-
-
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

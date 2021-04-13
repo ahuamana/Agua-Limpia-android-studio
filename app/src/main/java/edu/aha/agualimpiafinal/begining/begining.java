@@ -14,10 +14,14 @@ import android.widget.Toast;
 
 import edu.aha.agualimpiafinal.MainActivity;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.validaciones.validaciones;
 
 public class begining extends AppCompatActivity {
 
-    EditText BEedtEmail, BEfullname;
+    EditText BEedtfirstname, BEedtlastname,BEedtmiddlename,BEedtEmail;
+
+    validaciones rules= new validaciones();
+
     Button btnbegin;
 
     @Override
@@ -25,31 +29,48 @@ public class begining extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begining);
 
+        //Vincular variables con ids del activity
+        BEedtfirstname=findViewById(R.id.BEfirstname);
+        BEedtmiddlename=findViewById(R.id.BEmiddlename);
+        BEedtlastname=findViewById(R.id.BElastname);
         BEedtEmail= findViewById(R.id.BEemail);
-        BEfullname=findViewById(R.id.BEfullname);
-
         btnbegin= findViewById(R.id.btnbegining);
 
+        //cargar metodo de los datos guardados en el telefono
         cargarPreferencias();
 
         btnbegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //if(!TextUtils.isEmpty(RICantidad.getText().toString()) ||  !TextUtils.isEmpty(RITiempo.getText().toString())  )
 
-                if(!TextUtils.isEmpty(BEedtEmail.getText().toString())) {
+                boolean valid_firstname=false, valid_middlename=false,valid_lastname=false, valid_email=false;
 
+                //Validar los campos vacios
+                valid_firstname=rules.checkField(BEedtfirstname);
+                valid_lastname=rules.checkField(BEedtlastname);
+                //valid_middlename=rules.checkField(BEedtfirstname);
+                valid_email=rules.checkField(BEedtEmail);
 
-                    if (!TextUtils.isEmpty(BEfullname.getText().toString()))
+                if(valid_firstname)
+                {
+
+                    if(valid_lastname)
                     {
-                        guardarPreferencias();
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-                    } else {Toast.makeText(begining.this, "Rellene los campos vacios", Toast.LENGTH_SHORT).show();}
+
+                        if(valid_email)
+                        {
+                            //Guardar las preferencias
+                            guardarPreferencias();
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+
+                        }
+                    }
+
+                }
 
 
-                } else {Toast.makeText(begining.this, "Rellene los campos vacios", Toast.LENGTH_SHORT).show();}
 
             }
         });
@@ -61,10 +82,15 @@ public class begining extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
-        String fullname= preferences.getString("spfullname","");
+        String firstname= preferences.getString("spfirstname","");
+        String middlename= preferences.getString("spmiddlename","");
+        String lastname= preferences.getString("splastname","");
         String email= preferences.getString("spEmail","");
 
-        BEfullname.setText(fullname);
+        //asignar datos guardados a los respectivos campos
+        BEedtfirstname.setText(firstname);
+        BEedtmiddlename.setText(middlename);
+        BEedtlastname.setText(lastname);
         BEedtEmail.setText(email);
 
     }
@@ -73,22 +99,25 @@ public class begining extends AppCompatActivity {
     private void guardarPreferencias(){
 
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        String spfullname = BEfullname.getText().toString();
+        String spfirstname = BEedtfirstname.getText().toString();
+        String spmiddlename = BEedtmiddlename.getText().toString();
+        String splastname = BEedtlastname.getText().toString();
         String spEmail= BEedtEmail.getText().toString();
 
         //editor permite editar y almacenar las variables
         SharedPreferences.Editor editor=preferences.edit();
-        editor.putString("spfullname",spfullname);
+        editor.putString("spfirstname",spfirstname);
+        editor.putString("spmiddlename",spmiddlename);
+        editor.putString("splastname",splastname);
         editor.putString("spEmail",spEmail);
-        //ejecutar estas lineas
 
-        BEfullname.setText(spfullname);
+        //asignar datos de los campos a las variables para almacenarlos
+        BEedtfirstname.setText(spfirstname);
+        BEedtmiddlename.setText(spmiddlename);
+        BEedtlastname.setText(splastname);
         BEedtEmail.setText(spEmail);
 
         editor.commit();
-
-
-
 
     }
 

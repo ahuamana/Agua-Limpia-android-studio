@@ -5,6 +5,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +64,8 @@ public class MuestrasAdapter extends FirebaseRecyclerAdapter<Ingreso,MuestrasAda
         //crear variables para hacer la refenrencia al molde xml
         TextView txtnombrecompleto, txtcantidadmuestra, txttiempo, txtBVQ;
         String   txtidmuestra;
-        CircleImageView foto;
+        ImageView foto;
+        Button btnmasinformacion;
 
         public MuestrasHolder(@NonNull View vista) {
             super(vista);
@@ -72,8 +74,6 @@ public class MuestrasAdapter extends FirebaseRecyclerAdapter<Ingreso,MuestrasAda
             txtcantidadmuestra=vista.findViewById(R.id.MMtxtMuestra);
             txttiempo=vista.findViewById(R.id.MMtxtTiempo);
             txtBVQ=vista.findViewById(R.id.MMtxtBQV);
-
-
             foto=vista.findViewById(R.id.MMivImagen);
 
 
