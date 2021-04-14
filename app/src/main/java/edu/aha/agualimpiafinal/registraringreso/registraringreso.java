@@ -77,7 +77,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     Long TimeSTamp;
 
     ImageView RIimgfoto;
-    EditText RICantidad, RITiempo, RIBQV;
+    EditText RICantidad, RIDepartamento, RIProvincia, RIBQV;
     Button RIbtnregistrar,RIbtnlimpiar;
     ImageButton RIbtncargarfoto;
 
@@ -125,7 +125,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
        RItvlatitud = vista.findViewById(R.id.RIedtLatitud);
        RItvlongitud = vista.findViewById(R.id.RIedtLongitud);
        RICantidad=vista.findViewById(R.id.RIedtcantidadmuestra);
-       RITiempo=vista.findViewById(R.id.RIedttiempo);
+       RIDepartamento=vista.findViewById(R.id.RIedtDepartamento);
+       RIProvincia=vista.findViewById(R.id.RIedtProvincia);
        RIBQV=vista.findViewById(R.id.RIedtBQV);
 
        //Image View
@@ -235,7 +236,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     private void limpiarcampos() {
 
         RICantidad.setText("");
-        RITiempo.setText("");
+        RIDepartamento.setText("");
+        RIProvincia.setText("");
         RItvlatitud.setText("");
         RItvlongitud.setText("");
         RIBQV.setText("");
@@ -261,7 +263,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     private void registrarMuestraAnalizada() {
 
         //Validar campos vacios
-        if(!TextUtils.isEmpty(RICantidad.getText().toString()) ||  !TextUtils.isEmpty(RITiempo.getText().toString())  )
+        if(!TextUtils.isEmpty(RICantidad.getText().toString())  )
 
         {
 
@@ -276,7 +278,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                     {
                         Map<String, Object> muestrasData =new HashMap<>();
                         muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                        muestrasData.put("MuestraTiempo",RITiempo.getText().toString());
+                        muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString());
+                        muestrasData.put("MuestraProvincia",RIProvincia.getText().toString());
                         muestrasData.put("MuestraFotoLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
                         muestrasData.put("MuestraFotoLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
                         muestrasData.put("MuestraResultadoBQV",RIBQV.getText().toString());
