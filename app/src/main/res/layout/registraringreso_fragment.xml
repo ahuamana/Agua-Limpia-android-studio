@@ -6,17 +6,13 @@
     tools:context=".registraringreso.registraringreso"
     android:orientation="vertical"
     android:id="@+id/REcontenedorRegistrarIngreso"
-    android:padding="10dp"
-    >
-
+    android:padding="10dp">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollHorizontally="true"
-        >
+        android:scrollHorizontally="true">
 
-    
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -25,124 +21,168 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registro Microbiologico"
+            android:text="Registrar todo los datos de la muestra"
             android:gravity="center"
             android:textSize="25dp"
             android:scrollHorizontally="true"
             android:paddingBottom="15dp"
             ></TextView>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/RIedtLatitud"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="Latitud "
-                android:textSize="20dp"
+                android:layout_height="48dp"
+                android:paddingStart="20dp"
+                android:singleLine="true"
+                android:paddingEnd="20dp"
+                android:background="@drawable/edittext_graybackground"
+                android:textSize="15dp"
                 android:scrollHorizontally="true"
                 ></EditText>
 
             <EditText
                 android:id="@+id/RIedtLongitud"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:singleLine="true"
+                android:paddingEnd="20dp"
+                android:background="@drawable/edittext_graybackground"
                 android:layout_weight="2"
                 android:hint="Longitud"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:scrollHorizontally="true"
                 ></EditText>
 
             <ImageButton
                 android:id="@+id/RIbtngeolocalizacion"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_height="48dp"
+                android:background="@drawable/edittext_graybackground"
                 android:layout_weight="1"
                 android:src="@drawable/ic_location"
                 ></ImageButton>
-
         </LinearLayout>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp"></Space>
 
         <EditText
             android:id="@+id/RIedtcantidadmuestra"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingStart="20dp"
+            android:singleLine="true"
+            android:paddingEnd="20dp"
+            android:background="@drawable/edittext_graybackground"
+            android:layout_marginTop="10dp"
             android:hint="Cantidad de Muestra (ml)"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:inputType="number"
             android:scrollHorizontally="true"
             ></EditText>
-        <EditText
-            android:id="@+id/RIedttiempo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tiempo (minutos)"
-            android:textSize="20dp"
-            android:inputType="number"
-            android:scrollHorizontally="true"
-            ></EditText>
+
+
+
 
         <EditText
             android:id="@+id/RIedtBQV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
+            android:paddingStart="20dp"
+            android:singleLine="true"
+            android:paddingEnd="20dp"
+            android:background="@drawable/edittext_graybackground"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:hint="Resultado (BQV)"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:scrollHorizontally="true"
             ></EditText>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <EditText
+                android:id="@+id/RIedtDepartamento"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:hint="Departamento"
+                android:layout_height="48dp"
+                android:paddingStart="20dp"
+                android:singleLine="true"
+                android:paddingEnd="20dp"
+                android:background="@drawable/edittext_graybackground"
+                android:textSize="15dp"
+                android:scrollHorizontally="true"
+                ></EditText>
+
+            <EditText
+                android:id="@+id/RIedtProvincia"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:singleLine="true"
+                android:paddingEnd="20dp"
+                android:background="@drawable/edittext_graybackground"
+                android:layout_weight="2"
+                android:hint="Provincia"
+                android:textSize="15dp"
+                android:scrollHorizontally="true"
+                ></EditText>
+
+
+        </LinearLayout>
+
         <ImageButton
             android:id="@+id/RIbtncargarfoto"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@drawable/buttom_take_photo"
             android:src="@drawable/ic_camera"
             android:scaleType="fitCenter"
+            android:layout_marginBottom="10dp"
             android:text="Tomar Foto"></ImageButton>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
 
         <ImageView
             android:id="@+id/RIimgFoto"
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"></ImageView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
 
         <Button
             android:id="@+id/RIbtnRegistrar"
             android:layout_width="match_parent"
             android:textColor="@color/white"
-            android:background="@color/lightblue"
+            android:background="@drawable/buttom_registrarmuestra"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="REGISTRAR"></Button>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"></Space>
+
         <Button
             android:id="@+id/RIbtnLimpiar"
             android:textColor="@color/white"
-            android:background="@color/red"
+            android:background="@drawable/buttom_limpiar_campos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
             android:text="LIMPIAR"></Button>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></Space>
+
 
 
     </LinearLayout>

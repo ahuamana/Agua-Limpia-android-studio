@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import edu.aha.agualimpiafinal.MainActivity;
@@ -19,7 +21,7 @@ import edu.aha.agualimpiafinal.validaciones.validaciones;
 public class begining extends AppCompatActivity {
 
     EditText BEedtfirstname, BEedtlastname,BEedtmiddlename,BEedtEmail;
-
+    TextView BEtxtcontactSupport;
     validaciones rules= new validaciones();
 
     Button btnbegin;
@@ -35,9 +37,11 @@ public class begining extends AppCompatActivity {
         BEedtlastname=findViewById(R.id.BElastname);
         BEedtEmail= findViewById(R.id.BEemail);
         btnbegin= findViewById(R.id.btnbegining);
+        BEtxtcontactSupport = findViewById(R.id.BEtxtcontactSupport);
 
         //cargar metodo de los datos guardados en el telefono
         cargarPreferencias();
+
 
         btnbegin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +76,26 @@ public class begining extends AppCompatActivity {
 
 
 
+
+
             }
         });
 
+        //Inicio de contacte soporte
+
+        BEtxtcontactSupport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String phoneNumberWithCountryCode = "+51930292619";
+                String message = "Hola, te contactaste con Agua Limpia en una APP, \n¿En que te podemos ayudar?";
+
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("https://api.whatsapp.com/send?phone=%s&text=%s", phoneNumberWithCountryCode, message)));
+                startActivity(i);
+
+            }
+        });
+        //
 
     }
 
