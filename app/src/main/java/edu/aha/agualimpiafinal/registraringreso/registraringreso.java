@@ -66,6 +66,7 @@ import java.util.Objects;
 
 import edu.aha.agualimpiafinal.Entidades.Ingreso;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.validaciones.validaciones;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -86,6 +87,9 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     FirebaseAuth fAuth;
 
 
+    //validaciones
+    validaciones rules = new validaciones();
+    boolean departamento=false,provincia=false,latitud=false,lontitud=false,cantidad_muestra=false,resultado=false,BQV=false;
 
     //referencias al storage
     private StorageReference mstorage;
@@ -230,7 +234,6 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         i.setType("image/*");
         startActivityForResult(i, GALLERY_INTENT);
 
-
     }
 
     private void limpiarcampos() {
@@ -258,53 +261,75 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     }
 
-
-
     private void registrarMuestraAnalizada() {
 
         //Validar campos vacios
-        if(!TextUtils.isEmpty(RICantidad.getText().toString())  )
+        latitud=rules.checkField(RItvlatitud);
+        lontitud=rules.checkField(RItvlongitud);
+        cantidad_muestra=rules.checkField(RICantidad);
+        departamento=rules.checkField(RIDepartamento);
+        provincia=rules.checkField(RIProvincia);
+        BQV=rules.checkField(RIBQV);
 
+        if(latitud)
         {
-
-            //incia guardado de datos a cloudfirestore
-            final DocumentReference df = fStore.collection("DatosMuestra").document(); // Genera automaticamente la KEY al almacenar datos con .document()
-
-            df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                    if(task.isSuccessful())
+            if(lontitud)
+            {
+                if(cantidad_muestra)
+                {
+                    if(departamento)
                     {
-                        Map<String, Object> muestrasData =new HashMap<>();
-                        muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                        muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString());
-                        muestrasData.put("MuestraProvincia",RIProvincia.getText().toString());
-                        muestrasData.put("MuestraFotoLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
-                        muestrasData.put("MuestraFotoLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
-                        muestrasData.put("MuestraResultadoBQV",RIBQV.getText().toString());
-                        muestrasData.put("MuestraFotoPATH",ValorURL);
-                        muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
-                        muestrasData.put("AuthorFirstname",firstname);
-                        muestrasData.put("AuthorLastname",lastname);
-                        muestrasData.put("AuthorMiddlename",middlename);
-                        muestrasData.put("AuthorAlias",email);
+                        if(provincia)
+                        {
+                            if(BQV)
+                            {
+                                if(!TextUtils.isEmpty(ValorURL))
+                                {
+                                    //incia guardado de datos a cloudfirestore
+                                    final DocumentReference df = fStore.collection("DatosMuestra").document(); // Genera automaticamente la KEY al almacenar datos con .document()
 
-                        df.set(muestrasData);
-                        Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
-                        limpiarcampos();
+                                    df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                                            if(task.isSuccessful())
+                                            {
+                                                Map<String, Object> muestrasData =new HashMap<>();
+                                                muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
+                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString());
+                                                muestrasData.put("MuestraProvincia",RIProvincia.getText().toString());
+                                                muestrasData.put("MuestraFotoLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
+                                                muestrasData.put("MuestraFotoLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
+                                                muestrasData.put("MuestraResultadoBQV",RIBQV.getText().toString());
+                                                muestrasData.put("MuestraFotoPATH",ValorURL);
+                                                muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
+                                                muestrasData.put("AuthorFirstname",firstname);
+                                                muestrasData.put("AuthorLastname",lastname);
+                                                muestrasData.put("AuthorMiddlename",middlename);
+                                                muestrasData.put("AuthorAlias",email);
+
+                                                df.set(muestrasData);
+                                                Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
+                                                limpiarcampos();
+                                            }
+
+                                        }
+                                    });
+                                    //fin de df.onCompleteListener
+
+
+                                }
+                                else {
+                                    Toast.makeText(getActivity(), "Agregar la foto", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
                     }
-
                 }
-            });
-            //fin de df.onCompleteListener
-
-
-        }
-        else {
-            Toast.makeText(getActivity(), "Completar los campos vacios", Toast.LENGTH_SHORT).show();
+            }
         }
 
+       //fin de validar
 
     }
 
