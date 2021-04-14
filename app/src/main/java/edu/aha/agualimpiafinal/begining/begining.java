@@ -30,7 +30,8 @@ public class begining extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begining);
-
+        //Hide action bar
+        getSupportActionBar().hide();
         //Vincular variables con ids del activity
         BEedtfirstname=findViewById(R.id.BEfirstname);
         BEedtmiddlename=findViewById(R.id.BEmiddlename);
