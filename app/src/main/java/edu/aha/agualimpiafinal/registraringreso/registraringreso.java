@@ -50,12 +50,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import edu.aha.agualimpiafinal.Entidades.Ingreso;
@@ -68,18 +74,18 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
     String ValorURL;
-
+    Long TimeSTamp;
 
     ImageView RIimgfoto;
     EditText RICantidad, RITiempo, RIBQV;
     Button RIbtnregistrar,RIbtnlimpiar;
     ImageButton RIbtncargarfoto;
 
+    //Cloud Firestore
+    FirebaseFirestore fStore;
+    FirebaseAuth fAuth;
 
-    //Referencias Real Database
-    private DatabaseReference mDatabase;
-    private FirebaseDatabase firebaseDatabase;
-    FirebaseAuth mAuth;
+
 
     //referencias al storage
     private StorageReference mstorage;
@@ -89,10 +95,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     private FusedLocationProviderClient ubicacion;
 
     //Shared preferences
-    String fullname, email;
-
-
-
+    String firstname,middlename,lastname, email;
 
     private RegistraringresoViewModel mViewModel;
 
@@ -105,23 +108,11 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.registraringreso_fragment, container, false);
 
-        /////Inicio de Firebase
-
-
-        //Obtener la Basede Datos de FireBase
-        mDatabase=FirebaseDatabase.getInstance().getReference();
-        //Obtener el Storage de Android
-        FirebaseApp.initializeApp(getActivity());
-        mstorage = FirebaseStorage.getInstance().getReference();
-
-        //realizar la conexion a FireBase
-        InicializarFireBase();
-
-
-
-
+        //Inicializar firebase
+        fAuth=FirebaseAuth.getInstance();
+        fStore=FirebaseFirestore.getInstance();
+        mstorage=FirebaseStorage.getInstance().getReference();
         /////fin de firebase
-
 
         //Cargar SharePreferences
         cargarPreferencias();
@@ -166,14 +157,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         return vista;
     }
 
-    private void InicializarFireBase() {
 
-        FirebaseApp.initializeApp(getContext());
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        mDatabase=firebaseDatabase.getReference();
-
-
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -265,7 +249,9 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
         SharedPreferences preferences = getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
-        fullname= preferences.getString("spfullname","");
+        firstname= preferences.getString("spfirstname","");
+        middlename= preferences.getString("spmiddlename","");
+        lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
 
     }
@@ -274,31 +260,42 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     private void registrarMuestraAnalizada() {
 
-
-
-
         //Validar campos vacios
         if(!TextUtils.isEmpty(RICantidad.getText().toString()) ||  !TextUtils.isEmpty(RITiempo.getText().toString())  )
 
         {
 
-            //Guardar Todos los campos para enviar a firebase
-            ////enviar datos a firebase -
-            int cantidad= Integer.parseInt (RICantidad.getText().toString());
-            int minutos=  Integer.parseInt (RITiempo.getText().toString());
-            double latitud = Double.parseDouble(RItvlatitud.getText().toString());
-            double longitud = Double.parseDouble(RItvlongitud.getText().toString());
-            String resultadoBQV = RIBQV.getText().toString();
-            String fotopath = ValorURL;
+            //incia guardado de datos a cloudfirestore
+            final DocumentReference df = fStore.collection("DatosMuestra").document(); // Genera automaticamente la KEY al almacenar datos con .document()
 
+            df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
+                    if(task.isSuccessful())
+                    {
+                        Map<String, Object> muestrasData =new HashMap<>();
+                        muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
+                        muestrasData.put("MuestraTiempo",RITiempo.getText().toString());
+                        muestrasData.put("MuestraFotoLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
+                        muestrasData.put("MuestraFotoLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
+                        muestrasData.put("MuestraResultadoBQV",RIBQV.getText().toString());
+                        muestrasData.put("MuestraFotoPATH",ValorURL);
+                        muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
+                        muestrasData.put("AuthorFirstname",firstname);
+                        muestrasData.put("AuthorLastname",lastname);
+                        muestrasData.put("AuthorMiddlename",middlename);
+                        muestrasData.put("AuthorAlias",email);
 
-            String id = mDatabase.push().getKey();
+                        df.set(muestrasData);
+                        Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
+                        limpiarcampos();
+                    }
 
-            Ingreso objEntrega=new Ingreso(id,cantidad,minutos,latitud,longitud,resultadoBQV,fotopath,fullname,email);
-            mDatabase.child("Muestrass").child(id).setValue(objEntrega);
-            Toast.makeText(getContext(), "Muestra Añadida!", Toast.LENGTH_SHORT).show();
-            limpiarcampos();
+                }
+            });
+            //fin de df.onCompleteListener
+
 
         }
         else {
