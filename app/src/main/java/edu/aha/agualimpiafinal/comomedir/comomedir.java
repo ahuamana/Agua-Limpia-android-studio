@@ -22,7 +22,7 @@ public class comomedir extends Fragment {
 
     private ComomedirViewModel mViewModel;
 
-    ImageView img01,img02,img03;
+    ImageView imgHealthMetric,imgWaterSafe;
 
     public static comomedir newInstance() {
         return new comomedir();
@@ -34,31 +34,20 @@ public class comomedir extends Fragment {
 
         View vista=inflater.inflate(R.layout.comomedir_fragment, container, false);
 
-        img01 = vista.findViewById(R.id.imgconce);
-        img02=vista.findViewById(R.id.imgreac);
-        img03=vista.findViewById(R.id.imgmedi);
+        imgHealthMetric = vista.findViewById(R.id.CMivHealtMetric);
+        imgWaterSafe = vista.findViewById(R.id.CMivWaterSafe);
+
 
 
         Glide.with(this)
-                .load("https://www.mycometer.com/typo3temp/GB/2291658ab3.jpg")
-
+                .load("https://images-na.ssl-images-amazon.com/images/I/81B8ZtKR%2BXL._AC_SY355_.jpg")
                 .placeholder(R.mipmap.ic_launcher)
-                .into(img01);
+                .into(imgWaterSafe);
 
         Glide.with(this)
-                .load("https://www.mycometer.com/typo3temp/GB/e49cc1d26e.jpg")
+                .load("https://images-na.ssl-images-amazon.com/images/I/71dvCVFZ71L._AC_SY355_.jpg")
                 .placeholder(R.mipmap.ic_launcher)
-                .into(img02);
-
-        Glide.with(getActivity())
-                .load("https://www.mycometer.com/typo3temp/GB/e7ea7a39d8.jpg")
-
-                .placeholder(R.mipmap.ic_launcher)
-                .into(img03);
-
-
-
-
+                .into(imgHealthMetric);
 
         return vista;
     }

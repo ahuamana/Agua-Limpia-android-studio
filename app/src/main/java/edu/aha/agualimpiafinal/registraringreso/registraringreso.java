@@ -6,17 +6,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,7 +31,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -48,11 +43,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -62,9 +53,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-import edu.aha.agualimpiafinal.Entidades.Ingreso;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.validaciones.validaciones;
 
@@ -78,7 +67,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     Long TimeSTamp;
 
     ImageView RIimgfoto;
-    EditText RICantidad, RIDepartamento, RIProvincia, RIBQV;
+    EditText RICantidad, RIDepartamento, RIProvincia;
+    Spinner RIResultadoMuestra;
     Button RIbtnregistrar,RIbtnlimpiar;
     ImageButton RIbtncargarfoto;
 
@@ -89,7 +79,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     //validaciones
     validaciones rules = new validaciones();
-    boolean departamento=false,provincia=false,latitud=false,lontitud=false,cantidad_muestra=false,resultado=false,BQV=false;
+    boolean departamento=false,provincia=false,latitud=false,lontitud=false,cantidad_muestra=false,resultado=false, ResultadoMuestra =false;
 
     //referencias al storage
     private StorageReference mstorage;
@@ -131,7 +121,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
        RICantidad=vista.findViewById(R.id.RIedtcantidadmuestra);
        RIDepartamento=vista.findViewById(R.id.RIedtDepartamento);
        RIProvincia=vista.findViewById(R.id.RIedtProvincia);
-       RIBQV=vista.findViewById(R.id.RIedtBQV);
+       RIResultadoMuestra =vista.findViewById(R.id.RIedtBQV);
 
        //Image View
         RIimgfoto= vista.findViewById(R.id.RIimgFoto);
@@ -243,7 +233,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         RIProvincia.setText("");
         RItvlatitud.setText("");
         RItvlongitud.setText("");
-        RIBQV.setText("");
+        RIResultadoMuestra.setSelection(0,true);
         ValorURL="";
         RIimgfoto.setImageResource(0);
 
@@ -269,7 +259,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         cantidad_muestra=rules.checkField(RICantidad);
         departamento=rules.checkField(RIDepartamento);
         provincia=rules.checkField(RIProvincia);
-        BQV=rules.checkField(RIBQV);
+        ResultadoMuestra =rules.checkSpinner(RIResultadoMuestra,"Seleccione Resultado");
 
         if(latitud)
         {
@@ -281,7 +271,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                     {
                         if(provincia)
                         {
-                            if(BQV)
+                            if(ResultadoMuestra)
                             {
                                 if(!TextUtils.isEmpty(ValorURL))
                                 {
@@ -296,17 +286,17 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                                             {
                                                 Map<String, Object> muestrasData =new HashMap<>();
                                                 muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString());
-                                                muestrasData.put("MuestraProvincia",RIProvincia.getText().toString());
-                                                muestrasData.put("MuestraFotoLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
-                                                muestrasData.put("MuestraFotoLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
-                                                muestrasData.put("MuestraResultadoBQV",RIBQV.getText().toString());
+                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString().toLowerCase());
+                                                muestrasData.put("MuestraProvincia",RIProvincia.getText().toString().toLowerCase());
+                                                muestrasData.put("MuestraLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
+                                                muestrasData.put("MuestraLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
+                                                muestrasData.put("MuestraResultado", RIResultadoMuestra.getSelectedItem().toString());
                                                 muestrasData.put("MuestraFotoPATH",ValorURL);
                                                 muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
-                                                muestrasData.put("AuthorFirstname",firstname);
-                                                muestrasData.put("AuthorLastname",lastname);
+                                                muestrasData.put("AuthorFirstname",firstname.toLowerCase());
+                                                muestrasData.put("AuthorLastname",lastname.toLowerCase());
                                                 muestrasData.put("AuthorMiddlename",middlename);
-                                                muestrasData.put("AuthorAlias",email);
+                                                muestrasData.put("AuthorAlias",email.toLowerCase());
 
                                                 df.set(muestrasData);
                                                 Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();

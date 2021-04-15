@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrar todo los datos de la muestra"
+            android:text="Ingresar todo los datos de la muestra"
             android:gravity="center"
             android:textSize="25dp"
             android:scrollHorizontally="true"
@@ -37,9 +37,11 @@
                 android:id="@+id/RIedtLatitud"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:hint="Latitud "
+                android:hint="Latitud"
+                android:enabled="false"
                 android:layout_height="48dp"
                 android:paddingStart="20dp"
+                android:textColor="@color/primaryTextColor"
                 android:singleLine="true"
                 android:paddingEnd="20dp"
                 android:background="@drawable/edittext_graybackground"
@@ -54,6 +56,8 @@
                 android:layout_marginStart="10dp"
                 android:paddingStart="20dp"
                 android:singleLine="true"
+                android:enabled="false"
+                android:textColor="@color/primaryTextColor"
                 android:paddingEnd="20dp"
                 android:background="@drawable/edittext_graybackground"
                 android:layout_weight="2"
@@ -73,49 +77,16 @@
                 ></ImageButton>
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/RIedtcantidadmuestra"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:paddingStart="20dp"
-            android:singleLine="true"
-            android:paddingEnd="20dp"
-            android:background="@drawable/edittext_graybackground"
-            android:layout_marginTop="10dp"
-            android:hint="Cantidad de Muestra (ml)"
-            android:textSize="15dp"
-            android:inputType="number"
-            android:scrollHorizontally="true"
-            ></EditText>
-
-
-
-
-        <EditText
-            android:id="@+id/RIedtBQV"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:paddingStart="20dp"
-            android:singleLine="true"
-            android:paddingEnd="20dp"
-            android:background="@drawable/edittext_graybackground"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Resultado (BQV)"
-            android:textSize="15dp"
-            android:scrollHorizontally="true"
-            ></EditText>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/RIedtDepartamento"
                 android:layout_width="0dp"
+                android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
                 android:layout_weight="2"
                 android:hint="Departamento"
                 android:layout_height="48dp"
@@ -131,6 +102,7 @@
                 android:id="@+id/RIedtProvincia"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
+                android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
                 android:layout_marginStart="10dp"
                 android:paddingStart="20dp"
                 android:singleLine="true"
@@ -144,6 +116,37 @@
 
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/RIedtcantidadmuestra"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingStart="20dp"
+            android:digits="1234567890"
+            android:singleLine="true"
+            android:paddingEnd="20dp"
+            android:background="@drawable/edittext_graybackground"
+            android:layout_marginTop="10dp"
+            android:hint="Cantidad de Muestra (ml)"
+            android:textSize="15dp"
+            android:inputType="number"
+            android:scrollHorizontally="true"
+            ></EditText>
+
+        <Spinner
+            android:id="@+id/RIedtBQV"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:paddingStart="15dp"
+            android:singleLine="true"
+            android:paddingEnd="15dp"
+            android:entries="@array/resultadoObtenido"
+            android:background="@drawable/edittext_graybackground"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#393939"
+            android:scrollHorizontally="true"
+            ></Spinner>
 
         <ImageButton
             android:id="@+id/RIbtncargarfoto"

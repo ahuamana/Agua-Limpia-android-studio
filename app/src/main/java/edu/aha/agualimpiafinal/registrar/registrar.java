@@ -37,6 +37,10 @@ public class registrar extends Fragment implements View.OnClickListener {
         View vista= inflater.inflate(R.layout.registrar_fragment, container, false);
 
         REbtnmicro = vista.findViewById(R.id.REbtnmicrobiologico);
+        REbtnfisio = vista.findViewById(R.id.REbtnfisioquimico);
+        REbtnfisio.setVisibility(View.GONE);
+
+
 
         REbtnmicro.setOnClickListener(this);
 

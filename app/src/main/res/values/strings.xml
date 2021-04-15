@@ -21,6 +21,12 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    
+    <array name="resultadoObtenido">
+        <item>Seleccione resultado</item>
+        <item>Positivo</item>
+        <item>Negativo</item>
+    </array>
 
 
     <!--    Variables de entorno-->

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,109 +23,182 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TRES SENCILLOS PASOS"
-                android:gravity="center"
-                android:textColor="@color/red"
-                android:textSize="25dp"
-                ></TextView>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp"></Space>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text="1. Concentración \n2. Reacción \n3. Medición"
-                android:textColor="@color/lightblue"
-                android:textStyle="bold|italic"
-
-                ></TextView>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp"></Space>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="CONCENTRACIÓN"
-                android:gravity="center"
+                android:text="TIPO DE TEST"
                 android:textColor="@color/primarystatusbar"
                 android:textSize="20dp"
-                ></TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text="@string/datoconcentracion"
-                android:textSize="15dp"
-                android:gravity="fill_horizontal"
-                ></TextView>
-
-            <ImageView
-                android:scaleType="fitXY"
-                android:id="@+id/imgconce"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"></ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="REACCIÓN"
+                android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/primarystatusbar"
-                android:textSize="20dp"
-                ></TextView>
+                android:layout_marginBottom="10dp"
+                >
+            </TextView>
 
-            <TextView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text="@string/datoreaccion"
-                android:textSize="15dp"
-                android:gravity="fill_horizontal"
-                ></TextView>
-
-            <ImageView
-                android:scaleType="fitXY"
-                android:id="@+id/imgreac"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"></ImageView>
+                app:cardElevation="10dp"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp">
 
 
-            <TextView
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/CMivWaterSafe"
+                            android:layout_width="175dp"
+                            android:layout_height="134dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_menu_gallery"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="WATERSAFE"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            ></TextView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/CMbtnWaterSafe_masinfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="2"
+                                android:text="+ info"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:background="@drawable/buttom_masinformacion"
+                                android:textSize="15sp"></Button>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MEDICIÓN"
-                android:gravity="center"
-                android:textColor="@color/primarystatusbar"
-                android:textSize="20dp"
-                ></TextView>
+                app:cardElevation="10dp"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text="@string/datomedicion"
-                android:textSize="15dp"
-                android:gravity="fill_horizontal"
-                ></TextView>
 
-            <ImageView
-                android:scaleType="fitXY"
 
-                android:id="@+id/imgmedi"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"></ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="15dp"></Space>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <ImageView
+                            android:id="@+id/CMivHealtMetric"
+                            android:layout_width="175dp"
+                            android:layout_height="134dp"
+                            android:layout_gravity="center"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_menu_gallery"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="HEALTH METRIC"
+                            android:textColor="@color/primaryTextColor"
+                            android:textStyle="bold"
+                            android:textSize="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            ></TextView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/CMbtnHealthMetric_masinfo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="2"
+                                android:text="+ info"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:background="@drawable/buttom_masinformacion"
+                                android:textSize="15sp"></Button>
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+
 
 
     </ScrollView>
