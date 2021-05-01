@@ -7,8 +7,6 @@
 
             <corners
                 android:radius="10dp"></corners>
-
-
         </shape>
 
     </item>

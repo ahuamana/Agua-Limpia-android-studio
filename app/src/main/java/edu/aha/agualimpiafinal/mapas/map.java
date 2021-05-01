@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.mapas;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -9,9 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
@@ -55,6 +59,7 @@ public class map extends Fragment {
     private GoogleMap mMap;
     private FusedLocationProviderClient ubicacion;
     double latitudActual, longitudActual;
+    LocationManager locationManager;
 
     private Marker currentLocationMarker;
 
@@ -63,7 +68,7 @@ public class map extends Fragment {
 
     //guardar datos en esta lista
     List<Ingreso> listaDatos= new ArrayList<>();
-
+    GoogleMap googleMaps;
     //Marker Global de posicion
     Marker currentmarker=null;
 
@@ -82,7 +87,7 @@ public class map extends Fragment {
         public void onMapReady(final GoogleMap googleMap) {
 
 
-
+            googleMaps = googleMap;
             //Obtener Permisos geolzalizacion
             ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
             //permisos
@@ -106,19 +111,19 @@ public class map extends Fragment {
             } else
             {
 
-                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
-                {
+//                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
+//                {
+//
+//                    Toast.makeText(getActivity(), "Dio permiso para utilizar su ubicacion", Toast.LENGTH_SHORT).show();
+//
+//                }
+//                else {
 
-                    Toast.makeText(getActivity(), "Dio permiso para utilizar su ubicacion", Toast.LENGTH_SHORT).show();
+                    ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
 
                 }
-                else {
 
-                    ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION},1 );
-
-                }
-
-            }
+//            }
 
             //fin Permisos geolzalizacion
 
@@ -132,7 +137,9 @@ public class map extends Fragment {
                 @Override
                 public void onMapClick(LatLng latLng) {
 
-                    currentmarker.remove();
+                    if(currentmarker != null) {
+                        currentmarker.remove();
+                    }
 
                     //when click on map
                     //Inicializar marker options
@@ -178,7 +185,7 @@ public class map extends Fragment {
     private void ObtenerUbicationActual(final GoogleMap googleMap) {
 
 
-        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             //when location is enabled
@@ -194,7 +201,7 @@ public class map extends Fragment {
                     //check condicion
                     if (location != null) {
                         //set latitude
-                        latitudActual=location.getLatitude();
+                        latitudActual= location.getLatitude();
                         //set longitud
                         longitudActual=location.getLongitude();
 
@@ -218,7 +225,8 @@ public class map extends Fragment {
 
                     } else {
 
-                        final LocationRequest locationRequest = new LocationRequest()
+
+                        LocationRequest locationRequest = new LocationRequest()
                                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                                 .setInterval(10000)
                                 .setFastestInterval(1000)
@@ -232,9 +240,9 @@ public class map extends Fragment {
                                 //Iniciar location
                                 Location location1 = locationResult.getLastLocation();
                                 //set latitude
-                                latitudActual=location.getLatitude();
+                                latitudActual=location1.getLatitude();
                                 //set longitud
-                                longitudActual=location.getLongitude();
+                                longitudActual=location1.getLongitude();
 
                                 /////LLevarme a mi ubicacion Actual
                                         Log.e( "DatosLatitud",String.valueOf(latitudActual)+" : "+String.valueOf(longitudActual));
@@ -279,6 +287,23 @@ public class map extends Fragment {
         }
 
 
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //check condition
+
+        if(requestCode==100 &&(grantResults.length>0) && (grantResults[0] + grantResults[1] ==PackageManager.PERMISSION_GRANTED))
+        {
+            ObtenerUbicationActual(googleMaps);
+
+        }else {
+
+            //Permisos denegados
+            Toast.makeText(getActivity(), "Permisos denied", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -356,17 +381,13 @@ public class map extends Fragment {
         //fin evento para capturar valores
 
 
-
-
-
-
-
-
-
-
-
         return vista;
     }
+
+
+
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

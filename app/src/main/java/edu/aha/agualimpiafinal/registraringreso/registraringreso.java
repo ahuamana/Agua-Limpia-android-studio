@@ -11,7 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,10 +25,13 @@ import androidx.fragment.app.Fragment;
 import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.text.method.CharacterPickerDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -51,23 +56,28 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.arrays.arrays;
 import edu.aha.agualimpiafinal.validaciones.validaciones;
 
 import static android.app.Activity.RESULT_OK;
 
-public class registraringreso extends Fragment implements View.OnClickListener {
+public class registraringreso extends Fragment implements View.OnClickListener, LocationListener {
 
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
     String ValorURL;
     Long TimeSTamp;
+    LocationManager locationManager;
+    Context mContext;
 
     ImageView RIimgfoto;
-    EditText RICantidad, RIDepartamento, RIProvincia;
+    EditText RICantidad;
+    Spinner RIDepartamento, RIProvincia;
     Spinner RIResultadoMuestra;
     Button RIbtnregistrar,RIbtnlimpiar;
     ImageButton RIbtncargarfoto;
@@ -135,6 +145,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
        //imageboton
        RIbtnLocalization = vista.findViewById(R.id.RIbtngeolocalizacion);
+       ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
 
        //clickListenes para botones
        RIbtnLocalization.setOnClickListener(this);
@@ -143,10 +154,181 @@ public class registraringreso extends Fragment implements View.OnClickListener {
        RIbtnlimpiar.setOnClickListener(this);
 
 
+       RIDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+               arrays datos = new arrays();
+               ArrayAdapter<String> spinnerArrayAdapter;
+               switch (position)
+               {
+                   case 0:{
+                       Log.e("Seleccionaste",": nada");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.Seleccione);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+
+                   case 1:{
+                       Log.e("Seleccionaste",": Amazonas");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasAmazonas);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+
+                   }
+                   case 2:{
+                       Log.e("Seleccionaste",": ancash");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasAncash);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 3:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasApurimac);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+
+                   case 4:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasArequipa);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+
+                   case 5:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasAyacucho);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 6:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasCajamarca);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 7:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasCallao);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 8:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasCusco);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 9:{
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasHuancavelica);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 10:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasHuanuco);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 11:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasIca);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 12:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasJunín);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 13:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasLibertad);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 14:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasLambayeque);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 15:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasLima);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 16:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasLoreto);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 17:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasMadreDeDios);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 18:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasMoquegua);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 19:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasPasco);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 20:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasPiura);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 21:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasPuno);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 22:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasSanMartin);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 23:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasTacna);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 24:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasTumbes);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+                   case 25:{
+                       Log.e("Seleccionaste",": apurimac");
+                       spinnerArrayAdapter=datos.ObtenerArray(getContext(),R.array.provinciasUcayali);
+                       RIProvincia.setAdapter(spinnerArrayAdapter);
+                       break;
+                   }
+
+
+               }
 
 
 
+           }
 
+           @Override
+           public void onNothingSelected(AdapterView<?> parent) {
+
+           }
+       });
 
 
         return vista;
@@ -170,6 +352,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
             case R.id.RIbtngeolocalizacion:
             {
+
                 //Toast.makeText(getActivity(), "Probando", Toast.LENGTH_SHORT).show();
                 getLocation();
                 //llamar al metodo para obtener la localizacion
@@ -204,15 +387,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                 break;
             }
 
-
-
-
         }
-
-
-
-
-
 
 
     }
@@ -229,8 +404,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     private void limpiarcampos() {
 
         RICantidad.setText("");
-        RIDepartamento.setText("");
-        RIProvincia.setText("");
+        RIDepartamento.setSelection(0,true);
+        RIProvincia.setSelection(0,true);
         RItvlatitud.setText("");
         RItvlongitud.setText("");
         RIResultadoMuestra.setSelection(0,true);
@@ -257,8 +432,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
         latitud=rules.checkField(RItvlatitud);
         lontitud=rules.checkField(RItvlongitud);
         cantidad_muestra=rules.checkField(RICantidad);
-        departamento=rules.checkField(RIDepartamento);
-        provincia=rules.checkField(RIProvincia);
+        departamento=rules.checkSpinner(RIDepartamento,"Seleccione");
+        provincia=rules.checkSpinner(RIProvincia,"Seleccione");
         ResultadoMuestra =rules.checkSpinner(RIResultadoMuestra,"Seleccione Resultado");
 
         if(latitud)
@@ -286,8 +461,8 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                                             {
                                                 Map<String, Object> muestrasData =new HashMap<>();
                                                 muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getText().toString().toLowerCase());
-                                                muestrasData.put("MuestraProvincia",RIProvincia.getText().toString().toLowerCase());
+                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getSelectedItem().toString());
+                                                muestrasData.put("MuestraProvincia",RIProvincia.getSelectedItem().toString());
                                                 muestrasData.put("MuestraLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
                                                 muestrasData.put("MuestraLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
                                                 muestrasData.put("MuestraResultado", RIResultadoMuestra.getSelectedItem().toString());
@@ -385,6 +560,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     private void getLocation() {
 
+        Log.e("Mensaje","Entraste a getLocation");
         ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
 
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
@@ -395,41 +571,21 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
             getCurrentLocation();
 
-            //Toast.makeText(getActivity(), "Tenemos Permisos", Toast.LENGTH_SHORT).show();
-
-
-//            ubicacion.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-//                @Override
-//                public void onSuccess(Location location) {
-//
-//                    double latitude = location.getLatitude();
-//                    double longitud = location.getLongitude();
-//
-//                    RItvlatitud.setText("");
-//                    RItvlongitud.setText("");
-//                    RItvlatitud.setText(String.valueOf(latitude));
-//                    RItvlongitud.setText(String.valueOf(longitud));
-//
-//
-//                }
-//            });
-
-
-
         } else
         {
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
-            {
+//            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
+//            {
+//
+//                Toast.makeText(getActivity(), "Dio permiso para utilizar su ubicacion", Toast.LENGTH_SHORT).show();
+//
+//            }
+//            else {
 
-                Toast.makeText(getActivity(), "Dio permiso para utilizar su ubicacion", Toast.LENGTH_SHORT).show();
+                //ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION},1 );
+                ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
 
-            }
-            else {
-
-                ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION},1 );
-
-            }
+//            }
 
         }
 
@@ -447,6 +603,7 @@ public class registraringreso extends Fragment implements View.OnClickListener {
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
 
+        Log.e("Mensaje","Entraste a Current Location");
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
@@ -468,7 +625,12 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
                     } else {
 
-                        final LocationRequest locationRequest = new LocationRequest()
+                        //String bestProvider;
+                        //Criteria criteria = new Criteria();
+                        //bestProvider = String.valueOf(locationManager.getBestProvider(criteria, true)).toString();
+                        //locationManager.requestLocationUpdates(bestProvider, 1000, 0, (LocationListener) locationManager);
+
+                        LocationRequest locationRequest = new LocationRequest()
                                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                                 .setInterval(10000)
                                 .setFastestInterval(1000)
@@ -482,9 +644,9 @@ public class registraringreso extends Fragment implements View.OnClickListener {
                                 //Iniciar location
                                 Location location1 = locationResult.getLastLocation();
                                 //set latitude
-                                RItvlatitud.setText(String.valueOf(location.getLatitude()));
+                                RItvlatitud.setText(String.valueOf(location1.getLatitude()));
                                 //set longitud
-                                RItvlongitud.setText(String.valueOf(location.getLongitude()));
+                                RItvlongitud.setText(String.valueOf(location1.getLongitude()));
 
                             }
                         };
@@ -516,5 +678,32 @@ public class registraringreso extends Fragment implements View.OnClickListener {
 
     }
 
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //check condition
 
+        if(requestCode==100 &&(grantResults.length>0) && (grantResults[0] + grantResults[1] ==PackageManager.PERMISSION_GRANTED))
+        {
+            getLocation();
+
+        }else {
+
+            //Permisos denegados
+            Toast.makeText(getActivity(), "Permisos denied", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        locationManager.removeUpdates((LocationListener) getActivity());
+
+        //open the map:
+        //set latitude
+        RItvlatitud.setText(String.valueOf(location.getLatitude()));
+        //set longitud
+        RItvlongitud.setText(String.valueOf(location.getLongitude()));
+        Toast.makeText(getContext(), "latitude:" + String.valueOf(location.getLatitude()) + " longitude:" + String.valueOf(location.getLongitude()), Toast.LENGTH_SHORT).show();
+    }
 }

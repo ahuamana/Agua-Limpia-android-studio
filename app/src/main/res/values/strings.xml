@@ -28,9 +28,338 @@
         <item>Negativo</item>
     </array>
 
+    <array name="departamentos">
+        <item>Seleccione</item>
+        <item>Amazonas</item>
+        <item>Ancash</item>
+        <item>Apurimac</item>
+        <item>Arequipa</item>
+        <item>Ayacucho</item>
+        <item>Cajamarca</item>
+        <item>Callao</item>
+        <item>Cusco</item>
+        <item>Huancavelica</item>
+        <item>Huanuco</item>
+        <item>Ica</item>
+        <item>Junín</item>
+        <item>La Libertad</item>
+        <item>Lambayeque</item>
+        <item>Lima</item>
+        <item>Loreto</item>
+        <item>Madre de Dios</item>
+        <item>Moquegua</item>
+        <item>Pasco</item>
+        <item>Piura</item>
+        <item>Puno</item>
+        <item>San Martín</item>
+        <item>Tacna</item>
+        <item>Tumbes</item>
+        <item>Ucayali</item>
+    </array>
+
+    <!--    Provincias -->
+
+    <array name="Seleccione">
+        <item>Seleccione</item>
+    </array>
+
+    <array name="provinciasAmazonas">
+        <item>Seleccione</item>
+        <item>Condorcanqui</item>
+        <item>Bagua</item>
+        <item>Bongará</item>
+        <item>Utcubamba</item>
+        <item>Luya</item>
+        <item>Rodríguez de Mendoza</item>
+        <item>Chachapoyas</item>
+    </array>
+
+    <array name="provinciasAncash">
+        <item>Seleccione</item>
+        <item>Aija</item>
+        <item>Antonio Raimondi</item>
+        <item>Asunción</item>
+        <item>Bolognesi</item>
+        <item>Carhuaz</item>
+        <item>Carlos Fermín Fitzcarrald</item>
+        <item>Casma</item>
+        <item>Corongo</item>
+        <item>Huaraz</item>
+        <item>Huari</item>
+        <item>Huarmey</item>
+        <item>Huaylas</item>
+        <item>Mariscal Luzuriaga</item>
+        <item>Ocros</item>
+        <item>Pallasca</item>
+        <item>Pomabamba</item>
+        <item>Recuay</item>
+        <item>Santa</item>
+        <item>Sihuas</item>
+        <item>Yungay</item>
+    </array>
+
+    <array name="provinciasApurimac">
+        <item>Seleccione</item>
+        <item>Andahuaylas</item>
+        <item>Abancay</item>
+        <item>Aymares</item>
+        <item>Antabamba</item>
+        <item>Chincheros</item>
+        <item>Grau</item>
+        <item>Cotabambas</item>
+    </array>
+
+    <array name="provinciasArequipa">
+        <item>Seleccione</item>
+        <item>Arequipa</item>
+        <item>Camaná</item>
+        <item>Caravelí</item>
+        <item>Castilla</item>
+        <item>Caylloma</item>
+        <item>Condesuyos</item>
+        <item>Islay</item>
+        <item>La Unión</item>
+    </array>
+
+    <array name="provinciasAyacucho">
+        <item>Seleccione</item>
+        <item>Parinacochas</item>
+        <item>Páucar del Sara Sara</item>
+        <item>Cangallo</item>
+        <item>Huamanga</item>
+        <item>Huanca Sancos</item>
+        <item>La Mar</item>
+        <item>Lucanas</item>
+        <item>Sucre</item>
+    </array>
+
+    <array name="provinciasCajamarca">
+        <item>Seleccione</item>
+        <item>Cajamarca</item>
+        <item>Cajabamba</item>
+        <item>Celendin</item>
+        <item>Contumaza</item>
+        <item>Cutervo</item>
+        <item>Chota</item>
+        <item>Hualgayoc</item>
+        <item>Jaen</item>
+        <item>Santa Cruz</item>
+        <item>San Miguel</item>
+        <item>San Ignacio</item>
+        <item>San Marcos</item>
+        <item>San Pablo</item>
+    </array>
+
+    <array name="provinciasCallao">
+        <item>Seleccione</item>
+        <item>Callao</item>
+
+    </array>
+
+    <array name="provinciasCusco">
+        <item>Seleccione</item>
+        <item>Acomayo</item>
+        <item>Anta</item>
+        <item>Calca</item>
+        <item>Canas</item>
+        <item>Canchis</item>
+        <item>Cuzco</item>
+        <item>Chumbivilcas</item>
+        <item>Espinar</item>
+        <item>La Convención</item>
+        <item>Paruro</item>
+        <item>Paucartambo</item>
+        <item>Quispicanchi</item>
+        <item>Urubamba</item>
+    </array>
+
+    <array name="provinciasHuancavelica">
+        <item>Seleccione</item>
+        <item>Acobamba</item>
+        <item>Angaraes</item>
+        <item>Castrovirreyna</item>
+        <item>Churcampa</item>
+        <item>Huancavelica</item>
+        <item>Huaytará</item>
+        <item>Tayacaja</item>
+    </array>
+
+    <array name="provinciasHuanuco">
+        <item>Seleccione</item>
+        <item>Ambo</item>
+        <item>Dos de Mayo</item>
+        <item>Huacaybamba</item>
+        <item>Huamalíes</item>
+        <item>Huánuco</item>
+        <item>Lauricocha</item>
+        <item>Leoncio Prado</item>
+        <item>Marañón</item>
+        <item>Pachitea</item>
+        <item>Puerto Inca</item>
+        <item>Yarowilca</item>
+    </array>
+
+    <array name="provinciasIca">
+        <item>Seleccione</item>
+        <item>Chincha</item>
+        <item>Ica</item>
+        <item>Nasca</item>
+        <item>Palpa</item>
+        <item>Pisco</item>
+    </array>
+
+    <array name="provinciasJunín">
+        <item>Seleccione</item>
+        <item>Chanchamayo</item>
+        <item>Chupaca</item>
+        <item>Concepción</item>
+        <item>Huancayo</item>
+        <item>Jauja</item>
+        <item>Junín</item>
+        <item>Satipo</item>
+        <item>Tarma</item>
+        <item>Yauli</item>
+    </array>
+
+
+    <array name="provinciasLibertad">
+        <item>Seleccione</item>
+        <item>Ascope</item>
+        <item>Bolívar</item>
+        <item>Chepén</item>
+        <item>Gran Chimú</item>
+        <item>Julcán</item>
+        <item>Otuzco</item>
+        <item>Pacasmayo</item>
+        <item>Pataz</item>
+        <item>Sánchez Carrión</item>
+        <item>Santiago de Chuco</item>
+        <item>Trujillo</item>
+        <item>Virú</item>
+    </array>
+
+    <array name="provinciasLambayeque">
+        <item>Seleccione</item>
+        <item>Chiclayo</item>
+        <item>Ferreñafe</item>
+        <item>Lambayeque</item>
+    </array>
+
+
+    <array name="provinciasLima">
+        <item>Seleccione</item>
+        <item>Barranca</item>
+        <item>Cajatambo</item>
+        <item>Canta</item>
+        <item>Cañete</item>
+        <item>Huaral</item>
+        <item>Huarochirí</item>
+        <item>Huaura</item>
+        <item>Lima</item>
+        <item>Oyón</item>
+        <item>Yauyos</item>
+    </array>
+
+
+    <array name="provinciasLoreto">
+        <item>Seleccione</item>
+        <item>Alto Amazonas</item>
+        <item>Datem del Marañón</item>
+        <item>Loreto</item>
+        <item>Mariscal Ramón Castilla</item>
+        <item>Maynas</item>
+        <item>Putumayo</item>
+        <item>Requena</item>
+        <item>Ucayali</item>
+    </array>
+
+    <array name="provinciasMadreDeDios">
+        <item>Seleccione</item>
+        <item>Manu</item>
+        <item>Tahuamanu</item>
+        <item>Tambopata</item>
+    </array>
+
+    <array name="provinciasMoquegua">
+        <item>Seleccione</item>
+        <item>General Sánchez Cerro Omate</item>
+        <item>Ilo</item>
+        <item>Mariscal Nieto</item>
+    </array>
+
+    <array name="provinciasPasco">
+        <item>Seleccione</item>
+        <item>Daniel Alcides Carrión</item>
+        <item>Oxapampa</item>
+        <item>Pasco</item>
+    </array>
+
+    <array name="provinciasPiura">
+        <item>Seleccione</item>
+        <item>Ayabaca</item>
+        <item>Huancabamba</item>
+        <item>Morropón</item>
+        <item>Paita</item>
+        <item>Piura</item>
+        <item>Sechura</item>
+        <item>Sullana</item>
+        <item>Talara</item>
+    </array>
+
+    <array name="provinciasPuno">
+        <item>Seleccione</item>
+        <item>Azángaro</item>
+        <item>Carabaya</item>
+        <item>Chucuito</item>
+        <item>El Collao</item>
+        <item>Huancané</item>
+        <item>Lampa</item>
+        <item>Melgar</item>
+        <item>Moho</item>
+        <item>Puno</item>
+        <item>San Antonio de Putina</item>
+        <item>San Román</item>
+        <item>Sandia</item>
+        <item>Yunguyo</item>
+    </array>
+
+    <array name="provinciasSanMartin">
+        <item>Seleccione</item>
+        <item>Bellavista</item>
+        <item>El Dorado</item>
+        <item>Huallaga</item>
+        <item>Lamas</item>
+        <item>Mariscal Cáceres</item>
+        <item>Moyobamba</item>
+        <item>Picota</item>
+        <item>Rioja</item>
+        <item>San Martín</item>
+        <item>Tocache</item>
+    </array>
+
+    <array name="provinciasTacna">
+        <item>Seleccione</item>
+        <item>Candarave</item>
+        <item>Jorge Basadre</item>
+        <item>Tacna</item>
+        <item>Tarata</item>
+    </array>
+
+    <array name="provinciasTumbes">
+        <item>Seleccione</item>
+        <item>Contralmirante Villar</item>
+        <item>Tumbes</item>
+        <item>Zarumilla</item>
+    </array>
+
+    <array name="provinciasUcayali">
+        <item>Seleccione</item>
+        <item>Atalaya</item>
+        <item>Coronel Portillo</item>
+        <item>Padre Abad</item>
+        <item>Purús</item>
+    </array>
 
     <!--    Variables de entorno-->
-
-
 
 </resources>

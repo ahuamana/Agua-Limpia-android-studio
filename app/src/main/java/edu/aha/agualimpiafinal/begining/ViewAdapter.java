@@ -22,7 +22,7 @@ public class ViewAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer[] images = { R.drawable.fondopastel,R.drawable.fondoyellow /* Agregar los recursos aqui full imagenes */};
+    private Integer[] images = {  /* Agregar los recursos aqui full imagenes */};
 
     ViewAdapter(Context context){
         this.context=context;
