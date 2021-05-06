@@ -17,14 +17,14 @@ public class MoldeMuestra {
 
     private String MuestraProvincia;
     private String MuestraResultado;
-    private String MuestraTimeStamp;
+    private long MuestraTimeStamp;
 
 
     public MoldeMuestra (){
 
     }
 
-    public MoldeMuestra(String authorEmail, String authorFirstname, String authorLastname, String authorAlias, String muestraCantidad, String muestraDepartamento, String muestraFotoPATH, double muestraLatitud, double muestraLongitud, String muestraProvincia, String muestraResultado, String muestraTimeStamp) {
+    public MoldeMuestra(String authorEmail, String authorFirstname, String authorLastname, String authorAlias, String muestraCantidad, String muestraDepartamento, String muestraFotoPATH, double muestraLatitud, double muestraLongitud, String muestraProvincia, String muestraResultado, long muestraTimeStamp) {
         AuthorEmail = authorEmail;
         AuthorFirstname = authorFirstname;
         AuthorLastname = authorLastname;
@@ -127,11 +127,11 @@ public class MoldeMuestra {
         MuestraResultado = muestraResultado;
     }
 
-    public String getMuestraTimeStamp() {
+    public long getMuestraTimeStamp() {
         return MuestraTimeStamp;
     }
 
-    public void setMuestraTimeStamp(String muestraTimeStamp) {
+    public void setMuestraTimeStamp(long muestraTimeStamp) {
         MuestraTimeStamp = muestraTimeStamp;
     }
 }

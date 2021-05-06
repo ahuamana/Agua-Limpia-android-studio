@@ -41,33 +41,50 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import edu.aha.agualimpiafinal.Entidades.Ingreso;
+import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 
-public class map extends Fragment {
+public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient ubicacion;
     double latitudActual, longitudActual;
     LocationManager locationManager;
 
-    private Marker currentLocationMarker;
+    private Marker myMarker;
 
     //Firebase
-    DatabaseReference ref;
+    //DatabaseReference ref;
+    //Cloud Firestore
+    FirebaseFirestore fStore;
+    FirebaseAuth fAuth;
 
     //guardar datos en esta lista
-    List<Ingreso> listaDatos= new ArrayList<>();
+    //List<Ingreso> listaDatos= new ArrayList<>();
+    //guardar datos en esta lista los nuevos datos de Firestore
+    List<MoldeMuestra> listaMuestras= new ArrayList<>();
+
+
     GoogleMap googleMaps;
     //Marker Global de posicion
     Marker currentmarker=null;
@@ -317,68 +334,131 @@ public class map extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_map, container, false);
 
 
+        //Inicializar firestore
+        fAuth=FirebaseAuth.getInstance();
+        fStore=FirebaseFirestore.getInstance();
+
+
         //crear referencia a Firebase
-        ref= FirebaseDatabase.getInstance().getReference().child("Muestrass");
-
-
-        //inicio evento para capturar valores
-        ref.addValueEventListener(new ValueEventListener() {
+        //ref= FirebaseDatabase.getInstance().getReference().child("Muestrass");
+        fStore.collection("DatosMuestra").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onSuccess(QuerySnapshot documentSnapshots) {
+                //Codigo si obtiene la lista
 
-                for (DataSnapshot postSnapshot : snapshot.getChildren())
-                {
-                    Ingreso datos = postSnapshot.getValue(Ingreso.class);
-                    listaDatos.add(datos);
-
-                }
-
-                for (int i=0;i<listaDatos.size();i++)
-                {
-                    Log.e("Latitud "+i, String.valueOf(listaDatos.get(i).getLatitudDB()));
-                    Log.e("Longitud" +i,String.valueOf(listaDatos.get(i).getLongitudDB()));
-
-                    //Obtengo el valor del BQV
-                    int valorBQV= Integer.parseInt(listaDatos.get(i).getBqvDB());
-                    if(valorBQV <=50)
+                if (documentSnapshots.isEmpty()) {
+                    Log.d("TAG", "onSuccess: LIST EMPTY");
+                    return;
+                } else
                     {
+                        //Asignar Datos de Firestore al molde
+                        List<MoldeMuestra> types = documentSnapshots.toObjects(MoldeMuestra.class);
+                        listaMuestras.addAll(types);
+                        Log.d("TAG", "onSuccess: " + listaMuestras);
 
-                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
-                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                        mMap.addMarker(new MarkerOptions()
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
-                                        .position(newlat)
-                                        .title("Muestra "+ i));
+                        //Obtener datos del molde
+                        for (int i=0;i<listaMuestras.size();i++)
+                        {
+                            Log.e("Latitud "+i, String.valueOf(listaMuestras.get(i).getMuestraLatitud()));
+                            Log.e("Longitud" +i,String.valueOf(listaMuestras.get(i).getMuestraLongitud()));
+                            Log.e("unixtime" +i,String.valueOf(listaMuestras.get(i).getMuestraTimeStamp()));
+                            //Obtengo el Resultado de la muestra
+                            String muestraResultado= listaMuestras.get(i).getMuestraResultado();
+
+                            //UnixTime to Date
+                            java.util.Date dateTime=new java.util.Date(listaMuestras.get(i).getMuestraTimeStamp()*1000);
+
+                            //Validar si la muestra es positivo
+                            if(muestraResultado.contains("Negativo"))
+                            {
+                                //Asignar un punto Azul en google maps con su latitud y longitud
+                                LatLng newlat = new LatLng(listaMuestras.get(i).getMuestraLatitud(),listaMuestras.get(i).getMuestraLongitud());
+                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                myMarker=mMap.addMarker(new MarkerOptions()
+                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
+                                                .position(newlat)
+                                                //.title("Muestra "+ i));
+                                                .title( String.valueOf(dateTime)));
+
+                            }
+                            else {
+                                if(muestraResultado.contains("Positivo"))
+                                {
+                                    //Asignar un punto Rojo en google maps con su latitud y longitud
+
+                                    LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
+                                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                    mMap.addMarker(new MarkerOptions()
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
+                                            .position(newlats)
+                                            //.title("Muestra "+ dateTime));
+                                            .title(String.valueOf(dateTime)));
+
+
+                                }
+
+                            }
+                            ////Fin de Validar si la muestra es positivo
+
+                        }
 
                     }
-                    else {
-
-                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
-                                      mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                        mMap.addMarker(new MarkerOptions()
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
-                                        .position(newlat)
-                                        .title("Muestra "+ i));
-
-
-
-
-                    }
-
-
-
-                }
-
 
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-
+            public void onFailure(@NonNull Exception e) {
+                //Codigo si falla al obtener la lista
+                Toast.makeText(getActivity(), "Error getting data!!!", Toast.LENGTH_LONG).show();
             }
         });
-        //fin evento para capturar valores
+
+        //inicio evento para capturar valores
+//        datosEmpresa.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                for (DataSnapshot postSnapshot : snapshot.getChildren())
+//                {
+//                    Ingreso datos = postSnapshot.getValue(Ingreso.class);
+//                    listaDatos.add(datos);
+//
+//                }
+//
+//                for (int i=0;i<listaDatos.size();i++)
+//                {
+//                    Log.e("Latitud "+i, String.valueOf(listaDatos.get(i).getLatitudDB()));
+//                    Log.e("Longitud" +i,String.valueOf(listaDatos.get(i).getLongitudDB()));
+//
+//                    //Obtengo el valor del BQV
+//                    int valorBQV= Integer.parseInt(listaDatos.get(i).getBqvDB());
+//                    if(valorBQV <=50)
+//                    {
+//
+//                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
+//                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//                        mMap.addMarker(new MarkerOptions()
+//                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
+//                                        .position(newlat)
+//                                        .title("Muestra "+ i));
+//                    }
+//                    else {
+//
+//                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
+//                                      mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//                        mMap.addMarker(new MarkerOptions()
+//                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
+//                                        .position(newlat)
+//                                        .title("Muestra "+ i));
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        //fin evento para capturar valores
 
 
         return vista;
@@ -397,5 +477,17 @@ public class map extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        if (marker.equals(myMarker))
+        {
+            //handle click here
+            Toast.makeText(getActivity(), "Hiciste click a myMarker", Toast.LENGTH_SHORT).show();
+        }
+
+        return false;
     }
 }
