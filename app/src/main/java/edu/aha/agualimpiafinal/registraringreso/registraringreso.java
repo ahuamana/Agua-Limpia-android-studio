@@ -470,8 +470,8 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
                                                 muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
                                                 muestrasData.put("AuthorFirstname",firstname.toLowerCase());
                                                 muestrasData.put("AuthorLastname",lastname.toLowerCase());
-                                                muestrasData.put("AuthorMiddlename",middlename);
-                                                muestrasData.put("AuthorAlias",email.toLowerCase());
+                                                muestrasData.put("AuthorAlias",middlename.toLowerCase());
+                                                muestrasData.put("AuthorEmail",email.toLowerCase());
 
                                                 df.set(muestrasData);
                                                 Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
