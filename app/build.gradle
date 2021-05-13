@@ -63,8 +63,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:17.1.0'
 
     //reciclerView con Firebase
-    //// FirebaseUI for Firebase Realtime Database
-    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+    //// FirebaseUI for Firebase CloudFirestore Database
+    implementation 'com.google.firebase:firebase-firestore:22.0.2'
+    implementation "com.firebaseui:firebase-ui-auth:3.0.0"
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
 
     //Libreria Imagenes Circulares
     implementation 'de.hdodenhof:circleimageview:3.1.0'

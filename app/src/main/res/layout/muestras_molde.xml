@@ -57,6 +57,34 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="Resultado"
+                    android:background="@drawable/buttom_masinformacion"
+                    android:textSize="15sp"></TextView>
+
+                <TextView
+                    android:id="@+id/MMtxtResultado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_weight="1"
+                    android:hint="positivo"
+                    android:layout_marginStart="8dp"
+                    android:textSize="15sp"></TextView>
+
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,19 +96,47 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_weight="2"
-                    android:text="Muestra"
+                    android:text="Departam."
                     android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
                 <TextView
-                    android:id="@+id/MMtxtMuestra"
+                    android:id="@+id/MMtxtDepartamento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:hint="Muestra"
+                    android:hint="Departamento"
+                    android:layout_marginStart="8dp"
+                    android:textSize="15sp"></TextView>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="2"
+                    android:text="Provincia"
+                    android:background="@drawable/buttom_masinformacion"
+                    android:textSize="15sp"></TextView>
+
+                <TextView
+                    android:id="@+id/MMtxtProvincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:hint="Provincia"
                     android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
 
@@ -113,32 +169,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="2"
-                    android:text="Resultado (BQV)"
-                    android:background="@drawable/buttom_masinformacion"
-                    android:textSize="15sp"></TextView>
-
-                <TextView
-                    android:id="@+id/MMtxtBQV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:layout_weight="1"
-                    android:hint="BQV"
-                    android:layout_marginStart="8dp"
-                    android:textSize="15sp"></TextView>
-
-            </LinearLayout>
 
         </LinearLayout>
 

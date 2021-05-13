@@ -461,8 +461,8 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
                                             {
                                                 Map<String, Object> muestrasData =new HashMap<>();
                                                 muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getSelectedItem().toString());
-                                                muestrasData.put("MuestraProvincia",RIProvincia.getSelectedItem().toString());
+                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getSelectedItem().toString().toLowerCase());
+                                                muestrasData.put("MuestraProvincia",RIProvincia.getSelectedItem().toString().toLowerCase());
                                                 muestrasData.put("MuestraLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
                                                 muestrasData.put("MuestraLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
                                                 muestrasData.put("MuestraResultado", RIResultadoMuestra.getSelectedItem().toString());
