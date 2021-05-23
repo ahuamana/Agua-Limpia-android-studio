@@ -30,15 +30,19 @@
                 app:contentPadding="10dp"
                 android:layout_marginBottom="15dp"
                 >
-                <TextView
+                <EditText
                     android:id="@+id/SUtvDejarComentario"
+                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:gravity="start"
+                    android:layout_gravity="start"
                     android:lines="4"
                     android:hint="Deja un comentario Aqui!"
                     android:maxLines="4">
 
-                </TextView>
+                </EditText>
                 
             </androidx.cardview.widget.CardView>
 
