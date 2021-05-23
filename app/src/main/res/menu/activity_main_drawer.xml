@@ -16,14 +16,47 @@
             android:id="@+id/nav_lista"
             android:icon="@drawable/ic_listar"
             android:title="Lista" />
+
         <item
-            android:id="@+id/nav_comomedir"
-            android:icon="@drawable/ic_comomedir"
-            android:title="Como Medir?" />
-        <item
-            android:id="@+id/nav_nosotros"
-            android:icon="@drawable/ic_about"
-            android:title="Nosotros" />
+            android:id="@+id/nav_photos_rasberry"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Fotos Rasberry" />
+
+
+
+
 
     </group>
+
+    <item android:title="Información">
+        <menu>
+            <item
+                android:id="@+id/nav_comomedir"
+                android:icon="@drawable/ic_comomedir"
+                android:title="Como Medir?" />
+
+            <item
+                android:id="@+id/nav_nosotros"
+                android:icon="@drawable/ic_about"
+                android:title="Nosotros" />
+        </menu>
+
+    </item>
+
+
+    <item android:title="Extras">
+        <menu>
+            <item
+                android:id="@+id/nav_compartir"
+                android:icon="@drawable/ic_share"
+                android:title="Compartir">
+
+            </item>
+
+        </menu>
+
+    </item>
+
+
+
 </menu>

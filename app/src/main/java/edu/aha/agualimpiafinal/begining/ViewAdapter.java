@@ -102,11 +102,11 @@ public class ViewAdapter extends PagerAdapter {
             case 1:
             {
                 Glide.with(context)
-                        .load(R.drawable.takephoto)
+                        .load(R.drawable.background_picamera)
                         .circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Toma foto de la muestra");
+                txtdescription.setText("Toma foto de la muestra con\n Rasberry");
                 txtnumber.setText("2");
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_selected);
@@ -121,7 +121,7 @@ public class ViewAdapter extends PagerAdapter {
                         .circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Transfiere los datos \n al aplicativo");
+                txtdescription.setText("Registra los datos \n en el aplicativo");
                 txtnumber.setText("3");
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);

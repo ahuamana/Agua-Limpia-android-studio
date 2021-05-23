@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".menu.sugerencias.sugerencias">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp"
+                app:contentPadding="10dp"
+                android:layout_marginBottom="15dp"
+                >
+                <TextView
+                    android:id="@+id/SUtvDejarComentario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="4"
+                    android:hint="Deja un comentario Aqui!"
+                    android:maxLines="4">
+
+                </TextView>
+                
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/SUbtncomentar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Comentar"
+                android:textColor="@color/white"
+                android:textStyle=""
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:background="@drawable/buttom_comentar"
+                android:layout_gravity="right"
+                ></Button>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/SUreclyclerComentarios"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+
+</LinearLayout>
