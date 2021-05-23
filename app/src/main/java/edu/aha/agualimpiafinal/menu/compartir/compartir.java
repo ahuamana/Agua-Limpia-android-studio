@@ -2,6 +2,9 @@ package edu.aha.agualimpiafinal.menu.compartir;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +14,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.aha.agualimpiafinal.R;
 
 public class compartir extends Fragment {
 
     private CompartirViewModel mViewModel;
+
+    ImageButton imgLink;
+    TextView text;
 
     public static compartir newInstance() {
         return new compartir();
@@ -25,7 +34,28 @@ public class compartir extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.compartir_fragment, container, false);
+        View vista = inflater.inflate(R.layout.compartir_fragment, container, false);
+
+        text= vista.findViewById(R.id.COMPtvcompartir);
+        imgLink = vista.findViewById(R.id.COMPbtnlink);
+
+        imgLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Codigo para copiar al portapeles el link
+
+                String texto = text.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("",texto);
+                clipboard.setPrimaryClip(clip);
+
+                //Mostrar mensaje para mostrar al usuario
+                Toast.makeText(getActivity(), "Copiado! en portapapeles", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        return vista;
     }
 
     @Override
