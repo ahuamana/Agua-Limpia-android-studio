@@ -60,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import edu.aha.agualimpiafinal.Entidades.Ingreso;
+
 import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 
@@ -80,7 +80,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
     FirebaseAuth fAuth;
 
     //guardar datos en esta lista
-    //List<Ingreso> listaDatos= new ArrayList<>();
+
     //guardar datos en esta lista los nuevos datos de Firestore
     List<MoldeMuestra> listaMuestras= new ArrayList<>();
 

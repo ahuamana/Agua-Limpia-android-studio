@@ -27,7 +27,7 @@ import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
 
-import edu.aha.agualimpiafinal.Entidades.Ingreso;
+
 import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapter.MuestrasAdapter;

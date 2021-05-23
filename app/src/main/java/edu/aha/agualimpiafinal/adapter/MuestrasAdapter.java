@@ -21,13 +21,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import edu.aha.agualimpiafinal.Entidades.Ingreso;
+
 import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 
 public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,MuestrasAdapter.MuestrasHolder> {
 
-    //List<MoldeMuestra> listaMuestras;
+
 
     public MuestrasAdapter(@NonNull FirestoreRecyclerOptions<MoldeMuestra> options) { super(options); }
 
