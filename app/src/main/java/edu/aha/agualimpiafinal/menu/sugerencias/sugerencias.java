@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -57,6 +58,8 @@ public class sugerencias extends Fragment {
         fStore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
 
+        //Obtener datos guardados del telefono de SharedPreferences
+        cargarPreferencias();
 
         SUdescripcion = vista.findViewById(R.id.SUtvDejarComentario);
         SUbtnComentar = vista.findViewById(R.id.SUbtncomentar);
@@ -67,7 +70,7 @@ public class sugerencias extends Fragment {
                 //Enviar datos a Firestore
 
                 ////Inicializar Collecion nueva
-                DocumentReference reference = fStore.collection("DataComentarios").document(); // con .documents Genera automaticamente la KEY
+                final DocumentReference reference = fStore.collection("DataComentarios").document(); // con .documents Genera automaticamente la KEY
 
                 //se añade un evento si termina la accion
                 reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -77,7 +80,7 @@ public class sugerencias extends Fragment {
                         //si el evento se crea normal este se enviara a firestore
                         if(task.isSuccessful())
                         {
-                            //Creamos un map con objetos strings y que no haya valores duplicados
+                            //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
                             Map<String, Object> sugerenciaData = new HashMap<>();
                             sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
                             sugerenciaData.put("SugerenciaMensaje",SUdescripcion.getText().toString().toLowerCase());
@@ -85,6 +88,14 @@ public class sugerencias extends Fragment {
                             sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
                             sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
                             sugerenciaData.put("AuthorEmail",email.toLowerCase());
+
+                            //asiganmos a la coleccion los datos almacenado en el map
+                            reference.set(sugerenciaData);
+                            //Mostramos mensaje al usuario
+                            Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
+
+                            //Limpiamos los campos
+                            SUdescripcion.setText("");
 
                         }
 
