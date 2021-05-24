@@ -43,11 +43,12 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
         ////Horal Obtenida
             long time = model.getSugerenciaFechaUnixtime()*1000;  //
             Date df = new java.util.Date(time);
-            String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
+            //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
+            String HoraObtenida = new SimpleDateFormat("hh:mma").format(df);
 
         ////Fin Horal Obtenida
 
-        holder.comentariosFecha.setText(vv);
+        holder.comentariosFecha.setText(HoraObtenida);
 
         //Mostrar Author
         holder.comentariosAuthor.setText(outputlast+", "+outputname);
