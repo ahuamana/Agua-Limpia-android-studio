@@ -18,6 +18,10 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 
@@ -33,8 +37,12 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
         Log.e("DATA: ",""+ model.getAuthorFirstname());
         //asignar variables con firebase
         holder.txtnombrecompleto.setText(String.valueOf(model.getAuthorFirstname()));
-        //holder.txtcantidadmuestra.setText(model.getMuestraCantidad());
-        holder.txttiempo.setText(String.valueOf(model.getMuestraTimeStamp()));
+
+        //cambiar Hora actual
+        Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
+        String horaNueva = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","ES")).format(df);
+
+        holder.txttiempo.setText(horaNueva); // Asignar la nueva hora en formato humano xd
         holder.txtResultado.setText(String.valueOf(model.getMuestraResultado()));
 
         //set first letter to Uppercase
