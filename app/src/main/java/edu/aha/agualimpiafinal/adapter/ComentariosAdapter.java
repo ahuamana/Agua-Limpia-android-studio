@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
+
 import edu.aha.agualimpiafinal.Entidades.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
 
@@ -26,6 +30,28 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
 
         Log.e("DATA: ", "emepzamos aqui");
         Log.e("DATA: ",""+ model.getSugerenciaMensaje());
+
+
+        ////Author
+            String inputlast = model.getAuthorLastname();
+            String outputlast = inputlast.substring(0,1).toUpperCase()+ inputlast.substring(1, inputlast.length()-1); // inputlast.length()-1 --> remove el ultimo caracter que es un espacio vacio
+
+            String inputname = model.getAuthorFirstname();
+            String outputname = inputname.substring(0,1).toUpperCase()+ inputname.substring(1, inputname.length()-1); // inputname.length()-1 --> remove el ultimo caracter que es un espacio vacio
+        ////Fin Author
+
+        ////Horal Obtenida
+            long time = model.getSugerenciaFechaUnixtime()*1000;  //
+            Date df = new java.util.Date(time);
+            String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
+
+        ////Fin Horal Obtenida
+
+        holder.comentariosFecha.setText(vv);
+
+        //Mostrar Author
+        holder.comentariosAuthor.setText(outputlast+", "+outputname);
+        //Mostrar Mensaje de sugerencia de usuario
         holder.comentariosDescripcion.setText(model.getSugerenciaMensaje());
 
     }
@@ -43,14 +69,14 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
     public class ComentariosHolder extends RecyclerView.ViewHolder {
 
         //crear variables del molde
-        TextView comentariosAuthor, comentarioFecha, comentariosDescripcion;
+        TextView comentariosAuthor, comentariosFecha, comentariosDescripcion;
 
         public ComentariosHolder(@NonNull View vista) {
             super(vista);
 
             //referencias variables y vincularlos con las variables locales
             comentariosAuthor = vista.findViewById(R.id.ComentariostvAuthor);
-            comentarioFecha = vista.findViewById(R.id.ComentariostvHora);
+            comentariosFecha = vista.findViewById(R.id.ComentariostvHora);
             comentariosDescripcion = vista.findViewById(R.id.ComentariostvDescripcion);
 
         }
