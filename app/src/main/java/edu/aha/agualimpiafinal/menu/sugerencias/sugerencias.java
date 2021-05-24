@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,27 +78,37 @@ public class sugerencias extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                        //si el evento se crea normal este se enviara a firestore
-                        if(task.isSuccessful())
+                        //Validar campo vacio de la descripción
+                        if(!TextUtils.isEmpty(SUdescripcion.getText().toString()))
                         {
-                            //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
-                            Map<String, Object> sugerenciaData = new HashMap<>();
-                            sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
-                            sugerenciaData.put("SugerenciaMensaje",SUdescripcion.getText().toString().toLowerCase());
-                            sugerenciaData.put("AuthorFirstname",firstname.toLowerCase());
-                            sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
-                            sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
-                            sugerenciaData.put("AuthorEmail",email.toLowerCase());
 
-                            //asiganmos a la coleccion los datos almacenado en el map
-                            reference.set(sugerenciaData);
-                            //Mostramos mensaje al usuario
-                            Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
+                            //si el evento se crea normal este se enviara a firestore
+                            if(task.isSuccessful())
+                            {
+                                //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
+                                Map<String, Object> sugerenciaData = new HashMap<>();
+                                sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
+                                sugerenciaData.put("SugerenciaMensaje",SUdescripcion.getText().toString().toLowerCase());
+                                sugerenciaData.put("AuthorFirstname",firstname.toLowerCase());
+                                sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
+                                sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
+                                sugerenciaData.put("AuthorEmail",email.toLowerCase());
 
-                            //Limpiamos los campos
-                            SUdescripcion.setText("");
+                                //asiganmos a la coleccion los datos almacenado en el map
+                                reference.set(sugerenciaData);
+                                //Mostramos mensaje al usuario
+                                Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
 
+                                //Limpiamos los campos
+                                SUdescripcion.setText("");
+
+                            }
+
+
+                        }else {
+                            Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
                         }
+
 
                     }
                 });
