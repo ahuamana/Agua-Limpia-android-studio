@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -134,6 +135,7 @@ public class sugerencias extends Fragment {
 
         //traer los datos de la coleccion de firebase
         CollectionReference dataSugerencia = fStore.collection("DataComentarios");
+
         Query query = dataSugerencia;
 
         FirestoreRecyclerOptions<MoldeComentarios> options = new FirestoreRecyclerOptions.Builder<MoldeComentarios>()
@@ -142,6 +144,7 @@ public class sugerencias extends Fragment {
 
         //asignar todos lo datos obtenidos al adaptador
         adapter = new ComentariosAdapter(options);
+
 
         //asignar datos al recyclerView
         recyclerComentarios.setAdapter(adapter);
@@ -167,4 +170,16 @@ public class sugerencias extends Fragment {
 
     }
 
+    //on Stop y on Start son metodos para escuchar al adapter y poder mostrar los datos
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
 }

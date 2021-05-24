@@ -19,14 +19,14 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
 
 
 
-    public ComentariosAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options) {
-        super(options);
-    }
+    public ComentariosAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options) { super(options);    }
 
     @Override
     protected void onBindViewHolder(@NonNull ComentariosAdapter.ComentariosHolder holder, int position, @NonNull MoldeComentarios model) {
 
+        Log.e("DATA: ", "emepzamos aqui");
         Log.e("DATA: ",""+ model.getSugerenciaMensaje());
+        holder.comentariosDescripcion.setText(model.getSugerenciaMensaje());
 
     }
 
