@@ -18,10 +18,6 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-
 import edu.aha.agualimpiafinal.Entidades.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 

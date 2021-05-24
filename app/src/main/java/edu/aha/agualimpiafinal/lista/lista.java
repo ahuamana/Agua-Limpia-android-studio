@@ -84,8 +84,8 @@ public class lista extends Fragment  implements SearchView.OnQueryTextListener {
         FirestoreRecyclerOptions<MoldeMuestra> options = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
                 .setQuery(query,MoldeMuestra.class)
                 .build();
-        //enviar los datos al adapter
 
+        //enviar los datos al adapter
         adapter=new MuestrasAdapter(options);
 
         //asignar datos al recyclerView

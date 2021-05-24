@@ -9,16 +9,20 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +30,14 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.aha.agualimpiafinal.Entidades.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.adapter.ComentariosAdapter;
 
 public class sugerencias extends Fragment {
 
@@ -38,6 +45,8 @@ public class sugerencias extends Fragment {
 
     EditText SUdescripcion;
     Button SUbtnComentar;
+    RecyclerView recyclerComentarios;
+    ComentariosAdapter adapter;
 
     //Cloud Firestore
     FirebaseFirestore fStore;
@@ -118,8 +127,24 @@ public class sugerencias extends Fragment {
         });
 
 
+        //Inicializar Arraylist y asignar contenedor
+        recyclerComentarios = vista.findViewById(R.id.SUreclyclerComentarios);
+        recyclerComentarios.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerComentarios.setHasFixedSize(true);
 
+        //traer los datos de la coleccion de firebase
+        CollectionReference dataSugerencia = fStore.collection("DataComentarios");
+        Query query = dataSugerencia;
 
+        FirestoreRecyclerOptions<MoldeComentarios> options = new FirestoreRecyclerOptions.Builder<MoldeComentarios>()
+                .setQuery(query, MoldeComentarios.class)
+                .build();
+
+        //asignar todos lo datos obtenidos al adaptador
+        adapter = new ComentariosAdapter(options);
+
+        //asignar datos al recyclerView
+        recyclerComentarios.setAdapter(adapter);
 
         return vista;
     }
