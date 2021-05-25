@@ -91,9 +91,10 @@ public class sugerencias extends Fragment {
                 dialogoSU_fragment dialogo =  new dialogoSU_fragment();
                 dialogo.show(getActivity().getSupportFragmentManager(),"DialogoComentario"); // carga dialogo
 
+
                 //mensaje al hacer click
-                Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
-                        .setAction("ACtion",null).show();
+                //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
+                 //       .setAction("ACtion",null).show();
 
             }
         });
