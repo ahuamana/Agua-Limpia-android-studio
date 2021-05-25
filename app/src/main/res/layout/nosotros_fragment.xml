@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    
     tools:context=".nosotros.nosotros"
+
+
     tools:ignore="MissingClass">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:src="@drawable/fondo_desarrolladores"
+        android:layout_height="match_parent"></ImageView>
 
 
     <ScrollView
@@ -14,11 +23,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_margin="10dp"
         android:padding="20dp"
         >
 
@@ -40,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/primarystatusbar"
-            android:text="DESARROLLADOR"
+            android:text="Developers"
             android:textSize="25dp"
             android:layout_gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -58,31 +67,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Antony Nicolas Huaman Alikhan"
-            android:textColor="@color/lightblue"
+            android:text="Huaman Alikhan, Antony Nicolas"
+            android:textColor="@color/primaryTextColor"
             android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Rutte Orosco, Sergio Smith"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
             />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></Space>
-
         <TextView
-            android:layout_width="match_parent"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Soy un desarrollador Junior autodidacta con grandes con grandes expectativas en el desarrollo de software"
             android:layout_gravity="center"
-            android:textStyle="italic"
-            android:inputType="textMultiLine"
-            android:gravity="center"
-            ></TextView>
+            android:text="Trucios Bustencia, Diego"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="20dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+
 
 
     </LinearLayout>
-
-
-
 
 
     </ScrollView>
@@ -93,4 +110,4 @@
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
