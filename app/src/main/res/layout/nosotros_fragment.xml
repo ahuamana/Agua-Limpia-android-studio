@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    
+
     tools:context=".nosotros.nosotros"
 
 
     tools:ignore="MissingClass">
+
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -31,18 +33,14 @@
         android:padding="20dp"
         >
 
+
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="151dp"
-            android:layout_height="136dp"
-            android:src="@drawable/logoagua"
-            android:layout_weight="1"
-            android:adjustViewBounds="true"
+            android:layout_width="264dp"
+            android:layout_height="199dp"
             android:layout_gravity="center"
-            />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp"></Space>
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/fondo_programadores"></ImageView>
 
         <TextView
             android:id="@+id/textView2"
@@ -51,6 +49,7 @@
             android:textColor="@color/primarystatusbar"
             android:text="Developers"
             android:textSize="25dp"
+            android:fontFamily="@font/neuegrot_text_round_bold"
             android:layout_gravity="center"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,13 +59,14 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp"></Space>
+            android:layout_height="20dp"></Space>
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/neue_haas_display_light"
             android:text="Huaman Alikhan, Antony Nicolas"
             android:textColor="@color/primaryTextColor"
             android:textSize="20dp"
@@ -78,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Rutte Orosco, Sergio Smith"
+            android:fontFamily="@font/neue_haas_display_light"
             android:textColor="@color/primaryTextColor"
             android:textSize="20dp"
             android:layout_marginBottom="10dp"
@@ -89,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Trucios Bustencia, Diego"
+            android:fontFamily="@font/neue_haas_display_light"
             android:textColor="@color/primaryTextColor"
             android:textSize="20dp"
             android:layout_marginBottom="10dp"
