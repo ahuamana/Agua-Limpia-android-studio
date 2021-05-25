@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class dialogoSU_fragment extends DialogFragment {
     Activity actividad;
     Button btnComentarSU;
     TextView tvComentarSU;
+    LinearLayout layout;
 
     public dialogoSU_fragment() {
 
@@ -46,6 +48,8 @@ public class dialogoSU_fragment extends DialogFragment {
 
         btnComentarSU = v.findViewById(R.id.SUDIbtncomentar);
         tvComentarSU = v.findViewById(R.id.SUDItvDejarComentario);
+        layout = v.findViewById(R.id.SUDIlinearlayout);
+        layout.setAlpha(0.5f);
 
 
         //Eventos de botones
