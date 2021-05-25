@@ -26,6 +26,8 @@ import android.widget.Toast;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -39,6 +41,7 @@ import java.util.Map;
 import edu.aha.agualimpiafinal.Entidades.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapter.ComentariosAdapter;
+import edu.aha.agualimpiafinal.menu.sugerencias.dialogoSU.dialogoSU_fragment;
 
 public class sugerencias extends Fragment {
 
@@ -55,6 +58,9 @@ public class sugerencias extends Fragment {
 
     //datos de Shared preferences
     String firstname,middlename,lastname, email;
+
+    //boton flotante
+    FloatingActionButton btnComentar;
 
     public static sugerencias newInstance() {
         return new sugerencias();
@@ -74,6 +80,24 @@ public class sugerencias extends Fragment {
 
         SUdescripcion = vista.findViewById(R.id.SUtvDejarComentario);
         SUbtnComentar = vista.findViewById(R.id.SUbtncomentar);
+        btnComentar = vista.findViewById(R.id.SUbtnFlotanteComentar);
+
+        //Inflar Boton
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Llamar al dialogo
+                dialogoSU_fragment dialogo =  new dialogoSU_fragment();
+                dialogo.show(getActivity().getSupportFragmentManager(),"DialogoComentario"); // carga dialogo
+
+                //mensaje al hacer click
+                Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
+                        .setAction("ACtion",null).show();
+
+            }
+        });
+
 
         SUbtnComentar.setOnClickListener(new View.OnClickListener() {
             @Override
