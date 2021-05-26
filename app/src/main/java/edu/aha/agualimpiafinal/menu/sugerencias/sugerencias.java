@@ -2,8 +2,11 @@ package edu.aha.agualimpiafinal.menu.sugerencias;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,9 +92,11 @@ public class sugerencias extends Fragment {
             public void onClick(View v) {
 
                 //Llamar al dialogo
-                dialogoSU_fragment dialogo =  new dialogoSU_fragment();
-                dialogo.show(getActivity().getSupportFragmentManager(),"DialogoComentario"); // carga dialogo
-
+                Dialog dialog = new Dialog(getActivity());//dialog muestra el tema correcto
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.fragment_dialogo_s_u_fragment);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
 
                 //mensaje al hacer click
                 //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
