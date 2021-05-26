@@ -91,12 +91,8 @@ public class sugerencias extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //Llamar al dialogo
-                Dialog dialog = new Dialog(getActivity());//dialog muestra el tema correcto
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.fragment_dialogo_s_u_fragment);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+
+                AbrirDialogoComentar();
 
                 //mensaje al hacer click
                 //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
@@ -181,6 +177,30 @@ public class sugerencias extends Fragment {
         recyclerComentarios.setAdapter(adapter);
 
         return vista;
+    }
+
+    private void AbrirDialogoComentar() {
+
+        //Llamar al dialogo
+        Dialog dialog = new Dialog(getActivity(), R.style.Theme_Dialog);//dialog se carga con tema creado en styles y carga los valores de 90%
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.fragment_dialogo_s_u_fragment);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        Button btnComentar=dialog.findViewById(R.id.SUDIbtncomentar);
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        dialog.show();
+
+
+
+
     }
 
     @Override
