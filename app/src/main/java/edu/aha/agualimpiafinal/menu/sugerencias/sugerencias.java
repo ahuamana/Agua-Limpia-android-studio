@@ -107,49 +107,7 @@ public class sugerencias extends Fragment {
             public void onClick(View v) {
                 //Enviar datos a Firestore
 
-                ////Inicializar Collecion nueva
-                final DocumentReference reference = fStore.collection("DataComentarios").document(); // con .documents Genera automaticamente la KEY
 
-                //se añade un evento si termina la accion
-                reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
-                        //Validar campo vacio de la descripción
-                        if(!TextUtils.isEmpty(SUdescripcion.getText().toString()))
-                        {
-
-                            //si el evento se crea normal este se enviara a firestore
-                            if(task.isSuccessful())
-                            {
-                                //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
-                                Map<String, Object> sugerenciaData = new HashMap<>();
-                                sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
-                                sugerenciaData.put("SugerenciaMensaje",SUdescripcion.getText().toString().toLowerCase());
-                                sugerenciaData.put("AuthorFirstname",firstname.toLowerCase());
-                                sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
-                                sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
-                                sugerenciaData.put("AuthorEmail",email.toLowerCase());
-
-                                //asiganmos a la coleccion los datos almacenado en el map
-                                reference.set(sugerenciaData);
-                                //Mostramos mensaje al usuario
-                                Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
-
-                                //Limpiamos los campos
-                                SUdescripcion.setText("");
-
-                            }
-
-
-                        }else {
-                            Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-                });
-                //termina el evento de enviar datos a firebase
 
             }
         });
@@ -182,16 +140,66 @@ public class sugerencias extends Fragment {
     private void AbrirDialogoComentar() {
 
         //Llamar al dialogo
-        Dialog dialog = new Dialog(getActivity(), R.style.Theme_Dialog);//dialog se carga con tema creado en styles y carga los valores de 90%
+        final Dialog dialog = new Dialog(getActivity(), R.style.Theme_Dialog);//dialog se carga con tema creado en styles y carga los valores de 90%
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.fragment_dialogo_s_u_fragment);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        final EditText tvComentario = dialog.findViewById(R.id.SUDItvDejarComentario);
         Button btnComentar=dialog.findViewById(R.id.SUDIbtncomentar);
         btnComentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
+
+                ////Inicializar Collecion nueva
+                final DocumentReference reference = fStore.collection("DataComentarios").document(); // con .documents Genera automaticamente la KEY
+
+                //se añade un evento si termina la accion
+                reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                        //Validar campo vacio de la descripción
+                        if(!TextUtils.isEmpty(tvComentario.getText().toString()))
+                        {
+
+                            //si el evento se crea normal este se enviara a firestore
+                            if(task.isSuccessful())
+                            {
+                                //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
+                                Map<String, Object> sugerenciaData = new HashMap<>();
+                                sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
+                                sugerenciaData.put("SugerenciaMensaje",tvComentario.getText().toString().toLowerCase());
+                                sugerenciaData.put("AuthorFirstname",firstname.toLowerCase());
+                                sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
+                                sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
+                                sugerenciaData.put("AuthorEmail",email.toLowerCase());
+
+                                //asiganmos a la coleccion los datos almacenado en el map
+                                reference.set(sugerenciaData);
+                                //Mostramos mensaje al usuario
+                                Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
+
+                                //Limpiamos los campos
+                                tvComentario.setText("");
+
+                                //Cerrar dialogo
+                                dialog.dismiss();
+
+                            }
+
+
+                        }else {
+                            Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                });
+                //termina el evento de enviar datos a firebase
+
+
             }
         });
 
