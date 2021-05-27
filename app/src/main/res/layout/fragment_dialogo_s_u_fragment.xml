@@ -23,6 +23,7 @@
             android:layout_gravity="start"
             android:background="@android:color/transparent"
             android:gravity="start"
+            android:textColor="@color/white"
             android:hint="Deja un comentario Aqui!"
             android:lines="4"
             android:maxLines="4"
