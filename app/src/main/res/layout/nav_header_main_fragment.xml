@@ -15,15 +15,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="280dp"
-        android:layout_height="84dp"
+        android:layout_width="134dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logoagua"
+        app:srcCompat="@drawable/yaku_agua128"
         tools:layout_editor_absoluteX="65dp" />
 
     <TextView
@@ -31,7 +31,8 @@
         android:layout_height="31dp"
         android:layout_gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="AGUA LIMPIA"
+        android:text="YAKU LIMPIA"
+        android:fontFamily="@font/neuegrot_text_round_bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/white"
         android:textStyle="bold"

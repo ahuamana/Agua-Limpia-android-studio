@@ -28,8 +28,9 @@
                 android:id="@+id/txtlogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido a \nAgua Limpia"
+                android:text="Bienvenido \n a \n Yaku Limpia"
                 android:gravity="center"
+                android:fontFamily="@font/neuegrot_text_round_bold"
                 android:textAlignment="center"
                 android:textSize="46dp"
                 android:textColor="@color/primaryTextColor"
@@ -46,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_gravity="center|bottom"
-                android:src="@drawable/logoagua"
+                android:src="@drawable/yaku_agua"
                 android:paddingBottom="30dp"
                 ></ImageView>
 
