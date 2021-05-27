@@ -1,5 +1,7 @@
 package edu.aha.agualimpiafinal.adapter;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.Layout;
 import android.util.Log;
@@ -31,6 +33,8 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
     public MuestrasAdapter(@NonNull FirestoreRecyclerOptions<MoldeMuestra> options) { super(options); }
 
+
+    @SuppressLint("Range")
     @Override
     protected void onBindViewHolder(@NonNull MuestrasHolder holder, int position, @NonNull MoldeMuestra model) {
 
@@ -46,6 +50,20 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
         holder.txttiempo.setText(horaNueva); // Asignar la nueva hora en formato humano xd
         holder.txtResultado.setText(String.valueOf(model.getMuestraResultado()));
+
+        //Asignar color de letra dependiendo el resultado
+
+        if(model.getMuestraResultado().equals("Positivo"))
+        {
+            holder.txtResultado.setTextColor(Color.RED);
+        }else {
+                if (model.getMuestraResultado().equals("Negativo")) {
+                holder.txtResultado.setTextColor(Color.parseColor("#00bcd4"));
+                }
+            }
+
+        //Fin de Asignar color de letra dependiendo el resultado
+
 
         //set first letter to Uppercase
         String input= model.getMuestraDepartamento();
