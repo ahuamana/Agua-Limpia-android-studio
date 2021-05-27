@@ -28,6 +28,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="YOUTUBE VIDEO"
+                style="@style/letra_editText"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

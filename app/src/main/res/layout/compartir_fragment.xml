@@ -36,6 +36,7 @@
                 android:autoSizeMaxTextSize="100sp"
                 android:autoSizeStepGranularity="2sp"
                 android:gravity="center"
+                style="@style/letra_editText"
                 android:layout_gravity="center"
                 android:text="Gracias por compartir nuestro aplicativo! "
                 android:textSize="14sp"

@@ -23,6 +23,7 @@
             android:layout_gravity="start"
             android:background="@android:color/transparent"
             android:gravity="start"
+
             android:textColor="@color/white"
             android:hint="Deja un comentario Aqui!"
             android:lines="4"
@@ -36,6 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="right"
+
+        style="@style/letra_editText"
         android:background="@drawable/buttom_comentar"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"

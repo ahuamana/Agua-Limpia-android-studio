@@ -34,7 +34,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
+
+                <!--
 
                 <TextView
                     android:layout_width="match_parent"
@@ -46,43 +49,36 @@
                     android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
+                  -->
+
                 <TextView
                     android:id="@+id/MMtxtauthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="#000"
                     android:hint="Author"
-                    android:layout_marginStart="8dp"
-                    android:textSize="15sp"></TextView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_weight="2"
-                    android:text="Resultado"
-                    android:background="@drawable/buttom_masinformacion"
+                    android:text="AUTHOR"
+                    style="@style/letra_editText"
                     android:textSize="15sp"></TextView>
 
                 <TextView
-                    android:id="@+id/MMtxtResultado"
+                    android:id="@+id/MMtxtTiempo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_weight="1"
-                    android:hint="positivo"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:text="FECHA"
+                    android:textColor="#858484"
+                    android:gravity="center"
+                    style="@style/letra_editText"
                     android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
 
             </LinearLayout>
+
+
 
 
 
@@ -97,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_weight="2"
+                    style="@style/letra_editText"
                     android:text="Departam."
                     android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
@@ -106,6 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    style="@style/letra_editText"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:hint="Departamento"
                     android:layout_marginStart="8dp"
@@ -127,6 +125,7 @@
                     android:gravity="center"
                     android:layout_weight="2"
                     android:text="Provincia"
+                    style="@style/letra_editText"
                     android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
@@ -137,10 +136,13 @@
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:hint="Provincia"
+                    style="@style/letra_editText"
                     android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -153,23 +155,24 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:layout_weight="2"
-                    android:text="Fecha"
+                    style="@style/letra_editText"
+                    android:text="Resultado"
                     android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
                 <TextView
-                    android:id="@+id/MMtxtTiempo"
+                    android:id="@+id/MMtxtResultado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:hint="Fecha"
+                    android:layout_weight="1"
+                    style="@style/letra_editText"
+                    android:hint="positivo"
+                    android:textStyle="bold"
                     android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
 
             </LinearLayout>
-
-
 
         </LinearLayout>
 

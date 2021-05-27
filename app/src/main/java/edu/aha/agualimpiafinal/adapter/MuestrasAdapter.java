@@ -36,7 +36,9 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
         Log.e("DATA: ",""+ model.getAuthorFirstname());
         //asignar variables con firebase
-        holder.txtnombrecompleto.setText(String.valueOf(model.getAuthorFirstname()));
+        String inputnombrecompleto= model.getAuthorAlias();
+        String outputnombrecompleto = inputnombrecompleto.substring(0, 1).toUpperCase() + inputnombrecompleto.substring(1);
+        holder.txtnombrecompleto.setText(outputnombrecompleto);
 
         //cambiar Hora actual
         Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
