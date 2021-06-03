@@ -80,7 +80,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
     Spinner RIDepartamento, RIProvincia;
     Spinner RIResultadoMuestra;
     Button RIbtnregistrar,RIbtnlimpiar;
-    ImageButton RIbtncargarfoto;
+    ImageButton RIbtncargarfoto, RIbtnregistrardeRasberry;
 
     //Cloud Firestore
     FirebaseFirestore fStore;
@@ -140,7 +140,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
        RIbtnregistrar=vista.findViewById(R.id.RIbtnRegistrar);
        RIbtnlimpiar=vista.findViewById(R.id.RIbtnLimpiar);
        RIbtncargarfoto=vista.findViewById(R.id.RIbtncargarfoto);
-
+       RIbtnregistrardeRasberry= vista.findViewById(R.id.RIbtncargarfotoArduino);
 
 
        //imageboton
@@ -152,6 +152,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
        RIbtnregistrar.setOnClickListener(this);
        RIbtncargarfoto.setOnClickListener(this);
        RIbtnlimpiar.setOnClickListener(this);
+       RIbtnregistrardeRasberry.setOnClickListener(this);
 
 
        RIDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -384,6 +385,13 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
                 ////Limpiar Campos
                 limpiarcampos();
 
+                break;
+            }
+
+            case R.id.RIbtncargarfotoArduino:
+            {
+                //Codigo de cargar foto ardino
+                Toast.makeText(mContext, "Pronto Implementaremos esto <3", Toast.LENGTH_SHORT).show();
                 break;
             }
 
