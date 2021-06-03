@@ -36,7 +36,7 @@
 
         <androidx.appcompat.widget.SearchView
             android:layout_marginStart="30dp"
-            android:id="@+id/IsearchResultado"
+            android:id="@+id/IsearchAuthorAlias"
             app:queryHint="AuthorAlias"
             app:iconifiedByDefault="false"
             app:searchIcon="@null"
