@@ -365,6 +365,13 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                             //Obtengo el Resultado de la muestra
                             String muestraResultado= listaMuestras.get(i).getMuestraResultado();
 
+                            ////Horal Obtenida
+                            long time = listaMuestras.get(i).getMuestraTimeStamp()*1000;  //
+                            Date df = new java.util.Date(time);
+                            //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
+                            String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
+
+
                             //UnixTime to Date
                             java.util.Date dateTime=new java.util.Date(listaMuestras.get(i).getMuestraTimeStamp()*1000);
 
@@ -378,7 +385,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
                                                 .position(newlat)
                                                 //.title("Muestra "+ i));
-                                                .title( String.valueOf(dateTime)));
+                                                .title(HoraObtenida));
 
                             }
                             else {
@@ -392,7 +399,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
                                             .position(newlats)
                                             //.title("Muestra "+ dateTime));
-                                            .title(String.valueOf(dateTime)));
+                                            .title(HoraObtenida));
 
 
                                 }
