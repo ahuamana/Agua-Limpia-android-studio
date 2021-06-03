@@ -391,7 +391,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
             case R.id.RIbtncargarfotoArduino:
             {
                 //Codigo de cargar foto ardino
-                Toast.makeText(mContext, "Pronto Implementaremos esto <3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Pronto Implementaremos esto <3", Toast.LENGTH_SHORT).show();
                 break;
             }
 
