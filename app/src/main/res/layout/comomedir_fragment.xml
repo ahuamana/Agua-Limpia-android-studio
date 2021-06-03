@@ -21,13 +21,13 @@
             >
 
             <TextView
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TIPOS DE TEST"
                 style="@style/letra_titulos"
                 android:textColor="@color/primarystatusbar"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:textSize="18dp"
                 android:gravity="center"
                 android:layout_marginBottom="10dp"
                 >

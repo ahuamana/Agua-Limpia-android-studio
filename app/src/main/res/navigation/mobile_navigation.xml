@@ -32,13 +32,13 @@
     <fragment
         android:id="@+id/nav_nosotros"
         android:name="edu.aha.agualimpiafinal.nosotros.nosotros"
-        android:label="Sobre Nosotros"
+        android:label=""
         tools:layout="@layout/nosotros_fragment" />
 
     <fragment
         android:id="@+id/nav_photos_rasberry"
         android:name="edu.aha.agualimpiafinal.rasberry.rasberryImages"
-        android:label="Fotos Rasberry"
+        android:label=""
         tools:layout="@layout/nosotros_fragment" />
 
     <fragment
