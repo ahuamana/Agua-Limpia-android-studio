@@ -25,7 +25,15 @@ public class rasberryImages extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.rasberry_images_fragment, container, false);
+
+        View vista = inflater.inflate(R.layout.rasberry_images_fragment, container, false);
+
+        //codigo
+
+
+
+
+        return vista;
     }
 
     @Override

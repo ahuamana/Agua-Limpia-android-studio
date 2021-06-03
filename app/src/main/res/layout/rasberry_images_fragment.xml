@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".rasberry.rasberryImages">
 
-    <TextView
+    <GridView
+        android:id="@+id/grid_imagenes_rasberry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
+        android:numColumns="3"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
         android:gravity="center"
-        android:textColor="#DD1E1E"
-        android:text="Rasberry Photos" />
+        android:stretchMode="columnWidth"
+        >
 
-</FrameLayout>
+    </GridView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
