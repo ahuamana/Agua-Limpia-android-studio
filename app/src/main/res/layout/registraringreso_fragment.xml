@@ -157,17 +157,37 @@
                     android:singleLine="true"
                     android:textColor="#393939"></Spinner>
 
-                <ImageButton
-                    android:id="@+id/RIbtncargarfoto"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/buttom_take_photo"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_camera"
-                    android:text="Tomar Foto"></ImageButton>
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/RIbtncargarfoto"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/buttom_take_photo"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/cameracolors64"
+                        android:text="Tomar Foto"></ImageButton>
+
+                    <ImageButton
+                        android:layout_marginStart="10dp"
+                        android:id="@+id/RIbtncargarfotoArduino"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="45dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/buttom_take_photo"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/frambuesa_pi64"
+                        android:text="Tomar Foto"></ImageButton>
+
+                </LinearLayout>
 
 
                 <ImageView
