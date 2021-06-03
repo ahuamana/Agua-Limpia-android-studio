@@ -114,6 +114,15 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                 //añadir botones de + y - para hacer zoom
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
 
+                //habilitar compass o brujula
+               //googleMap.setMyLocationEnabled(true);
+                //googleMap.getUiSettings().setMyLocationButtonEnabled(false);//ocultar boton de ubicacion
+                googleMap.getUiSettings().setCompassEnabled(true);
+
+
+                googleMap.getUiSettings().setAllGesturesEnabled(true); // habilitar gestos
+
+
                 //mostrar mi localizacion
                 googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
