@@ -8,25 +8,25 @@
     <fragment
         android:id="@+id/nav_inicio"
         android:name="edu.aha.agualimpiafinal.inicio.inicio"
-        android:label="Inicio"
+        android:label=""
         tools:layout="@layout/inicio_fragment" />
 
     <fragment
         android:id="@+id/nav_registrar"
         android:name="edu.aha.agualimpiafinal.registrar.registrar"
-        android:label="Registrar"
+        android:label=""
         tools:layout="@layout/registrar_fragment" />
 
     <fragment
         android:id="@+id/nav_lista"
         android:name="edu.aha.agualimpiafinal.lista.lista"
-        android:label="Lista"
+        android:label=""
         tools:layout="@layout/lista_fragment" />
 
     <fragment
         android:id="@+id/nav_comomedir"
         android:name="edu.aha.agualimpiafinal.comomedir.comomedir"
-        android:label="¿Como medir?"
+        android:label=""
         tools:layout="@layout/comomedir_fragment" />
 
     <fragment

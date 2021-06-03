@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".lista.lista"
     android:orientation="vertical"
-    >
+    android:layout_marginTop="40dp">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/Isearch"
