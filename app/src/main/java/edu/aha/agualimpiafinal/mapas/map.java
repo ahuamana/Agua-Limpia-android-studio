@@ -104,7 +104,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         public void onMapReady(final GoogleMap googleMap) {
 
 
-            googleMaps = googleMap;
+
             //Obtener Permisos geolzalizacion
             ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
             //permisos
@@ -410,6 +410,12 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
             public void onFailure(@NonNull Exception e) {
                 //Codigo si falla al obtener la lista
                 Toast.makeText(getActivity(), "Error getting data!!!", Toast.LENGTH_LONG).show();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                //limpiar marker
+               //googleMaps.clear();
             }
         });
 
