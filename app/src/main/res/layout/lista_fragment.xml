@@ -8,15 +8,45 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.SearchView
-        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/Isearch"
-        app:queryHint="Buscar"
+        app:queryHint="Buscar por departamento"
         app:iconifiedByDefault="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:actionViewClass="android.support.v7.widget.SearchView"
-        app:layout_constraintTop_toTopOf="parent"
         ></androidx.appcompat.widget.SearchView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_marginStart="40dp"
+            android:id="@+id/IsearchProvincia"
+            app:queryHint="Provincia"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@null"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:actionViewClass="android.support.v7.widget.SearchView"
+            ></androidx.appcompat.widget.SearchView>
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_marginStart="30dp"
+            android:id="@+id/IsearchResultado"
+            app:queryHint="AuthorAlias"
+            app:iconifiedByDefault="false"
+            app:searchIcon="@null"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:actionViewClass="android.support.v7.widget.SearchView"
+            ></androidx.appcompat.widget.SearchView>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRecycler"
