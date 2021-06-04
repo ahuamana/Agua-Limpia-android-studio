@@ -95,12 +95,27 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/CMbtnWaterSafe_masinfo"
+                                android:id="@+id/CMbtnWaterSafe_masinfo_texto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:layout_weight="2"
-                                android:text="+ info"
+                                android:text="TEXTO"
+                                style="@style/letra_editText"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:background="@drawable/buttom_masinformacion"
+                                android:textSize="12sp"></Button>
+
+
+                            <Button
+                                android:id="@+id/CMbtnWaterSafe_masinfo_video"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="2"
+                                android:text="Video"
                                 style="@style/letra_editText"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
@@ -179,12 +194,27 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/CMbtnHealthMetric_masinfo"
+                                android:id="@+id/CMbtnHealthMetric_masinfo_texto"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:layout_weight="2"
-                                android:text="+ info"
+                                android:text="TEXTO"
+                                style="@style/letra_editText"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:background="@drawable/buttom_masinformacion"
+                                android:textSize="15sp"></Button>
+
+
+                            <Button
+                                android:id="@+id/CMbtnHealthMetric_masinfo_video"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="2"
+                                android:text="VIDEO"
                                 style="@style/letra_editText"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginEnd="20dp"
