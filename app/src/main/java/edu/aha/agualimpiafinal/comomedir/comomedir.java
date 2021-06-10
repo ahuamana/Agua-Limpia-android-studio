@@ -57,8 +57,8 @@ public class comomedir extends Fragment {
         dialog=new Dialog(context);
         //
 
-        btnHealthMetric= vista.findViewById(R.id.CMbtnHealthMetric_masinfo);
-        btnWaterSafe=vista.findViewById(R.id.CMbtnWaterSafe_masinfo);
+        btnHealthMetric= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_video);
+        btnWaterSafe=vista.findViewById(R.id.CMbtnWaterSafe_masinfo_video);
 
 
         //Inicio al hacer click el buttom WaterSafe
@@ -118,6 +118,7 @@ public class comomedir extends Fragment {
         });
 
         dialog.show();
+        dialog.setCanceledOnTouchOutside(true);
     }
 
 
