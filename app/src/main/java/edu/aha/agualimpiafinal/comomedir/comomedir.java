@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -14,11 +15,15 @@ import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
@@ -35,7 +40,7 @@ public class comomedir extends Fragment {
     private ComomedirViewModel mViewModel;
 
     ImageView imgHealthMetric,imgWaterSafe;
-    Button btnHealthMetric, btnWaterSafe;
+    Button btnHealthMetric, btnWaterSafe, btnHealthMetricText, btnWaterSafeText;
     Dialog dialog;
     String videoId = "";
 
@@ -53,12 +58,19 @@ public class comomedir extends Fragment {
         imgWaterSafe = vista.findViewById(R.id.CMivWaterSafe);
 
         //Inicializar el dialogo con el contexto
-        Context context= vista.getContext();
+        final Context context= vista.getContext();
         dialog=new Dialog(context);
-        //
+
+        //cerra listener de dialog
+
+
 
         btnHealthMetric= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_video);
         btnWaterSafe=vista.findViewById(R.id.CMbtnWaterSafe_masinfo_video);
+
+        //Dialog Text
+        btnHealthMetricText= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_texto);
+        btnWaterSafeText = vista.findViewById(R.id.CMbtnWaterSafe_masinfo_texto);
 
 
         //Inicio al hacer click el buttom WaterSafe
@@ -83,6 +95,31 @@ public class comomedir extends Fragment {
         });
         //
 
+        btnHealthMetricText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.setContentView(R.layout.custom_text_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+
+            }
+        });
+
+        btnWaterSafeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.setContentView(R.layout.custom_text_dialog);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+                dialog.setCanceledOnTouchOutside(true);
+
+            }
+        });
+
+
 
         Glide.with(this)
                 .load("https://images-na.ssl-images-amazon.com/images/I/81B8ZtKR%2BXL._AC_SY355_.jpg")
@@ -105,7 +142,7 @@ public class comomedir extends Fragment {
         //Declarar variables del dialogo que se utilizan
         TextView DItittle = dialog.findViewById(R.id.DItittle);
         DItittle.setText(titulo);
-        YouTubePlayerView video = dialog.findViewById(R.id.DIvideoYoutube);
+        final YouTubePlayerView video = dialog.findViewById(R.id.DIvideoYoutube);
 
         getLifecycle().addObserver(video);
 
@@ -119,7 +156,10 @@ public class comomedir extends Fragment {
 
         dialog.show();
         dialog.setCanceledOnTouchOutside(true);
+
     }
+
+
 
 
 

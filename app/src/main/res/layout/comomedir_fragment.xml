@@ -89,6 +89,19 @@
                             android:gravity="center"
                             ></TextView>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Instrucciones"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="16dp"
+                            style="@style/letra_editText"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            ></TextView>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -183,6 +196,19 @@
                             android:textStyle="bold"
                             android:textSize="15dp"
                             style="@style/letra_titulos"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            ></TextView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Instrucciones"
+                            android:textStyle="bold"
+                            android:textColor="@color/primaryTextColor"
+                            android:textSize="16dp"
+                            style="@style/letra_editText"
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:gravity="center"
