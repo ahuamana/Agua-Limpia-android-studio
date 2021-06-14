@@ -21,7 +21,7 @@
         android:id="@+id/nav_lista"
         android:name="edu.aha.agualimpiafinal.lista.lista"
         android:label=""
-        tools:layout="@layout/lista_fragment" />
+        tools:layout="@layout/lista_fragment"/>
 
     <fragment
         android:id="@+id/nav_comomedir"
@@ -39,7 +39,7 @@
         android:id="@+id/nav_photos_rasberry"
         android:name="edu.aha.agualimpiafinal.rasberry.rasberryImages"
         android:label=""
-        tools:layout="@layout/nosotros_fragment" />
+        tools:layout="@layout/rasberry_images_fragment" />
 
     <fragment
         android:id="@+id/nav_compartir"

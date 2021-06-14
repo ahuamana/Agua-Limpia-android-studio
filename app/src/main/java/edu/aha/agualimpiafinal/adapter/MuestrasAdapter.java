@@ -34,7 +34,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
     public MuestrasAdapter(@NonNull FirestoreRecyclerOptions<MoldeMuestra> options) { super(options); }
 
 
-    @SuppressLint("Range")
+
     @Override
     protected void onBindViewHolder(@NonNull MuestrasHolder holder, int position, @NonNull MoldeMuestra model) {
 

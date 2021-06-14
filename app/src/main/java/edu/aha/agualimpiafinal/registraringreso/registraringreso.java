@@ -526,6 +526,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
 
             StorageReference filePath = mstorage.child("MuestraFotos").child(mipath.getLastPathSegment());
 
+
             filePath.putFile(mipath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
