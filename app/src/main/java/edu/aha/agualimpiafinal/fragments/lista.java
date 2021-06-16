@@ -31,17 +31,15 @@ import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.MuestrasAdapter;
 import edu.aha.agualimpiafinal.viewModels.ListaViewModel;
 
-public class lista extends Fragment  implements SearchView.OnQueryTextListener {
+public class lista extends Fragment {
 
     RecyclerView recyclerUsuarios;
     MuestrasAdapter adapter;
 
-    DatabaseReference ref;
-
     //Referencias para Cloudfirestore
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
-    private SearchView svSearch, svSearchProvincia, svSearchAuthorAlias;
+    private SearchView svSearchDepartamento, svSearchProvincia, svSearchAuthorAlias;
 
 
     private ListaViewModel mViewModel;
@@ -61,15 +59,30 @@ public class lista extends Fragment  implements SearchView.OnQueryTextListener {
         fStore=FirebaseFirestore.getInstance();
 
         //inicializar variables para buscar
-        svSearch= (SearchView) vista.findViewById(R.id.Isearch);
-        initListener();
-
+        svSearchDepartamento= (SearchView) vista.findViewById(R.id.Isearch);
         //Implementado segunda forma de buscar (provincia)
         svSearchProvincia = vista.findViewById(R.id.IsearchProvincia);
         //Implementado 3ra forma de buscar (authoralias)
         svSearchAuthorAlias = vista.findViewById(R.id.IsearchAuthorAlias);
 
-        
+
+        svSearchDepartamento.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                buscarDepartamentoOnFirestorage(newText);
+
+                return false;
+            }
+        });
+
+
         svSearchProvincia.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -106,18 +119,15 @@ public class lista extends Fragment  implements SearchView.OnQueryTextListener {
         //codigo
         //iniciar arraylist y refrencia al contenedor
 
-        recyclerUsuarios= (RecyclerView) vista.findViewById(R.id.idRecycler);
+        recyclerUsuarios= vista.findViewById(R.id.idRecycler);
         recyclerUsuarios.setLayoutManager( new LinearLayoutManager(this.getContext()));
         recyclerUsuarios.setHasFixedSize(true);
 
+
         //crear referencia a Firebase
         CollectionReference datosEmpresa = fStore.collection("DatosMuestra");
-
-        //
         Query query = datosEmpresa;
         //Craer un builder de firebase del children
-
-
 
         FirestoreRecyclerOptions<MoldeMuestra> options = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
                 .setQuery(query,MoldeMuestra.class)
@@ -125,11 +135,28 @@ public class lista extends Fragment  implements SearchView.OnQueryTextListener {
 
         //enviar los datos al adapter
         adapter=new MuestrasAdapter(options);
-
         //asignar datos al recyclerView
         recyclerUsuarios.setAdapter(adapter);
 
         return vista;
+    }
+
+    private void buscarDepartamentoOnFirestorage(String newText) {
+
+        adapter=null;
+        Log.e("mensajebusqueda: ",newText.toLowerCase());
+        FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
+                .setQuery(fStore.collection("DatosMuestra").orderBy("MuestraDepartamento").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff'),MoldeMuestra.class)
+                .build();
+
+        //enviar los datos al adapter
+        adapter=new MuestrasAdapter(newoptions);
+        adapter.startListening();
+
+        //asignar datos al recyclerView
+        recyclerUsuarios.setAdapter(adapter);
+
+
     }
 
     private void buscarAuthorAliasOnFirestorage(String newText) {
@@ -189,40 +216,11 @@ public class lista extends Fragment  implements SearchView.OnQueryTextListener {
         // TODO: Use the ViewModel
     }
 
-    private  void initListener(){
-        svSearch.setOnQueryTextListener(this);
-    }
 
 
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
 
-        processSearch(newText);
-
-        return false;
-    }
-
-    private void processSearch(String newText) {
-        adapter=null;
-        Log.e("mensajebusqueda: ",newText.toLowerCase());
-        FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(fStore.collection("DatosMuestra").orderBy("MuestraDepartamento").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff'),MoldeMuestra.class)
-                .build();
-
-        //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions);
-        adapter.startListening();
-
-        //asignar datos al recyclerView
-        recyclerUsuarios.setAdapter(adapter);
-
-    }
 
 
 
