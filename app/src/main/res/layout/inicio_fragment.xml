@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inicio.inicio"
+    tools:context=".fragments.inicio"
     android:orientation="vertical">
 
     <fragment
         android:id="@+id/contenedormapas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="edu.aha.agualimpiafinal.mapas.map"
+        android:name="edu.aha.agualimpiafinal.fragments.map"
     ></fragment>
 
 

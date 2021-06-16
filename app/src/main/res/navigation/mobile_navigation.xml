@@ -7,50 +7,50 @@
 
     <fragment
         android:id="@+id/nav_inicio"
-        android:name="edu.aha.agualimpiafinal.inicio.inicio"
+        android:name="edu.aha.agualimpiafinal.fragments.inicio"
         android:label=""
         tools:layout="@layout/inicio_fragment" />
 
     <fragment
         android:id="@+id/nav_registrar"
-        android:name="edu.aha.agualimpiafinal.registrar.registrar"
+        android:name="edu.aha.agualimpiafinal.fragments.registrar"
         android:label=""
         tools:layout="@layout/registrar_fragment" />
 
     <fragment
         android:id="@+id/nav_lista"
-        android:name="edu.aha.agualimpiafinal.lista.lista"
+        android:name="edu.aha.agualimpiafinal.fragments.lista"
         android:label=""
         tools:layout="@layout/lista_fragment"/>
 
     <fragment
         android:id="@+id/nav_comomedir"
-        android:name="edu.aha.agualimpiafinal.comomedir.comomedir"
+        android:name="edu.aha.agualimpiafinal.fragments.comomedir"
         android:label=""
         tools:layout="@layout/comomedir_fragment" />
 
     <fragment
         android:id="@+id/nav_nosotros"
-        android:name="edu.aha.agualimpiafinal.nosotros.nosotros"
+        android:name="edu.aha.agualimpiafinal.fragments.nosotros"
         android:label=""
         tools:layout="@layout/nosotros_fragment" />
 
     <fragment
         android:id="@+id/nav_photos_rasberry"
-        android:name="edu.aha.agualimpiafinal.rasberry.rasberryImages"
+        android:name="edu.aha.agualimpiafinal.fragments.rasberryImages"
         android:label=""
         tools:layout="@layout/rasberry_images_fragment" />
 
     <fragment
         android:id="@+id/nav_compartir"
-        android:name="edu.aha.agualimpiafinal.menu.compartir.compartir"
+        android:name="edu.aha.agualimpiafinal.fragments.compartir"
         android:label=""
         tools:layout="@layout/compartir_fragment"
         ></fragment>
 
     <fragment
         android:id="@+id/nav_sugerencias"
-        android:name="edu.aha.agualimpiafinal.menu.sugerencias.sugerencias"
+        android:name="edu.aha.agualimpiafinal.fragments.sugerencias"
         android:label=""
         tools:layout="@layout/sugerencias_fragment"
         ></fragment>

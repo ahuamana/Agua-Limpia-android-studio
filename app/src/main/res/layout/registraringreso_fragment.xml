@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registraringreso.registraringreso"
+    tools:context=".fragments.registraringreso"
     android:orientation="vertical"
     android:id="@+id/REcontenedorRegistrarIngreso"
     android:padding="10dp">

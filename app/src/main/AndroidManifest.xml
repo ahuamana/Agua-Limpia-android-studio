@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".begining.inicioApp"
+            android:name=".otheractivities.inicioApp"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -28,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".splash.splashmain"
+            android:name=".activities.splashmain"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!--
@@ -43,9 +43,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".begining.begining" />
+        <activity android:name=".activities.begining" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
