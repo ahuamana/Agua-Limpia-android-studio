@@ -30,11 +30,6 @@ public class inicio extends Fragment {
         View vista= inflater.inflate(R.layout.inicio_fragment, container, false);
 
 
-
-
-
-
-
         return vista;
     }
 

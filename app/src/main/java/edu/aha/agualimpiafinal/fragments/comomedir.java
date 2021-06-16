@@ -51,6 +51,12 @@ public class comomedir extends Fragment {
 
         imgHealthMetric = vista.findViewById(R.id.CMivHealtMetric);
         imgWaterSafe = vista.findViewById(R.id.CMivWaterSafe);
+        btnHealthMetric= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_video);
+        btnWaterSafe=vista.findViewById(R.id.CMbtnWaterSafe_masinfo_video);
+
+        //Dialog Text
+        btnHealthMetricText= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_texto);
+        btnWaterSafeText = vista.findViewById(R.id.CMbtnWaterSafe_masinfo_texto);
 
         //Inicializar el dialogo con el contexto
         final Context context= vista.getContext();
@@ -60,12 +66,7 @@ public class comomedir extends Fragment {
 
 
 
-        btnHealthMetric= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_video);
-        btnWaterSafe=vista.findViewById(R.id.CMbtnWaterSafe_masinfo_video);
 
-        //Dialog Text
-        btnHealthMetricText= vista.findViewById(R.id.CMbtnHealthMetric_masinfo_texto);
-        btnWaterSafeText = vista.findViewById(R.id.CMbtnWaterSafe_masinfo_texto);
 
 
         //Inicio al hacer click el buttom WaterSafe

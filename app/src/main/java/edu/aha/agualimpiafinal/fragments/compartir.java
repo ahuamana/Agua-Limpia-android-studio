@@ -43,20 +43,26 @@ public class compartir extends Fragment {
         imgLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Codigo para copiar al portapeles el link
 
-                String texto = text.getText().toString();
-                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("",texto);
-                clipboard.setPrimaryClip(clip);
+                copyDataPortapeles();
 
-                //Mostrar mensaje para mostrar al usuario
-                Toast.makeText(getActivity(), "Copiado! en portapapeles", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         return vista;
+    }
+
+    private void copyDataPortapeles() {
+
+        //Codigo para copiar al portapeles el link
+        String texto = text.getText().toString();
+        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("",texto);
+        clipboard.setPrimaryClip(clip);
+
+        //Mostrar mensaje para mostrar al usuario
+        Toast.makeText(getActivity(), "Copiado! en portapapeles", Toast.LENGTH_SHORT).show();
     }
 
     @Override
