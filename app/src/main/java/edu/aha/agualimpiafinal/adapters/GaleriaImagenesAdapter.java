@@ -31,6 +31,14 @@ public class GaleriaImagenesAdapter extends BaseAdapter {
 
     }
 
+    public GaleriaImagenesAdapter(Context mContext, List<String> imagenesArray) {
+
+        this.mContext = mContext;
+        this.imagenesArray = imagenesArray;
+
+    }
+
+
     //
     @Override
     public int getCount() {

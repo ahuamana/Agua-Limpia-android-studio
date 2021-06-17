@@ -39,7 +39,7 @@ public class rasberryImages extends Fragment {
 
     private RasberryImagesViewModel mViewModel;
 
-    GridView imagenes;
+    GridView gridViewImagenes;
     List<MoldeMuestra> listatotalDataURLS= new ArrayList<>();
     List<String> listaURLs = new ArrayList<>();
 
@@ -48,6 +48,8 @@ public class rasberryImages extends Fragment {
     MoldeRasberryPhotos mRasberryPhotos;
 
     ListenerRegistration mListener;
+
+    GaleriaImagenesAdapter mGaleriaImagenesAdapter;
 
     public static rasberryImages newInstance() {
         return new rasberryImages();
@@ -58,7 +60,7 @@ public class rasberryImages extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.rasberry_images_fragment, container, false);
 
-        imagenes = vista.findViewById(R.id.grid_imagenes_rasberry);
+        gridViewImagenes = vista.findViewById(R.id.grid_imagenes_rasberry);
 
         //Inicializar firestore
         mUsersProvider = new UsersProvider();
@@ -77,7 +79,7 @@ public class rasberryImages extends Fragment {
 
         //codigo
 
-        imagenes.setAdapter(new GaleriaImagenesAdapter(getContext())); // asignar adapatador con el contexto
+
 
 
 
@@ -106,13 +108,21 @@ public class rasberryImages extends Fragment {
                 //mRasberryPhotos = value.toObjects(MoldeRasberryPhotos.class);
                 List<String> imagenes = new ArrayList<>();
 
+
                 //Obtener datos del molde y rellenar al array con strings
                 for(QueryDocumentSnapshot doc : value)
                 {
-
-                    mRasberryPhotos.getImage();
-
+                    if (doc.get("image") != null) {
+                        imagenes.add(doc.getString("name"));
+                    }
                 }
+
+                mRasberryPhotos.setImage(imagenes); //asignar toda la collecion
+
+                //mGaleriaImagenesAdapter = new GaleriaImagenesAdapter(getContext(), mRasberryPhotos.getImage());
+                mGaleriaImagenesAdapter = new GaleriaImagenesAdapter(getContext());//
+
+                gridViewImagenes.setAdapter(mGaleriaImagenesAdapter); // asignar adapatador con el contexto
 
             }else {Toast.makeText(getContext(), "Los campos de la referencia estan vacias", Toast.LENGTH_SHORT).show();}
 
