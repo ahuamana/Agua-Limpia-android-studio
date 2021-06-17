@@ -71,6 +71,7 @@ public class GaleriaImagenesAdapter extends BaseAdapter {
         Glide.with(mContext)
                 .load(imagenesArray.get(position))
                 .apply(new RequestOptions().override(600,600))  //set new size from each image
+                .placeholder(R.drawable.photography_background)
                 .into(imageView);
 
 
