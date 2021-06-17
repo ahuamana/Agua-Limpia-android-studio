@@ -18,7 +18,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -27,6 +31,8 @@ import java.util.List;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.GaleriaImagenesAdapter;
+import edu.aha.agualimpiafinal.models.MoldeRasberryPhotos;
+import edu.aha.agualimpiafinal.providers.UsersProvider;
 import edu.aha.agualimpiafinal.viewModels.RasberryImagesViewModel;
 
 public class rasberryImages extends Fragment {
@@ -36,9 +42,12 @@ public class rasberryImages extends Fragment {
     GridView imagenes;
     List<MoldeMuestra> listatotalDataURLS= new ArrayList<>();
     List<String> listaURLs = new ArrayList<>();
+
     //Cloud Firestore
-    FirebaseFirestore fStore;
-    FirebaseAuth fAuth;
+    UsersProvider mUsersProvider;
+    MoldeRasberryPhotos mRasberryPhotos;
+
+    ListenerRegistration mListener;
 
     public static rasberryImages newInstance() {
         return new rasberryImages();
@@ -47,55 +56,70 @@ public class rasberryImages extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         View vista = inflater.inflate(R.layout.rasberry_images_fragment, container, false);
 
+        imagenes = vista.findViewById(R.id.grid_imagenes_rasberry);
+
         //Inicializar firestore
-        fAuth= FirebaseAuth.getInstance();
-        fStore= FirebaseFirestore.getInstance();
+        mUsersProvider = new UsersProvider();
+        mRasberryPhotos = new MoldeRasberryPhotos();
 
-        fStore.collection("DatosMuestra").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+        mListener = mUsersProvider.getCollectionDatosMuestra().addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-             //Codigo obtener
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
-                if(queryDocumentSnapshots.isEmpty())
-                {
-                    Log.d("TAG", "onSuccess: LIST EMPTY");
-                    return;
-                }else {
-                    //Asignar Datos de Firestore al molde
-                    List<MoldeMuestra> types = queryDocumentSnapshots.toObjects(MoldeMuestra.class);
-                    listatotalDataURLS.addAll(types);
-
-                    //Obtener datos del molde y rellenar al array con strings
-                    for(int i=0;i<listatotalDataURLS.size();i++)
-                    {
-
-
-                    }
-
-                        }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                //codigo cancelar
-                Toast.makeText(getActivity(), "Error al traer los datos de firebase!", Toast.LENGTH_SHORT).show();
+                listarFotos(value); // listar fotos en tiempo real
 
             }
         });
 
+
         //codigo
-        imagenes = vista.findViewById(R.id.grid_imagenes_rasberry);
+
         imagenes.setAdapter(new GaleriaImagenesAdapter(getContext())); // asignar adapatador con el contexto
 
 
 
-
         return vista;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        if(mListener != null)
+        {
+            mListener.remove();
+        }
+
+    }
+
+    private void listarFotos(QuerySnapshot value) {
+
+        if (value != null)
+        {
+
+            if(!value.equals(""))
+            {
+                //Asignar Datos de Firestore al molde
+                //mRasberryPhotos = value.toObjects(MoldeRasberryPhotos.class);
+                List<String> imagenes = new ArrayList<>();
+
+                //Obtener datos del molde y rellenar al array con strings
+                for(QueryDocumentSnapshot doc : value)
+                {
+
+                    mRasberryPhotos.getImage();
+
+                }
+
+            }else {Toast.makeText(getContext(), "Los campos de la referencia estan vacias", Toast.LENGTH_SHORT).show();}
+
+        }else {Toast.makeText(getContext(), "Los campos de la referencia son nulos", Toast.LENGTH_SHORT).show();}
+
+
+
     }
 
     @Override

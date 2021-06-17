@@ -6,6 +6,9 @@
     tools:context=".fragments.rasberryImages">
 
     <GridView
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="55dp"
         android:id="@+id/grid_imagenes_rasberry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,10 +17,6 @@
         android:horizontalSpacing="10dp"
         android:verticalSpacing="10dp"
         android:gravity="center"
-        android:stretchMode="columnWidth"
-        >
-
-    </GridView>
-
+        android:stretchMode="columnWidth" />
 
 </LinearLayout>
