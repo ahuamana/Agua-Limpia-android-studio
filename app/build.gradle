@@ -75,6 +75,11 @@ dependencies {
     //Youtube API Player
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
+    //PickImagePicker
+    implementation  'com.fxn769:pix:1.5.6'
+
+    //zelory compressor android
+    implementation 'id.zelory:compressor:2.1.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
