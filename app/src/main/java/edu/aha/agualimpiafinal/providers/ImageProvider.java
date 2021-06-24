@@ -1,7 +1,9 @@
 package edu.aha.agualimpiafinal.providers;
 
 import android.content.Context;
+import android.net.Uri;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -30,6 +32,11 @@ public class ImageProvider {
         mStorage = storage;
         UploadTask task = storage.putBytes(imageByte);
         return task;
+    }
+
+    public Task<Uri> getDownloadUri()
+    {
+        return mStorage.getDownloadUrl();
     }
 
 }

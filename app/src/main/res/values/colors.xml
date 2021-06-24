@@ -20,6 +20,8 @@
     <color name="white">#ffffff</color>
     <color name="lightblue">#3a79de</color>
     <color name="red">#e80e0e</color>
+    <color name="greenPrimary">#03C566</color>
+
 
 
 </resources>

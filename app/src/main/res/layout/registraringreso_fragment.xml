@@ -157,45 +157,46 @@
                     android:singleLine="true"
                     android:textColor="#393939"></Spinner>
 
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageButton
-                        android:id="@+id/RIbtncargarfoto"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="45dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/buttom_take_photo"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/cameracolors64"
-                        android:text="Tomar Foto"></ImageButton>
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp">
 
-                    <ImageButton
-                        android:layout_marginStart="10dp"
-                        android:id="@+id/RIbtncargarfotoArduino"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="45dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/buttom_take_photo"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/frambuesa_pi64"
-                        android:text="Tomar Foto"></ImageButton>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/RIimgFoto"
+                            app:civ_circle_background_color="#C8C8C8"
+                            android:src="@drawable/ic_image"
+                            app:civ_border_width="20dp"
+                            app:civ_border_color="#C8C8C8"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabSelectImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_photo"
+                            android:backgroundTint="@color/greenPrimary"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginLeft="50dp"
+                            app:elevation="0dp"/>
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
-
-                <ImageView
-                    android:id="@+id/RIimgFoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_weight="1"></ImageView>
 
                 <Button
                     android:id="@+id/RIbtnRegistrar"

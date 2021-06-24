@@ -46,6 +46,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -66,7 +67,7 @@ import edu.aha.agualimpiafinal.utils.validaciones;
 
 import static android.app.Activity.RESULT_OK;
 
-public class registraringreso extends Fragment implements View.OnClickListener, LocationListener {
+public class registraringreso extends Fragment implements LocationListener {
 
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
@@ -80,7 +81,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
     Spinner RIDepartamento, RIProvincia;
     Spinner RIResultadoMuestra;
     Button RIbtnregistrar,RIbtnlimpiar;
-    ImageButton RIbtncargarfoto, RIbtnregistrardeRasberry;
+    FloatingActionButton RIbtncargarfoto;
 
 
     UsersProvider user;
@@ -134,12 +135,11 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
 
        //Image View
         RIimgfoto= vista.findViewById(R.id.RIimgFoto);
+        RIbtncargarfoto = vista.findViewById(R.id.fabSelectImage);
 
         //botones
        RIbtnregistrar=vista.findViewById(R.id.RIbtnRegistrar);
        RIbtnlimpiar=vista.findViewById(R.id.RIbtnLimpiar);
-       RIbtncargarfoto=vista.findViewById(R.id.RIbtncargarfoto);
-       RIbtnregistrardeRasberry= vista.findViewById(R.id.RIbtncargarfotoArduino);
 
 
        //imageboton
@@ -147,12 +147,43 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
        ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
 
        //clickListenes para botones
-       RIbtnLocalization.setOnClickListener(this);
-       RIbtnregistrar.setOnClickListener(this);
-       RIbtncargarfoto.setOnClickListener(this);
-       RIbtnlimpiar.setOnClickListener(this);
-       RIbtnregistrardeRasberry.setOnClickListener(this);
+       RIbtnLocalization.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
+               //Toast.makeText(getActivity(), "Probando", Toast.LENGTH_SHORT).show();
+               getLocation();
+               //llamar al metodo para obtener la localizacion
+
+           }
+       });
+
+
+       RIbtnregistrar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               //Toast.makeText(getActivity(), "Probando Boton Registro", Toast.LENGTH_SHORT).show();
+               ////Registrar Pedido a Firebase
+               registrarMuestraAnalizada();
+
+           }
+       });
+
+       RIbtnlimpiar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               ////Limpiar Campos
+               limpiarcampos();
+           }
+       });
+
+       RIbtncargarfoto.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               ////Cargar Foto a Firebase
+               uploadFoto();
+           }
+       });
 
        RIDepartamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
@@ -343,61 +374,8 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
         // TODO: Use the ViewModel
     }
 
-    @Override
-    public void onClick(View v) {
 
 
-        switch (v.getId())
-        {
-
-            case R.id.RIbtngeolocalizacion:
-            {
-
-                //Toast.makeText(getActivity(), "Probando", Toast.LENGTH_SHORT).show();
-                getLocation();
-                //llamar al metodo para obtener la localizacion
-                break;
-            }
-
-
-            case R.id.RIbtnRegistrar:
-            {
-                //Toast.makeText(getActivity(), "Probando Boton Registro", Toast.LENGTH_SHORT).show();
-                ////Registrar Pedido a Firebase
-                registrarMuestraAnalizada();
-                break;
-            }
-
-            case R.id.RIbtncargarfoto:
-            {
-
-                ////Cargar Foto a Firebase
-
-                uploadFoto();
-
-                break;
-            }
-
-            case R.id.RIbtnLimpiar:
-            {
-
-                ////Limpiar Campos
-                limpiarcampos();
-
-                break;
-            }
-
-            case R.id.RIbtncargarfotoArduino:
-            {
-                //Codigo de cargar foto ardino
-                Toast.makeText(getActivity(), "Pronto Implementaremos esto <3", Toast.LENGTH_SHORT).show();
-                break;
-            }
-
-        }
-
-
-    }
 
     private void uploadFoto() {
 
