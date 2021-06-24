@@ -6,11 +6,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,6 +43,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.fxn.pix.Options;
+import com.fxn.pix.Pix;
+import com.fxn.utility.PermUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -55,38 +63,50 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
+import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.UsersProvider;
 import edu.aha.agualimpiafinal.utils.arrays;
 import edu.aha.agualimpiafinal.viewModels.RegistraringresoViewModel;
 import edu.aha.agualimpiafinal.utils.validaciones;
 
+import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
 public class registraringreso extends Fragment implements LocationListener {
 
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
-    String ValorURL;
-    Long TimeSTamp;
-    LocationManager locationManager;
-    Context mContext;
-
-    ImageView RIimgfoto;
+    CircleImageView mCircleImagePhoto;
     EditText RICantidad;
+    Button RIbtnregistrar,RIbtnlimpiar;
+    FloatingActionButton fabActionButton;
+
+
     Spinner RIDepartamento, RIProvincia;
     Spinner RIResultadoMuestra;
-    Button RIbtnregistrar,RIbtnlimpiar;
-    FloatingActionButton RIbtncargarfoto;
+
+
+    String ValorURL;
+    LocationManager locationManager;
+
+    Context mContext;
+    Options mOptions;
+    File mImageFile;
+    ArrayList<String> mReturnValues = new ArrayList<>();
 
 
     UsersProvider user;
+    ImageProvider mImageProvider;
 
-
+    ProgressDialog mDialog;
 
     //validaciones
     validaciones rules = new validaciones();
@@ -113,6 +133,7 @@ public class registraringreso extends Fragment implements LocationListener {
                              @Nullable Bundle savedInstanceState) {
         View vista = inflater.inflate(R.layout.registraringreso_fragment, container, false);
 
+        mContext = vista.getContext();
         //Inicializar firebase
         user = new UsersProvider();
         mstorage=FirebaseStorage.getInstance().getReference();
@@ -124,6 +145,23 @@ public class registraringreso extends Fragment implements LocationListener {
 
         //crear nuevo progressDialog (necesario para mostrar dialogo al cargar la foto)
         progressDialog = new ProgressDialog(getContext());
+        mImageProvider = new ImageProvider();
+
+        mDialog = new ProgressDialog(getContext());
+        mDialog.setTitle("Espere un momento");
+        mDialog.setMessage("Guardando Información");
+
+        //ImagePicker
+        mOptions = Options.init()
+                .setRequestCode(100)                                           //Request code for activity results
+                .setCount(1)                                                   //Number of images to restict selection count
+                .setFrontfacing(false)                                         //Front Facing camera on start
+                .setPreSelectedUrls(mReturnValues)                               //Pre selected Image Urls
+                .setSpanCount(4)                                               //Span count for gallery min 1 & max 5
+                .setMode(Options.Mode.Picture)                                     //Option to select only pictures or videos or both
+                .setVideoDurationLimitinSeconds(30)                            //Duration for video recording
+                .setScreenOrientation(Options.SCREEN_ORIENTATION_PORTRAIT)     //Orientaion
+                .setPath("/pix/images");                                       //Custom Path For media Storage
 
        //edittext
        RItvlatitud = vista.findViewById(R.id.RIedtLatitud);
@@ -134,8 +172,8 @@ public class registraringreso extends Fragment implements LocationListener {
        RIResultadoMuestra =vista.findViewById(R.id.RIedtBQV);
 
        //Image View
-        RIimgfoto= vista.findViewById(R.id.RIimgFoto);
-        RIbtncargarfoto = vista.findViewById(R.id.fabSelectImage);
+        mCircleImagePhoto = vista.findViewById(R.id.RIimgFoto);
+        fabActionButton = vista.findViewById(R.id.fabSelectImage);
 
         //botones
        RIbtnregistrar=vista.findViewById(R.id.RIbtnRegistrar);
@@ -177,11 +215,11 @@ public class registraringreso extends Fragment implements LocationListener {
            }
        });
 
-       RIbtncargarfoto.setOnClickListener(new View.OnClickListener() {
+        fabActionButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                ////Cargar Foto a Firebase
-               uploadFoto();
+               startCamera();
            }
        });
 
@@ -377,12 +415,9 @@ public class registraringreso extends Fragment implements LocationListener {
 
 
 
-    private void uploadFoto() {
+    private void startCamera() {
 
-
-        Intent i = new Intent(Intent.ACTION_PICK);
-        i.setType("image/*");
-        startActivityForResult(i, GALLERY_INTENT);
+        Pix.start(registraringreso.this, mOptions);
 
     }
 
@@ -395,7 +430,7 @@ public class registraringreso extends Fragment implements LocationListener {
         RItvlongitud.setText("");
         RIResultadoMuestra.setSelection(0,true);
         ValorURL="";
-        RIimgfoto.setImageResource(0);
+        mCircleImagePhoto.setImageResource(0);
 
 
     }
@@ -486,60 +521,27 @@ public class registraringreso extends Fragment implements LocationListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
 
-        //inicio de if
+        Log.e("DATA", "camara resultado");
 
-        if(requestCode==GALLERY_INTENT&& resultCode==RESULT_OK)
+        if (resultCode != RESULT_CANCELED)
         {
+            if (data != null)
+            {
+                if (resultCode == Activity.RESULT_OK && requestCode == 100)
+                {
+                    Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
 
-            progressDialog.setTitle("Subiendo Imagen");
-            progressDialog.setMessage("Subiendo Foto a FireBase");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-
-            Uri mipath = data.getData();
-
-            //RIimgfoto.setImageURI(mipath);
-
-            StorageReference filePath = mstorage.child("MuestraFotos").child(mipath.getLastPathSegment());
-
-
-            filePath.putFile(mipath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                   //inicio on successlistener
-
-                    progressDialog.dismiss();
-                    Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-
-                    while (!urlTask.isSuccessful());
-
-                    Uri rutaFoto = urlTask.getResult();
-
-                    //Para guardar y mostrar la foto de firebase
-                    ValorURL=rutaFoto.toString();
-                    //Uri.parse(ValorURL);
-
-
-                    Glide.with(getActivity())
-                            .load(rutaFoto)
-                            .placeholder(R.mipmap.ic_launcher)
-                            .into(RIimgfoto);
-
-
-                    Toast.makeText(getContext(), "Foto Agregada", Toast.LENGTH_SHORT).show();
-                    Log.e("test","Valor foto: "+ValorURL);
-
-
-                    //fin on successlistener
+                    mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                    mImageFile = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                    mCircleImagePhoto.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath())); //Asignar la imagen al id del xml
+                } else {
+                    Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
 
+        }else { Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show(); }
 
-            //fin de if
-        }
 
 
 
@@ -669,14 +671,17 @@ public class registraringreso extends Fragment implements LocationListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         //check condition
 
-        if(requestCode==100 &&(grantResults.length>0) && (grantResults[0] + grantResults[1] ==PackageManager.PERMISSION_GRANTED))
-        {
-            getLocation();
+        switch (requestCode) {
+            case PermUtil.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Pix.start(getActivity(), mOptions);
+                } else {
+                    Toast.makeText(getActivity(), "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
 
-        }else {
-
-            //Permisos denegados
-            Toast.makeText(getActivity(), "Permisos denied", Toast.LENGTH_SHORT).show();
         }
 
     }
