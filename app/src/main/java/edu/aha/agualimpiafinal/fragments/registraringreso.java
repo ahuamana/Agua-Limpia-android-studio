@@ -58,6 +58,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.models.MoldeMuestra;
+import edu.aha.agualimpiafinal.providers.UsersProvider;
 import edu.aha.agualimpiafinal.utils.arrays;
 import edu.aha.agualimpiafinal.viewModels.RegistraringresoViewModel;
 import edu.aha.agualimpiafinal.utils.validaciones;
@@ -80,9 +82,9 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
     Button RIbtnregistrar,RIbtnlimpiar;
     ImageButton RIbtncargarfoto, RIbtnregistrardeRasberry;
 
-    //Cloud Firestore
-    FirebaseFirestore fStore;
-    FirebaseAuth fAuth;
+
+    UsersProvider user;
+
 
 
     //validaciones
@@ -111,8 +113,7 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
         View vista = inflater.inflate(R.layout.registraringreso_fragment, container, false);
 
         //Inicializar firebase
-        fAuth=FirebaseAuth.getInstance();
-        fStore=FirebaseFirestore.getInstance();
+        user = new UsersProvider();
         mstorage=FirebaseStorage.getInstance().getReference();
         /////fin de firebase
 
@@ -456,37 +457,38 @@ public class registraringreso extends Fragment implements View.OnClickListener, 
                             {
                                 if(!TextUtils.isEmpty(ValorURL))
                                 {
-                                    //incia guardado de datos a cloudfirestore
-                                    final DocumentReference df = fStore.collection("DatosMuestra").document(); // Genera automaticamente la KEY al almacenar datos con .document()
 
-                                    df.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    MoldeMuestra mMoldeMuestra = new MoldeMuestra();
+
+                                    mMoldeMuestra.setAuthorFirstname(firstname.toLowerCase());
+                                    mMoldeMuestra.setAuthorLastname(lastname.toLowerCase());
+                                    mMoldeMuestra.setAuthorAlias(middlename.toLowerCase());
+                                    mMoldeMuestra.setAuthorEmail(email.toLowerCase());
+                                    mMoldeMuestra.setMuestraCantidad(RICantidad.getText().toString());
+                                    mMoldeMuestra.setMuestraDepartamento(RIDepartamento.getSelectedItem().toString().toLowerCase());
+                                    mMoldeMuestra.setMuestraProvincia(RIProvincia.getSelectedItem().toString().toLowerCase());
+                                    mMoldeMuestra.setMuestraLatitud(Double.parseDouble(RItvlatitud.getText().toString()));
+                                    mMoldeMuestra.setMuestraLongitud(Double.parseDouble(RItvlongitud.getText().toString()));
+                                    mMoldeMuestra.setMuestraResultado(RIResultadoMuestra.getSelectedItem().toString());
+                                    mMoldeMuestra.setMuestraFotoPATH(ValorURL);
+                                    mMoldeMuestra.setMuestraTimeStamp(System.currentTimeMillis()/1000);
+
+
+
+                                    user.create(mMoldeMuestra).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-
+                                        public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful())
                                             {
-                                                Map<String, Object> muestrasData =new HashMap<>();
-                                                muestrasData.put("MuestraCantidad",RICantidad.getText().toString());
-                                                muestrasData.put("MuestraDepartamento",RIDepartamento.getSelectedItem().toString().toLowerCase());
-                                                muestrasData.put("MuestraProvincia",RIProvincia.getSelectedItem().toString().toLowerCase());
-                                                muestrasData.put("MuestraLatitud",Double.parseDouble(RItvlatitud.getText().toString()));
-                                                muestrasData.put("MuestraLongitud",Double.parseDouble(RItvlongitud.getText().toString()));
-                                                muestrasData.put("MuestraResultado", RIResultadoMuestra.getSelectedItem().toString());
-                                                muestrasData.put("MuestraFotoPATH",ValorURL);
-                                                muestrasData.put("MuestraTimeStamp",System.currentTimeMillis()/1000);
-                                                muestrasData.put("AuthorFirstname",firstname.toLowerCase());
-                                                muestrasData.put("AuthorLastname",lastname.toLowerCase());
-                                                muestrasData.put("AuthorAlias",middlename.toLowerCase());
-                                                muestrasData.put("AuthorEmail",email.toLowerCase());
-
-                                                df.set(muestrasData);
                                                 Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                                                 limpiarcampos();
+                                            }else {
+                                                Toast.makeText(mContext, "No se puedieron almacenar los datos", Toast.LENGTH_SHORT).show();
                                             }
 
                                         }
                                     });
-                                    //fin de df.onCompleteListener
+
 
 
                                 }

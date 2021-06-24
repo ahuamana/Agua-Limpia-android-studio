@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -63,7 +64,7 @@ public class GaleriaImagenesAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         //Codigo para mostrar imagenes
         ImageView imageView = new ImageView(mContext);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -76,6 +77,14 @@ public class GaleriaImagenesAdapter extends BaseAdapter {
 //                350));
 //
 //        ///
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Imagen URL: " + imagenesArray.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         Glide.with(mContext)
                 .load(imagenesArray.get(position))
                 .centerCrop()
