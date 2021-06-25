@@ -108,6 +108,7 @@ public class registraringreso extends Fragment implements LocationListener {
     ImageProvider mImageProvider;
 
     ProgressDialog mDialog;
+    ProgressDialog mDialogLocation;
 
     //validaciones
     validaciones rules = new validaciones();
@@ -151,6 +152,10 @@ public class registraringreso extends Fragment implements LocationListener {
         mDialog = new ProgressDialog(getContext());
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
+
+        mDialogLocation = new ProgressDialog(getContext());
+        mDialogLocation.setTitle("Espere un momento");
+        mDialogLocation.setMessage("Obteniendo localización");
 
         //ImagePicker
         mOptions = Options.init()
@@ -534,7 +539,7 @@ public class registraringreso extends Fragment implements LocationListener {
         mMoldeMuestra.setMuestraLatitud(Double.parseDouble(RItvlatitud.getText().toString()));
         mMoldeMuestra.setMuestraLongitud(Double.parseDouble(RItvlongitud.getText().toString()));
         mMoldeMuestra.setMuestraResultado(RIResultadoMuestra.getSelectedItem().toString());
-        mMoldeMuestra.setMuestraFotoPATH(ValorURL);
+        mMoldeMuestra.setMuestraFotoPATH(url);
         mMoldeMuestra.setMuestraTimeStamp(System.currentTimeMillis()/1000);
 
 
@@ -545,6 +550,7 @@ public class registraringreso extends Fragment implements LocationListener {
                 {
                     Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     limpiarcampos();
+                    mDialog.dismiss();
                 }else {
                     mDialog.dismiss();
                     Toast.makeText(mContext, "No se pudieron almacenar los datos", Toast.LENGTH_SHORT).show();
@@ -591,6 +597,7 @@ public class registraringreso extends Fragment implements LocationListener {
     private void getLocation()
     {
 
+
         Log.e("Mensaje","Entraste a getLocation");
         ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -613,10 +620,14 @@ public class registraringreso extends Fragment implements LocationListener {
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
 
+
+
         Log.e("Mensaje","Entraste a Current Location");
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER))
+        {
+            mDialogLocation.show();
             //when location is enabled
             //get last location
 
@@ -632,6 +643,8 @@ public class registraringreso extends Fragment implements LocationListener {
                         RItvlatitud.setText(String.valueOf(location.getLatitude()));
                         //set longitud
                         RItvlongitud.setText(String.valueOf(location.getLongitude()));
+
+                        mDialogLocation.dismiss();
 
                     } else {
 
@@ -658,6 +671,9 @@ public class registraringreso extends Fragment implements LocationListener {
                                 //set longitud
                                 RItvlongitud.setText(String.valueOf(location1.getLongitude()));
 
+                                mDialogLocation.dismiss();
+
+
                             }
                         };
 
@@ -670,6 +686,13 @@ public class registraringreso extends Fragment implements LocationListener {
                     //fin condition
 
 
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                    Toast.makeText(getContext(), "No se pudo ejecutar la tarea", Toast.LENGTH_SHORT).show();
+                    mDialogLocation.dismiss();
                 }
             });
 
