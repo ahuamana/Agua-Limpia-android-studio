@@ -1,5 +1,6 @@
 package edu.aha.agualimpiafinal.adapters;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +18,17 @@ import java.util.Date;
 
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.utils.RelativeTime;
 
 public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentarios,ComentariosAdapter.ComentariosHolder> {
 
+    Context context;
 
+    public ComentariosAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options, Context context) {
+        super(options);
 
-    public ComentariosAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options) { super(options);    }
+            this.context = context;
+    }
 
     @Override
     protected void onBindViewHolder(@NonNull ComentariosAdapter.ComentariosHolder holder, int position, @NonNull MoldeComentarios model) {
@@ -40,14 +46,14 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
         ////Fin Author
 
         ////Horal Obtenida
-            long time = model.getSugerenciaFechaUnixtime()*1000;  //
-            Date df = new java.util.Date(time);
+            //long time = model.getSugerenciaFechaUnixtime()*1000;  //
+            //Date df = new java.util.Date(time);
             //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
-            String HoraObtenida = new SimpleDateFormat("hh:mma").format(df);
+            //String HoraObtenida = new SimpleDateFormat("hh:mma").format(df);
 
         ////Fin Horal Obtenida
 
-        holder.comentariosFecha.setText(HoraObtenida);
+        holder.comentariosFecha.setText(RelativeTime.getTimeAgo(model.getSugerenciaFechaUnixtime(), context));
 
         //Mostrar Author
         holder.comentariosAuthor.setText(outputlast+", "+outputname);

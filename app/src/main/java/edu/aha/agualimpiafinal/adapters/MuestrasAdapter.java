@@ -1,5 +1,6 @@
 package edu.aha.agualimpiafinal.adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,12 +24,18 @@ import java.util.Locale;
 
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.utils.RelativeTime;
 
 public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,MuestrasAdapter.MuestrasHolder> {
 
+    Context context;
 
+    public MuestrasAdapter(@NonNull FirestoreRecyclerOptions<MoldeMuestra> options, Context context) {
+        super(options);
 
-    public MuestrasAdapter(@NonNull FirestoreRecyclerOptions<MoldeMuestra> options) { super(options); }
+        this.context = context;
+
+    }
 
 
 
@@ -42,10 +49,10 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
         holder.txtnombrecompleto.setText(outputnombrecompleto);
 
         //cambiar Hora actual
-        Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
-        String horaNueva = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","ES")).format(df);
+        //Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
+        //String horaNueva = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","ES")).format(df);
 
-        holder.txttiempo.setText(horaNueva); // Asignar la nueva hora en formato humano xd
+        holder.txttiempo.setText(RelativeTime.timeFormatAMPM(model.getMuestraTimeStamp(), context)); // Asignar la nueva hora en formato humano xd
         holder.txtResultado.setText(String.valueOf(model.getMuestraResultado()));
 
         //Asignar color de letra dependiendo el resultado

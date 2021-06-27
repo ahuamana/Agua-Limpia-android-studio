@@ -124,7 +124,7 @@ public class sugerencias extends Fragment {
                 .build();
 
         //asignar todos lo datos obtenidos al adaptador
-        adapter = new ComentariosAdapter(options);
+        adapter = new ComentariosAdapter(options, getContext());
 
 
         //asignar datos al recyclerView

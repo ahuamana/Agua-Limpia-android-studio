@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -583,6 +584,8 @@ public class registraringreso extends Fragment implements LocationListener {
 
                     mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                     mImageFile = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                    mCircleImagePhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                    mCircleImagePhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                     mCircleImagePhoto.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath())); //Asignar la imagen al id del xml
                 } else {
                     Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();

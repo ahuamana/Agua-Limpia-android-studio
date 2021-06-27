@@ -134,7 +134,7 @@ public class lista extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(options);
+        adapter=new MuestrasAdapter(options, getContext());
         //asignar datos al recyclerView
         recyclerUsuarios.setAdapter(adapter);
 
@@ -150,7 +150,7 @@ public class lista extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions);
+        adapter=new MuestrasAdapter(newoptions, getContext());
         adapter.startListening();
 
         //asignar datos al recyclerView
@@ -169,7 +169,7 @@ public class lista extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions);
+        adapter=new MuestrasAdapter(newoptions, getContext());
         adapter.startListening();
 
         //asignar datos al recyclerView
@@ -188,7 +188,7 @@ public class lista extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions);
+        adapter=new MuestrasAdapter(newoptions, getContext());
         adapter.startListening();
 
         //asignar datos al recyclerView
