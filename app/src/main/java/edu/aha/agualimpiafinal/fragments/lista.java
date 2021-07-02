@@ -41,6 +41,7 @@ public class lista extends Fragment {
     FirebaseAuth fAuth;
     private SearchView svSearchDepartamento, svSearchProvincia, svSearchAuthorAlias;
 
+    LinearLayoutManager mLinearLayoutManager;
 
     private ListaViewModel mViewModel;
 
@@ -120,7 +121,8 @@ public class lista extends Fragment {
         //iniciar arraylist y refrencia al contenedor
 
         recyclerUsuarios= vista.findViewById(R.id.idRecycler);
-        recyclerUsuarios.setLayoutManager( new LinearLayoutManager(this.getContext()));
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerUsuarios.setLayoutManager( mLinearLayoutManager);
         recyclerUsuarios.setHasFixedSize(true);
 
 

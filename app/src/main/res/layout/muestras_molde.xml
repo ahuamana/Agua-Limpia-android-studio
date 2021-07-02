@@ -86,16 +86,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:layout_weight="2"
                     style="@style/letra_editText"
-                    android:text="Departam."
-                    android:background="@drawable/buttom_masinformacion"
+                    android:text="Departamento"
                     android:textSize="15sp"></TextView>
 
                 <TextView
@@ -104,10 +103,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     style="@style/letra_editText"
+                    android:textColor="#000"
+                    android:textColorHint="#000"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:hint="Departamento"
-                    android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="#B6B5B5"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"></View>
 
             </LinearLayout>
 
@@ -117,16 +124,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_weight="2"
                     android:text="Provincia"
+                    android:gravity="start"
                     style="@style/letra_editText"
-                    android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
                 <TextView
@@ -136,9 +142,17 @@
                     android:layout_weight="1"
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:hint="Provincia"
+                    android:textColor="#000"
+                    android:textColorHint="#000"
                     style="@style/letra_editText"
-                    android:layout_marginStart="8dp"
                     android:textSize="15sp"></TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="#B6B5B5"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="1dp"></View>
 
             </LinearLayout>
 
@@ -148,16 +162,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:layout_weight="2"
                     style="@style/letra_editText"
                     android:text="Resultado"
-                    android:background="@drawable/buttom_masinformacion"
                     android:textSize="15sp"></TextView>
 
                 <TextView
@@ -167,10 +180,12 @@
                     android:layout_gravity="center_vertical|center_horizontal"
                     android:layout_weight="1"
                     style="@style/letra_editText"
-                    android:hint="positivo"
+                    android:hint="Positivo"
                     android:textStyle="bold"
-                    android:layout_marginStart="8dp"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
                     android:textSize="15sp"></TextView>
+
 
             </LinearLayout>
 

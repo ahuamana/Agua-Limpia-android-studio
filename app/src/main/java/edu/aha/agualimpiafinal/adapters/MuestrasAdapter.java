@@ -52,7 +52,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
         //Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
         //String horaNueva = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","ES")).format(df);
 
-        holder.txttiempo.setText(RelativeTime.timeFormatAMPM(model.getMuestraTimeStamp(), context)); // Asignar la nueva hora en formato humano xd
+        holder.txttiempo.setText(RelativeTime.getTimeAgo(model.getMuestraTimeStamp(), context)); // Asignar la nueva hora en formato humano xd
         holder.txtResultado.setText(String.valueOf(model.getMuestraResultado()));
 
         //Asignar color de letra dependiendo el resultado
