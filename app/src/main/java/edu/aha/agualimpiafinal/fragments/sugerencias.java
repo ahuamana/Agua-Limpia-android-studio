@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,6 +131,32 @@ public class sugerencias extends Fragment {
 
         //asignar datos al recyclerView
         recyclerComentarios.setAdapter(adapter);
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+
+                mLinearLayoutManager.setStackFromEnd(true);
+                Log.e("TAG-positionStart",String.valueOf(positionStart));
+                Log.e("TAG-itemCount",String.valueOf(itemCount));
+
+                //updateStatusMessage();
+                //
+                int numberItems = adapter.getItemCount();
+                Log.e("TAG-NUMBER-OF-ITEMS",String.valueOf(numberItems));
+                int lastItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                Log.e("TAG-LASTITEM",String.valueOf(lastItemPosition));
+
+                if(lastItemPosition == -1 || (positionStart >= (numberItems - 1) && lastItemPosition == (positionStart - 1)))
+                {
+                    Log.e("TAG","ENTRASTE");
+                    recyclerComentarios.scrollToPosition(positionStart-1);
+                    mLinearLayoutManager.setStackFromEnd(false);
+                }
+
+            }
+        });
 
         return vista;
     }
