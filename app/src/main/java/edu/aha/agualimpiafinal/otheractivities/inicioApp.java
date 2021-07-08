@@ -25,7 +25,7 @@ public class inicioApp extends AppCompatActivity {
         viewPager= findViewById(R.id.viewPagerxml);
         dot1=findViewById(R.id.dot1);
 
-        viewAdapter = new ViewAdapter(this);
+        viewAdapter = new ViewAdapter(this, viewPager);
         viewPager.setAdapter(viewAdapter);
         dot1.setViewPager(viewPager);
         dot1.setVisibility(View.GONE);

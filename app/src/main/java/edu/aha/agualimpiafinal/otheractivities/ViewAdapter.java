@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 
@@ -22,9 +25,11 @@ public class ViewAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
     private Integer[] images = {  /* Agregar los recursos aqui full imagenes */};
+    private ViewPager viewPager;
 
-    ViewAdapter(Context context){
+    ViewAdapter(Context context, ViewPager viewPager){
         this.context=context;
+        this.viewPager=viewPager;
 
     }
 
@@ -55,17 +60,7 @@ public class ViewAdapter extends PagerAdapter {
         TextView txtcircle3 = view.findViewById(R.id.txtslider3);
         TextView txtsaltar = view.findViewById(R.id.txtsaltar);
 
-        //inicio del evento click
-        btnempezar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Al hacer click en el botom
-                Intent i = new Intent(context, begining.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-            }
-        });
-        //fin del evento click
+
 
         //inicio del evento click saltar
         txtsaltar.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +73,6 @@ public class ViewAdapter extends PagerAdapter {
         });
         //fin del evento click
 
-        btnempezar.setVisibility(View.GONE);
 
         switch (position)
         {
@@ -96,6 +90,14 @@ public class ViewAdapter extends PagerAdapter {
                 txtcircle1.setBackgroundResource(R.drawable.circle_selected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle3.setBackgroundResource(R.drawable.circle_unselected);
+                btnempezar.setText("SIGUIENTE");
+                btnempezar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewPager.setCurrentItem(1);
+                    }
+                });
+
                 break;
             }
             case 1:
@@ -110,7 +112,13 @@ public class ViewAdapter extends PagerAdapter {
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_selected);
                 txtcircle3.setBackgroundResource(R.drawable.circle_unselected);
-
+                btnempezar.setText("SIGUIENTE");
+                btnempezar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        viewPager.setCurrentItem(2);
+                    }
+                });
                 break;
             }
             case 2:
@@ -125,7 +133,18 @@ public class ViewAdapter extends PagerAdapter {
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle3.setBackgroundResource(R.drawable.circle_selected);
-                btnempezar.setVisibility(View.VISIBLE);
+                //inicio del evento click
+                btnempezar.setText("EMPEZAR");
+                btnempezar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Al hacer click en el botom
+                        Intent i = new Intent(context, begining.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(i);
+                    }
+                });
+                //fin del evento click
                 break;
             }
 
