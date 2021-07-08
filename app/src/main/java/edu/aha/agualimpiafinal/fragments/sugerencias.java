@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentReference;
@@ -55,6 +57,7 @@ public class sugerencias extends Fragment {
     LinearLayoutManager mLinearLayoutManager;
     SugerenciasProvider mSugerenciasProvider;
 
+    MoldeComentarios mMoldeComentarios;
 
 
     //Cloud Firestore
@@ -79,6 +82,7 @@ public class sugerencias extends Fragment {
         fStore = FirebaseFirestore.getInstance();
 
         mSugerenciasProvider = new SugerenciasProvider();
+        mMoldeComentarios = new MoldeComentarios();
 
         //Obtener datos guardados del telefono de SharedPreferences
         cargarPreferencias();
@@ -173,38 +177,28 @@ public class sugerencias extends Fragment {
 
         final EditText tvComentario = dialog.findViewById(R.id.SUDItvDejarComentario);
         Button btnComentar=dialog.findViewById(R.id.SUDIbtncomentar);
+        dialog.show();
+
         btnComentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
 
-                ////Inicializar Collecion nueva
-                final DocumentReference reference = fStore.collection("DataComentarios").document(); // con .documents Genera automaticamente la KEY
 
-                //se añade un evento si termina la accion
-                reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(!TextUtils.isEmpty(tvComentario.getText().toString())) {
 
-                        //Validar campo vacio de la descripción
-                        if(!TextUtils.isEmpty(tvComentario.getText().toString()))
-                        {
+                    mMoldeComentarios.setAuthorAlias(middlename.toLowerCase());
+                    mMoldeComentarios.setAuthorEmail(email.toLowerCase());
+                    mMoldeComentarios.setAuthorFirstname(firstname.toLowerCase());
+                    mMoldeComentarios.setAuthorLastname(lastname.toLowerCase());
+                    mMoldeComentarios.setSugerenciaMensaje(tvComentario.getText().toString().toLowerCase());
+                    mMoldeComentarios.setSugerenciaFechaUnixtime(System.currentTimeMillis()/1000);
 
-                            //si el evento se crea normal este se enviara a firestore
-                            if(task.isSuccessful())
-                            {
-                                //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
-                                Map<String, Object> sugerenciaData = new HashMap<>();
-                                sugerenciaData.put("sugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
-                                sugerenciaData.put("sugerenciaMensaje",tvComentario.getText().toString().toLowerCase());
-                                sugerenciaData.put("authorFirstname",firstname.toLowerCase());
-                                sugerenciaData.put("authorLastname",lastname.toLowerCase());
-                                sugerenciaData.put("authorAlias",middlename.toLowerCase());
-                                sugerenciaData.put("authorEmail",email.toLowerCase());
+                    mSugerenciasProvider.createSuggestion(mMoldeComentarios).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                                //asiganmos a la coleccion los datos almacenado en el map
-                                reference.set(sugerenciaData);
-                                //Mostramos mensaje al usuario
+                            if (task.isSuccessful()) {
                                 Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
 
                                 //Limpiamos los campos
@@ -212,25 +206,29 @@ public class sugerencias extends Fragment {
 
                                 //Cerrar dialogo
                                 dialog.dismiss();
-
                             }
 
-
-                        }else {
-                            Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
+                            dialog.dismiss();
+                            Toast.makeText(getContext(), "Error al registrar un comentario.", Toast.LENGTH_LONG).show();
 
-                    }
-                });
-                //termina el evento de enviar datos a firebase
+                        }
+                    });
+
+                }else {
+                    Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
+                }
 
 
             }
         });
 
 
-        dialog.show();
+
 
 
 
