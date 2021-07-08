@@ -16,7 +16,7 @@ public class SugerenciasProvider {
 
     public Query getCommentsListOrderByTimeStamp()
     {
-        return mCollection.orderBy("SugerenciaFechaUnixtime", Query.Direction.ASCENDING);
+        return mCollection.orderBy("sugerenciaFechaUnixtime", Query.Direction.ASCENDING);
     }
 
 

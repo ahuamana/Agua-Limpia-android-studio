@@ -36,22 +36,32 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
         Log.e("DATA: ", "empezamos aqui");
         Log.e("DATA: ",""+ model.getSugerenciaMensaje());
 
+        String inputlast = "";
+        String outputlast= "";
+        if(model.getAuthorLastname() != null)
+        {
+            if(!model.getAuthorLastname().equals(""))
+            {
+                ////Author
+                inputlast = model.getAuthorLastname();
+                Log.e("TAG",""+inputlast);
+                outputlast = inputlast.substring(0,1).toUpperCase()+ inputlast.substring(1, inputlast.length()-1); // inputlast.length()-1 --> remove el ultimo caracter que es un espacio vacio
 
-        ////Author
-            String inputlast = model.getAuthorLastname();
-            String outputlast = inputlast.substring(0,1).toUpperCase()+ inputlast.substring(1, inputlast.length()-1); // inputlast.length()-1 --> remove el ultimo caracter que es un espacio vacio
+            }
+        }
 
-            String inputname = model.getAuthorFirstname();
-            String outputname = inputname.substring(0,1).toUpperCase()+ inputname.substring(1, inputname.length()-1); // inputname.length()-1 --> remove el ultimo caracter que es un espacio vacio
-        ////Fin Author
+        String inputname="";
+        String outputname="";
+        if(model.getAuthorFirstname() != null)
+        {
+            if(!model.getAuthorFirstname().equals(""))
+            {
+                inputname = model.getAuthorFirstname();
+                outputname = inputname.substring(0,1).toUpperCase()+ inputname.substring(1, inputname.length()-1); // inputname.length()-1 --> remove el ultimo caracter que es un espacio vacio
+                ////Fin Author
+            }
+        }
 
-        ////Horal Obtenida
-            //long time = model.getSugerenciaFechaUnixtime()*1000;  //
-            //Date df = new java.util.Date(time);
-            //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
-            //String HoraObtenida = new SimpleDateFormat("hh:mma").format(df);
-
-        ////Fin Horal Obtenida
 
         holder.comentariosFecha.setText(RelativeTime.getTimeAgo(model.getSugerenciaFechaUnixtime(), context));
 
