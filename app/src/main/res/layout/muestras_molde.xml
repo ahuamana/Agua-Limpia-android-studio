@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
@@ -23,7 +23,7 @@
             android:layout_marginRight="10dp"
             android:id="@+id/MMivImagen"
             android:src="@drawable/ic_menu_gallery"
-            ></ImageView>
+            ></de.hdodenhof.circleimageview.CircleImageView>
 
         <LinearLayout
             android:layout_width="match_parent"

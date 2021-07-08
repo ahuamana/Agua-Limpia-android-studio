@@ -33,7 +33,7 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
     @Override
     protected void onBindViewHolder(@NonNull ComentariosAdapter.ComentariosHolder holder, int position, @NonNull MoldeComentarios model) {
 
-        Log.e("DATA: ", "emepzamos aqui");
+        Log.e("DATA: ", "empezamos aqui");
         Log.e("DATA: ",""+ model.getSugerenciaMensaje());
 
 

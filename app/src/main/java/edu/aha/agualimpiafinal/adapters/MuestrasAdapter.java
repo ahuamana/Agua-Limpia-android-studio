@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
@@ -102,7 +103,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
         //crear variables para hacer la refenrencia al molde xml
         TextView txtnombrecompleto, txtcantidadmuestra, txttiempo, txtResultado, txtDepartamento, txtProvincia;
         String   txtidmuestra;
-        ImageView foto;
+        CircleImageView foto;
         Button btnmasinformacion;
 
         public MuestrasHolder(@NonNull View vista) {
