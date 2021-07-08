@@ -55,6 +55,8 @@ public class sugerencias extends Fragment {
     LinearLayoutManager mLinearLayoutManager;
     SugerenciasProvider mSugerenciasProvider;
 
+
+
     //Cloud Firestore
     FirebaseFirestore fStore;
 
@@ -193,12 +195,12 @@ public class sugerencias extends Fragment {
                             {
                                 //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
                                 Map<String, Object> sugerenciaData = new HashMap<>();
-                                sugerenciaData.put("SugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
-                                sugerenciaData.put("SugerenciaMensaje",tvComentario.getText().toString().toLowerCase());
-                                sugerenciaData.put("AuthorFirstname",firstname.toLowerCase());
-                                sugerenciaData.put("AuthorLastname",lastname.toLowerCase());
-                                sugerenciaData.put("AuthorAlias",middlename.toLowerCase());
-                                sugerenciaData.put("AuthorEmail",email.toLowerCase());
+                                sugerenciaData.put("sugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
+                                sugerenciaData.put("sugerenciaMensaje",tvComentario.getText().toString().toLowerCase());
+                                sugerenciaData.put("authorFirstname",firstname.toLowerCase());
+                                sugerenciaData.put("authorLastname",lastname.toLowerCase());
+                                sugerenciaData.put("authorAlias",middlename.toLowerCase());
+                                sugerenciaData.put("authorEmail",email.toLowerCase());
 
                                 //asiganmos a la coleccion los datos almacenado en el map
                                 reference.set(sugerenciaData);
