@@ -124,6 +124,7 @@ public class lista extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
         recyclerUsuarios.setLayoutManager( mLinearLayoutManager);
+
         recyclerUsuarios.setHasFixedSize(true);
 
 
@@ -140,6 +141,34 @@ public class lista extends Fragment {
         //asignar datos al recyclerView
         recyclerUsuarios.setAdapter(adapter);
 
+
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+
+                mLinearLayoutManager.setStackFromEnd(true);
+                Log.e("TAG-positionStart",String.valueOf(positionStart));
+                Log.e("TAG-itemCount",String.valueOf(itemCount));
+
+                //updateStatusMessage();
+                //
+                int numberItems = adapter.getItemCount();
+                Log.e("TAG-NUMBER-OF-ITEMS",String.valueOf(numberItems));
+                int lastItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                Log.e("TAG-LASTITEM",String.valueOf(lastItemPosition));
+
+                if(lastItemPosition == -1 || (positionStart >= (numberItems - 1) && lastItemPosition == (positionStart - 1)))
+                {
+                    Log.e("TAG","ENTRASTE");
+                    recyclerUsuarios.scrollToPosition(positionStart-1);
+                    mLinearLayoutManager.setStackFromEnd(false);
+                }
+
+            }
+        });
+
         return vista;
     }
 
@@ -153,10 +182,16 @@ public class lista extends Fragment {
 
         //enviar los datos al adapter
         adapter=new MuestrasAdapter(newoptions, getContext());
-        adapter.startListening();
+
 
         //asignar datos al recyclerView
         recyclerUsuarios.setAdapter(adapter);
+
+        adapter.startListening();//que escuche en timepo real los cambios
+
+        adapter.notifyDataSetChanged();
+
+
 
 
     }
