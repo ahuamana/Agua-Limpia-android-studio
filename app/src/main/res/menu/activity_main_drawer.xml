@@ -30,6 +30,8 @@
 
     <item android:title="Información">
         <menu>
+            <group android:checkableBehavior="single">
+
             <item
                 android:id="@+id/nav_comomedir"
                 android:icon="@drawable/ic_comomedir"
@@ -44,6 +46,9 @@
                 android:id="@+id/nav_sugerencias"
                 android:icon="@drawable/ic_comment"
                 android:title="Sugerencias" />
+
+            </group>
+
         </menu>
 
     </item>
@@ -51,12 +56,15 @@
 
     <item android:title="Extras">
         <menu>
+            <group android:checkableBehavior="single">
+
             <item
                 android:id="@+id/nav_compartir"
                 android:icon="@drawable/ic_share"
                 android:title="Compartir">
 
             </item>
+            </group>
 
         </menu>
 
