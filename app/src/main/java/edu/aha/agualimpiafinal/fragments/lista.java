@@ -15,7 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.LinearLayout;
 
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -122,13 +122,13 @@ public class lista extends Fragment {
 
         recyclerUsuarios= vista.findViewById(R.id.idRecycler);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
+        mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
         recyclerUsuarios.setLayoutManager( mLinearLayoutManager);
         recyclerUsuarios.setHasFixedSize(true);
 
 
         //crear referencia a Firebase
-        CollectionReference datosEmpresa = fStore.collection("DatosMuestra");
-        Query query = datosEmpresa;
+        Query query =fStore.collection("DatosMuestra").orderBy("MuestraTimeStamp", Query.Direction.ASCENDING);
         //Craer un builder de firebase del children
 
         FirestoreRecyclerOptions<MoldeMuestra> options = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
@@ -166,8 +166,9 @@ public class lista extends Fragment {
         //codigo
         adapter=null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
-        FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(fStore.collection("DatosMuestra").orderBy("AuthorAlias").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff'),MoldeMuestra.class)
+        Query query =fStore.collection("DatosMuestra").orderBy("AuthorAlias").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff');
+                FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
+                .setQuery(query,MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
@@ -185,8 +186,10 @@ public class lista extends Fragment {
 
         adapter=null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
+        Query query = fStore.collection("DatosMuestra").orderBy("MuestraProvincia").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff');
+
         FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(fStore.collection("DatosMuestra").orderBy("MuestraProvincia").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff'),MoldeMuestra.class)
+                .setQuery(query,MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter

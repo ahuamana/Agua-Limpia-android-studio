@@ -51,6 +51,7 @@ public class sugerencias extends Fragment {
     Button SUbtnComentar;
     RecyclerView recyclerComentarios;
     ComentariosAdapter adapter;
+    LinearLayoutManager mLinearLayoutManager;
 
     //Cloud Firestore
     FirebaseFirestore fStore;
@@ -111,13 +112,13 @@ public class sugerencias extends Fragment {
 
         //Inicializar Arraylist y asignar contenedor
         recyclerComentarios = vista.findViewById(R.id.SUreclyclerComentarios);
-        recyclerComentarios.setLayoutManager(new LinearLayoutManager(getContext()));
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerComentarios.setLayoutManager(mLinearLayoutManager);
+        mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
         recyclerComentarios.setHasFixedSize(true);
 
         //traer los datos de la coleccion de firebase
-        CollectionReference dataSugerencia = fStore.collection("DataComentarios");
-
-        Query query = dataSugerencia;
+        Query query = fStore.collection("DataComentarios").orderBy("SugerenciaFechaUnixtime", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<MoldeComentarios> options = new FirestoreRecyclerOptions.Builder<MoldeComentarios>()
                 .setQuery(query, MoldeComentarios.class)
