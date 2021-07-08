@@ -12,25 +12,25 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:cardElevation="10dp"
         app:cardCornerRadius="5dp"
-        android:layout_margin="10dp">
+        android:layout_margin="15dp"
+        app:contentPaddingTop="20dp"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingRight="10dp"
+        app:contentPaddingLeft="10dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -66,8 +66,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:orientation="horizontal">
 
 
@@ -86,12 +84,99 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#90a4ae"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_gravity="center_vertical"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/like"></ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#0f0f0f"
+                            android:textSize="13dp"
+                            style="@style/letra_editText"
+                            android:text="Like"></TextView>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/comment"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0f0f0f"
+                        android:textSize="13dp"
+                        style="@style/letra_editText"
+                        android:text="Comentar"></TextView>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="4"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/icon_share"></ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0f0f0f"
+                        android:textSize="13dp"
+                        style="@style/letra_editText"
+                        android:text="Compartir"></TextView>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
-
-
-
 
         </LinearLayout>
 
@@ -99,62 +184,7 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center"
-        android:gravity="start"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:src="@drawable/heart64"></ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textStyle="bold"
-            style="@style/letra_editText"
-            android:layout_marginEnd="30dp"
-            android:text="100"></TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:src="@drawable/burbujachat64"></ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:textColor="#000"
-            style="@style/letra_editText"
-            android:textStyle="bold"
-            android:text="100"></TextView>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:src="@drawable/share64"></ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textStyle="bold"
-            style="@style/letra_editText"
-            android:layout_marginEnd="30dp"
-            android:text="100"></TextView>
-
-
-    </LinearLayout>
 
 </LinearLayout>
 
