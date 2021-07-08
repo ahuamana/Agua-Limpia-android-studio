@@ -2,71 +2,71 @@ package edu.aha.agualimpiafinal.models;
 
 public class MoldeComentarios {
 
-    private String AuthorEmail;
-    private String AuthorFirstname;
-    private String AuthorLastname;
-    private String AuthorAlias;
+    private String authorEmail;
+    private String authorFirstname;
+    private String authorLastname;
+    private String authorAlias;
 
-    private long SugerenciaFechaUnixtime;
-    private String SugerenciaMensaje;
+    private long sugerenciaFechaUnixtime;
+    private String sugerenciaMensaje;
 
     public MoldeComentarios() {
     }
 
     public MoldeComentarios(String authorEmail, String authorFirstname, String authorLastname, String authorAlias, long sugerenciaFechaUnixtime, String sugerenciaMensaje) {
-        AuthorEmail = authorEmail;
-        AuthorFirstname = authorFirstname;
-        AuthorLastname = authorLastname;
-        AuthorAlias = authorAlias;
-        SugerenciaFechaUnixtime = sugerenciaFechaUnixtime;
-        SugerenciaMensaje = sugerenciaMensaje;
+        this.authorEmail = authorEmail;
+        this.authorFirstname = authorFirstname;
+        this.authorLastname = authorLastname;
+        this.authorAlias = authorAlias;
+        this.sugerenciaFechaUnixtime = sugerenciaFechaUnixtime;
+        this.sugerenciaMensaje = sugerenciaMensaje;
     }
 
     public String getAuthorEmail() {
-        return AuthorEmail;
+        return authorEmail;
     }
 
     public void setAuthorEmail(String authorEmail) {
-        AuthorEmail = authorEmail;
+        this.authorEmail = authorEmail;
     }
 
     public String getAuthorFirstname() {
-        return AuthorFirstname;
+        return authorFirstname;
     }
 
     public void setAuthorFirstname(String authorFirstname) {
-        AuthorFirstname = authorFirstname;
+        this.authorFirstname = authorFirstname;
     }
 
     public String getAuthorLastname() {
-        return AuthorLastname;
+        return authorLastname;
     }
 
     public void setAuthorLastname(String authorLastname) {
-        AuthorLastname = authorLastname;
+        this.authorLastname = authorLastname;
     }
 
     public String getAuthorAlias() {
-        return AuthorAlias;
+        return authorAlias;
     }
 
     public void setAuthorAlias(String authorAlias) {
-        AuthorAlias = authorAlias;
+        this.authorAlias = authorAlias;
     }
 
     public long getSugerenciaFechaUnixtime() {
-        return SugerenciaFechaUnixtime;
+        return sugerenciaFechaUnixtime;
     }
 
     public void setSugerenciaFechaUnixtime(long sugerenciaFechaUnixtime) {
-        SugerenciaFechaUnixtime = sugerenciaFechaUnixtime;
+        this.sugerenciaFechaUnixtime = sugerenciaFechaUnixtime;
     }
 
     public String getSugerenciaMensaje() {
-        return SugerenciaMensaje;
+        return sugerenciaMensaje;
     }
 
     public void setSugerenciaMensaje(String sugerenciaMensaje) {
-        SugerenciaMensaje = sugerenciaMensaje;
+        this.sugerenciaMensaje = sugerenciaMensaje;
     }
 }

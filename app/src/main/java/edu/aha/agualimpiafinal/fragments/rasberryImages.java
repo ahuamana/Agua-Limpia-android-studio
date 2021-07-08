@@ -8,18 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,7 +27,7 @@ import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.GaleriaImagenesAdapter;
 import edu.aha.agualimpiafinal.models.MoldeRasberryPhotos;
-import edu.aha.agualimpiafinal.providers.UsersProvider;
+import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.viewModels.RasberryImagesViewModel;
 
 public class rasberryImages extends Fragment {
@@ -44,7 +39,7 @@ public class rasberryImages extends Fragment {
     List<String> listaURLs = new ArrayList<>();
 
     //Cloud Firestore
-    UsersProvider mUsersProvider;
+    MuestrasProvider mMuestrasProvider;
     MoldeRasberryPhotos mRasberryPhotos;
 
     ListenerRegistration mListener;
@@ -63,11 +58,11 @@ public class rasberryImages extends Fragment {
         gridViewImagenes = vista.findViewById(R.id.grid_imagenes_rasberry);
 
         //Inicializar firestore
-        mUsersProvider = new UsersProvider();
+        mMuestrasProvider = new MuestrasProvider();
         mRasberryPhotos = new MoldeRasberryPhotos();
 
 
-        mListener = mUsersProvider.getCollectionDatosMuestra().addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mListener = mMuestrasProvider.getCollectionDatosMuestra().addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 

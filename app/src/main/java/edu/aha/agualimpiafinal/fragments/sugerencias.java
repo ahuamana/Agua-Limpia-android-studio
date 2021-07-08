@@ -28,8 +28,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,6 +36,8 @@ import com.google.firebase.firestore.Query;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.aha.agualimpiafinal.providers.MuestrasProvider;
+import edu.aha.agualimpiafinal.providers.SugerenciasProvider;
 import edu.aha.agualimpiafinal.viewModels.SugerenciasViewModel;
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
@@ -52,10 +52,10 @@ public class sugerencias extends Fragment {
     RecyclerView recyclerComentarios;
     ComentariosAdapter adapter;
     LinearLayoutManager mLinearLayoutManager;
+    SugerenciasProvider mSugerenciasProvider;
 
     //Cloud Firestore
     FirebaseFirestore fStore;
-    FirebaseAuth fAuth;
 
     //datos de Shared preferences
     String firstname,middlename,lastname, email;
@@ -74,7 +74,8 @@ public class sugerencias extends Fragment {
 
         //Inicializar instancias a firestore
         fStore = FirebaseFirestore.getInstance();
-        fAuth = FirebaseAuth.getInstance();
+
+        mSugerenciasProvider = new SugerenciasProvider();
 
         //Obtener datos guardados del telefono de SharedPreferences
         cargarPreferencias();
@@ -118,10 +119,9 @@ public class sugerencias extends Fragment {
         recyclerComentarios.setHasFixedSize(true);
 
         //traer los datos de la coleccion de firebase
-        Query query = fStore.collection("DataComentarios").orderBy("SugerenciaFechaUnixtime", Query.Direction.ASCENDING);
 
         FirestoreRecyclerOptions<MoldeComentarios> options = new FirestoreRecyclerOptions.Builder<MoldeComentarios>()
-                .setQuery(query, MoldeComentarios.class)
+                .setQuery(mSugerenciasProvider.getCommentsListOrderByTimeStamp(), MoldeComentarios.class)
                 .build();
 
         //asignar todos lo datos obtenidos al adaptador

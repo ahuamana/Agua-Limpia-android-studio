@@ -15,13 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -29,6 +25,7 @@ import com.google.firebase.firestore.Query;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.MuestrasAdapter;
+import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.viewModels.ListaViewModel;
 
 public class lista extends Fragment {
@@ -38,7 +35,9 @@ public class lista extends Fragment {
 
     //Referencias para Cloudfirestore
     FirebaseFirestore fStore;
-    FirebaseAuth fAuth;
+
+    MuestrasProvider mMuestrasProvider;
+
     private SearchView svSearchDepartamento, svSearchProvincia, svSearchAuthorAlias;
 
     LinearLayoutManager mLinearLayoutManager;
@@ -56,8 +55,8 @@ public class lista extends Fragment {
         View vista = inflater.inflate(R.layout.lista_fragment, container, false);
 
         //Instanciar variables
-        fAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
+        mMuestrasProvider = new MuestrasProvider();
 
         //inicializar variables para buscar
         svSearchDepartamento= (SearchView) vista.findViewById(R.id.Isearch);
@@ -129,11 +128,10 @@ public class lista extends Fragment {
 
 
         //crear referencia a Firebase
-        Query query =fStore.collection("DatosMuestra").orderBy("MuestraTimeStamp", Query.Direction.ASCENDING);
         //Craer un builder de firebase del children
 
         FirestoreRecyclerOptions<MoldeMuestra> options = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(query,MoldeMuestra.class)
+                .setQuery(mMuestrasProvider.getMuestrasListOrderByTimeStamp(),MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
@@ -177,7 +175,7 @@ public class lista extends Fragment {
         adapter=null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
         FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(fStore.collection("DatosMuestra").orderBy("MuestraDepartamento").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff'),MoldeMuestra.class)
+                .setQuery(mMuestrasProvider.getMuestrasListOrderByDepartment(newText), MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
@@ -201,9 +199,9 @@ public class lista extends Fragment {
         //codigo
         adapter=null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
-        Query query =fStore.collection("DatosMuestra").orderBy("AuthorAlias").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff');
+
                 FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(query,MoldeMuestra.class)
+                .setQuery(mMuestrasProvider.getMuestrasListOrderByAuthorAlias(newText),MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
@@ -221,10 +219,9 @@ public class lista extends Fragment {
 
         adapter=null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
-        Query query = fStore.collection("DatosMuestra").orderBy("MuestraProvincia").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff');
 
         FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
-                .setQuery(query,MoldeMuestra.class)
+                .setQuery(mMuestrasProvider.getMuestrasListOrderByProvince(newText),MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
