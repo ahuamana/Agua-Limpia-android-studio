@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/yaku_aguamorewith"
+        android:icon="@mipmap/ic_launcher_yaku_limpia_round"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/yaku_aguamorewith"
+        android:roundIcon="@mipmap/ic_launcher_yaku_limpia_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true">
