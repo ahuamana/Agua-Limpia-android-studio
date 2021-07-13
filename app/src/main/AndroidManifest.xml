@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true">
         <activity
-            android:name=".otheractivities.inicioApp"
+            android:name=".activities.inicioApp"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

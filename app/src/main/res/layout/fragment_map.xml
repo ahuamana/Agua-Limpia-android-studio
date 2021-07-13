@@ -117,14 +117,14 @@
 
         <ImageView
             android:id="@+id/btn_gps_fixed"
-            android:layout_width="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="30dp"
             android:elevation="20dp"
             android:layout_marginLeft="15dp"
             android:clickable="true"
-            android:src="@mipmap/ic_gps_circle_gray"
-            android:layout_height="40dp"/>
+            android:src="@mipmap/ic_gps_circle_gray" />
 
     </FrameLayout>
 

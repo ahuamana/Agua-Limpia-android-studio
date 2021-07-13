@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.otheractivities;
+package edu.aha.agualimpiafinal.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -9,6 +9,7 @@ import android.view.View;
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.adapters.ViewAdapter;
 
 public class inicioApp extends AppCompatActivity {
 

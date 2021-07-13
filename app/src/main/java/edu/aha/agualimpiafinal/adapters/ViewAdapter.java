@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.otheractivities;
+package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +27,7 @@ public class ViewAdapter extends PagerAdapter {
     private Integer[] images = {  /* Agregar los recursos aqui full imagenes */};
     private ViewPager viewPager;
 
-    ViewAdapter(Context context, ViewPager viewPager){
+    public ViewAdapter(Context context, ViewPager viewPager){
         this.context=context;
         this.viewPager=viewPager;
 
