@@ -1,126 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_height="match_parent"
             tools:context=".fragments.map" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_weight="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.cardview.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="10dp">
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
 
-
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="389dp"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="10dp">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
 
 
                 <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:adjustViewBounds="true"
-                            android:background="@drawable/waterblue64"
-                            android:gravity="center"
-                            android:text="Author"
-                            android:textSize="15sp"></ImageView>
-
-                        <TextView
-                            android:id="@+id/MMtxtauthor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:layout_marginStart="8dp"
-                            android:layout_weight="1"
-                            android:hint="Author"
-                            android:text="Muestra Negativa"
-                            android:textColor="@color/primarystatusbar"
-                            android:textSize="15sp"></TextView>
-
-                    </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:layout_weight="2"
-                            android:background="@drawable/waterred64"
-                            android:gravity="center"
-                            android:text="Author"
-                            android:textSize="15sp"></ImageView>
-
-                        <TextView
-                            android:id="@+id/MMtxtMuestra"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:layout_marginStart="8dp"
-                            android:layout_weight="1"
-                            android:hint="Muestra"
-                            android:text="Muestra Positiva"
-                            android:textColor="@color/red"
-                            android:textSize="15sp"></TextView>
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/waterblue64"
+                                android:gravity="center"
+                                android:text="Author"
+                                android:textSize="15sp"></ImageView>
+
+                            <TextView
+                                android:id="@+id/MMtxtauthor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:hint="Author"
+                                android:text="Muestra Negativa"
+                                android:textColor="@color/primarystatusbar"
+                                android:textSize="15sp"></TextView>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:layout_weight="2"
+                                android:background="@drawable/waterred64"
+                                android:gravity="center"
+                                android:text="Author"
+                                android:textSize="15sp"></ImageView>
+
+                            <TextView
+                                android:id="@+id/MMtxtMuestra"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|center_horizontal"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:hint="Muestra"
+                                android:text="Muestra Positiva"
+                                android:textColor="@color/red"
+                                android:textSize="15sp"></TextView>
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/btn_gps_fixed"
+            android:layout_width="40dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:elevation="20dp"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:src="@mipmap/ic_gps_circle_gray"
+            android:layout_height="40dp"/>
+
+    </FrameLayout>
+
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
