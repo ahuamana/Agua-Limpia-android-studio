@@ -36,7 +36,7 @@ public class ViewAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     @Override
@@ -76,29 +76,8 @@ public class ViewAdapter extends PagerAdapter {
 
         switch (position)
         {
+
             case 0:
-            {
-                Glide.with(context)
-                    .load(R.drawable.background_tomarmuestra)
-                    .circleCrop()
-                    .into(logo);
-
-                txtdescription.setText("Conoce todas los primeros pasos para registrar tu primera muestra");
-                txtnumber.setVisibility(View.GONE);
-                txtcircle1.setVisibility(View.GONE);
-                txtcircle2.setVisibility(View.GONE);
-                txtcircle3.setVisibility(View.GONE);
-                btnempezar.setText("INICIAR");
-                btnempezar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        viewPager.setCurrentItem(1);
-                    }
-                });
-
-                break;
-            }
-            case 1:
             {
                 Glide.with(context)
                         .load(R.drawable.background_tomarmuestra)
@@ -114,14 +93,14 @@ public class ViewAdapter extends PagerAdapter {
                 btnempezar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        viewPager.setCurrentItem(2);
+                        viewPager.setCurrentItem(1);
                     }
                 });
 
                 break;
 
             }
-            case 2:
+            case 1:
             {
                 Glide.with(context)
                         .load(R.drawable.background_picamera)
@@ -137,7 +116,7 @@ public class ViewAdapter extends PagerAdapter {
                 btnempezar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        viewPager.setCurrentItem(3);
+                        viewPager.setCurrentItem(2);
                     }
                 });
 
@@ -145,7 +124,7 @@ public class ViewAdapter extends PagerAdapter {
 
             }
 
-            case 3:
+            case 2:
             {
                 Glide.with(context)
                         .load(R.drawable.background_transferdata)

@@ -39,7 +39,7 @@ public class splashmain extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), inicioApp.class);
+                Intent intent = new Intent(getApplicationContext(), FirstStepsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); //Remove activities that have been created before
                 startActivity(intent);
             }
