@@ -18,7 +18,6 @@ import edu.aha.agualimpiafinal.activities.begining;
 public class splashmain extends AppCompatActivity {
 
     ImageView logo;
-    TextView textoLogo;
     Animation animacion;
 
     @Override
@@ -27,14 +26,13 @@ public class splashmain extends AppCompatActivity {
         setContentView(R.layout.activity_splashmain);
 
 
-        textoLogo= findViewById(R.id.txtlogo);
+
         logo = findViewById(R.id.imglogo);
 
 
         animacion = AnimationUtils.loadAnimation(this ,R.anim.animacionsplash);
 
         logo.startAnimation(animacion);
-        textoLogo.startAnimation(animacion);
 
 
         new Timer().schedule(new TimerTask() {
