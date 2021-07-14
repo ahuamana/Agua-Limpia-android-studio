@@ -116,7 +116,7 @@
 
 
         <ImageView
-            android:id="@+id/btn_gps_fixed"
+            android:id="@+id/imageView_gps_fixed"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="bottom"

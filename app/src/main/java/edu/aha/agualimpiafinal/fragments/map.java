@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -52,6 +53,8 @@ import java.util.List;
 
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.providers.MuestrasProvider;
+import edu.aha.agualimpiafinal.utils.RelativeTime;
 
 public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
@@ -59,6 +62,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
     private FusedLocationProviderClient ubicacion;
     double latitudActual, longitudActual;
     LocationManager locationManager;
+    ImageView imageViewGPS;
 
     private Marker myMarker;
 
@@ -66,9 +70,8 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
     //DatabaseReference ref;
     //Cloud Firestore
     FirebaseFirestore fStore;
-    FirebaseAuth fAuth;
 
-    //guardar datos en esta lista
+    MuestrasProvider mMuestrasProvider;
 
     //guardar datos en esta lista los nuevos datos de Firestore
     List<MoldeMuestra> listaMuestras= new ArrayList<>();
@@ -80,15 +83,6 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
         @Override
         public void onMapReady(final GoogleMap googleMap) {
 
@@ -125,20 +119,10 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
             } else
             {
+                ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
+            }
 
-//                if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION))
-//                {
-//
-//                    Toast.makeText(getActivity(), "Dio permiso para utilizar su ubicacion", Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else {
 
-                    ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
-
-                }
-
-//            }
 
             //fin Permisos geolzalizacion
 
@@ -333,13 +317,25 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
 
         //Inicializar firestore
-        fAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
+
+        mMuestrasProvider = new MuestrasProvider();
+
+        imageViewGPS = vista.findViewById(R.id.imageView_gps_fixed);
+
+
+        imageViewGPS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get location when clicked
+
+
+            }
+        });
 
 
         //crear referencia a Firebase
-        //ref= FirebaseDatabase.getInstance().getReference().child("Muestrass");
-        fStore.collection("DatosMuestra").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 //Codigo si obtiene la lista
@@ -370,8 +366,6 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                             String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
 
 
-                            //UnixTime to Date
-                            java.util.Date dateTime=new java.util.Date(listaMuestras.get(i).getMuestraTimeStamp()*1000);
 
                             //Validar si la muestra es positivo
                             if(muestraResultado.contains("Negativo"))
@@ -383,21 +377,20 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
                                                 .position(newlat)
                                                 //.title("Muestra "+ i));
-                                                .title(HoraObtenida));
+                                                .title(RelativeTime.getTimeAgo(time, getContext())));
 
                             }
                             else {
                                 if(muestraResultado.contains("Positivo"))
                                 {
                                     //Asignar un punto Rojo en google maps con su latitud y longitud
-
                                     LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
                                     mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                                     mMap.addMarker(new MarkerOptions()
                                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
                                             .position(newlats)
                                             //.title("Muestra "+ dateTime));
-                                            .title(HoraObtenida));
+                                            .title(RelativeTime.getTimeAgo(time, getContext())));
 
 
                                 }
