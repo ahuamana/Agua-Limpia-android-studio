@@ -55,6 +55,13 @@
         tools:layout="@layout/sugerencias_fragment"
         ></fragment>
 
+    <fragment
+        android:id="@+id/nav_dashboard"
+        android:name="edu.aha.agualimpiafinal.fragments.DashboardFragment"
+        android:label=""
+        tools:layout="@layout/fragment_dashboard"
+        ></fragment>
+
 
 
 </navigation>
