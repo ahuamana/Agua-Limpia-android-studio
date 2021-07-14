@@ -86,50 +86,9 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         @Override
         public void onMapReady(final GoogleMap googleMap) {
 
+            startLocation(googleMap);
 
-
-            //Obtener Permisos geolzalizacion
-            ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
-            //permisos
-            if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-            {
-                //añadir botones de + y - para hacer zoom
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
-
-                //habilitar compass o brujula
-               //googleMap.setMyLocationEnabled(true);
-                //googleMap.getUiSettings().setMyLocationButtonEnabled(false);//ocultar boton de ubicacion
-                googleMap.getUiSettings().setCompassEnabled(true);
-
-
-                googleMap.getUiSettings().setAllGesturesEnabled(true); // habilitar gestos
-
-
-                //mostrar mi localizacion
-                googleMap.getUiSettings().setMyLocationButtonEnabled(true);
-
-                //añadir la brujula
-                googleMap.getUiSettings().setCompassEnabled(true);
-
-                //añadir toolbar
-                googleMap.getUiSettings().setMapToolbarEnabled(true);
-
-                ObtenerUbicationActual(googleMap);
-
-            } else
-            {
-                ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
-            }
-
-
-
-            //fin Permisos geolzalizacion
-
-            //asginarle variable para el mejor manejo
             mMap = googleMap;
-
-
 
             //inicio onMapClickListener
             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -178,6 +137,48 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         }
     };
 
+    private void startLocation(GoogleMap googleMap) {
+
+        //Obtener Permisos geolzalizacion
+        ubicacion = LocationServices.getFusedLocationProviderClient(getActivity());
+        //permisos
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(getActivity(),Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            //añadir botones de + y - para hacer zoom
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+            //habilitar compass o brujula
+            //googleMap.setMyLocationEnabled(true);
+            //googleMap.getUiSettings().setMyLocationButtonEnabled(false);//ocultar boton de ubicacion
+            googleMap.getUiSettings().setCompassEnabled(true);
+
+
+            googleMap.getUiSettings().setAllGesturesEnabled(true); // habilitar gestos
+
+
+            //mostrar mi localizacion
+            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+            //añadir la brujula
+            googleMap.getUiSettings().setCompassEnabled(true);
+
+            //añadir toolbar
+            googleMap.getUiSettings().setMapToolbarEnabled(true);
+
+            ObtenerUbicationActual(googleMap);
+
+        } else
+        {
+            ActivityCompat.requestPermissions(getActivity(),new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
+        }
+
+
+
+        //fin Permisos geolzalizacion
+
+        //asginarle variable para el mejor manejo
+    }
 
 
     @SuppressLint("MissingPermission")
@@ -329,6 +330,15 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
             public void onClick(View v) {
                 //get location when clicked
 
+                if(mMap != null)
+                {
+                    startLocation(mMap);
+
+                }else
+                {
+                    Toast.makeText(getContext(), "El mapa no se ah inicializado", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -361,9 +371,9 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
                             ////Horal Obtenida
                             long time = listaMuestras.get(i).getMuestraTimeStamp()*1000;  //
-                            Date df = new java.util.Date(time);
+                            //Date df = new java.util.Date(time);
                             //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
-                            String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
+                            //String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
 
 
 
