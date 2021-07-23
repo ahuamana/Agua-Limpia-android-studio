@@ -1,18 +1,30 @@
 package edu.aha.agualimpiafinal.activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.utils.validaciones;
@@ -42,6 +54,14 @@ public class begining extends AppCompatActivity {
         //cargar metodo de los datos guardados en el telefono
         cargarPreferencias();
 
+        getPermissionsMaps();
+
+        implementedClickListener();
+
+
+    }
+
+    private void implementedClickListener() {
 
         btnbegin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,12 +78,11 @@ public class begining extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Inicio de contacte soporte
-               goToWhatsapp();
+                goToWhatsapp();
 
             }
         });
         //
-
     }
 
     private void goToMenuApp() {
@@ -154,6 +173,38 @@ public class begining extends AppCompatActivity {
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
+
+    private void getPermissionsMaps()
+    {
+        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
+
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("El aplicativo hace uso de GPS para el registro microbiológico, desear habilitarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+    }
+
+
 
 
 
