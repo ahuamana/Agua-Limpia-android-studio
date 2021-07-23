@@ -52,8 +52,7 @@ public class sugerencias extends Fragment {
 
     private SugerenciasViewModel mViewModel;
 
-    EditText SUdescripcion;
-    Button SUbtnComentar;
+
     RecyclerView recyclerComentarios;
     ComentariosAdapter adapter;
     LinearLayoutManager mLinearLayoutManager;
@@ -61,9 +60,6 @@ public class sugerencias extends Fragment {
 
     MoldeComentarios mMoldeComentarios;
 
-
-    //Cloud Firestore
-    FirebaseFirestore fStore;
 
     //datos de Shared preferences
     String firstname,middlename,lastname, email;
@@ -84,52 +80,29 @@ public class sugerencias extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.sugerencias_fragment, container, false);
 
-
+        //Obtener datos guardados del telefono de SharedPreferences
+        cargarPreferencias();
         setStatusBarFullTransparent();
-
-        //Inicializar instancias a firestore
-        fStore = FirebaseFirestore.getInstance();
 
         mSugerenciasProvider = new SugerenciasProvider();
         mMoldeComentarios = new MoldeComentarios();
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
 
-        //Obtener datos guardados del telefono de SharedPreferences
-        cargarPreferencias();
-
-        SUdescripcion = mView.findViewById(R.id.SUtvDejarComentario);
-        SUbtnComentar = mView.findViewById(R.id.SUbtncomentar);
         btnComentar = mView.findViewById(R.id.SUbtnFlotanteComentar);
+        recyclerComentarios = mView.findViewById(R.id.SUreclyclerComentarios);
 
-        //Inflar Boton
-        btnComentar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        implementedClickListener();
 
 
-                AbrirDialogoComentar();
-
-                //mensaje al hacer click
-                //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
-                 //       .setAction("ACtion",null).show();
-
-            }
-        });
+        getInfoComentarios();
 
 
-        SUbtnComentar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Enviar datos a Firestore
+        return mView;
+    }
 
-
-
-            }
-        });
-
+    private void getInfoComentarios() {
 
         //Inicializar Arraylist y asignar contenedor
-        recyclerComentarios = mView.findViewById(R.id.SUreclyclerComentarios);
-        mLinearLayoutManager = new LinearLayoutManager(getContext());
         recyclerComentarios.setLayoutManager(mLinearLayoutManager);
         mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
         recyclerComentarios.setHasFixedSize(true);
@@ -147,6 +120,7 @@ public class sugerencias extends Fragment {
         //asignar datos al recyclerView
         recyclerComentarios.setAdapter(adapter);
 
+        //Levar a la ultima posicion del adapter
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -172,8 +146,23 @@ public class sugerencias extends Fragment {
 
             }
         });
+    }
 
-        return mView;
+    private void implementedClickListener() {
+
+        btnComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AbrirDialogoComentar();
+                //mensaje al hacer click
+                //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
+                //       .setAction("ACtion",null).show();
+
+            }
+        });
+
+
     }
 
     private void AbrirDialogoComentar() {

@@ -34,53 +34,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"></androidx.recyclerview.widget.RecyclerView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/custom_comentar_background"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="10dp"
-                app:contentPadding="10dp">
-
-                <EditText
-                    android:id="@+id/SUtvDejarComentario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:background="@android:color/transparent"
-                    android:gravity="start"
-                    android:hint="Deja un comentario Aqui!"
-                    android:lines="4"
-                    android:maxLines="4"
-                    android:textSize="14sp">
-
-                </EditText>
-
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/SUbtncomentar"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="right"
-                android:background="@drawable/buttom_comentar"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="Comentar"
-                android:textColor="@color/white"
-                android:textStyle=""></Button>
-
-
-        </LinearLayout>
+        
 
     </LinearLayout>
 
