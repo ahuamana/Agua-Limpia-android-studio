@@ -9,8 +9,8 @@ android {
         applicationId "edu.aha.agualimpiafinal"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 5
-        versionName "1.6"
+        versionCode 6
+        versionName "1.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -81,6 +81,9 @@ dependencies {
 
     //zelory compressor android
     implementation 'id.zelory:compressor:2.1.1'
+
+    //MPA android Chart Graphics
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

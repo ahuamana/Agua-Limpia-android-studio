@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -69,6 +71,10 @@ public class sugerencias extends Fragment {
     //boton flotante
     FloatingActionButton btnComentar;
 
+
+    View mView;
+
+
     public static sugerencias newInstance() {
         return new sugerencias();
     }
@@ -76,7 +82,10 @@ public class sugerencias extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.sugerencias_fragment, container, false);
+        mView = inflater.inflate(R.layout.sugerencias_fragment, container, false);
+
+
+        setStatusBarFullTransparent();
 
         //Inicializar instancias a firestore
         fStore = FirebaseFirestore.getInstance();
@@ -87,9 +96,9 @@ public class sugerencias extends Fragment {
         //Obtener datos guardados del telefono de SharedPreferences
         cargarPreferencias();
 
-        SUdescripcion = vista.findViewById(R.id.SUtvDejarComentario);
-        SUbtnComentar = vista.findViewById(R.id.SUbtncomentar);
-        btnComentar = vista.findViewById(R.id.SUbtnFlotanteComentar);
+        SUdescripcion = mView.findViewById(R.id.SUtvDejarComentario);
+        SUbtnComentar = mView.findViewById(R.id.SUbtncomentar);
+        btnComentar = mView.findViewById(R.id.SUbtnFlotanteComentar);
 
         //Inflar Boton
         btnComentar.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +128,7 @@ public class sugerencias extends Fragment {
 
 
         //Inicializar Arraylist y asignar contenedor
-        recyclerComentarios = vista.findViewById(R.id.SUreclyclerComentarios);
+        recyclerComentarios = mView.findViewById(R.id.SUreclyclerComentarios);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         recyclerComentarios.setLayoutManager(mLinearLayoutManager);
         mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
@@ -164,7 +173,7 @@ public class sugerencias extends Fragment {
             }
         });
 
-        return vista;
+        return mView;
     }
 
     private void AbrirDialogoComentar() {
@@ -252,6 +261,15 @@ public class sugerencias extends Fragment {
         email= preferences.getString("spEmail","");
 
     }
+
+    private void setStatusBarFullTransparent()
+    {
+        // In Activity's onCreate() for instance
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+    }
+
 
     //on Stop y on Start son metodos para escuchar al adapter y poder mostrar los datos
     @Override

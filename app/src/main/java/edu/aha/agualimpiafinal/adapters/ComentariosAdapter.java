@@ -13,9 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
@@ -77,7 +74,7 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
     public ComentariosHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //Aqui se infla el contenedor del molde donde se cargaran todos los datos
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.comentarios_molde,parent,false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_comentarios,parent,false);
 
         return new ComentariosHolder(vista);
     }

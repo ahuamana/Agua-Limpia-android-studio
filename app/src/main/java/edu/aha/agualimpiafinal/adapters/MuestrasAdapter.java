@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -17,10 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
@@ -92,7 +87,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
     @Override
     public MuestrasHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.muestras_molde,parent,false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_muestra,parent,false);
 
         return new MuestrasHolder(vista);
     }

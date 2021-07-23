@@ -63,12 +63,12 @@ public class FirstStepsActivity extends AppCompatActivity {
     {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.greeLightSplash, this.getTheme()));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.greeLight, this.getTheme()));
         }
         else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
             {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.greeLightSplash));
+                getWindow().setStatusBarColor(getResources().getColor(R.color.greeLight));
             }
         }
     }
