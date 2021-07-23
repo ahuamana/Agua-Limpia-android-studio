@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,6 +26,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -37,6 +39,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -65,7 +68,7 @@ public class sugerencias extends Fragment {
     String firstname,middlename,lastname, email;
 
     //boton flotante
-    FloatingActionButton btnComentar;
+    ImageView imageViewSend;
 
 
     View mView;
@@ -88,7 +91,7 @@ public class sugerencias extends Fragment {
         mMoldeComentarios = new MoldeComentarios();
         mLinearLayoutManager = new LinearLayoutManager(getContext());
 
-        btnComentar = mView.findViewById(R.id.SUbtnFlotanteComentar);
+        imageViewSend = mView.findViewById(R.id.imageViewSend);
         recyclerComentarios = mView.findViewById(R.id.SUreclyclerComentarios);
 
         implementedClickListener();
@@ -150,7 +153,7 @@ public class sugerencias extends Fragment {
 
     private void implementedClickListener() {
 
-        btnComentar.setOnClickListener(new View.OnClickListener() {
+        imageViewSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -237,7 +240,7 @@ public class sugerencias extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(SugerenciasViewModel.class);
-        // TODO: Use the ViewModel
+
     }
 
     private void cargarPreferencias() {
@@ -253,11 +256,11 @@ public class sugerencias extends Fragment {
 
     private void setStatusBarFullTransparent()
     {
-        // In Activity's onCreate() for instance
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+       getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+       getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
     }
+
+
 
 
     //on Stop y on Start son metodos para escuchar al adapter y poder mostrar los datos

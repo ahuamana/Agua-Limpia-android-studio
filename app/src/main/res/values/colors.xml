@@ -23,6 +23,9 @@
     <color name="greenPrimary">#03C566</color>
     <color name="greeLight">#EBF4F2</color>
 
+    <color name="colorGray">#BABDBD</color>
+    <color name="colorGrayLight">#ECEBEB</color>
+
 
 
 </resources>

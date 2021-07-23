@@ -9,12 +9,10 @@
     tools:context=".fragments.sugerencias"
     android:orientation="vertical">
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="65dp"
         android:layout_height="match_parent">
 
         <TextView
@@ -34,21 +32,41 @@
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"></androidx.recyclerview.widget.RecyclerView>
 
-        
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Escribe un mensaje"
+            android:inputType="textMultiLine"
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"/>
+
+
+        <ImageView
+            android:id="@+id/imageViewSend"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/ic_send"
+            android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
 
 
 
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/SUbtnFlotanteComentar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:contentDescription="Comentar"
-        android:src="@drawable/ic_comment_white"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

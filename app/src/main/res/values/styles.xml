@@ -43,4 +43,13 @@
         <item name="android:textColor">@color/lightblue</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="AppThemeNuevoOnlyStatusBarFull" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="colorPrimary">@color/lightblue</item>
+        <item name="colorPrimaryDark">@color/primarystatusbar</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
 </resources>

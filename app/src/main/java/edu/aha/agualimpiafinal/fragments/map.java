@@ -86,7 +86,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         @Override
         public void onMapReady(final GoogleMap googleMap) {
 
-            startLocation(googleMap);
+            //startLocation(googleMap); //getlocation
 
             mMap = googleMap;
 
@@ -427,52 +427,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
             }
         });
 
-        //inicio evento para capturar valores
-//        datosEmpresa.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                for (DataSnapshot postSnapshot : snapshot.getChildren())
-//                {
-//                    Ingreso datos = postSnapshot.getValue(Ingreso.class);
-//                    listaDatos.add(datos);
-//
-//                }
-//
-//                for (int i=0;i<listaDatos.size();i++)
-//                {
-//                    Log.e("Latitud "+i, String.valueOf(listaDatos.get(i).getLatitudDB()));
-//                    Log.e("Longitud" +i,String.valueOf(listaDatos.get(i).getLongitudDB()));
-//
-//                    //Obtengo el valor del BQV
-//                    int valorBQV= Integer.parseInt(listaDatos.get(i).getBqvDB());
-//                    if(valorBQV <=50)
-//                    {
-//
-//                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
-//                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//                        mMap.addMarker(new MarkerOptions()
-//                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
-//                                        .position(newlat)
-//                                        .title("Muestra "+ i));
-//                    }
-//                    else {
-//
-//                        LatLng newlat = new LatLng(listaDatos.get(i).getLatitudDB(),listaDatos.get(i).getLongitudDB());
-//                                      mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-//                        mMap.addMarker(new MarkerOptions()
-//                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
-//                                        .position(newlat)
-//                                        .title("Muestra "+ i));
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        //fin evento para capturar valores
+
 
 
         return vista;
