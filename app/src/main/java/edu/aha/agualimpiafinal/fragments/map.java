@@ -317,6 +317,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         View vista = inflater.inflate(R.layout.fragment_map, container, false);
 
 
+
         //Inicializar firestore
         fStore=FirebaseFirestore.getInstance();
 
@@ -459,4 +460,6 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
         return false;
     }
+
+
 }
