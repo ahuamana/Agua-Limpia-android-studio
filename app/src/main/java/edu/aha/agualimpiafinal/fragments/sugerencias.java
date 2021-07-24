@@ -55,6 +55,7 @@ public class sugerencias extends Fragment {
 
     private SugerenciasViewModel mViewModel;
 
+    EditText editTextMessage;
 
     RecyclerView recyclerComentarios;
     ComentariosAdapter adapter;
@@ -92,6 +93,7 @@ public class sugerencias extends Fragment {
 
         imageViewSend = mView.findViewById(R.id.imageViewSend);
         recyclerComentarios = mView.findViewById(R.id.SUreclyclerComentarios);
+        editTextMessage = mView.findViewById(R.id.editTextMessage);
 
         implementedClickListener();
 
@@ -156,12 +158,45 @@ public class sugerencias extends Fragment {
             @Override
             public void onClick(View v) {
 
-                AbrirDialogoComentar();
-                //mensaje al hacer click
-                //Snackbar.make(v, "Here's a snackbar",Snackbar.LENGTH_LONG)
-                //       .setAction("ACtion",null).show();
+                        if(!TextUtils.isEmpty(editTextMessage.getText().toString())) {
 
-            }
+                            mMoldeComentarios.setAuthorAlias(middlename.toLowerCase());
+                            mMoldeComentarios.setAuthorEmail(email.toLowerCase());
+                            mMoldeComentarios.setAuthorFirstname(firstname.toLowerCase());
+                            mMoldeComentarios.setAuthorLastname(lastname.toLowerCase());
+                            mMoldeComentarios.setSugerenciaMensaje(editTextMessage.getText().toString().toLowerCase());
+                            mMoldeComentarios.setSugerenciaFechaUnixtime(System.currentTimeMillis()/1000);
+
+                            mSugerenciasProvider.createSuggestion(mMoldeComentarios).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity(), "Comentario registrado, correctamente!", Toast.LENGTH_SHORT).show();
+
+                                        //Limpiamos los campos
+                                        editTextMessage.setText("");
+
+
+                                    }
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Toast.makeText(getContext(), "Error al registrar un comentario.", Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+
+                        }else {
+                            Toast.makeText(getContext(), "Escribe un comentario!", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+
         });
 
 
