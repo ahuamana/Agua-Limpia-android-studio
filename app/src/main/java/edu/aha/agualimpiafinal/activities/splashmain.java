@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -26,7 +27,7 @@ public class splashmain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashmain);
 
-        setStatusBarColor();//set status bar
+        setFullStatusBarTransparent();//set status bar
 
         logo = findViewById(R.id.imglogo);
 
@@ -48,18 +49,9 @@ public class splashmain extends AppCompatActivity {
 
     }
 
-    private void setStatusBarColor()
+    private void setFullStatusBarTransparent()
     {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.greeLight, this.getTheme()));
-        }
-        else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            {
-                getWindow().setStatusBarColor(getResources().getColor(R.color.greeLight));
-            }
-        }
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
 

@@ -85,8 +85,6 @@ public class sugerencias extends Fragment {
 
         //Obtener datos guardados del telefono de SharedPreferences
         cargarPreferencias();
-        setStatusBarFullTransparent();
-        setStatusBarIconsColor();
 
         mSugerenciasProvider = new SugerenciasProvider();
         mMoldeComentarios = new MoldeComentarios();
@@ -254,21 +252,6 @@ public class sugerencias extends Fragment {
         email= preferences.getString("spEmail","");
 
     }
-
-    private void setStatusBarFullTransparent()
-    {
-       getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-    }
-
-    private void setStatusBarIconsColor()
-    {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
-        }
-    }
-
 
 
 

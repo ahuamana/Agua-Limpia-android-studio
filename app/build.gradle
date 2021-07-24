@@ -85,6 +85,7 @@ dependencies {
     //MPA android Chart Graphics
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    //status bar util
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
     testImplementation 'junit:junit:4.12'

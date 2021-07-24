@@ -22,6 +22,7 @@
     <color name="red">#e80e0e</color>
     <color name="greenPrimary">#03C566</color>
     <color name="greeLight">#EBF4F2</color>
+    <color name="greeDark">#6eadb3</color>
 
     <color name="colorGray">#BABDBD</color>
     <color name="colorGrayLight">#ECEBEB</color>

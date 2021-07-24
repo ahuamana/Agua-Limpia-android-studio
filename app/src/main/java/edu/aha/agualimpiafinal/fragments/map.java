@@ -44,6 +44,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.jaeger.library.StatusBarUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -460,6 +461,8 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
         return false;
     }
+
+
 
 
 }

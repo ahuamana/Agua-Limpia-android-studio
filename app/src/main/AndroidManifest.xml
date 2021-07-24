@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.splashmain"
-            android:theme="@style/AppThemeNuevoOnlyStatusBarFull">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -54,7 +54,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppThemeNuevoOnlyStatusBarFull" />
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
