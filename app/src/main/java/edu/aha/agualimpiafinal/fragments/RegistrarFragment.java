@@ -18,14 +18,14 @@ import android.widget.Button;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.viewModels.RegistrarViewModel;
 
-public class registrar extends Fragment implements View.OnClickListener {
+public class RegistrarFragment extends Fragment implements View.OnClickListener {
 
     Button REbtnfisio, REbtnmicro;
 
     private RegistrarViewModel mViewModel;
 
-    public static registrar newInstance() {
-        return new registrar();
+    public static RegistrarFragment newInstance() {
+        return new RegistrarFragment();
     }
 
     @Override
@@ -63,7 +63,7 @@ public class registrar extends Fragment implements View.OnClickListener {
             {
 
                 // Crea el nuevo fragmento y la transacción.
-                Fragment nuevoFragmento = new registraringreso();
+                Fragment nuevoFragmento = new RegistrarIngresoFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.REcontenedorRegistrar, nuevoFragmento);
                 transaction.addToBackStack(null);

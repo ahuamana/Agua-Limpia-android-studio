@@ -21,15 +21,15 @@ import android.widget.Toast;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.viewModels.CompartirViewModel;
 
-public class compartir extends Fragment {
+public class CompartirFragment extends Fragment {
 
     private CompartirViewModel mViewModel;
 
     ImageButton imgLink;
     TextView text;
 
-    public static compartir newInstance() {
-        return new compartir();
+    public static CompartirFragment newInstance() {
+        return new CompartirFragment();
     }
 
     @Override

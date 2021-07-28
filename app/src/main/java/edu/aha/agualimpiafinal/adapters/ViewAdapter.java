@@ -62,7 +62,7 @@ public class ViewAdapter extends PagerAdapter {
 
 
 
-        //inicio del evento click saltar
+        //InicioFragment del evento click saltar
         txtsaltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +136,7 @@ public class ViewAdapter extends PagerAdapter {
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle3.setBackgroundResource(R.drawable.circle_selected);
-                //inicio del evento click
+                //InicioFragment del evento click
                 btnempezar.setText("EMPEZAR");
                 btnempezar.setOnClickListener(new View.OnClickListener() {
                     @Override

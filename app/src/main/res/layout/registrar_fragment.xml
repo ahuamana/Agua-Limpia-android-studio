@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.registrar"
+    tools:context=".fragments.RegistrarFragment"
     android:padding="10dp"
     android:orientation="vertical"
     android:id="@+id/REcontenedorRegistrar"

@@ -2,13 +2,11 @@ package edu.aha.agualimpiafinal.fragments;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,26 +29,15 @@ import android.widget.Toast;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.jaeger.library.StatusBarUtil;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.providers.SugerenciasProvider;
 import edu.aha.agualimpiafinal.viewModels.SugerenciasViewModel;
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.ComentariosAdapter;
 
-public class sugerencias extends Fragment {
+public class SugerenciasFragment extends Fragment {
 
     private SugerenciasViewModel mViewModel;
 
@@ -75,8 +61,8 @@ public class sugerencias extends Fragment {
     View mView;
 
 
-    public static sugerencias newInstance() {
-        return new sugerencias();
+    public static SugerenciasFragment newInstance() {
+        return new SugerenciasFragment();
     }
 
     @Override
@@ -185,7 +171,7 @@ public class sugerencias extends Fragment {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
 
-                                    Toast.makeText(getContext(), "Error al registrar un comentario.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), "Error al RegistrarFragment un comentario.", Toast.LENGTH_LONG).show();
 
                                 }
                             });
@@ -249,7 +235,7 @@ public class sugerencias extends Fragment {
                         public void onFailure(@NonNull Exception e) {
 
                             dialog.dismiss();
-                            Toast.makeText(getContext(), "Error al registrar un comentario.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Error al RegistrarFragment un comentario.", Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -261,11 +247,6 @@ public class sugerencias extends Fragment {
 
             }
         });
-
-
-
-
-
 
 
     }

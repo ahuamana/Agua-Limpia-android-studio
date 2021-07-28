@@ -74,7 +74,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
     MuestrasProvider mMuestrasProvider;
 
-    //guardar datos en esta lista los nuevos datos de Firestore
+    //guardar datos en esta ListaFragment los nuevos datos de Firestore
     List<MoldeMuestra> listaMuestras= new ArrayList<>();
 
 
@@ -91,7 +91,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
             mMap = googleMap;
 
-            //inicio onMapClickListener
+            //InicioFragment onMapClickListener
             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
@@ -350,7 +350,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
-                //Codigo si obtiene la lista
+                //Codigo si obtiene la ListaFragment
 
                 if (documentSnapshots.isEmpty()) {
                     Log.d("TAG", "onSuccess: LIST EMPTY");
@@ -418,7 +418,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                //Codigo si falla al obtener la lista
+                //Codigo si falla al obtener la ListaFragment
                 Toast.makeText(getActivity(), "Error getting data!!!", Toast.LENGTH_LONG).show();
             }
         }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

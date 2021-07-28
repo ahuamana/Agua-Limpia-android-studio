@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
@@ -28,7 +27,7 @@ import edu.aha.agualimpiafinal.adapters.MuestrasAdapter;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.viewModels.ListaViewModel;
 
-public class lista extends Fragment {
+public class ListaFragment extends Fragment {
 
     RecyclerView recyclerUsuarios;
     MuestrasAdapter adapter;
@@ -44,8 +43,8 @@ public class lista extends Fragment {
 
     private ListaViewModel mViewModel;
 
-    public static lista newInstance() {
-        return new lista();
+    public static ListaFragment newInstance() {
+        return new ListaFragment();
     }
 
     @Override
