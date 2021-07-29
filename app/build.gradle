@@ -83,6 +83,7 @@ dependencies {
     implementation 'id.zelory:compressor:2.1.1'
 
     //MPA android Chart Graphics
+    //https://github.com/PhilJay/MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     //status bar util
@@ -91,6 +92,7 @@ dependencies {
 
     //https://github.com/lzyzsd/CircleProgress
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
+
 
 
     testImplementation 'junit:junit:4.12'

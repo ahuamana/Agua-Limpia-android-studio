@@ -119,17 +119,41 @@
 
         </LinearLayout>
 
-        <com.google.android.material.textview.MaterialTextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="sans-serif-condensed"
-            android:layout_gravity="center_horizontal"
-            android:textSize="20dp"
-            android:textColor="@color/primarystatusbar"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:textColor="@color/primarystatusbar"
+                android:gravity="center"
+                android:text="Analisis Generales"/>
+
+
+        </LinearLayout>
+
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
             android:gravity="center"
-            android:text="Analisis Generales"/>
+            android:layout_height="250dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Boton 1"
+            android:backgroundTint="@color/lightblue"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
