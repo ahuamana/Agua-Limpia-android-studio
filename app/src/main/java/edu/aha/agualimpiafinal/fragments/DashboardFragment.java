@@ -32,6 +32,7 @@ public class DashboardFragment extends Fragment {
     int amountPositive;
 
     DonutProgress donutProgressNegative;
+    DonutProgress donutProgressPositive;
 
     public DashboardFragment() {
 
@@ -85,7 +86,7 @@ public class DashboardFragment extends Fragment {
                 //asignar la cantidad de tus muestras
 
                setDonutProgressData(amountNegative, donutProgressNegative);
-               //setDonutProgressData(amountPositive, donutProgressNegative);
+               setDonutProgressData(amountPositive, donutProgressPositive);
 
 
 
@@ -103,30 +104,30 @@ public class DashboardFragment extends Fragment {
 
     }
 
-    private void setDonutProgressData(int amountNegative, DonutProgress donutProgress) {
+    private void setDonutProgressData(int amount, DonutProgress donutProgress) {
 
-        donutProgress.setTextSize(15);
+        //donutProgress.setTextSize(100);
 
-        switch (amountNegative)
+        switch (amount)
         {
             case 0: {
-                donutProgress.setProgress(0);
+                donutProgress.setProgress(0f);
                 donutProgress.setText("0");
                 break;
             }
 
             case 1: {
-                donutProgress.setProgress(10);
+                donutProgress.setProgress(10f);
                 donutProgress.setText("1");
                 break;
             }
             case 2: {
-                donutProgress.setProgress(20);
+                donutProgress.setProgress(20f);
                 donutProgress.setText("2");
                 break;
             }
             case 3:{
-                donutProgress.setProgress(30);
+                donutProgress.setProgress(30f);
                 donutProgress.setText("3");
                 break;
             }
@@ -190,7 +191,8 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        donutProgressNegative = mView.findViewById(R.id.donut_progress);
+        donutProgressNegative = mView.findViewById(R.id.donut_progressNegative);
+        donutProgressPositive = mView.findViewById(R.id.donut_progressPositive);
 
 
         mMuestrasProvider = new MuestrasProvider();
