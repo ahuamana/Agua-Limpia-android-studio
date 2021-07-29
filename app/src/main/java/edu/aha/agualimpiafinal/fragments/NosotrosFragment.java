@@ -15,14 +15,14 @@ import android.view.ViewGroup;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.viewModels.NosotrosViewModel;
 
-public class nosotros extends Fragment {
+public class NosotrosFragment extends Fragment {
 
     private NosotrosViewModel mViewModel;
 
 
 
-    public static nosotros newInstance() {
-        return new nosotros();
+    public static NosotrosFragment newInstance() {
+        return new NosotrosFragment();
     }
 
     @Override

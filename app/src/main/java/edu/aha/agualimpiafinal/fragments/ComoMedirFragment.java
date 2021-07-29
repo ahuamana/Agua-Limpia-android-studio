@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.viewModels.ComomedirViewModel;
 
-public class comomedir extends Fragment {
+public class ComoMedirFragment extends Fragment {
 
     private ComomedirViewModel mViewModel;
 
@@ -39,8 +39,8 @@ public class comomedir extends Fragment {
     Dialog dialog;
     String videoId = "";
 
-    public static comomedir newInstance() {
-        return new comomedir();
+    public static ComoMedirFragment newInstance() {
+        return new ComoMedirFragment();
     }
 
     @Override

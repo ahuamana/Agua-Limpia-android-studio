@@ -68,7 +68,7 @@ import edu.aha.agualimpiafinal.utils.validaciones;
 
 import static android.app.Activity.RESULT_CANCELED;
 
-public class registraringreso extends Fragment implements LocationListener {
+public class RegistrarIngresoFragment extends Fragment implements LocationListener {
 
     EditText RItvlatitud, RItvlongitud;
     ImageButton RIbtnLocalization;
@@ -113,8 +113,8 @@ public class registraringreso extends Fragment implements LocationListener {
 
     private RegistraringresoViewModel mViewModel;
 
-    public static registraringreso newInstance() {
-        return new registraringreso();
+    public static RegistrarIngresoFragment newInstance() {
+        return new RegistrarIngresoFragment();
     }
 
     @Override
@@ -409,7 +409,7 @@ public class registraringreso extends Fragment implements LocationListener {
 
     private void startCamera()
     {
-        Pix.start(registraringreso.this, mOptions);
+        Pix.start(RegistrarIngresoFragment.this, mOptions);
     }
 
     private void limpiarcampos() {

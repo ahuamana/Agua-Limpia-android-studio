@@ -15,12 +15,12 @@ import android.view.ViewGroup;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.viewModels.InicioViewModel;
 
-public class inicio extends Fragment {
+public class InicioFragment extends Fragment {
 
     private InicioViewModel mViewModel;
 
-    public static inicio newInstance() {
-        return new inicio();
+    public static InicioFragment newInstance() {
+        return new InicioFragment();
     }
 
     @Override

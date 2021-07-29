@@ -8,7 +8,7 @@
     android:elevation="10dp"
     android:layout_gravity="center"
     android:layout_height="wrap_content"
-    tools:context=".fragments.compartir">
+    tools:context=".fragments.CompartirFragment">
 
     <ScrollView
         android:layout_width="match_parent"

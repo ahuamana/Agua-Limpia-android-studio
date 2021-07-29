@@ -30,7 +30,7 @@ import edu.aha.agualimpiafinal.models.MoldeRasberryPhotos;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.viewModels.RasberryImagesViewModel;
 
-public class rasberryImages extends Fragment {
+public class RasberryImagesFragment extends Fragment {
 
     private RasberryImagesViewModel mViewModel;
 
@@ -46,8 +46,8 @@ public class rasberryImages extends Fragment {
 
     GaleriaImagenesAdapter mGaleriaImagenesAdapter;
 
-    public static rasberryImages newInstance() {
-        return new rasberryImages();
+    public static RasberryImagesFragment newInstance() {
+        return new RasberryImagesFragment();
     }
 
     @Override
