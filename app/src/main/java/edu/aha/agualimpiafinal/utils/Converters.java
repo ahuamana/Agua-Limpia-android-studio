@@ -1,19 +1,25 @@
 package edu.aha.agualimpiafinal.utils;
 
+
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Converters {
+public class Converters extends AppCompatActivity {
 
-    public static Converters instance;
+    public static Converters instance = new Converters();
+
 
     public String epochTimeToDate(Long DateToConvert)
     {
-        String dateFinal;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        dateFinal= sdf.format(new Date(DateToConvert));
+        Date dateFormat = new java.util.Date(DateToConvert);
+        String dateConverted = new SimpleDateFormat("MM dd, yyyy hh:mma").format(dateFormat);
 
-        return dateFinal;
+        return dateConverted;
     }
 }

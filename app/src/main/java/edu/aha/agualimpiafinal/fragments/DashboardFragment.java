@@ -98,10 +98,11 @@ public class DashboardFragment extends Fragment {
 
                 for( MoldeMuestra molde : moldeMuestra)
                 {
+                    String dateConverted;
+                    dateConverted = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp());
 
-                    String fechaFinal = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp());
-
-                    android.util.Log.e("DATE","DATE: "+ fechaFinal);
+                    android.util.Log.e("DATE","DATE: "+ dateConverted);
+                    android.util.Log.e("DATE","DATEFIREBASE: "+ molde.getMuestraTimeStamp());
 
                 }
 
