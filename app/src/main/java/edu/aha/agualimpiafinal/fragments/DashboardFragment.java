@@ -20,8 +20,10 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import java.util.List;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
+import edu.aha.agualimpiafinal.utils.Converters;
 
 
 public class DashboardFragment extends Fragment {
@@ -76,21 +79,45 @@ public class DashboardFragment extends Fragment {
 
         getPreferences();
 
-        createGroupedBarChat();
 
+        getDataForGroupedBarChart();
 
 
 
         return mView;
     }
 
+    private void getDataForGroupedBarChart() {
+
+        mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+
+
+                List<MoldeMuestra> moldeMuestra   = querySnapshot.toObjects(MoldeMuestra.class);
+
+                for( MoldeMuestra molde : moldeMuestra)
+                {
+
+                    String fechaFinal = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp());
+
+                    android.util.Log.e("DATE","DATE: "+ fechaFinal);
+
+                }
+
+
+            }
+        });
+
+    }
+
     private void createGroupedBarChat() {
 
-        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Negativo");
+        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Positivo");
         barDataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet1.setColor(getResources().getColor(R.color.red));
 
-        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Positivo");
+        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Negativo");
         barDataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet2.setColor(getResources().getColor(R.color.lightblue));
 
