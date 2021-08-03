@@ -142,11 +142,11 @@ public class DashboardFragment extends Fragment {
 
     private void createGroupedBarChat() {
 
-        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Positivo");
+        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Muestras Positivas");
         barDataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet1.setColor(getResources().getColor(R.color.red));
 
-        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Negativo");
+        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Muestras Negativas");
         barDataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet2.setColor(getResources().getColor(R.color.lightblue));
 
@@ -159,12 +159,13 @@ public class DashboardFragment extends Fragment {
         XAxis xAxis = mBarChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
         xAxis.setCenterAxisLabels(true);
-        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
+        xAxis.setPosition(XAxis.XAxisPosition.TOP);
         xAxis.setGranularity(1);
         xAxis.setGranularityEnabled(true);
 
         mBarChart.setDragEnabled(true); //move the drag with your hand
         mBarChart.setVisibleXRangeMaximum(10);
+        mBarChart.getDescription().setEnabled(false);//Remove description from barchart
 
         xAxis.setDrawGridLines(false); // disappear vertically axis
         mBarChart.getAxisRight().setDrawGridLines(false); // disappear horizontal axis
