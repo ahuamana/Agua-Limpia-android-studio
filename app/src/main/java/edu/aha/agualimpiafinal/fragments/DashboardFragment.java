@@ -126,8 +126,8 @@ public class DashboardFragment extends Fragment {
 
                 }
 
-                android.util.Log.e("MUESTRA","MUESTRA: "+ Muestras_del_dos_mil_veintiuno_positivo);
-                android.util.Log.e("MUESTRA","MUESTRA: "+ Muestras_del_dos_mil_veintiuno_negativo);
+                android.util.Log.e("MUESTRA","MUESTRA Positivas: "+ Muestras_del_dos_mil_veintiuno_positivo);
+                android.util.Log.e("MUESTRA","MUESTRA Negativas: "+ Muestras_del_dos_mil_veintiuno_negativo);
 
 
 
@@ -154,17 +154,21 @@ public class DashboardFragment extends Fragment {
 
         mBarChart.setData(data);
 
-        //String[] days = new String[]{"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+        String[] days = new String[]{"2017","2018","2019","2020","2021"};
 
-        //XAxis xAxis = mBarChart.getXAxis();
-        //xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
-        //xAxis.setCenterAxisLabels(true);
-        //xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //xAxis.setGranularity(1);
-        //xAxis.setGranularityEnabled(true);
+        XAxis xAxis = mBarChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE);
+        xAxis.setGranularity(1);
+        xAxis.setGranularityEnabled(true);
 
-        //mBarChart.setDragEnabled(true);
-        //mBarChart.setVisibleXRangeMaximum(7);
+        mBarChart.setDragEnabled(true); //move the drag with your hand
+        mBarChart.setVisibleXRangeMaximum(10);
+
+        xAxis.setDrawGridLines(false); // disappear vertically axis
+        mBarChart.getAxisRight().setDrawGridLines(false); // disappear horizontal axis
+        mBarChart.getAxisLeft().setDrawGridLines(false); // disappear horizontal axis
 
         float groupSpace = 0.09f;
         float barSpace = 0.02f; // x2 dataset
@@ -184,13 +188,12 @@ public class DashboardFragment extends Fragment {
     private ArrayList<BarEntry> barEntries1()
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(0,100));
         barEntries.add(new BarEntry(1,2000));
         barEntries.add(new BarEntry(2,791));
         barEntries.add(new BarEntry(3,630));
         barEntries.add(new BarEntry(4,458));
-        barEntries.add(new BarEntry(5,2724));
-        barEntries.add(new BarEntry(6,500));
-        barEntries.add(new BarEntry(7,2173));
+        barEntries.add(new BarEntry(5,0));
 
         return barEntries;
     }
@@ -198,13 +201,12 @@ public class DashboardFragment extends Fragment {
     private ArrayList<BarEntry> barEntries2()
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(0,200));
         barEntries.add(new BarEntry(1,900));
         barEntries.add(new BarEntry(2,631));
         barEntries.add(new BarEntry(3,800));
         barEntries.add(new BarEntry(4,384));
-        barEntries.add(new BarEntry(5,1614));
-        barEntries.add(new BarEntry(6,5000));
-        barEntries.add(new BarEntry(7,1173));
+        barEntries.add(new BarEntry(5,0));
 
         return barEntries;
     }
