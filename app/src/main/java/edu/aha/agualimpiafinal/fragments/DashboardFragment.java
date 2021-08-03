@@ -91,28 +91,43 @@ public class DashboardFragment extends Fragment {
     private void getDataForGroupedBarChart() {
 
 
-         String currentTime= String.valueOf(Converters.instance.epochTimeToDate(Converters.instance.currentUnixTime())).substring(6,10); // get Current Time
-
-         android.util.Log.e("AÑO","AÑO: "+currentTime);
-
+        final String currentYear= String.valueOf(Converters.instance.epochTimeToDate(Converters.instance.currentUnixTime())).substring(6,10); // get Current Time
 
 
         mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot querySnapshot) {
 
+                int Muestras_del_dos_mil_veintiuno_positivo = 0;
+                int Muestras_del_dos_mil_veintiuno_negativo = 0;
 
                 List<MoldeMuestra> moldeMuestra   = querySnapshot.toObjects(MoldeMuestra.class);
 
                 for( MoldeMuestra molde : moldeMuestra)
                 {
-                    String dateConverted;
-                    dateConverted = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp());
+                    String yearMuestra;
+                    yearMuestra = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp()).substring(6,10);
 
-                    android.util.Log.e("DATE","DATE: "+ dateConverted);
-                    android.util.Log.e("DATE","DATEFIREBASE: "+ molde.getMuestraTimeStamp());
+                    android.util.Log.e("MUESTRA","MUESTRA: "+ yearMuestra);
+
+                    if(yearMuestra.equals(currentYear))
+                    {
+                        if(molde.getMuestraResultado().equals("Positivo"))
+                        {
+                            Muestras_del_dos_mil_veintiuno_positivo++;
+                        }
+
+                        if(molde.getMuestraResultado().equals("Negativo"))
+                        {
+                            Muestras_del_dos_mil_veintiuno_negativo++;
+                        }
+
+                    }
 
                 }
+
+                android.util.Log.e("MUESTRA","MUESTRA: "+ Muestras_del_dos_mil_veintiuno_positivo);
+                android.util.Log.e("MUESTRA","MUESTRA: "+ Muestras_del_dos_mil_veintiuno_negativo);
 
 
 
