@@ -84,10 +84,18 @@ public class DashboardFragment extends Fragment {
 
 
 
+
         return mView;
     }
 
     private void getDataForGroupedBarChart() {
+
+
+         String currentTime= String.valueOf(Converters.instance.epochTimeToDate(Converters.instance.currentUnixTime())).substring(6,10); // get Current Time
+
+         android.util.Log.e("AÑO","AÑO: "+currentTime);
+
+
 
         mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -107,8 +115,13 @@ public class DashboardFragment extends Fragment {
                 }
 
 
+
+
             }
         });
+
+
+        createGroupedBarChat();
 
     }
 
