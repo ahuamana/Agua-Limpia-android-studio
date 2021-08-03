@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,15 +13,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
+import edu.aha.agualimpiafinal.utils.Converters;
 
 
 public class DashboardFragment extends Fragment {
@@ -34,10 +46,10 @@ public class DashboardFragment extends Fragment {
     DonutProgress donutProgressNegative;
     DonutProgress donutProgressPositive;
 
+    BarChart mBarChart;
+
     public DashboardFragment() {
-
     }
-
 
     public static DashboardFragment newInstance(String param1, String param2) {
         DashboardFragment fragment = new DashboardFragment();
@@ -53,56 +65,184 @@ public class DashboardFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    private void getDataFirebase(final String email) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        mView = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        donutProgressNegative = mView.findViewById(R.id.donut_progressNegative);
+        donutProgressPositive = mView.findViewById(R.id.donut_progressPositive);
+        mBarChart = mView.findViewById(R.id.barchart);
+
+        mMuestrasProvider = new MuestrasProvider();
+
+        getPreferences();
 
 
-       mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-           @Override
-           public void onSuccess(QuerySnapshot querySnapshot) {
+        getDataForGroupedBarChart();
+
+
+
+        return mView;
+    }
+
+    private void getDataForGroupedBarChart() {
+
+        mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+
 
                 List<MoldeMuestra> moldeMuestra   = querySnapshot.toObjects(MoldeMuestra.class);
 
                 for( MoldeMuestra molde : moldeMuestra)
-               {
-                   //android.util.Log.e("DATA", "EMAIL: "+ email);
-                   //android.util.Log.e("DATA", "EMAILFIRESTORE: "+ molde.getAuthorEmail());
+                {
+                    String dateConverted;
+                    dateConverted = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp());
 
-                   if(molde.getAuthorEmail().equals(email))
-                   {
-                       if(molde.getMuestraResultado().equals("Negativo"))
-                       {
-                           amountNegative++;
-                       }
+                    android.util.Log.e("DATE","DATE: "+ dateConverted);
+                    android.util.Log.e("DATE","DATEFIREBASE: "+ molde.getMuestraTimeStamp());
 
-                       if(molde.getMuestraResultado().equals("Positivo"))
-                       {
-                           amountPositive++;
-                       }
-                   }
-                    //android.util.Log.e("DATA", "CANTIDAD: "+ cantidad);
-
-               }
-
-                //asignar la cantidad de tus muestras
-
-               setDonutProgressData(amountNegative, donutProgressNegative);
-               setDonutProgressData(amountPositive, donutProgressPositive);
+                }
 
 
+            }
+        });
 
+    }
 
-           }
-       }).addOnFailureListener(new OnFailureListener() {
-           @Override
-           public void onFailure(@NonNull Exception e) {
+    private void createGroupedBarChat() {
 
+        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Positivo");
+        barDataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
+        barDataSet1.setColor(getResources().getColor(R.color.red));
 
-           }
-       });
+        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Negativo");
+        barDataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
+        barDataSet2.setColor(getResources().getColor(R.color.lightblue));
+
+        BarData data = new BarData(barDataSet1,barDataSet2);
+
+        mBarChart.setData(data);
+
+        //String[] days = new String[]{"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
+
+        //XAxis xAxis = mBarChart.getXAxis();
+        //xAxis.setValueFormatter(new IndexAxisValueFormatter(days));
+        //xAxis.setCenterAxisLabels(true);
+        //xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //xAxis.setGranularity(1);
+        //xAxis.setGranularityEnabled(true);
+
+        //mBarChart.setDragEnabled(true);
+        //mBarChart.setVisibleXRangeMaximum(7);
+
+        float groupSpace = 0.09f;
+        float barSpace = 0.02f; // x2 dataset
+        float barWidth = 0.45f; // x2 dataset
+        data.setBarWidth(barWidth);
+
+        //mBarChart.getXAxis().setAxisMinimum(0);
+        //mBarChart.getXAxis().setAxisMaximum(0+mBarChart.getBarData().getGroupWidth(groupSpace,barSpace));
+        //mBarChart.getAxisLeft().setAxisMinimum(0);
+
+        mBarChart.groupBars(0,groupSpace,barSpace);// start at x = 0
 
 
 
     }
+
+    private ArrayList<BarEntry> barEntries1()
+    {
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1,2000));
+        barEntries.add(new BarEntry(2,791));
+        barEntries.add(new BarEntry(3,630));
+        barEntries.add(new BarEntry(4,458));
+        barEntries.add(new BarEntry(5,2724));
+        barEntries.add(new BarEntry(6,500));
+        barEntries.add(new BarEntry(7,2173));
+
+        return barEntries;
+    }
+
+    private ArrayList<BarEntry> barEntries2()
+    {
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1,900));
+        barEntries.add(new BarEntry(2,631));
+        barEntries.add(new BarEntry(3,800));
+        barEntries.add(new BarEntry(4,384));
+        barEntries.add(new BarEntry(5,1614));
+        barEntries.add(new BarEntry(6,5000));
+        barEntries.add(new BarEntry(7,1173));
+
+        return barEntries;
+    }
+
+
+    private void getPreferences( )
+    {
+
+        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        String email =  preferences.getString("spEmail","");
+
+        getDataFirebase(email);
+
+    }
+
+    private void getDataFirebase(final String email) {
+
+
+        mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot querySnapshot) {
+
+                List<MoldeMuestra> moldeMuestra   = querySnapshot.toObjects(MoldeMuestra.class);
+
+                for( MoldeMuestra molde : moldeMuestra)
+                {
+                    //android.util.Log.e("DATA", "EMAIL: "+ email);
+                    //android.util.Log.e("DATA", "EMAILFIRESTORE: "+ molde.getAuthorEmail());
+
+                    if(molde.getAuthorEmail().equals(email))
+                    {
+                        if(molde.getMuestraResultado().equals("Negativo"))
+                        {
+                            amountNegative++;
+                        }
+
+                        if(molde.getMuestraResultado().equals("Positivo"))
+                        {
+                            amountPositive++;
+                        }
+                    }
+                    //android.util.Log.e("DATA", "CANTIDAD: "+ cantidad);
+
+                }
+
+                //asignar la cantidad de tus muestras
+
+                setDonutProgressData(amountNegative, donutProgressNegative);
+                setDonutProgressData(amountPositive, donutProgressPositive);
+
+
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+
+            }
+        });
+
+
+
+    }
+
 
     private void setDonutProgressData(int amount, DonutProgress donutProgress) {
 
@@ -173,36 +313,6 @@ public class DashboardFragment extends Fragment {
                 break;
         }
 
-    }
-
-    private void getPreferences( )
-    {
-
-        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        String email =  preferences.getString("spEmail","");
-
-        getDataFirebase(email);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-        donutProgressNegative = mView.findViewById(R.id.donut_progressNegative);
-        donutProgressPositive = mView.findViewById(R.id.donut_progressPositive);
-
-
-        mMuestrasProvider = new MuestrasProvider();
-
-        getPreferences();
-
-
-
-
-        return mView;
     }
 
 
