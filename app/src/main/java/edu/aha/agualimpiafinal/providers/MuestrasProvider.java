@@ -4,7 +4,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 
@@ -33,6 +33,8 @@ public class MuestrasProvider {
         return mCollection.orderBy("muestraTimeStamp", Query.Direction.ASCENDING);
 
     }
+
+
 
     public Query getMuestrasListOrderByDepartment(String newText)
     {

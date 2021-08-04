@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Converters extends AppCompatActivity {
@@ -25,8 +26,14 @@ public class Converters extends AppCompatActivity {
     {
         long dateEpoch = DateToConvert*1000;// its need to be in milisecond
         Date dateFormat = new java.util.Date(dateEpoch);
-        String dateFinal = new SimpleDateFormat("MM dd, yyyy hh:mma").format(dateFormat);
+        String dateFinal = new SimpleDateFormat("dd-MM-yyyy").format(dateFormat);
 
         return dateFinal;
+    }
+
+
+    public long currentUnixTime ()
+    {
+        return System.currentTimeMillis() / 1000L;
     }
 }
