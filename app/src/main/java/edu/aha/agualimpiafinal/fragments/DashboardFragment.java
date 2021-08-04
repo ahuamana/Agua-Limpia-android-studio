@@ -3,11 +3,14 @@ package edu.aha.agualimpiafinal.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +45,9 @@ public class DashboardFragment extends Fragment {
 
     int amountNegative;
     int amountPositive;
+
+    int muestras_del_dos_mil_veintiuno_positivo;
+    int muestras_del_dos_mil_veintiuno_negativo;
 
     DonutProgress donutProgressNegative;
     DonutProgress donutProgressPositive;
@@ -98,55 +104,82 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onSuccess(QuerySnapshot querySnapshot) {
 
-                int Muestras_del_dos_mil_veintiuno_positivo = 0;
-                int Muestras_del_dos_mil_veintiuno_negativo = 0;
-
                 List<MoldeMuestra> moldeMuestra   = querySnapshot.toObjects(MoldeMuestra.class);
+
+                int contadorPositive=0;
+                int contadorNegative=0;
 
                 for( MoldeMuestra molde : moldeMuestra)
                 {
                     String yearMuestra;
                     yearMuestra = Converters.instance.epochTimeToDate(molde.getMuestraTimeStamp()).substring(6,10);
 
-                    android.util.Log.e("MUESTRA","MUESTRA: "+ yearMuestra);
+                    Log.e("MUESTRA","MUESTRA: "+ yearMuestra);
 
                     if(yearMuestra.equals(currentYear))
                     {
                         if(molde.getMuestraResultado().equals("Positivo"))
                         {
-                            Muestras_del_dos_mil_veintiuno_positivo++;
+                            contadorPositive++;
                         }
 
                         if(molde.getMuestraResultado().equals("Negativo"))
                         {
-                            Muestras_del_dos_mil_veintiuno_negativo++;
+                            contadorNegative++;
                         }
 
                     }
 
                 }
 
-                android.util.Log.e("MUESTRA","MUESTRA Positivas: "+ Muestras_del_dos_mil_veintiuno_positivo);
-                android.util.Log.e("MUESTRA","MUESTRA Negativas: "+ Muestras_del_dos_mil_veintiuno_negativo);
+                android.util.Log.e("MUESTRA:INSIDE","MUESTRA Positivas: " + contadorPositive);
+                android.util.Log.e("MUESTRA:INSIDE","MUESTRA Negativas: " + contadorNegative);
+
+                muestras_del_dos_mil_veintiuno_positivo = contadorPositive;
+                muestras_del_dos_mil_veintiuno_negativo = contadorNegative;
 
 
+                //Create asyntask for craete barchar group
+                new createGruperBarchartTask().execute();
 
 
             }
         });
 
 
-        createGroupedBarChat();
 
     }
 
+    private class createGruperBarchartTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            createGroupedBarChat();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+        }
+    }
+
+
     private void createGroupedBarChat() {
 
-        BarDataSet barDataSet1 = new BarDataSet(barEntries1(),"Muestras Positivas");
+        //android.util.Log.e("MUESTRA RECIBIDAS","MUESTRA Recibidas Positivas: "+ muestras_del_dos_mil_veintiuno_positivo);
+        //android.util.Log.e("MUESTRA RECIBIDAS","MUESTRA Recibidas Negativas: "+ muestras_del_dos_mil_veintiuno_negativo);
+
+        BarDataSet barDataSet1 = new BarDataSet(barEntriesPositives(muestras_del_dos_mil_veintiuno_positivo),"Muestras Positivas");
         barDataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet1.setColor(getResources().getColor(R.color.red));
 
-        BarDataSet barDataSet2 = new BarDataSet(barEntries2(),"Muestras Negativas");
+        BarDataSet barDataSet2 = new BarDataSet(barEntriesNegatives(muestras_del_dos_mil_veintiuno_negativo),"Muestras Negativas");
         barDataSet2.setAxisDependency(YAxis.AxisDependency.LEFT);
         barDataSet2.setColor(getResources().getColor(R.color.lightblue));
 
@@ -164,7 +197,7 @@ public class DashboardFragment extends Fragment {
         xAxis.setGranularityEnabled(true);
 
         mBarChart.setDragEnabled(true); //move the drag with your hand
-        mBarChart.setVisibleXRangeMaximum(10);
+        mBarChart.setVisibleXRangeMaximum(5);
         mBarChart.getDescription().setEnabled(false);//Remove description from barchart
 
         xAxis.setDrawGridLines(false); // disappear vertically axis
@@ -186,27 +219,29 @@ public class DashboardFragment extends Fragment {
 
     }
 
-    private ArrayList<BarEntry> barEntries1()
+    private ArrayList<BarEntry> barEntriesPositives(int lastyearData)
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(0,100));
-        barEntries.add(new BarEntry(1,2000));
-        barEntries.add(new BarEntry(2,791));
-        barEntries.add(new BarEntry(3,630));
-        barEntries.add(new BarEntry(4,458));
+
+
+        barEntries.add(new BarEntry(0,0));
+        barEntries.add(new BarEntry(1,0));
+        barEntries.add(new BarEntry(2,0));
+        barEntries.add(new BarEntry(3,0));
+        barEntries.add(new BarEntry(4,lastyearData));
         barEntries.add(new BarEntry(5,0));
 
         return barEntries;
     }
 
-    private ArrayList<BarEntry> barEntries2()
+    private ArrayList<BarEntry> barEntriesNegatives(int lastyearData)
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(0,200));
-        barEntries.add(new BarEntry(1,900));
-        barEntries.add(new BarEntry(2,631));
-        barEntries.add(new BarEntry(3,800));
-        barEntries.add(new BarEntry(4,384));
+        barEntries.add(new BarEntry(0,0));
+        barEntries.add(new BarEntry(1,0));
+        barEntries.add(new BarEntry(2,0));
+        barEntries.add(new BarEntry(3,0));
+        barEntries.add(new BarEntry(4,lastyearData));
         barEntries.add(new BarEntry(5,0));
 
         return barEntries;
