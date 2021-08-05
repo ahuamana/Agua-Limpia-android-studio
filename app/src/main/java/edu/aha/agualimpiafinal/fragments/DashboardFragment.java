@@ -158,6 +158,8 @@ public class DashboardFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            createGroupedBarChat();
             progressBarChart.setVisibility(View.VISIBLE);
         }
 
@@ -221,7 +223,9 @@ public class DashboardFragment extends Fragment {
 
         mBarChart.groupBars(0,groupSpace,barSpace);// start at x = 0
 
-        mBarChart.invalidate(); // Refresh MVPChart with the new Data
+        mBarChart.notifyDataSetChanged();// Refresh MVPChart with the new Data first
+        mBarChart.invalidate(); // Refresh MVPChart with the new Data second
+
 
     }
 
