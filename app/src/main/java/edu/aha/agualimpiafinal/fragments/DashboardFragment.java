@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.github.mikephil.charting.charts.BarChart;
@@ -54,6 +55,8 @@ public class DashboardFragment extends Fragment {
 
     BarChart mBarChart;
 
+    ProgressBar progressBarChart;
+
     public DashboardFragment() {
     }
 
@@ -79,6 +82,7 @@ public class DashboardFragment extends Fragment {
 
         donutProgressNegative = mView.findViewById(R.id.donut_progressNegative);
         donutProgressPositive = mView.findViewById(R.id.donut_progressPositive);
+        progressBarChart = mView.findViewById(R.id.progress_bar_chart);
         mBarChart = mView.findViewById(R.id.barchart);
 
         mMuestrasProvider = new MuestrasProvider();
@@ -154,8 +158,7 @@ public class DashboardFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            createGroupedBarChat();
+            progressBarChart.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -163,9 +166,12 @@ public class DashboardFragment extends Fragment {
             return null;
         }
 
+
+
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
+            progressBarChart.setVisibility(View.GONE);
         }
     }
 
@@ -215,15 +221,13 @@ public class DashboardFragment extends Fragment {
 
         mBarChart.groupBars(0,groupSpace,barSpace);// start at x = 0
 
-
+        mBarChart.invalidate(); // Refresh MVPChart with the new Data
 
     }
 
     private ArrayList<BarEntry> barEntriesPositives(int lastyearData)
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-
-
         barEntries.add(new BarEntry(0,0));
         barEntries.add(new BarEntry(1,0));
         barEntries.add(new BarEntry(2,0));
