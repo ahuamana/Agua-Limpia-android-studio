@@ -568,11 +568,17 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
                 {
                     Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
 
+
+
                     mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                     mImageFile = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
                     mCircleImagePhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                     mCircleImagePhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                     mCircleImagePhoto.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath())); //Asignar la imagen al id del xml
+
+                    Log.e("IMAGE PATH",""+ mReturnValues.get(0));
+                    Log.e("IMAGE ABS PATH",""+ mImageFile.getAbsolutePath());
+
                 } else {
                     Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
                 }
