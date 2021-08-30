@@ -21,14 +21,6 @@
             android:icon="@drawable/ic_listar"
             android:title="Lista" />
 
-        <item
-            android:id="@+id/nav_photos_rasberry"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Fotos Raspberry" />
-
-
-
-
 
     </group>
 

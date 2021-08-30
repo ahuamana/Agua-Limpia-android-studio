@@ -50,7 +50,7 @@
                         android:textColor="@color/primarystatusbar"
                         android:fontFamily="@font/neuegrot_text_round_bold"
                         android:scrollHorizontally="true"
-                        android:text="PRIMEROS PASOS"
+                        android:text="BIENVENIDO"
                         android:textSize="25dp"
                         android:layout_marginTop="10dp"></TextView>
 

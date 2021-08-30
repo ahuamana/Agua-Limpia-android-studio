@@ -34,8 +34,6 @@ public class MuestrasProvider {
 
     }
 
-
-
     public Query getMuestrasListOrderByDepartment(String newText)
     {
         return mCollection.orderBy("muestraDepartamento").startAt(newText.toLowerCase()).limit(25).endAt(newText.toLowerCase()+'\uf8ff');
