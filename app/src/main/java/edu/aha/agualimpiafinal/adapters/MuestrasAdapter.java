@@ -38,11 +38,28 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
     @Override
     protected void onBindViewHolder(@NonNull MuestrasHolder holder, int position, @NonNull MoldeMuestra model) {
 
-        Log.e("DATA: ",""+ model.getAuthorFirstname());
+        Log.e("DATAFIRSTNAME",""+ model.getAuthorFirstname());
         //asignar variables con firebase
+
         String inputnombrecompleto= model.getAuthorAlias();
-        String outputnombrecompleto = inputnombrecompleto.substring(0, 1).toUpperCase() + inputnombrecompleto.substring(1);
-        holder.txtnombrecompleto.setText(outputnombrecompleto);
+
+        if(model.getAuthorAlias() != null)
+        {
+
+            if(model.getAuthorAlias().equals(""))
+            {
+                holder.txtnombrecompleto.setText("anonimo");
+            }else
+            {
+                String outputnombrecompleto = inputnombrecompleto.substring(0, 1).toUpperCase() + inputnombrecompleto.substring(1);
+                holder.txtnombrecompleto.setText(outputnombrecompleto);
+            }
+
+        }else
+        {
+           holder.txtnombrecompleto.setText("anonimo");
+        }
+
 
         //cambiar Hora actual
         //Date df = new java.util.Date(model.getMuestraTimeStamp()*1000);
