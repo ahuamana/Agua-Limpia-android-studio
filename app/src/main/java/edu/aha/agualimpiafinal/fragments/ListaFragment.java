@@ -32,9 +32,6 @@ public class ListaFragment extends Fragment {
     RecyclerView recyclerUsuarios;
     MuestrasAdapter adapter;
 
-    //Referencias para Cloudfirestore
-    FirebaseFirestore fStore;
-
     MuestrasProvider mMuestrasProvider;
 
     private SearchView svSearchDepartamento, svSearchProvincia, svSearchAuthorAlias;
@@ -54,7 +51,6 @@ public class ListaFragment extends Fragment {
         View vista = inflater.inflate(R.layout.lista_fragment, container, false);
 
         //Instanciar variables
-        fStore=FirebaseFirestore.getInstance();
         mMuestrasProvider = new MuestrasProvider();
 
         //inicializar variables para buscar
@@ -236,13 +232,23 @@ public class ListaFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+
+        if(adapter != null)
+        {
+            adapter.startListening();
+        }
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.stopListening();
+
+        if(adapter != null)
+        {
+            adapter.stopListening();
+        }
+
     }
 
     @Override

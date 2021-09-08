@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/activity_begining.xml" value="0.36102564102564105" />
+        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/drawable/edittext_graybackground.xml" value="0.3828125" />
+        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/activity_begining.xml" value="0.33" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/activity_first_steps.xml" value="0.36102564102564105" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/activity_inicio_app.xml" value="0.36102564102564105" />
+        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/cardview_comentarios.xml" value="0.36666666666666664" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/cardview_muestra.xml" value="0.36666666666666664" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_dashboard.xml" value="0.36102564102564105" />
