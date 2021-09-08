@@ -48,7 +48,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
             if(model.getAuthorAlias().equals(""))
             {
-                holder.txtnombrecompleto.setText("anonimo");
+                holder.txtnombrecompleto.setText("Anónimo");
             }else
             {
                 String outputnombrecompleto = inputnombrecompleto.substring(0, 1).toUpperCase() + inputnombrecompleto.substring(1);
@@ -57,7 +57,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
         }else
         {
-           holder.txtnombrecompleto.setText("anonimo");
+           holder.txtnombrecompleto.setText("Anónimo");
         }
 
 
