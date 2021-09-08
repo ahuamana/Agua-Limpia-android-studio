@@ -1,5 +1,6 @@
 package edu.aha.agualimpiafinal.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -57,6 +58,8 @@ public class DashboardFragment extends Fragment {
 
     ProgressBar progressBarChart;
 
+    ProgressDialog mDialog;
+
     public DashboardFragment() {
     }
 
@@ -100,10 +103,12 @@ public class DashboardFragment extends Fragment {
 
     private void getDataForGroupedBarChart() {
 
+        mDialog = new ProgressDialog(getContext());
+        mDialog.setTitle("Espere un momento");
+        mDialog.setMessage("Cargando Información!");
+        mDialog.show();
 
         final String currentYear= String.valueOf(Converters.instance.epochTimeToDate(Converters.instance.currentUnixTime())).substring(6,10); // get Current Time
-
-
         mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot querySnapshot) {
@@ -147,6 +152,13 @@ public class DashboardFragment extends Fragment {
                 new createGruperBarchartTask().execute();
 
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                android.util.Log.e("ERROR","No se pudo cargar la información: " + e.getMessage());
+                mDialog.dismiss();
             }
         });
 
@@ -226,6 +238,8 @@ public class DashboardFragment extends Fragment {
         mBarChart.notifyDataSetChanged();// Refresh MVPChart with the new Data first
         mBarChart.invalidate(); // Refresh MVPChart with the new Data second
 
+        //Cerrar dialogo
+        mDialog.dismiss();
 
     }
 
