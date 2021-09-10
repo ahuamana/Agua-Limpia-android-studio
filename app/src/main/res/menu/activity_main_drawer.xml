@@ -21,6 +21,11 @@
             android:icon="@drawable/ic_listar"
             android:title="Lista" />
 
+        <item
+            android:id="@+id/nav_laboratorio"
+            android:icon="@drawable/lab_microscope"
+            android:title="Laboratorio Virtual" />
+
 
     </group>
 
