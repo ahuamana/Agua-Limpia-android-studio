@@ -57,6 +57,13 @@
         tools:layout="@layout/fragment_dashboard"
         ></fragment>
 
+    <fragment
+        android:id="@+id/nav_laboratorio"
+        android:name="edu.aha.agualimpiafinal.fragments.LaboratorioVirtualFragment"
+        android:label=""
+        tools:layout="@layout/fragment_laboratorio_virtual"
+        ></fragment>
+
 
 
 </navigation>
