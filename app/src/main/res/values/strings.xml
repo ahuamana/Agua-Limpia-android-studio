@@ -10,6 +10,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="title_laboratorio_virtual">LABORATORIO VIRTUAL</string>
+    <string name="title_desafios">DESAFIOS</string>
+
+
 
 
     <string name="datoconcentracion">Las muestras de agua se filtran a través de una unidad de filtro cerrada Millipore 0.22 PES express donde las bacterias se recolectan en la superficie de la membrana. Esto hace que nuestra tecnología tenga una ventaja única sobre otras, ya que el filtrado elimina las posibles interferencias de fondo y la celda cerrada reduce la manipulación de muestras.</string>
