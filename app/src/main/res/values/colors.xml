@@ -7,6 +7,7 @@
 
     <color name="primaryColor">#00bcd4</color>
     <color name="primaryLightColor">#62efff</color>
+    <color name="primaryMiddleColor">#03A9F4</color>
     <color name="primaryDarkColor">#008ba3</color>
     <color name="primarystatusbar">#004ba0</color>
 
@@ -14,6 +15,7 @@
     <color name="secondaryLightColor">#66ffa6</color>
     <color name="secondaryDarkColor">#00b248</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="colorBlack">#000000</color>
     <color name="secondaryTextColor">#000000</color>
 
 

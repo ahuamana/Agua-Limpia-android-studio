@@ -37,13 +37,7 @@ public class RegistrarFragment extends Fragment implements View.OnClickListener 
         REbtnmicro = vista.findViewById(R.id.REbtnmicrobiologico);
         REbtnfisio = vista.findViewById(R.id.REbtnfisioquimico);
         REbtnfisio.setVisibility(View.GONE);
-
-
-
         REbtnmicro.setOnClickListener(this);
-
-
-
         return vista;
     }
 

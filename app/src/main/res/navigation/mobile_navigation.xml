@@ -59,9 +59,9 @@
 
     <fragment
         android:id="@+id/nav_laboratorio"
-        android:name="edu.aha.agualimpiafinal.fragments.LaboratorioVirtualFragment"
+        android:name="edu.aha.agualimpiafinal.fragments.LaboratorioDigital"
         android:label=""
-        tools:layout="@layout/fragment_laboratorio_virtual"
+        tools:layout="@layout/laboratorio_digital_fragment"
         ></fragment>
 
 
