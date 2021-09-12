@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?android:attr/actionBarSize"
-    tools:context=".fragments.LaboratorioVirtualFragment">
+    tools:context=".fragments.LaboratorioDigital">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_anchorGravity="center">
 
         <LinearLayout
+            android:id="@+id/laboratorioContenedor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="@color/colorBlack"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:textColor="#000"
+                style="@style/letra_editText"
+                android:paddingBottom="15dp"
+                android:scrollHorizontally="true"
+                android:text="@string/title_laboratorio_virtual"
+                android:textSize="25dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:text="@string/title_desafios" />
+                android:gravity="center"
+                android:text="@string/title_desafios"
+                android:textColor="@color/primarystatusbar"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
 
                 <LinearLayout
                     android:id="@+id/topLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginEnd="20dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -52,6 +67,7 @@
                             android:src="@drawable/ic_hexagon" />
 
                         <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/textViewAnimals"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -66,18 +82,18 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayoutMiddle"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/topLinearLayout"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/topLinearLayout">
 
                     <LinearLayout
-                        android:layout_weight="2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="4"
                         android:orientation="vertical">
 
                         <FrameLayout
@@ -87,41 +103,42 @@
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon"/>
+                                android:src="@drawable/ic_hexagon" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewFrutas"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Frutas"
-                                android:textStyle="bold"
-                                android:textColor="@color/primarystatusbar"
+                                android:layout_gravity="center"
                                 android:gravity="center"
-                                android:layout_gravity="center"/>
+                                android:text="Frutas"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
                         </FrameLayout>
 
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:layout_width="match_parent"
-                            android:layout_gravity="center"
                             android:layout_height="100dp"
-                            android:src="@drawable/yaku_agua128"/>
+                            android:layout_gravity="center"
+                            android:src="@drawable/yaku_agua128" />
 
 
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_weight="2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="3"
                         android:orientation="vertical">
 
                         <FrameLayout
@@ -131,16 +148,17 @@
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon"/>
+                                android:src="@drawable/ic_hexagon" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewSustancias"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Verduras"
-                                android:textStyle="bold"
-                                android:textColor="@color/primarystatusbar"
+                                android:layout_gravity="center"
                                 android:gravity="center"
-                                android:layout_gravity="center"/>
+                                android:text="Sustancias"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
                         </FrameLayout>
 
                     </LinearLayout>
@@ -149,18 +167,18 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="35dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginEnd="40dp"
-                    app:layout_constraintTop_toBottomOf="@id/linearLayoutMiddle"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayoutMiddle">
 
                     <LinearLayout
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <FrameLayout
@@ -170,25 +188,26 @@
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon"/>
+                                android:src="@drawable/ic_hexagon" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewPlantas"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Frutas"
-                                android:textStyle="bold"
-                                android:textColor="@color/primarystatusbar"
+                                android:layout_gravity="center"
                                 android:gravity="center"
-                                android:layout_gravity="center"/>
+                                android:text="Plantas"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
                         </FrameLayout>
 
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <FrameLayout
@@ -198,25 +217,23 @@
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon"/>
+                                android:src="@drawable/ic_hexagon" />
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewObjetos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Verduras"
-                                android:textStyle="bold"
-                                android:textColor="@color/primarystatusbar"
+                                android:layout_gravity="center"
                                 android:gravity="center"
-                                android:layout_gravity="center"/>
+                                android:text="Objetos"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
                         </FrameLayout>
 
                     </LinearLayout>
-
 
 
                 </LinearLayout>
-
-
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -232,27 +249,29 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.button.MaterialButton
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
+            <Button
                 android:layout_width="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:padding="8dp"
-                android:text="Animales"
-                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/buttom_comentar"
-                android:layout_height="wrap_content"/>
+                android:backgroundTint="@color/primaryMiddleColor"
+                android:padding="8dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Animales"
+                android:textColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerAnimales"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" />
 
 
         </LinearLayout>
+
 
     </ScrollView>
 

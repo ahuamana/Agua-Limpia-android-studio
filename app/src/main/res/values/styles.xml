@@ -41,6 +41,7 @@
     <style name="MyToolbar_TextAppearance">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/lightblue</item>
+
         <item name="android:background">@android:color/transparent</item>
     </style>
 
