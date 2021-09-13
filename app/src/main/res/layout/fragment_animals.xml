@@ -36,7 +36,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Imagen normal"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="190dp"
@@ -52,7 +52,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Imagen Ampliada"
-                android:textSize="25dp" />
+                android:textSize="20dp" />
+
 
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -121,7 +122,6 @@
                     android:textColor="@color/white"></Button>
 
             </LinearLayout>
-
 
 
         </LinearLayout>
