@@ -51,28 +51,45 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="100dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="2"
                                 android:adjustViewBounds="true"
                                 android:background="@drawable/waterblue64"
                                 android:gravity="center"
                                 android:text="Author"
                                 android:textSize="15sp"></ImageView>
 
-                            <TextView
-                                android:id="@+id/MMtxtauthor"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical|center_horizontal"
-                                android:layout_marginStart="8dp"
+                            <LinearLayout
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
-                                android:hint="Author"
-                                android:text="Muestra Negativa"
-                                android:textColor="@color/primarystatusbar"
-                                android:textSize="15sp"></TextView>
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/MMtxtauthor"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_gravity="center_vertical|center_horizontal"
+                                    android:layout_marginStart="8dp"
+                                    android:hint="Author"
+                                    android:text="Muestra Negativa"
+                                    android:textColor="@color/primarystatusbar"
+                                    android:textSize="15sp"></TextView>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Ausencia de bacterias"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
+
+
+
+
 
 
                         <LinearLayout
@@ -82,28 +99,37 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="100dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|center_horizontal"
-                                android:layout_weight="2"
                                 android:background="@drawable/waterred64"
                                 android:gravity="center"
                                 android:text="Author"
                                 android:textSize="15sp"></ImageView>
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/MMtxtMuestra"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:layout_gravity="center_vertical|center_horizontal"
                                 android:layout_marginStart="8dp"
-                                android:layout_weight="1"
                                 android:hint="Muestra"
                                 android:text="Muestra Positiva"
                                 android:textColor="@color/red"
-                                android:textSize="15sp"></TextView>
+                                android:textSize="15sp"></com.google.android.material.textview.MaterialTextView>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_gravity="center"
+                                android:text="Presencia de bacterias"
+                                android:layout_height="wrap_content"/>
 
                         </LinearLayout>
+
+
+
 
 
                     </LinearLayout>
