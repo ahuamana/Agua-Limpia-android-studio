@@ -8,22 +8,18 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.databinding.ActivityFirstStepsBinding;
+import edu.aha.agualimpiafinal.databinding.ActivityWelcomeBinding;
 
-public class FirstStepsActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
-
-
-    private ActivityFirstStepsBinding binding;
+    private ActivityWelcomeBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFirstStepsBinding.inflate(getLayoutInflater());
+        binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -67,14 +63,14 @@ public class FirstStepsActivity extends AppCompatActivity {
     }
 
     private void goToLogin() {
-        Intent intent = new Intent(FirstStepsActivity.this, begining.class);
+        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     private void goToInicio()
     {
-        Intent intent = new Intent(FirstStepsActivity.this, inicioApp.class);
+        Intent intent = new Intent(WelcomeActivity.this, inicioApp.class);
         startActivity(intent);
     }
 
