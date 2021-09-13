@@ -70,6 +70,13 @@
 
                     </LinearLayout>
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:text="Ausencia \n de bacterias"
+                        android:layout_height="wrap_content"/>
+
                 </LinearLayout>
 
 
@@ -107,8 +114,14 @@
                             android:text="Positivo"
                             android:textColor="#000"
                             android:layout_height="wrap_content"/>
-
                     </LinearLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:text="Presencia \n de bacterias"
+                        android:layout_height="wrap_content"/>
 
 
 
