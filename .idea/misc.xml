@@ -20,7 +20,7 @@
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/comomedir_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/compartir_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_animals.xml" value="0.36666666666666664" />
+        <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_animals.xml" value="0.33" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_dashboard.xml" value="0.36102564102564105" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_laboratorio_virtual.xml" value="0.33" />
         <entry key="..\:/Antony/Desarrollo/Android/ProyectosFinales/Agua-Limpia-android-studio/app/src/main/res/layout/fragment_map.xml" value="0.33" />
@@ -83,7 +83,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

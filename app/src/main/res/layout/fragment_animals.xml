@@ -74,46 +74,55 @@
                 android:textSize="25dp" />
 
 
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/RIimgFoto"
-                    android:src="@drawable/ic_image_camera"
-                    app:civ_circle_background_color="#9E9E9E"
-                    app:civ_border_width="40dp"
-                    app:civ_border_color="#9E9E9E"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="10dp"
-                    />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fabSelectImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_photo"
-                    android:backgroundTint="@color/greenPrimary"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginLeft="50dp"
-                    app:elevation="0dp"/>
-
-            </FrameLayout>
-            <Button
-                android:id="@+id/RIbtnRegistrar"
-                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="15dp"
-                style="@style/letra_editText"
-                android:layout_gravity="center"
-                android:background="@drawable/buttom_registrarmuestra"
-                android:text="REGISTRAR"
-                android:textColor="@color/white"></Button>
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/RIimgFoto"
+                        android:src="@drawable/ic_image_camera"
+                        app:civ_circle_background_color="#9E9E9E"
+                        app:civ_border_width="40dp"
+                        app:civ_border_color="#9E9E9E"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:paddingTop="5dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabSelectImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_photo"
+                        android:backgroundTint="@color/greenPrimary"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginLeft="50dp"
+                        app:elevation="0dp"/>
+
+                </FrameLayout>
+                <Button
+                    android:id="@+id/RIbtnRegistrar"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="15dp"
+                    style="@style/letra_editText"
+                    android:layout_gravity="center"
+                    android:background="@drawable/buttom_registrarmuestra"
+                    android:text="REGISTRAR"
+                    android:textColor="@color/white"></Button>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
