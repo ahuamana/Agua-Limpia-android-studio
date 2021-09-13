@@ -47,6 +47,7 @@ public class AnimalsFragment extends Fragment {
 
 
 
+
         return view;
     }
 }
