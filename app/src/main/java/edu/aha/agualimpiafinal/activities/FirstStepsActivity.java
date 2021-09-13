@@ -2,7 +2,9 @@ package edu.aha.agualimpiafinal.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -10,23 +12,39 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.databinding.ActivityFirstStepsBinding;
 
 public class FirstStepsActivity extends AppCompatActivity {
 
-    TextView txtSaltarFirstSteps;
-    Button btnStartFirstSteps;
+
+
+    private ActivityFirstStepsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_steps);
+        binding = ActivityFirstStepsBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        boolean skip= cargarPreferencias();
+
+        if(skip != false)
+        {
+            goToLogin();
+        }
 
         setStatusBarColor();
 
-        txtSaltarFirstSteps = findViewById(R.id.txtsaltarFirstSteps);
-        btnStartFirstSteps = findViewById(R.id.btnIniciarFirstSteps);
 
-        btnStartFirstSteps.setOnClickListener(new View.OnClickListener() {
+        setOnClickListeners();
+
+    }
+
+    private void setOnClickListeners() {
+
+
+        binding.btnIniciarFirstSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -35,16 +53,17 @@ public class FirstStepsActivity extends AppCompatActivity {
             }
         });
 
-        txtSaltarFirstSteps.setOnClickListener(new View.OnClickListener() {
+        binding.txtsaltarFirstSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //Guardar Preferencias
+                guardarPreferencias();
+                //Ir a la siguiente actividad
                 goToLogin();
 
             }
         });
-
-
     }
 
     private void goToLogin() {
@@ -71,5 +90,28 @@ public class FirstStepsActivity extends AppCompatActivity {
                 getWindow().setStatusBarColor(getResources().getColor(R.color.greeLight));
             }
         }
+    }
+
+    private void guardarPreferencias(){
+
+        SharedPreferences preferences = getSharedPreferences("SaltarBienvenida", Context.MODE_PRIVATE);
+        boolean bypass = true;
+
+        //editor permite editar y almacenar las variables
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putBoolean("bypass",bypass);
+
+        editor.commit();
+
+    }
+
+    private boolean cargarPreferencias() {
+
+        SharedPreferences preferences = getSharedPreferences("SaltarBienvenida", Context.MODE_PRIVATE);
+
+        boolean bypass= preferences.getBoolean("bypass",false);
+
+       return bypass;
+
     }
 }
