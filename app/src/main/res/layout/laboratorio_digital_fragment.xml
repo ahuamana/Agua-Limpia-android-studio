@@ -65,12 +65,12 @@
                             android:src="@drawable/ic_hexagon" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textViewAnimals"
+                            android:id="@+id/textViewInsectos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Animales"
+                            android:text="Insectos"
                             android:textColor="@color/primarystatusbar"
                             android:textStyle="bold" />
                     </FrameLayout>

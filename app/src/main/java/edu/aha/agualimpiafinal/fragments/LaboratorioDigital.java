@@ -32,7 +32,7 @@ public class LaboratorioDigital extends Fragment {
         binding = LaboratorioDigitalFragmentBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-        binding.textViewAnimals.setOnClickListener(new View.OnClickListener() {
+        binding.textViewInsectos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
