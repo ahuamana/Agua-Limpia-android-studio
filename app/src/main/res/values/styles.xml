@@ -45,6 +45,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="AppThemeNuevoOnlyStatusBarFull" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowDrawsSystemBarBackgrounds">false</item>
         <item name="colorPrimary">@color/lightblue</item>
