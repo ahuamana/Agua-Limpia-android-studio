@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.LaboratorioDigitalFragmentBinding;
+import edu.aha.agualimpiafinal.viewModels.LaboratorioDigitalViewModel;
 
 public class LaboratorioDigital extends Fragment {
 
@@ -36,7 +37,7 @@ public class LaboratorioDigital extends Fragment {
             public void onClick(View v) {
 
                 // Crea el nuevo fragmento y la transacción.
-                Fragment nuevoFragmento = new RegistrarIngresoFragment();
+                Fragment nuevoFragmento = new AnimalsFragment();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
                 transaction.addToBackStack(null);

@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.fragments;
+package edu.aha.agualimpiafinal.viewModels;
 
 import androidx.lifecycle.ViewModel;
 
