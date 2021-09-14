@@ -237,8 +237,7 @@ public class AnimalsFragment extends Fragment {
         mOptions = Options.init()
                 .setRequestCode(requescode)                                           //Request code for activity results
                 .setCount(1)                                                   //Number of images to restict selection count
-                .setFrontfacing(false)                                         //Front Facing camera on start
-                .setPreSelectedUrls(mReturnValues)                               //Pre selected Image Urls
+                .setFrontfacing(false)                                         //Front Facing camera on start                             //Pre selected Image Urls
                 .setSpanCount(4)                                               //Span count for gallery min 1 & max 5
                 .setMode(Options.Mode.Picture)                                     //Option to select only pictures or videos or both
                 .setVideoDurationLimitinSeconds(30)                            //Duration for video recording
