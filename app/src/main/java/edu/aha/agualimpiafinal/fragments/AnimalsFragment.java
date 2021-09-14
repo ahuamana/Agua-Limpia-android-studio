@@ -94,7 +94,7 @@ public class AnimalsFragment extends Fragment {
 
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
-        sustantivo = new MoldeSustantivo();
+
 
         return view;
     }
@@ -138,26 +138,61 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                registrarData();
+                sustantivo = new MoldeSustantivo();
+                sustantivo.setAuthor(email);
+                sustantivo.setTipo("Insecto");
+                sustantivo.setName("cabeza mariposa");
+                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
 
+                registrarData(mImageFile);
+
+            }
+        });
+
+        binding.btnregistrarAlas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sustantivo = new MoldeSustantivo();
+                sustantivo.setAuthor(email);
+                sustantivo.setTipo("Insecto");
+                sustantivo.setName("alas mariposa");
+                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
+
+                registrarData(mImageFile2);
+            }
+        });
+
+        binding.btnregistrarAbdomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sustantivo = new MoldeSustantivo();
+                sustantivo.setAuthor(email);
+                sustantivo.setTipo("Insecto");
+                sustantivo.setName("adbomen mariposa");
+                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
+
+
+                registrarData(mImageFile3);
             }
         });
 
     }
 
-    private void registrarData() {
+    private void registrarData(final File mImageFileReciever) {
 
         mDialog = new ProgressDialog(getContext());
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
-        if(mImageFile != null)
+        if(mImageFileReciever != null)
         {
-            if(!mImageFile.equals(""))
+            if(!mImageFileReciever.equals(""))
             {
                 mDialog.show();
 
-                mImageProvider.save(getContext(), mImageFile).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(getContext(), mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -171,7 +206,9 @@ public class AnimalsFragment extends Fragment {
                                     String url = uri.toString();
                                     Log.e("URL","url: "+ url);
 
-                                    SaveOnFirebase(url); //ACtualiza la informacion en firestorage
+                                    sustantivo.setUrl(url);
+
+                                    SaveOnFirebase(url , sustantivo); //ACtualiza la informacion en firestorage
 
                                 }
                             });
@@ -197,17 +234,11 @@ public class AnimalsFragment extends Fragment {
 
     }
 
-    private void SaveOnFirebase(String url) {
+    private void SaveOnFirebase(String url, MoldeSustantivo sus) {
 
         Log.e("url","url reciever: "+url);
 
-        sustantivo.setUrl(url);
-        sustantivo.setAuthor(email);
-        sustantivo.setTipo("Insecto");
-        sustantivo.setName("cabeza mariposa");
-        sustantivo.setTimestamp(System.currentTimeMillis()/1000);
-
-        mInsectosProvider.create(sustantivo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mInsectosProvider.create(sus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
