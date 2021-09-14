@@ -24,12 +24,14 @@
                 android:orientation="vertical">
 
                 <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/roundedImageView"
                     android:layout_width="100dp"
                     app:riv_corner_radius="3dp"
                     android:layout_height="130dp"
                     android:src="@drawable/image_test"/>
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/name"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:text="Escarabajo"

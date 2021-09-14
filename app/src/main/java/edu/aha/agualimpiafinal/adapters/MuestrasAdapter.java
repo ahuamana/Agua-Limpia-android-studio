@@ -33,8 +33,6 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
     }
 
-
-
     @Override
     protected void onBindViewHolder(@NonNull MuestrasHolder holder, int position, @NonNull MoldeMuestra model) {
 
