@@ -23,12 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        boolean skip= cargarPreferencias();
 
-        if(skip != false)
-        {
-            goToLogin();
-        }
 
         setStatusBarColor();
 
