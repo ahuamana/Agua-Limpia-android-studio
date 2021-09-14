@@ -48,6 +48,8 @@ public class AnimalsFragment extends Fragment {
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
     File mImageFile;
+    File mImageFile2;
+    File mImageFile3;
 
     Context mContext;
     ProgressDialog mDialog;
@@ -114,7 +116,21 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                openCamera();
+                openCamera(100);
+            }
+        });
+
+        binding.fabSelectImageAlas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera(110);
+            }
+        });
+
+        binding.fabSelectImageAbdomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera(120);
             }
         });
 
@@ -215,11 +231,11 @@ public class AnimalsFragment extends Fragment {
 
     }
 
-    private void openCamera() {
+    private void openCamera(int requescode) {
 
         //ImagePicker
         mOptions = Options.init()
-                .setRequestCode(100)                                           //Request code for activity results
+                .setRequestCode(requescode)                                           //Request code for activity results
                 .setCount(1)                                                   //Number of images to restict selection count
                 .setFrontfacing(false)                                         //Front Facing camera on start
                 .setPreSelectedUrls(mReturnValues)                               //Pre selected Image Urls
@@ -274,14 +290,58 @@ public class AnimalsFragment extends Fragment {
                     Log.e("IMAGE PATH",""+ mReturnValues.get(0));
                     Log.e("IMAGE ABS PATH",""+ mImageFile.getAbsolutePath());
 
-                } else {
-                    Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if(resultCode == Activity.RESULT_OK && requestCode == 110)
+                    {
+                        //code here
+                        Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
+
+                        mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                        mImageFile2 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                        binding.circleImageViewPhotoAlas.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                        binding.circleImageViewPhotoAlas.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                        binding.circleImageViewPhotoAlas.setImageBitmap(BitmapFactory.decodeFile(mImageFile2.getAbsolutePath())); //Asignar la imagen al id del xml
+
+                        Log.e("IMAGE PATH",""+ mReturnValues.get(0));
+                        Log.e("IMAGE ABS PATH",""+ mImageFile2.getAbsolutePath());
+
+
+                    }else
+                    {
+                        if(resultCode == Activity.RESULT_OK && requestCode == 120)
+                        {
+                            //code here
+                            Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
+
+                            mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                            mImageFile3 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                            binding.circleImageViewPhotoAbdomen.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                            binding.circleImageViewPhotoAbdomen.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                            binding.circleImageViewPhotoAbdomen.setImageBitmap(BitmapFactory.decodeFile(mImageFile3.getAbsolutePath())); //Asignar la imagen al id del xml
+
+                            Log.e("IMAGE PATH",""+ mReturnValues.get(0));
+                            Log.e("IMAGE ABS PATH",""+ mImageFile3.getAbsolutePath());
+
+
+                        }else
+                        {
+                            Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 }
             }
 
-        }else
-            {
-                Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
-            }
+        }
+        else
+        {
+            Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
     }
 }
