@@ -243,7 +243,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/subtitle_experiencias"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/primarystatusbar"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 

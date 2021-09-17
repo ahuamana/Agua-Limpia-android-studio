@@ -5,17 +5,21 @@ public class MoldeSustantivo {
     private String name;
     private String tipo;
     private String url;
-    private String author;
+    private String author_email;
+    private String author_name;
+    private String author_lastname;
     private long timestamp;
 
     public MoldeSustantivo() {
     }
 
-    public MoldeSustantivo(String name, String tipo, String url, String author, long timestamp) {
+    public MoldeSustantivo(String name, String tipo, String url, String author_email, String author_name, String author_lastname, long timestamp) {
         this.name = name;
         this.tipo = tipo;
         this.url = url;
-        this.author = author;
+        this.author_email = author_email;
+        this.author_name = author_name;
+        this.author_lastname = author_lastname;
         this.timestamp = timestamp;
     }
 
@@ -43,12 +47,28 @@ public class MoldeSustantivo {
         this.url = url;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthor_email() {
+        return author_email;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor_email(String author_email) {
+        this.author_email = author_email;
+    }
+
+    public String getAuthor_name() {
+        return author_name;
+    }
+
+    public void setAuthor_name(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public String getAuthor_lastname() {
+        return author_lastname;
+    }
+
+    public void setAuthor_lastname(String author_lastname) {
+        this.author_lastname = author_lastname;
     }
 
     public long getTimestamp() {

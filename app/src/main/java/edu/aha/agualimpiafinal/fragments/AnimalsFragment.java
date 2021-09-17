@@ -58,7 +58,7 @@ public class AnimalsFragment extends Fragment {
     MoldeSustantivo sustantivo;
     InsectosProvider mInsectosProvider;
 
-    String email;
+    String email, firstname, lastname;
 
     public AnimalsFragment() {
 
@@ -103,9 +103,9 @@ public class AnimalsFragment extends Fragment {
 
         SharedPreferences preferences = getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
-        //firstname= preferences.getString("spfirstname","");
+        firstname= preferences.getString("spfirstname","");
         //middlename= preferences.getString("spmiddlename","");
-        //lastname= preferences.getString("splastname","");
+        lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
 
     }
@@ -138,11 +138,8 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                sustantivo = new MoldeSustantivo();
-                sustantivo.setAuthor(email);
-                sustantivo.setTipo("Insecto");
+                setSustantivoData();
                 sustantivo.setName("cabeza mariposa");
-                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
 
                 registrarData(mImageFile);
 
@@ -153,11 +150,8 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                sustantivo = new MoldeSustantivo();
-                sustantivo.setAuthor(email);
-                sustantivo.setTipo("Insecto");
+                setSustantivoData();
                 sustantivo.setName("alas mariposa");
-                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
 
                 registrarData(mImageFile2);
             }
@@ -167,16 +161,24 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                sustantivo = new MoldeSustantivo();
-                sustantivo.setAuthor(email);
-                sustantivo.setTipo("Insecto");
+                setSustantivoData();
                 sustantivo.setName("adbomen mariposa");
-                sustantivo.setTimestamp(System.currentTimeMillis()/1000);
 
 
                 registrarData(mImageFile3);
             }
         });
+
+    }
+
+    private void setSustantivoData ()
+    {
+        sustantivo = new MoldeSustantivo();
+        sustantivo.setAuthor_email(email);
+        sustantivo.setAuthor_name(firstname);
+        sustantivo.setAuthor_lastname(lastname);
+        sustantivo.setTimestamp(System.currentTimeMillis()/1000);
+        sustantivo.setTipo("Insecto");
 
     }
 
@@ -310,13 +312,11 @@ public class AnimalsFragment extends Fragment {
                 if (resultCode == Activity.RESULT_OK && requestCode == 100)
                 {
                     Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
-
                     mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                     mImageFile = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
                     binding.circleImageViewPhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                     binding.circleImageViewPhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                     binding.circleImageViewPhoto.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath())); //Asignar la imagen al id del xml
-
                     Log.e("IMAGE PATH",""+ mReturnValues.get(0));
                     Log.e("IMAGE ABS PATH",""+ mImageFile.getAbsolutePath());
 
@@ -327,13 +327,11 @@ public class AnimalsFragment extends Fragment {
                     {
                         //code here
                         Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
-
                         mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                         mImageFile2 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
                         binding.circleImageViewPhotoAlas.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                         binding.circleImageViewPhotoAlas.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                         binding.circleImageViewPhotoAlas.setImageBitmap(BitmapFactory.decodeFile(mImageFile2.getAbsolutePath())); //Asignar la imagen al id del xml
-
                         Log.e("IMAGE PATH",""+ mReturnValues.get(0));
                         Log.e("IMAGE ABS PATH",""+ mImageFile2.getAbsolutePath());
 
@@ -344,13 +342,11 @@ public class AnimalsFragment extends Fragment {
                         {
                             //code here
                             Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
-
                             mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                             mImageFile3 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
                             binding.circleImageViewPhotoAbdomen.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                             binding.circleImageViewPhotoAbdomen.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                             binding.circleImageViewPhotoAbdomen.setImageBitmap(BitmapFactory.decodeFile(mImageFile3.getAbsolutePath())); //Asignar la imagen al id del xml
-
                             Log.e("IMAGE PATH",""+ mReturnValues.get(0));
                             Log.e("IMAGE ABS PATH",""+ mImageFile3.getAbsolutePath());
 
@@ -371,7 +367,7 @@ public class AnimalsFragment extends Fragment {
         }
 
 
-
-
     }
+
+
 }
