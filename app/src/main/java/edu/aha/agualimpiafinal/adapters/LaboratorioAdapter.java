@@ -48,8 +48,6 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         setUserDetails(model, holder);
 
 
-        holder.binding.authorName.setText(model.getAuthor_name()+" " + model.getAuthor_lastname());
-
     }
 
     private void setUserDetails(MoldeSustantivo model, ViewHolder holder) {
