@@ -23,7 +23,7 @@ public class InsectosListFragment extends Fragment {
 
     }
 
-    public static InsectosListFragment newInstance(String param1, String param2) {
+    public static InsectosListFragment newInstance() {
         InsectosListFragment fragment = new InsectosListFragment();
         Bundle args = new Bundle();
         //args.putString(ARG_PARAM1, param1);
@@ -48,7 +48,7 @@ public class InsectosListFragment extends Fragment {
         gridViewInsectos = vista.findViewById(R.id.grid_view_insectos);
         InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos);
 
-
+        gridViewInsectos.setAdapter(mAdapter);
 
         return vista;
     }
