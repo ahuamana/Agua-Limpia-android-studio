@@ -48,6 +48,8 @@ public class AnimalsFragment extends Fragment {
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
     File mImageFile;
+    File mImageFile2;
+    File mImageFile3;
 
     Context mContext;
     ProgressDialog mDialog;
@@ -56,7 +58,7 @@ public class AnimalsFragment extends Fragment {
     MoldeSustantivo sustantivo;
     InsectosProvider mInsectosProvider;
 
-    String email;
+    String email, firstname, lastname;
 
     public AnimalsFragment() {
 
@@ -92,7 +94,7 @@ public class AnimalsFragment extends Fragment {
 
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
-        sustantivo = new MoldeSustantivo();
+
 
         return view;
     }
@@ -101,9 +103,9 @@ public class AnimalsFragment extends Fragment {
 
         SharedPreferences preferences = getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
-        //firstname= preferences.getString("spfirstname","");
+        firstname= preferences.getString("spfirstname","");
         //middlename= preferences.getString("spmiddlename","");
-        //lastname= preferences.getString("splastname","");
+        lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
 
     }
@@ -114,7 +116,21 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                openCamera();
+                openCamera(100);
+            }
+        });
+
+        binding.fabSelectImageAlas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera(110);
+            }
+        });
+
+        binding.fabSelectImageAbdomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCamera(120);
             }
         });
 
@@ -122,26 +138,63 @@ public class AnimalsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                registrarData();
+                setSustantivoData();
+                sustantivo.setName("cabeza mariposa");
 
+                registrarData(mImageFile);
+
+            }
+        });
+
+        binding.btnregistrarAlas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setSustantivoData();
+                sustantivo.setName("alas mariposa");
+
+                registrarData(mImageFile2);
+            }
+        });
+
+        binding.btnregistrarAbdomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setSustantivoData();
+                sustantivo.setName("adbomen mariposa");
+
+
+                registrarData(mImageFile3);
             }
         });
 
     }
 
-    private void registrarData() {
+    private void setSustantivoData ()
+    {
+        sustantivo = new MoldeSustantivo();
+        sustantivo.setAuthor_email(email);
+        sustantivo.setAuthor_name(firstname);
+        sustantivo.setAuthor_lastname(lastname);
+        sustantivo.setTimestamp(System.currentTimeMillis()/1000);
+        sustantivo.setTipo("Insecto");
+
+    }
+
+    private void registrarData(final File mImageFileReciever) {
 
         mDialog = new ProgressDialog(getContext());
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
-        if(mImageFile != null)
+        if(mImageFileReciever != null)
         {
-            if(!mImageFile.equals(""))
+            if(!mImageFileReciever.equals(""))
             {
                 mDialog.show();
 
-                mImageProvider.save(getContext(), mImageFile).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(getContext(), mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -155,7 +208,9 @@ public class AnimalsFragment extends Fragment {
                                     String url = uri.toString();
                                     Log.e("URL","url: "+ url);
 
-                                    SaveOnFirebase(url); //ACtualiza la informacion en firestorage
+                                    sustantivo.setUrl(url);
+
+                                    SaveOnFirebase(url , sustantivo); //ACtualiza la informacion en firestorage
 
                                 }
                             });
@@ -181,17 +236,11 @@ public class AnimalsFragment extends Fragment {
 
     }
 
-    private void SaveOnFirebase(String url) {
+    private void SaveOnFirebase(String url, MoldeSustantivo sus) {
 
         Log.e("url","url reciever: "+url);
 
-        sustantivo.setUrl(url);
-        sustantivo.setAuthor(email);
-        sustantivo.setTipo("Insecto");
-        sustantivo.setName("cabeza mariposa");
-        sustantivo.setTimestamp(System.currentTimeMillis()/1000);
-
-        mInsectosProvider.create(sustantivo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mInsectosProvider.create(sus).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
@@ -215,14 +264,13 @@ public class AnimalsFragment extends Fragment {
 
     }
 
-    private void openCamera() {
+    private void openCamera(int requescode) {
 
         //ImagePicker
         mOptions = Options.init()
-                .setRequestCode(100)                                           //Request code for activity results
+                .setRequestCode(requescode)                                           //Request code for activity results
                 .setCount(1)                                                   //Number of images to restict selection count
-                .setFrontfacing(false)                                         //Front Facing camera on start
-                .setPreSelectedUrls(mReturnValues)                               //Pre selected Image Urls
+                .setFrontfacing(false)                                         //Front Facing camera on start                             //Pre selected Image Urls
                 .setSpanCount(4)                                               //Span count for gallery min 1 & max 5
                 .setMode(Options.Mode.Picture)                                     //Option to select only pictures or videos or both
                 .setVideoDurationLimitinSeconds(30)                            //Duration for video recording
@@ -264,24 +312,62 @@ public class AnimalsFragment extends Fragment {
                 if (resultCode == Activity.RESULT_OK && requestCode == 100)
                 {
                     Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
-
                     mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
                     mImageFile = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
                     binding.circleImageViewPhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                     binding.circleImageViewPhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
                     binding.circleImageViewPhoto.setImageBitmap(BitmapFactory.decodeFile(mImageFile.getAbsolutePath())); //Asignar la imagen al id del xml
-
                     Log.e("IMAGE PATH",""+ mReturnValues.get(0));
                     Log.e("IMAGE ABS PATH",""+ mImageFile.getAbsolutePath());
 
-                } else {
-                    Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if(resultCode == Activity.RESULT_OK && requestCode == 110)
+                    {
+                        //code here
+                        Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
+                        mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                        mImageFile2 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                        binding.circleImageViewPhotoAlas.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                        binding.circleImageViewPhotoAlas.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                        binding.circleImageViewPhotoAlas.setImageBitmap(BitmapFactory.decodeFile(mImageFile2.getAbsolutePath())); //Asignar la imagen al id del xml
+                        Log.e("IMAGE PATH",""+ mReturnValues.get(0));
+                        Log.e("IMAGE ABS PATH",""+ mImageFile2.getAbsolutePath());
+
+
+                    }else
+                    {
+                        if(resultCode == Activity.RESULT_OK && requestCode == 120)
+                        {
+                            //code here
+                            Log.e("DATA INGRESASTE: ", "RequestCode: " + requestCode + " & resultacode: "+resultCode);
+                            mReturnValues = data.getStringArrayListExtra(Pix.IMAGE_RESULTS);
+                            mImageFile3 = new File(mReturnValues.get(0)); // Guardar en File la imagen recibida si el usuario selecciono una imagen
+                            binding.circleImageViewPhotoAbdomen.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                            binding.circleImageViewPhotoAbdomen.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                            binding.circleImageViewPhotoAbdomen.setImageBitmap(BitmapFactory.decodeFile(mImageFile3.getAbsolutePath())); //Asignar la imagen al id del xml
+                            Log.e("IMAGE PATH",""+ mReturnValues.get(0));
+                            Log.e("IMAGE ABS PATH",""+ mImageFile3.getAbsolutePath());
+
+
+                        }else
+                        {
+                            Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 }
             }
 
-        }else
-            {
-                Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
-            }
+        }
+        else
+        {
+            Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
+
+
 }

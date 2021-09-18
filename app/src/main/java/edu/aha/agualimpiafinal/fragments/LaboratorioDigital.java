@@ -82,7 +82,8 @@ public class LaboratorioDigital extends Fragment {
             public void onClick(View v) {
 
                 // Crea el nuevo fragmento y la transacción.
-                Fragment nuevoFragmento = new AnimalsFragment();
+                //Fragment nuevoFragmento = new AnimalsFragment();
+                Fragment nuevoFragmento = new InsectosListFragment();
                 FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
                 transaction.addToBackStack(null);
