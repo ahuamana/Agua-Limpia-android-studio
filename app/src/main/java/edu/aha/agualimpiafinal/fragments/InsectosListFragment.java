@@ -71,7 +71,7 @@ public class InsectosListFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_insectos_list, container, false);
 
         gridViewInsectos = vista.findViewById(R.id.grid_view_insectos);
-        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos);
+        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos, getParentFragmentManager());
 
         gridViewInsectos.setAdapter(mAdapter);
 
