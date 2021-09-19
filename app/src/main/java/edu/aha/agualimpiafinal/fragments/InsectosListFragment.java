@@ -16,7 +16,32 @@ import edu.aha.agualimpiafinal.adapters.InsectosAdapter;
 public class InsectosListFragment extends Fragment {
 
     GridView gridViewInsectos;
-    int[] imageInsectos = {R.drawable.abdomen_mariposa, R.drawable.cabeza_mariposa};
+    int[] imageInsectos = {R.drawable.cat_icon,
+            R.drawable.perro_icon,
+            R.drawable.mariposa_icon,
+            R.drawable.hen_icon,
+            R.drawable.hare_icon,
+            R.drawable.chicken_icon,
+            R.drawable.fish_icon,
+            R.drawable.tortuga_icon,
+            R.drawable.cricket_bug_icon,
+            R.drawable.worm_icon,
+            R.drawable.beetle_icon,
+            R.drawable.praying_mantis_icon};
+
+
+    String[] nameInsectos = {"Gato"
+            ,"Perro"
+            ,"Mariposa"
+            ,"Gallina"
+            ,"Conejo"
+            ,"Pollito"
+            ,"Pescado"
+            ,"Tortuga"
+            ,"Grillo"
+            ,"Gusano"
+            ,"Escarabajo"
+            ,"Mantis"};
 
 
     public InsectosListFragment() {
@@ -46,7 +71,7 @@ public class InsectosListFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_insectos_list, container, false);
 
         gridViewInsectos = vista.findViewById(R.id.grid_view_insectos);
-        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos);
+        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos);
 
         gridViewInsectos.setAdapter(mAdapter);
 

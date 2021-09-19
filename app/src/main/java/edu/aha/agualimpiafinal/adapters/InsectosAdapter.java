@@ -1,11 +1,15 @@
 package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.cardview.widget.CardView;
 
 import edu.aha.agualimpiafinal.R;
 
@@ -13,12 +17,14 @@ public class InsectosAdapter extends BaseAdapter {
 
     Context context;
     int[] imageInsectos;
+    String[] nameInsectos;
     LayoutInflater inflater;
 
-    public InsectosAdapter(Context context, int[] imageInsectos)
+    public InsectosAdapter(Context context, int[] imageInsectos, String[] nameInsectos)
     {
         this.context = context;
         this.imageInsectos = imageInsectos;
+        this.nameInsectos = nameInsectos;
     }
 
     @Override
@@ -51,8 +57,14 @@ public class InsectosAdapter extends BaseAdapter {
 
         //Declarar variables del layout
         ImageView imageView = convertView.findViewById(R.id.imageView_row_insectos);
+        CardView cardView = convertView.findViewById(R.id.cardView_insectos);
+        TextView textViewNameInsectos = convertView.findViewById(R.id.textView_name_insectos);
 
+
+        ////All code here
+        //cardView.setCardBackgroundColor(Color.GREEN);  //Background color for cardview
         imageView.setImageResource(imageInsectos[position]);
+        textViewNameInsectos.setText(nameInsectos[position]);
 
         return convertView;
     }
