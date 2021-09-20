@@ -115,4 +115,6 @@ public class LaboratorioDigital extends Fragment {
 
         mAdapter.stopListening();
     }
+
+
 }

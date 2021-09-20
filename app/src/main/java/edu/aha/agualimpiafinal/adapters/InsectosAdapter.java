@@ -1,17 +1,28 @@
 package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.AnimalsActivity;
+import edu.aha.agualimpiafinal.activities.LoginActivity;
+import edu.aha.agualimpiafinal.fragments.AnimalsFragment;
+import edu.aha.agualimpiafinal.fragments.InsectosListFragment;
 
 public class InsectosAdapter extends BaseAdapter {
 
@@ -19,12 +30,15 @@ public class InsectosAdapter extends BaseAdapter {
     int[] imageInsectos;
     String[] nameInsectos;
     LayoutInflater inflater;
+    FragmentManager fragmentManager;
 
-    public InsectosAdapter(Context context, int[] imageInsectos, String[] nameInsectos)
+    public InsectosAdapter(Context context, int[] imageInsectos, String[] nameInsectos, FragmentManager fragmentManager)
     {
         this.context = context;
         this.imageInsectos = imageInsectos;
         this.nameInsectos = nameInsectos;
+        this.fragmentManager= fragmentManager;
+
     }
 
     @Override
@@ -34,6 +48,9 @@ public class InsectosAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+
+
+
         return null;
     }
 
@@ -66,6 +83,49 @@ public class InsectosAdapter extends BaseAdapter {
         imageView.setImageResource(imageInsectos[position]);
         textViewNameInsectos.setText(nameInsectos[position]);
 
+        goToNextActivity(context, position, cardView);
+
         return convertView;
     }
+
+    private void goToNextActivity(final Context context, int position, CardView cardView) {
+
+        switch (position)
+        {
+            case 1:
+                break;
+
+
+            case 2:
+
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
+                        Log.e("POSITION","POSITION 3 ");
+
+                        //Intent i = new Intent(context, AnimalsActivity.class);
+                        //context.startActivity(i);
+
+                        replaceFragmentWithOther(new AnimalsFragment());
+
+                    }
+                });
+
+                break;
+        }
+    }
+
+    private void replaceFragmentWithOther(Fragment nuevoFragmento)
+    {
+        // Crea el nuevo fragmento y la transacción.
+        //Fragment nuevoFragmento = new AnimalsFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
+        transaction.addToBackStack("insectos");
+        // Commit a la transacción
+        transaction.commit();
+    }
+
+
 }

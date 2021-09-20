@@ -20,7 +20,7 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageView_row_insectos"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             app:riv_corner_radius="3dp"
             android:src="@drawable/background_saveinfo"
             android:layout_height="100dp"/>

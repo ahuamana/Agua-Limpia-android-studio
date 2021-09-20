@@ -45,8 +45,8 @@ public class DashboardFragment extends Fragment {
     MuestrasProvider mMuestrasProvider;
     View mView;
 
-    int amountNegative;
-    int amountPositive;
+    int amountNegative = 0;
+    int amountPositive = 0;
 
     int muestras_del_dos_mil_veintiuno_positivo;
     int muestras_del_dos_mil_veintiuno_negativo;
@@ -282,6 +282,9 @@ public class DashboardFragment extends Fragment {
 
     private void getDataFirebase(final String email) {
 
+        //Reset amount negative and positive from donus progress bar
+        amountNegative=0;
+        amountPositive=0;
 
         mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -310,7 +313,9 @@ public class DashboardFragment extends Fragment {
 
                 }
 
-                //asignar la cantidad de tus muestras
+                //asignar la cantidad de tus muestras a los donust progress
+
+
 
                 setDonutProgressData(amountNegative, donutProgressNegative);
                 setDonutProgressData(amountPositive, donutProgressPositive);

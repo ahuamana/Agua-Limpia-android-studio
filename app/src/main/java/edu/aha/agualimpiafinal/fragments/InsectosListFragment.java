@@ -1,13 +1,14 @@
 package edu.aha.agualimpiafinal.fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.InsectosAdapter;
@@ -71,10 +72,23 @@ public class InsectosListFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_insectos_list, container, false);
 
         gridViewInsectos = vista.findViewById(R.id.grid_view_insectos);
-        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos);
+        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos, getParentFragmentManager());
 
         gridViewInsectos.setAdapter(mAdapter);
 
         return vista;
+    }
+
+
+    public void replaceFragment(Fragment nuevoFragmento)
+    {
+
+        //Fragment nuevoFragmento = new AnimalsFragment();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
+        transaction.addToBackStack(null);
+
+        // Commit a la transacción
+        transaction.commit();
     }
 }
