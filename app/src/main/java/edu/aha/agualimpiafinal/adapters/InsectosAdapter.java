@@ -1,6 +1,7 @@
 package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +14,13 @@ import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.AnimalsActivity;
+import edu.aha.agualimpiafinal.activities.LoginActivity;
 import edu.aha.agualimpiafinal.fragments.AnimalsFragment;
 import edu.aha.agualimpiafinal.fragments.InsectosListFragment;
 
@@ -44,6 +48,9 @@ public class InsectosAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+
+
+
         return null;
     }
 
@@ -97,6 +104,9 @@ public class InsectosAdapter extends BaseAdapter {
                         Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
                         Log.e("POSITION","POSITION 3 ");
 
+                        //Intent i = new Intent(context, AnimalsActivity.class);
+                        //context.startActivity(i);
+
                         replaceFragmentWithOther(new AnimalsFragment());
 
                     }
@@ -112,8 +122,7 @@ public class InsectosAdapter extends BaseAdapter {
         //Fragment nuevoFragmento = new AnimalsFragment();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
-        transaction.addToBackStack(null);
-
+        transaction.addToBackStack("insectos");
         // Commit a la transacción
         transaction.commit();
     }
