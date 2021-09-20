@@ -19,6 +19,12 @@
         se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
 
 
+    <string name="steps_healthmetric">1. Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.<br/>
+        2.Coloque el frasco fuera de la luz solar directa a una temperatura mínima de 70 ° F y déjelo por 48 horas.<br/>
+        3.Si el líquido permanece morado, la prueba es negativa. Si se vuelve amarillo, significa que contiene altos niveles de bacterias.
+    </string>
+
+
     <string name="datoconcentracion">Las muestras de agua se filtran a través de una unidad de filtro cerrada Millipore 0.22 PES express donde las bacterias se recolectan en la superficie de la membrana. Esto hace que nuestra tecnología tenga una ventaja única sobre otras, ya que el filtrado elimina las posibles interferencias de fondo y la celda cerrada reduce la manipulación de muestras.</string>
     <string name="datoreaccion">La unidad de filtrado está saturada con un excedente de sustrato enzimático. \nEl sustrato de la enzima reacciona con una enzima bacteriana natural y se libera un compuesto fluorescente. El tiempo de reacción es de aproximadamente 15 a 30 minutos según la aplicación.</string>
     <string name="datomedicion">La cantidad de fluorescencia se mide utilizando un fluorómetro de mano que funciona con pilas. Cuanto más fluorescencia se produzca, más bacterias habrá en la muestra. \nEl resultado se informa como un valor Bactiquant (BQV). \nEl BQV se define como la fluorescencia generada en una muestra de agua de 250 ml en 30 minutos a 23 o C (73,4 o F). Aunque el volumen de la muestra y los tiempos de reacción se pueden modificar para cumplir con una aplicación específica, los resultados analíticos siempre se ajustan a las condiciones estándar.</string>
