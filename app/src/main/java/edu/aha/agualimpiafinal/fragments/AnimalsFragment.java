@@ -116,17 +116,20 @@ public class AnimalsFragment extends Fragment {
 
                 if(task.isSuccessful())
                 {
-                    Log.e("TASK", "URL DOCUMENTO 0:"+ task.getResult().getDocuments().get(0).get("url"));
+                    if(task.getResult().size() > 0)
+                    {
+                        Log.e("TASK", "URL DOCUMENTO 0:"+ task.getResult().getDocuments().get(0).get("url"));
 
-                    String url = task.getResult().getDocuments().get(0).get("url").toString();
+                        String url = task.getResult().getDocuments().get(0).get("url").toString();
 
-                    binding.circleImageViewPhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
-                    binding.circleImageViewPhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                        binding.circleImageViewPhoto.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                        binding.circleImageViewPhoto.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
 
-                    //Set image from db
-                    Glide.with(getActivity())
-                            .load(url)
-                            .into(binding.circleImageViewPhoto);
+                        //Set image from db
+                        Glide.with(getActivity())
+                                .load(url)
+                                .into(binding.circleImageViewPhoto);
+                    }
                 }
 
             }
