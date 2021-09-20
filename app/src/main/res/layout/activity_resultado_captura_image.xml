@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/back_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -38,7 +38,6 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/circleImageProduct"
                         android:layout_width="match_parent"
                         android:layout_height="180dp"
                         android:src="@drawable/star"
@@ -49,7 +48,6 @@
 
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/fabSelectImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/congratulations"
@@ -58,6 +56,55 @@
                     android:contentDescription="Sube una foto"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="bottom|center"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ganaste"
+                        android:textColor="#FF2442"
+                        android:textSize="20dp"
+                        android:contentDescription="Sube una foto"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="bottom|center"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="30dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardCornerRadius="5dp"
+                        android:backgroundTint="@color/greenPrimary"
+                        android:layout_height="30dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/points"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:layout_gravity="center"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="punto"
+                        android:textColor="#FF2442"
+                        android:textSize="20dp"
+                        android:contentDescription="Sube una foto"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="bottom|center"/>
+
+                </LinearLayout>
 
 
                 <LinearLayout
@@ -82,12 +129,12 @@
                             android:text="Mariposa"/>
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/textViewName"
+                            android:id="@+id/roundedImageViewSustantivo"
                             android:layout_width="wrap_content"
                             app:riv_corner_radius="5dp"
                             android:layout_marginTop="5dp"
                             android:adjustViewBounds="true"
-                            android:layout_height="wrap_content"
+                            android:layout_height="200dp"
                             android:textColor="@color/colorBlack"
                             android:src="@drawable/real_mariposa_monarca"/>
 
@@ -127,7 +174,7 @@
                             android:text="Descripcion"/>
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textViewPrecio"
+                            android:id="@+id/textViewDescriptionSustantivo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/descripcion_mariposa"
@@ -164,7 +211,7 @@
                 </LinearLayout>
 
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/btnRegistrarProductDetails"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
