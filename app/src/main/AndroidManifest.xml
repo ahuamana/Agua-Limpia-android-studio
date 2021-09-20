@@ -20,9 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.AnimalsActivity"
-            android:exported="true" />
-        <activity
             android:name=".activities.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity

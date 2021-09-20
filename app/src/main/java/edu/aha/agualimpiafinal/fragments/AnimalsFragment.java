@@ -91,9 +91,6 @@ public class AnimalsFragment extends Fragment {
 
         setOnClickListeners();
 
-
-
-
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
 
