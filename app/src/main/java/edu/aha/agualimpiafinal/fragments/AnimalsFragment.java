@@ -35,6 +35,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.LoginActivity;
+import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
 import edu.aha.agualimpiafinal.databinding.FragmentAnimalsBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
@@ -247,6 +249,9 @@ public class AnimalsFragment extends Fragment {
                 {
                     Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
+
+                    goToNextActivity();
+
                 }else {
                     mDialog.dismiss();
                     Toast.makeText(mContext, "No se pudieron almacenar los datos", Toast.LENGTH_SHORT).show();
@@ -261,6 +266,13 @@ public class AnimalsFragment extends Fragment {
             }
         });
 
+    }
+
+    private void goToNextActivity() {
+
+        //Intent i = new Intent(mContext, )
+        Intent i = new Intent(getActivity(), ResultadoCapturaImageActivity.class);
+        startActivity(i);
     }
 
     private void openCamera(int requescode) {
