@@ -176,6 +176,7 @@
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textViewDescriptionSustantivo"
                             android:layout_width="wrap_content"
+                            android:layout_marginEnd="20dp"
                             android:layout_height="wrap_content"
                             android:text="@string/descripcion_mariposa"
                             android:textColor="@color/colorBlack"
@@ -237,6 +238,14 @@
         </FrameLayout>
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/premio_icon"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_height="wrap_content"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
