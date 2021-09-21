@@ -188,6 +188,7 @@ public class SugerenciasFragment extends Fragment {
 
     }
 
+    /*
     private void AbrirDialogoComentar() {
 
         //Llamar al dialogo
@@ -250,6 +251,8 @@ public class SugerenciasFragment extends Fragment {
 
 
     }
+     */
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
