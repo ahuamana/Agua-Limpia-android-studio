@@ -35,6 +35,12 @@ public class PointsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        mDialog = new ProgressDialog(PointsActivity.this);
+        mDialog.setTitle("Espere un momento");
+        mDialog.setMessage("Cargando Información!");
+        mDialog.setCancelable(false);
+        mDialog.show();
+
         SetOnClickListeners();
 
         cargarTokenLocalmente();
@@ -108,10 +114,6 @@ public class PointsActivity extends AppCompatActivity {
     private void cargarTokenLocalmente() {
 
 
-        mDialog = new ProgressDialog(getApplicationContext());
-        mDialog.setTitle("Espere un momento");
-        mDialog.setMessage("Cargando Información!");
-        mDialog.show();
 
         SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
         String token= preferences.getString("token","");

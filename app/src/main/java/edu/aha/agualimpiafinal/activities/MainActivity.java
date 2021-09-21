@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -55,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
 
+        cargarPreferencias();
+        getUserInfo();
+
 
         binding.appBarMain.fabPoints.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        cargarPreferencias();
-        getUserInfo();
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if(task.isSuccessful())
                 {
-
-
                     mUser.setToken(task.getResult());
 
                     guardarTokenLocalmente(mUser.getToken());
@@ -146,6 +147,13 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("TAG", "No se pudo crear el token");
 
                 }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.e("ERROR","ERROR: "+e.getMessage());
 
             }
         });
