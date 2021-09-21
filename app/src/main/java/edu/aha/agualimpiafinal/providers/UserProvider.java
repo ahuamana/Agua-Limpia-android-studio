@@ -2,7 +2,9 @@ package edu.aha.agualimpiafinal.providers;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 
@@ -25,6 +27,11 @@ public class UserProvider {
     public Task<Void> create(User user)
     {
         return mCollection.document(user.getToken()).set(user);
+    }
+
+    public Task<DocumentSnapshot> searchUser(String token)
+    {
+        return mCollection.document(token).get();
     }
 
 }

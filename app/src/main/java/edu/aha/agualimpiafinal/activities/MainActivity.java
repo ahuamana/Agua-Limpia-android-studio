@@ -1,6 +1,7 @@
 package edu.aha.agualimpiafinal.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,12 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.databinding.ActivityMainBinding;
 import edu.aha.agualimpiafinal.models.User;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
@@ -38,17 +42,35 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
 
         cargarPreferencias();
         getUserInfo();
+
+
+        binding.appBarMain.fabPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MainActivity.this, PointsActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+
 
 
 
@@ -95,9 +117,30 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     mUser.setToken(task.getResult());
+
+                    guardarTokenLocalmente(mUser.getToken());
+
                     Log.d("TAG", "TOKENCREADO: "+task.getResult());
 
-                    goToCreateData(mUser);
+                    mUserProvider.searchUser(mUser.getToken()).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                            if(task.getResult().exists())
+                            {
+                                Log.e("TAG",""+task.getResult());
+                            }else
+                            {
+
+                                Log.e("TAG",""+task.getResult());
+                                goToCreateData(mUser);
+                            }
+
+                        }
+                    });
+
+
+
 
                 }else
                 {
@@ -106,8 +149,24 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.e("ERROR","ERROR: "+e.getMessage());
+
+            }
         });
 
+    }
+
+    private void guardarTokenLocalmente(String tokenReciever) {
+
+            SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
+            //editor permite editar y almacenar las variables
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("token",tokenReciever);
+            editor.commit();
     }
 
     private void goToCreateData(User mUser) {
@@ -139,12 +198,10 @@ public class MainActivity extends AppCompatActivity {
     private void cargarPreferencias() {
 
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-
         firstname= preferences.getString("spfirstname","");
         middlename= preferences.getString("spmiddlename","");
         lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
-
         //asignar datos guardados a los respectivos campos
 
 

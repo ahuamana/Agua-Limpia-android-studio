@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+
     <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,10 +18,19 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_points"
+        android:layout_width="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/premio_icon"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_height="wrap_content"/>
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:popupTheme="@style/MyToolbar_TextAppearance" />
+        app:popupTheme="@style/MyToolbar_TextAppearance"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
