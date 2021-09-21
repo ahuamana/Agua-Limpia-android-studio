@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.databinding.ActivityMainBinding;
 import edu.aha.agualimpiafinal.models.User;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
@@ -40,27 +41,35 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        FloatingActionButton fabRewards = findViewById(R.id.fab_points);
+
+
+        binding.appBarMain.fabPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MainActivity.this, PointsActivity.class);
+                startActivity(i);
+
+            }
+        });
+
 
         cargarPreferencias();
         getUserInfo();
 
-
-        fabRewards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, PointsActivity.class);
-                startActivity(i);
-            }
-        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
