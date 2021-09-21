@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -97,7 +98,24 @@ public class MainActivity extends AppCompatActivity {
                     mUser.setToken(task.getResult());
                     Log.d("TAG", "TOKENCREADO: "+task.getResult());
 
-                    goToCreateData(mUser);
+                    mUserProvider.searchUser(mUser.getToken()).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                            if(task.getResult().exists())
+                            {
+                                Log.e("TAG",""+task.getResult());
+                            }else
+                            {
+                                Log.e("TAG",""+task.getResult());
+                                goToCreateData(mUser);
+                            }
+
+                        }
+                    });
+
+
+
 
                 }else
                 {
