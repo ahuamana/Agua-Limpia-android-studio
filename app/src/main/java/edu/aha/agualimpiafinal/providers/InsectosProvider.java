@@ -5,6 +5,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
+
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 
 public class InsectosProvider {
@@ -24,6 +26,15 @@ public class InsectosProvider {
     public Query getMuestrasListOrderByTimeStamp()
     {
         return mCollection.orderBy("timestamp", Query.Direction.ASCENDING);
+
+    }
+
+    public Query search(String emailSuscriber, String nameSustantivo)
+    {
+        return mCollection
+                .whereEqualTo("author_email",emailSuscriber)
+                .whereEqualTo("name",nameSustantivo)
+                .orderBy("timestamp", Query.Direction.DESCENDING);
 
     }
 }

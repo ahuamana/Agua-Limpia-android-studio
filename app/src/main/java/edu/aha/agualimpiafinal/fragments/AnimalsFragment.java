@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.fxn.pix.Options;
 import com.fxn.pix.Pix;
 import com.fxn.utility.PermUtil;
@@ -29,11 +30,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.LoginActivity;
 import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
@@ -79,6 +82,12 @@ public class AnimalsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mImageProvider=new ImageProvider();
+        mInsectosProvider = new InsectosProvider();
+
+        cargarPreferencias();
+
+
 
     }
 
@@ -89,15 +98,46 @@ public class AnimalsFragment extends Fragment {
         binding = FragmentAnimalsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-        cargarPreferencias();
+
 
         setOnClickListeners();
 
-        mImageProvider=new ImageProvider();
-        mInsectosProvider = new InsectosProvider();
+
+        getUserInfo(email, "cabeza mariposa", binding.circleImageViewPhoto);
+        getUserInfo(email, "alas mariposa", binding.circleImageViewPhotoAlas);
+        getUserInfo(email, "adbomen mariposa", binding.circleImageViewPhotoAbdomen);
 
 
         return view;
+    }
+
+    private void getUserInfo(String emailReceiver, String nameSustantivo, final CircleImageView circleImageView) {
+
+        //Log.e("TASK", "email" + email);
+        mInsectosProvider.search(emailReceiver,nameSustantivo).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if(task.isSuccessful())
+                {
+                    if(task.getResult().size() > 0)
+                    {
+                        //Log.e("TASK", "URL DOCUMENTO 0:"+ task.getResult().getDocuments().get(0).get("url"));
+
+                        String url = task.getResult().getDocuments().get(0).get("url").toString();
+                        circleImageView.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
+                        circleImageView.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+
+                        //Set image from db
+                        Glide.with(getActivity())
+                                .load(url)
+                                .into(circleImageView);
+                    }
+                }
+
+            }
+        });
+
     }
 
     private void cargarPreferencias() {

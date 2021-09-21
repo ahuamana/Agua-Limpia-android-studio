@@ -1,14 +1,20 @@
 package edu.aha.agualimpiafinal.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -20,10 +26,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.models.User;
+import edu.aha.agualimpiafinal.providers.UserProvider;
 
 public class MainActivity extends AppCompatActivity {
 
-       private AppBarConfiguration mAppBarConfiguration;
+    UserProvider mUserProvider;
+    User mUser;
+
+    String firstname, middlename, lastname, email;
+
+    private AppBarConfiguration mAppBarConfiguration;
 
 
     @Override
@@ -33,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        cargarPreferencias();
+        getUserInfo();
 
 
 
@@ -66,6 +82,74 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
+
+    private void getUserInfo() {
+
+        mUserProvider = new UserProvider();
+        mUser = new User();
+
+        mUserProvider.createToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+
+                if(task.isSuccessful())
+                {
+                    mUser.setToken(task.getResult());
+                    Log.d("TAG", "TOKENCREADO: "+task.getResult());
+
+                    goToCreateData(mUser);
+
+                }else
+                {
+                    Log.d("TAG", "No se pudo crear el token");
+
+                }
+
+            }
+        });
+
+    }
+
+    private void goToCreateData(User mUser) {
+
+        mUser.setAuthor_firstname(firstname);
+        mUser.setAuthor_email(email);
+        mUser.setAuthor_alias(middlename);
+        mUser.setAuthor_lastname(lastname);
+        mUser.setPoints(0);
+        mUserProvider.create(mUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Log.e("USERPROFILE","User Points creado");
+
+                }else
+                {
+                   Log.e("USERPROFILE","Error al crear la Base de datos");
+                }
+
+            }
+        });
+
+    }
+
+
+    private void cargarPreferencias() {
+
+        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+
+        firstname= preferences.getString("spfirstname","");
+        middlename= preferences.getString("spmiddlename","");
+        lastname= preferences.getString("splastname","");
+        email= preferences.getString("spEmail","");
+
+        //asignar datos guardados a los respectivos campos
+
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

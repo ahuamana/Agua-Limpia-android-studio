@@ -15,14 +15,32 @@
     <string name="title_desafios">DESAFIOS</string>
     <string name="subtitle_experiencias">EXPERIENCIAS PARA TI</string>
     <string name="congratulations">FELICIDADES!!</string>
-    <string name="descripcion_mariposa"> <b>Sabías que, las mariposas</b>
+    <string name="descripcion_mariposa"><b>Sabías que, las mariposas</b>
         se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
+
+
+    <string name="steps_healthmetric_step1">Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.</string>
+    <string name="steps_healthmetric_step2">Coloque el frasco fuera de la luz solar directa a una temperatura mínima de 70 ° F y déjelo por 48 horas.</string>
+    <string name="steps_healthmetric_step3">Si el líquido permanece morado, la prueba es negativa. Si se vuelve amarillo, significa que contiene altos niveles de bacterias.</string>
+
+    <string name="steps_watersafe_step1">Saque el vial de la prueba de bacterias y colóquelo en posición vertical sobre una superficie plana.</string>
+    <string name="steps_watersafe_step2">Recoja una muestra de agua o abra el grifo a un chorro muy lento.</string>
+    <string name="steps_watersafe_step3">Gire con cuidado la tapa y llene el vial hasta 1/2 pulgada por debajo de la parte superior (hasta la línea de 5 ml). NO LLENE DEMASIADO y NO DERRAME el polvo de crecimiento bacteriano en el vial.</string>
+    <string name="steps_watersafe_step4">Vuelva a colocar la tapa y gírela firmemente. Agite el vial vigorosamente durante 20 segundos.</string>
+    <string name="steps_watersafe_step5">Coloque el vial tapado en posición vertical en un área cálida (70-90 F) donde no se pueda tocar durante 48 horas.</string>
+    <string name="steps_watersafe_step6">Después de 48 hrs., Observe el color del líquido sin abrir el vial: <br/>
+        Color púrpura: resultado negativo (no se detectaron bacterias)<br/>
+        Color amarillo: Resultado positivo (es muy probable que potencialmente se detectaron bacterias dañinas)</string>
+
 
 
     <string name="datoconcentracion">Las muestras de agua se filtran a través de una unidad de filtro cerrada Millipore 0.22 PES express donde las bacterias se recolectan en la superficie de la membrana. Esto hace que nuestra tecnología tenga una ventaja única sobre otras, ya que el filtrado elimina las posibles interferencias de fondo y la celda cerrada reduce la manipulación de muestras.</string>
     <string name="datoreaccion">La unidad de filtrado está saturada con un excedente de sustrato enzimático. \nEl sustrato de la enzima reacciona con una enzima bacteriana natural y se libera un compuesto fluorescente. El tiempo de reacción es de aproximadamente 15 a 30 minutos según la aplicación.</string>
     <string name="datomedicion">La cantidad de fluorescencia se mide utilizando un fluorómetro de mano que funciona con pilas. Cuanto más fluorescencia se produzca, más bacterias habrá en la muestra. \nEl resultado se informa como un valor Bactiquant (BQV). \nEl BQV se define como la fluorescencia generada en una muestra de agua de 250 ml en 30 minutos a 23 o C (73,4 o F). Aunque el volumen de la muestra y los tiempos de reacción se pueden modificar para cumplir con una aplicación específica, los resultados analíticos siempre se ajustan a las condiciones estándar.</string>
     <string name="title_activity_inicio_app">inicioApp</string>
+    <string name="default_notification_channel_id">"fcm_default_channel"</string>
+
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

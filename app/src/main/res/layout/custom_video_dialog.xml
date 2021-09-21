@@ -21,21 +21,21 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/DItittle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="YOUTUBE VIDEO"
-                style="@style/letra_editText"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.082">
-
-            </TextView>
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/custom_bartop"
+                android:backgroundTint="@color/red"
+                app:layout_constraintVertical_bias="0.082"/>
 
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/DIvideoYoutube"

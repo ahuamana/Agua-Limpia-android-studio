@@ -95,7 +95,7 @@ public class ComoMedirFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dialog.setContentView(R.layout.custom_text_dialog);
+                dialog.setContentView(R.layout.custom_text_dialog_healtmetric);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
                 dialog.setCanceledOnTouchOutside(true);
@@ -107,7 +107,7 @@ public class ComoMedirFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dialog.setContentView(R.layout.custom_text_dialog);
+                dialog.setContentView(R.layout.custom_text_dialog_watersafe);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
                 dialog.setCanceledOnTouchOutside(true);
