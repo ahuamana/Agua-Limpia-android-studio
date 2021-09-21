@@ -57,12 +57,14 @@
                             android:orientation="vertical">
 
                             <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/imageViewMedalPoints"
                                 android:layout_width="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:src="@drawable/bronze_medal"
                                 android:layout_height="150dp"/>
 
                             <com.google.android.material.textview.MaterialTextView
+                                android:id="@+id/textViewPoints"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="501"
@@ -132,7 +134,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:textColor="@color/primarystatusbar"
-                            android:text="Bronze"/>
+                            android:text="Bronce"/>
 
                     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package edu.aha.agualimpiafinal.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,11 +48,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fabRewards = findViewById(R.id.fab_points);
 
         cargarPreferencias();
         getUserInfo();
 
 
+        fabRewards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, PointsActivity.class);
+                startActivity(i);
+            }
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if(task.isSuccessful())
                 {
+
+
                     mUser.setToken(task.getResult());
+
+                    guardarTokenLocalmente(mUser.getToken());
+
                     Log.d("TAG", "TOKENCREADO: "+task.getResult());
 
                     mUserProvider.searchUser(mUser.getToken()).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -129,6 +143,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void guardarTokenLocalmente(String tokenReciever) {
+
+            SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
+            //editor permite editar y almacenar las variables
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("token",tokenReciever);
+            editor.commit();
+    }
+
     private void goToCreateData(User mUser) {
 
         mUser.setAuthor_firstname(firstname);
@@ -158,12 +181,10 @@ public class MainActivity extends AppCompatActivity {
     private void cargarPreferencias() {
 
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-
         firstname= preferences.getString("spfirstname","");
         middlename= preferences.getString("spmiddlename","");
         lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
-
         //asignar datos guardados a los respectivos campos
 
 
