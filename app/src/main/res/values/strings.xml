@@ -28,10 +28,9 @@
     <string name="steps_watersafe_step3">Gire con cuidado la tapa y llene el vial hasta 1/2 pulgada por debajo de la parte superior (hasta la línea de 5 ml). NO LLENE DEMASIADO y NO DERRAME el polvo de crecimiento bacteriano en el vial.</string>
     <string name="steps_watersafe_step4">Vuelva a colocar la tapa y gírela firmemente. Agite el vial vigorosamente durante 20 segundos.</string>
     <string name="steps_watersafe_step5">Coloque el vial tapado en posición vertical en un área cálida (70-90 F) donde no se pueda tocar durante 48 horas.</string>
-    <string name="steps_watersafe_step6">Después de 48 hrs., Observe el color del líquido sin abrir el vial: <br/>
-        Color púrpura: resultado negativo (no se detectaron bacterias)<br/>
+    <string name="steps_watersafe_step6">Después de 48 hrs., Observe el color del líquido sin abrir el vial: <br />
+        Color púrpura: resultado negativo (no se detectaron bacterias)<br />
         Color amarillo: Resultado positivo (es muy probable que potencialmente se detectaron bacterias dañinas)</string>
-
 
 
     <string name="datoconcentracion">Las muestras de agua se filtran a través de una unidad de filtro cerrada Millipore 0.22 PES express donde las bacterias se recolectan en la superficie de la membrana. Esto hace que nuestra tecnología tenga una ventaja única sobre otras, ya que el filtrado elimina las posibles interferencias de fondo y la celda cerrada reduce la manipulación de muestras.</string>

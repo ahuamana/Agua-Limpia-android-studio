@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.e("TAG",""+task.getResult());
                             }else
                             {
+
                                 Log.e("TAG",""+task.getResult());
                                 goToCreateData(mUser);
                             }
