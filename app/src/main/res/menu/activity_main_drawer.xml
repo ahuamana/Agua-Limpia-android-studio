@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_laboratorio"
+            android:icon="@drawable/lab_microscope"
+            android:title="Laboratorio Virtual" />
         <item
             android:id="@+id/nav_dashboard"
             android:icon="@drawable/ic_dashboard"
@@ -11,20 +16,16 @@
         <item
             android:id="@+id/nav_inicio"
             android:icon="@drawable/ic_maps"
-            android:title="Maps" />
+            android:title="¿Como vamos?" />
         <item
             android:id="@+id/nav_registrar"
             android:icon="@drawable/ic_plus"
-            android:title="Registrar" />
+            android:title="Envíanos tus muestras" />
         <item
             android:id="@+id/nav_lista"
             android:icon="@drawable/ic_listar"
-            android:title="Lista" />
+            android:title="Otros enviaron" />
 
-        <item
-            android:id="@+id/nav_laboratorio"
-            android:icon="@drawable/lab_microscope"
-            android:title="Laboratorio Virtual" />
 
 
     </group>
