@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -18,8 +17,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -90,13 +87,13 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio,
-                R.id.nav_lista,
-                R.id.nav_comomedir,
-                R.id.nav_nosotros,
-                R.id.nav_registrar,
-                R.id.nav_sugerencias,
-                R.id.nav_compartir,
-                R.id.nav_dashboard,
+                //R.id.nav_lista,
+                //R.id.nav_comomedir,
+                //R.id.nav_nosotros,
+                //R.id.nav_registrar,
+                //R.id.nav_sugerencias,
+                //R.id.nav_compartir,
+                //R.id.nav_dashboard,
                 R.id.nav_laboratorio)
                 .setDrawerLayout(drawer)
                 .build();
