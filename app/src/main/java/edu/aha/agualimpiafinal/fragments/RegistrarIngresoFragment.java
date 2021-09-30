@@ -50,8 +50,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
@@ -91,7 +89,7 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
     ArrayList<String> mReturnValues = new ArrayList<>();
 
 
-    MuestrasProvider user;
+    MuestrasProvider mMuestrasProvider;
     ImageProvider mImageProvider;
 
     ProgressDialog mDialog;
@@ -101,10 +99,6 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
     validaciones rules = new validaciones();
     boolean departamento=false,provincia=false,latitud=false,lontitud=false,cantidad_muestra=false,resultado=false, ResultadoMuestra =false;
 
-    //referencias al storage
-    private StorageReference mstorage;
-    private static final int GALLERY_INTENT = 1;
-    private ProgressDialog progressDialog;
 
     private FusedLocationProviderClient ubicacion;
 
@@ -124,8 +118,9 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
 
         mContext = vista.getContext();
         //Inicializar firebase
-        user = new MuestrasProvider();
-        mstorage=FirebaseStorage.getInstance().getReference();
+        mMuestrasProvider = new MuestrasProvider();
+        mImageProvider = new ImageProvider();
+
         /////fin de firebase
 
         //Cargar SharePreferences
@@ -133,8 +128,7 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
 
 
         //crear nuevo progressDialog (necesario para mostrar dialogo al cargar la foto)
-        progressDialog = new ProgressDialog(getContext());
-        mImageProvider = new ImageProvider();
+
 
         mDialog = new ProgressDialog(getContext());
         mDialog.setTitle("Espere un momento");
@@ -422,8 +416,6 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
         RIResultadoMuestra.setSelection(0,true);
         ValorURL="";
         mCircleImagePhoto.setImageResource(0);
-
-
     }
 
     private void cargarPreferencias() {
@@ -438,7 +430,6 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
     }
 
     private void registrarMuestraAnalizada() {
-
 
         //Validar campos vacios
         latitud=rules.checkField(RItvlatitud);
@@ -530,7 +521,7 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
         mMoldeMuestra.setMuestraTimeStamp(System.currentTimeMillis()/1000);
 
 
-        user.create(mMoldeMuestra).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mMuestrasProvider.create(mMoldeMuestra).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
@@ -614,8 +605,6 @@ public class RegistrarIngresoFragment extends Fragment implements LocationListen
 
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
-
-
 
         Log.e("Mensaje","Entraste a Current Location");
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
