@@ -4,72 +4,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.RegistrarFragment"
-    android:padding="10dp"
     android:orientation="vertical"
-    android:id="@+id/REcontenedorRegistrar"
-    >
+    android:id="@+id/REcontenedorRegistrar">
 
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_marginTop="?android:actionBarSize"
+        android:layout_height="wrap_content">
 
-
-
-        <TextView
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            style="@style/letra_editText"
-            android:textStyle="bold"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="TIPO DE MUESTREO"
-            android:textSize="24dp"
-            android:scrollHorizontally="true"
-            ></TextView>
-
-
-
-
-        <Button
-            android:id="@+id/REbtnfisioquimico"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="Fisioquimico"
-            style="@style/letra_editText"
-            android:textColor="@color/white"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/buttom_fisioquimico"
-            android:scrollHorizontally="true"
-            ></Button>
+            android:layout_height="wrap_content">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primarystatusbar"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:gravity="start"
+                android:layout_marginStart="20dp"
+                android:text="Tipo de muestreo"
+                android:scrollHorizontally="true"/>
 
+            <Button
+                android:id="@+id/REbtnfisioquimico"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Fisioquimico"
+                style="@style/letra_editText"
+                android:textColor="@color/white"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/buttom_fisioquimico"
+                android:scrollHorizontally="true"/>
 
-        <Button
-            android:id="@+id/REbtnmicrobiologico"
-            android:layout_width="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="MICROBIOLOGICO"
-            style="@style/letra_editText"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/white"
-            android:background="@drawable/buttom_registrarmuestra"
-            android:scrollHorizontally="true"
-            ></Button>
+            <Button
+                android:id="@+id/REbtnmicrobiologico"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text="MICROBIOLOGICO"
+                style="@style/letra_editText"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/white"
+                android:background="@drawable/buttom_registrarmuestra"
+                android:scrollHorizontally="true"/>
 
+        </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 
 

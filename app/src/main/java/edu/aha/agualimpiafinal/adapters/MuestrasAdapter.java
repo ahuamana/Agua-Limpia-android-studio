@@ -93,7 +93,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
 
         Glide.with(holder.foto.getContext())
                 .load(model.getMuestraFotoPATH())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.loading_icon)
                 .into(holder.foto);
 
     }

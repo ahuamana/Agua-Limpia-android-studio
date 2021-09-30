@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RegistrarIngresoFragment"
+    tools:context=".activities.RegistrarMuestraMicrobiologicaActivity"
     android:orientation="vertical"
-    android:id="@+id/REcontenedorRegistrarIngreso"
     android:padding="10dp">
-
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollHorizontally="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
             <LinearLayout
@@ -27,16 +20,25 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageViewBack"
+                    android:layout_width="25dp"
+                    android:src="@drawable/ic_back_arrow_black"
+                    android:layout_height="25dp"/>
+
+
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="#000"
-                    style="@style/letra_editText"
-                    android:paddingBottom="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primarystatusbar"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="15dp"
                     android:scrollHorizontally="true"
-                    android:text="Datos de la muestra"
-                    android:textSize="25dp"></TextView>
+                    android:text="Completa con los datos de la muestra"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -175,7 +177,7 @@
                             android:id="@+id/RIimgFoto"
                             android:src="@drawable/ic_image_camera"
                             app:civ_circle_background_color="#9E9E9E"
-                            app:civ_border_width="40dp"
+                            app:civ_border_width="80px"
                             app:civ_border_color="#9E9E9E"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
@@ -222,7 +224,7 @@
             </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </ScrollView>
@@ -230,4 +232,4 @@
 
 
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

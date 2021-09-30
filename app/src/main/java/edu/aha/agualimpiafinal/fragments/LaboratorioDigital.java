@@ -3,6 +3,7 @@ package edu.aha.agualimpiafinal.fragments;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.view.ViewGroup;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.AnimalsListActivity;
 import edu.aha.agualimpiafinal.adapters.LaboratorioAdapter;
 import edu.aha.agualimpiafinal.databinding.LaboratorioDigitalFragmentBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
@@ -77,19 +79,12 @@ public class LaboratorioDigital extends Fragment {
 
 
 
-        binding.textViewInsectos.setOnClickListener(new View.OnClickListener() {
+        binding.linearLayoutAnimales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Crea el nuevo fragmento y la transacción.
-                //Fragment nuevoFragmento = new AnimalsFragment();
-                Fragment nuevoFragmento = new InsectosListFragment();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
-                transaction.addToBackStack(null);
-
-                // Commit a la transacción
-                transaction.commit();
+                Intent i = new Intent(getContext(), AnimalsListActivity.class);
+                startActivity(i);
 
             }
         });

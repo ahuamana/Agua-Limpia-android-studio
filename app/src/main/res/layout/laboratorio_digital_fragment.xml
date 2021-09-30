@@ -40,194 +40,200 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+
 
 
                 <LinearLayout
                     android:id="@+id/topLinearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:orientation="vertical">
 
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.imageview.ShapeableImageView
+                        <LinearLayout
+                            android:id="@+id/linearLayoutAnimales"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    app:civ_circle_background_color="@color/background_icon_color"
+                                    android:src="@drawable/noun_animals" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12dp"
+                                    android:text="Animales"
+                                    android:textColor="@color/primarystatusbar"
+                                    android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                app:civ_border_color="@color/background_icon_color"
+                                app:civ_border_width="15dp"
+                                app:civ_circle_background_color="@color/background_icon_color"
+                                android:src="@drawable/fruits_icon" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:textSize="12dp"
+                                android:text="Frutas"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="100dp"
+                                    app:civ_border_color="@color/background_icon_color"
+                                    app:civ_border_width="15dp"
+                                    app:civ_circle_background_color="@color/background_icon_color"
+                                    android:src="@drawable/plant_icon"/>
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="12dp"
+                                    android:text="Plantas"
+                                    android:textColor="@color/primarystatusbar"
+                                    android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                app:civ_border_color="@color/background_icon_color"
+                                app:civ_border_width="20dp"
+                                app:civ_circle_background_color="@color/background_icon_color"
+                                android:src="@drawable/chemistry_experiment_icon" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:textSize="12dp"
+                                android:text="Sustancias"
+                                android:textColor="@color/primarystatusbar"
+                                android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            android:src="@drawable/ic_hexagon" />
+                            android:layout_gravity="center"
+                            app:civ_border_width="10dp"
+                            app:civ_border_color="@color/background_icon_color"
+                            app:civ_circle_background_color="@color/background_icon_color"
+                            android:src="@drawable/hang_clothes" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/textViewInsectos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:text="Animales"
+                            android:layout_marginTop="5dp"
+                            android:textSize="12dp"
+                            android:text="Objetos"
                             android:textColor="@color/primarystatusbar"
                             android:textStyle="bold" />
-                    </FrameLayout>
 
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutMiddle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/topLinearLayout">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/textViewFrutas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Frutas"
-                                android:textColor="@color/primarystatusbar"
-                                android:textStyle="bold" />
-                        </FrameLayout>
 
                     </LinearLayout>
 
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <com.google.android.material.imageview.ShapeableImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/yaku_agua128" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.google.android.material.imageview.ShapeableImageView
+                            <de.hdodenhof.circleimageview.CircleImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon" />
+                                app:civ_border_width="20dp"
+                                app:civ_border_color="@color/background_icon_color"
+                                app:civ_circle_background_color="@color/background_icon_color"
+                                android:src="@drawable/ic_more_horizontal"/>
 
                             <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/textViewSustancias"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:gravity="center"
-                                android:text="Sustancias"
+                                android:layout_marginTop="5dp"
+                                android:textSize="12dp"
+                                android:text="Otros"
                                 android:textColor="@color/primarystatusbar"
                                 android:textStyle="bold" />
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginEnd="40dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/linearLayoutMiddle">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/textViewPlantas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Plantas"
-                                android:textColor="@color/primarystatusbar"
-                                android:textStyle="bold" />
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <com.google.android.material.imageview.ShapeableImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:src="@drawable/ic_hexagon" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/textViewObjetos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:gravity="center"
-                                android:text="Objetos"
-                                android:textColor="@color/primarystatusbar"
-                                android:textStyle="bold" />
-                        </FrameLayout>
 
                     </LinearLayout>
 
@@ -235,7 +241,8 @@
                 </LinearLayout>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
             <com.google.android.material.textview.MaterialTextView
