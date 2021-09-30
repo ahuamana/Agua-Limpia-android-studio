@@ -4,21 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RegistrarIngresoFragment"
+    tools:context=".activities.RegistrarMuestraMicrobiologicaActivity"
     android:orientation="vertical"
-    android:id="@+id/REcontenedorRegistrarIngreso"
     android:padding="10dp">
-
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollHorizontally="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
 
             <LinearLayout
@@ -26,6 +19,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageViewBack"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_back_arrow_black"
+                    app:tint="@color/colorBlack"
+                    android:layout_height="30dp"/>
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -222,7 +223,7 @@
             </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </ScrollView>
