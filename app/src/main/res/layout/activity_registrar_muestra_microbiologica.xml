@@ -22,22 +22,23 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageViewBack"
-                    android:layout_width="30dp"
+                    android:layout_width="25dp"
                     android:src="@drawable/ic_back_arrow_black"
-                    app:tint="@color/colorBlack"
-                    android:layout_height="30dp"/>
+                    android:layout_height="25dp"/>
 
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="#000"
-                    style="@style/letra_editText"
-                    android:paddingBottom="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/primarystatusbar"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="15dp"
                     android:scrollHorizontally="true"
-                    android:text="Datos de la muestra"
-                    android:textSize="25dp"></TextView>
+                    android:text="Completa con los datos de la muestra"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
