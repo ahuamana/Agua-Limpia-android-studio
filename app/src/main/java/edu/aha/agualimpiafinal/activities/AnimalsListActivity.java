@@ -9,7 +9,6 @@ import android.widget.GridView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.InsectosAdapter;
 import edu.aha.agualimpiafinal.databinding.ActivityAnimalsListBinding;
-import edu.aha.agualimpiafinal.fragments.InsectosListFragment;
 
 public class AnimalsListActivity extends AppCompatActivity {
 

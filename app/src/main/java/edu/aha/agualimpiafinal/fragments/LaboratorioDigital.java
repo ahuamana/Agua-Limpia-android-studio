@@ -79,7 +79,7 @@ public class LaboratorioDigital extends Fragment {
 
 
 
-        binding.textViewInsectos.setOnClickListener(new View.OnClickListener() {
+        binding.linearLayoutAnimales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

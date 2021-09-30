@@ -47,7 +47,6 @@ import java.util.ArrayList;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityRegistrarMuestraMicrobiologicaBinding;
-import edu.aha.agualimpiafinal.fragments.RegistrarIngresoFragment;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
