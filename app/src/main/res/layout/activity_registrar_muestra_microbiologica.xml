@@ -177,7 +177,7 @@
                             android:id="@+id/RIimgFoto"
                             android:src="@drawable/ic_image_camera"
                             app:civ_circle_background_color="#9E9E9E"
-                            app:civ_border_width="40dp"
+                            app:civ_border_width="80px"
                             app:civ_border_color="#9E9E9E"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"

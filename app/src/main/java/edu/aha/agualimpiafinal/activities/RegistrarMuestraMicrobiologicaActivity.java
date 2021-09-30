@@ -471,6 +471,15 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
     @SuppressLint("MissingPermission")
     private void getCurrentLocation() {
 
+        mDialog = new ProgressDialog(RegistrarMuestraMicrobiologicaActivity.this);
+        mDialog.setTitle("Espere un momento");
+        mDialog.setMessage("Guardando Información");
+
+        mDialogLocation = new ProgressDialog(RegistrarMuestraMicrobiologicaActivity.this);
+        mDialogLocation.setTitle("Espere un momento");
+        mDialogLocation.setMessage("Obteniendo localización");
+
+
         Log.e("Mensaje","Entraste a Current Location");
         LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
 
@@ -601,7 +610,12 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
         binding.RIedtLongitud.setText("");
         binding.RIedtBQV.setSelection(0,true);
         ValorURL="";
-        binding.RIimgFoto.setImageResource(0);
+
+
+        binding.RIimgFoto.setBorderColor(getColor(R.color.colorGrayImageCameraBackground));//eliminar border color del XML para que se vea mas agradable
+        binding.RIimgFoto.setBorderWidth(80);//eliminar ancho de border del XML para que se vea mas agradable
+        binding.RIimgFoto.setImageDrawable(getDrawable(R.drawable.ic_image_camera));
+
     }
 
     private void showBackActivity() {
