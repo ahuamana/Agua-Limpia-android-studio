@@ -43,6 +43,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
         Glide.with(context)
                 .load(model.getUrl())
+                .placeholder(R.drawable.loading_icon)
                 .into(holder.binding.roundedImageView);
 
         setUserDetails(model, holder);
