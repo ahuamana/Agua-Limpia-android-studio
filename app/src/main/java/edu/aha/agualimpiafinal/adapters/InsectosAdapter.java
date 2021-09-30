@@ -1,6 +1,7 @@
 package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.LoginActivity;
 import edu.aha.agualimpiafinal.fragments.AnimalsFragment;
 
 public class InsectosAdapter extends BaseAdapter {
@@ -24,14 +26,12 @@ public class InsectosAdapter extends BaseAdapter {
     int[] imageInsectos;
     String[] nameInsectos;
     LayoutInflater inflater;
-    FragmentManager fragmentManager;
 
-    public InsectosAdapter(Context context, int[] imageInsectos, String[] nameInsectos, FragmentManager fragmentManager)
+    public InsectosAdapter(Context context, int[] imageInsectos, String[] nameInsectos)
     {
         this.context = context;
         this.imageInsectos = imageInsectos;
         this.nameInsectos = nameInsectos;
-        this.fragmentManager= fragmentManager;
 
     }
 
@@ -98,10 +98,8 @@ public class InsectosAdapter extends BaseAdapter {
                         Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
                         Log.e("POSITION","POSITION 3 ");
 
-                        //Intent i = new Intent(context, AnimalsActivity.class);
+                        //Intent i = new Intent(context, LoginActivity.class);
                         //context.startActivity(i);
-
-                        replaceFragmentWithOther(new AnimalsFragment());
 
                     }
                 });
@@ -110,16 +108,6 @@ public class InsectosAdapter extends BaseAdapter {
         }
     }
 
-    private void replaceFragmentWithOther(Fragment nuevoFragmento)
-    {
-        // Crea el nuevo fragmento y la transacción.
-        //Fragment nuevoFragmento = new AnimalsFragment();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
-        transaction.addToBackStack("insectos");
-        // Commit a la transacción
-        transaction.commit();
-    }
 
 
 }

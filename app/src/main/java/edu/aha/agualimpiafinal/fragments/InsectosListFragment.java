@@ -72,7 +72,7 @@ public class InsectosListFragment extends Fragment {
         View vista = inflater.inflate(R.layout.fragment_insectos_list, container, false);
 
         gridViewInsectos = vista.findViewById(R.id.grid_view_insectos);
-        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos, getParentFragmentManager());
+        InsectosAdapter mAdapter = new InsectosAdapter(getContext(), imageInsectos, nameInsectos);
 
         gridViewInsectos.setAdapter(mAdapter);
 
@@ -80,15 +80,5 @@ public class InsectosListFragment extends Fragment {
     }
 
 
-    public void replaceFragment(Fragment nuevoFragmento)
-    {
 
-        //Fragment nuevoFragmento = new AnimalsFragment();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.nav_host_fragment, nuevoFragmento);
-        transaction.addToBackStack(null);
-
-        // Commit a la transacción
-        transaction.commit();
-    }
 }

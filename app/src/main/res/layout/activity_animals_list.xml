@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.AnimalsListActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewBack"
+            android:layout_width="25dp"
+            android:src="@drawable/ic_back_arrow_black"
+            android:layout_height="25dp"/>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollHorizontally="true"
+            android:text="@string/title_animals"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/primarystatusbar"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
+            android:gravity="start"/>
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:orientation="vertical">
+
+            <GridView
+                android:id="@+id/grid_view_insectos"
+                android:layout_width="match_parent"
+                android:verticalSpacing="5dp"
+                android:horizontalSpacing="5dp"
+                android:layout_height="match_parent"
+                android:numColumns="3" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

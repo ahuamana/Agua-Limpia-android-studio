@@ -20,9 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.RegistrarMuestraMicrobiologicaActivity"
+            android:name=".activities.AnimalsListActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities.RegistrarMuestraMicrobiologicaActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.PointsActivity"
             android:exported="true"
