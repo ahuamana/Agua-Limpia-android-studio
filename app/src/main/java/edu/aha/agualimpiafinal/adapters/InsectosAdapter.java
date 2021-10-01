@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,10 +101,10 @@ public class InsectosAdapter extends BaseAdapter {
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
-                        Log.e("POSITION","POSITION 3 ");
 
-                        createDialog();
+                        Log.e("POSITION","POSITION 3 ");
+                        String text = "Al finalizar el reto podras conocer las partes de la mariposa y su importancia, asi que tendrás que buscar una mariposa para poder lograr todos los objetivos";
+                        createDialog(R.drawable.mariposa_icon, text);
                         //Intent i = new Intent(context, LoginActivity.class);
                         //context.startActivity(i);
 
@@ -114,7 +115,7 @@ public class InsectosAdapter extends BaseAdapter {
         }
     }
 
-   private void createDialog()
+   private void createDialog(int drawable, String textChallenge)
    {
        CustomDialogMoreinfoBinding customBinding = CustomDialogMoreinfoBinding.inflate(LayoutInflater.from(context));
 
@@ -124,14 +125,17 @@ public class InsectosAdapter extends BaseAdapter {
        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        dialog.setContentView(customBinding.getRoot());
 
-       customBinding.textViewCancel.setOnClickListener(new View.OnClickListener() {
+       customBinding.imageViewChallenge.setImageResource(drawable);
+       customBinding.textViewChallenge.setText(textChallenge);
+
+       customBinding.btnCancel.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                dialog.dismiss();
            }
        });
 
-       customBinding.textViewOk.setOnClickListener(new View.OnClickListener() {
+       customBinding.btnOk.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                Toast.makeText(context, "Bien hecho", Toast.LENGTH_SHORT).show();
