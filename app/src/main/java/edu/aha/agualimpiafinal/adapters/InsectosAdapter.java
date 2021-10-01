@@ -1,11 +1,15 @@
 package edu.aha.agualimpiafinal.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.LoginActivity;
+import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
 import edu.aha.agualimpiafinal.fragments.AnimalsFragment;
 
 public class InsectosAdapter extends BaseAdapter {
@@ -98,6 +103,7 @@ public class InsectosAdapter extends BaseAdapter {
                         Toast.makeText(context, "Position 3", Toast.LENGTH_SHORT).show();
                         Log.e("POSITION","POSITION 3 ");
 
+                        createDialog();
                         //Intent i = new Intent(context, LoginActivity.class);
                         //context.startActivity(i);
 
@@ -108,6 +114,33 @@ public class InsectosAdapter extends BaseAdapter {
         }
     }
 
+   private void createDialog()
+   {
+       CustomDialogMoreinfoBinding customBinding = CustomDialogMoreinfoBinding.inflate(LayoutInflater.from(context));
+
+       Dialog dialog = new Dialog(context);
+       dialog.setCancelable(false);
+       dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       dialog.setContentView(customBinding.getRoot());
+
+       customBinding.textViewCancel.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               dialog.dismiss();
+           }
+       });
+
+       customBinding.textViewOk.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Toast.makeText(context, "Bien hecho", Toast.LENGTH_SHORT).show();
+           }
+       });
+
+       dialog.show();
+
+   }
 
 
 }
