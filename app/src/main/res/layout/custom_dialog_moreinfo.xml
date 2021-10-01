@@ -15,9 +15,12 @@
         android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewChallenge"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:src="@drawable/mariposa_icon"
-            android:layout_height="wrap_content"/>
+            android:layout_height="100dp"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textViewTittle"
@@ -39,7 +42,7 @@
             android:padding="5dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewInformacion"
+                android:id="@+id/textViewChallenge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="10dp"
@@ -69,7 +72,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/textViewOk"
+                        android:id="@+id/btn_ok"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
@@ -90,7 +93,7 @@
 
 
                     <Button
-                        android:id="@+id/textViewCancel"
+                        android:id="@+id/btn_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
