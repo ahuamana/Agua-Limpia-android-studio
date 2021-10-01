@@ -74,6 +74,17 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
         
         getUserInfoAll();
 
+        goBackActivity();
+
+    }
+
+    private void goBackActivity() {
+        binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void getUserInfoAll() {

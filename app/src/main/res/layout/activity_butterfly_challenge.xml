@@ -16,13 +16,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageViewBack"
+                android:layout_margin="10dp"
+                android:layout_width="25dp"
+                android:src="@drawable/ic_back_arrow_black"
+                android:layout_height="25dp"/>
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="INSECTOS"
+                android:text="MARIPOSA"
                 android:textStyle="bold"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/primarystatusbar"
                 android:textSize="20dp"/>
 
             <androidx.cardview.widget.CardView
@@ -39,20 +46,11 @@
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:textColor="@color/greenPrimary"
-                        android:text="Mariposa"
-                        android:textSize="20dp"/>
-
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="190dp"
                         android:layout_height="120dp"
                         app:riv_corner_radius="10dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
                         android:src="@drawable/mariposon"/>
 
                 </LinearLayout>

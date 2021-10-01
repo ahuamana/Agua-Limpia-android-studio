@@ -109,6 +109,7 @@ public class InsectosAdapter extends BaseAdapter {
 
                         createDialog(R.drawable.mariposa_icon, text, intent);
 
+
                     }
                 });
 
@@ -121,7 +122,7 @@ public class InsectosAdapter extends BaseAdapter {
        CustomDialogMoreinfoBinding customBinding = CustomDialogMoreinfoBinding.inflate(LayoutInflater.from(context));
 
        Dialog dialog = new Dialog(context);
-       dialog.setCancelable(false);
+       dialog.setCancelable(true);
        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
        dialog.setContentView(customBinding.getRoot());
@@ -142,6 +143,7 @@ public class InsectosAdapter extends BaseAdapter {
                Toast.makeText(context, "Bien hecho", Toast.LENGTH_SHORT).show();
 
                context.startActivity(intentReceiver);
+
            }
        });
 

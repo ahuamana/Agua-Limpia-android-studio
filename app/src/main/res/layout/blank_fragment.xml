@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/chatting_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.SugerenciasFragment"
+    tools:context=".fragments.BlankFragment"
     android:orientation="vertical">
 
     <LinearLayout
@@ -58,7 +58,7 @@
             android:padding="10dp"/>
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewSend"
             android:layout_width="45dp"
             android:layout_height="45dp"
