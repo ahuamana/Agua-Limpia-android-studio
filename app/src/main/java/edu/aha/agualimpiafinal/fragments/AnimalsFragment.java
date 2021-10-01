@@ -98,8 +98,6 @@ public class AnimalsFragment extends Fragment {
         binding = FragmentAnimalsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-
-
         setOnClickListeners();
 
 
