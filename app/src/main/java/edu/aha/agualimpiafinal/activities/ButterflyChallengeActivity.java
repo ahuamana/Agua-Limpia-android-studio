@@ -197,7 +197,10 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     private void setSustantivoData ()
     {
+        String documento =  mInsectosProvider.createDocument().toString();
         sustantivo = new MoldeSustantivo();
+
+        sustantivo.setId(documento);
         sustantivo.setAuthor_email(email);
         sustantivo.setAuthor_name(firstname);
         sustantivo.setAuthor_lastname(lastname);
