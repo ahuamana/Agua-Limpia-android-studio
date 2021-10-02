@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,10 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
@@ -37,6 +42,8 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
     Like mLike;
     String token;
 
+    LikeProvider mLikeProvider;
+
     public LaboratorioAdapter(@NonNull FirestoreRecyclerOptions<MoldeSustantivo> options, Context context) {
         super(options);
 
@@ -49,15 +56,62 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
         //asignar variables con firebase
 
+        mLikeProvider = new LikeProvider();
 
         cargarTokenLocalmente();
 
         setColorLikes(model, holder);
 
         setUserDetails(model, holder);
+        
+        getInfoPhoto(model, holder);
 
 
     }
+
+    private void getInfoPhoto(MoldeSustantivo model, ViewHolder holder) {
+
+        if(token!= null)
+        {
+            if(!token.equals(""))
+            {
+                mLikeProvider.getUserLikes(token,model.getId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                        if(value.size() == 0)
+                        {
+                            Log.e("SIZE","TAMAÑO 0");
+
+                        }else
+                        {
+                            Log.e("STATUS",""+value.getDocuments().get(0).get("status"));
+                            boolean status = Boolean.parseBoolean(value.getDocuments().get(0).get("status").toString());
+                            //Code for each like from user
+                                if(status)
+                                {
+                                    Log.e("STATUS","STATUS TRUE");
+                                    holder.binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
+                                    holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like));
+                                }else
+                                {
+                                    Log.e("STATUS","STATUS FALSE");
+                                    holder.binding.imageViewLike.setImageResource(R.drawable.like);
+                                    holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.colorBlack));
+                                }
+
+                        }
+
+
+
+                    }
+                });
+
+            }
+        }
+
+    }
+
 
     private void cargarTokenLocalmente() {
 
@@ -104,7 +158,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         {
             if(!token.equals(""))
             {
-                LikeProvider mLikeProvider = new LikeProvider();
+
 
                 mLikeProvider.create(mLike).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
