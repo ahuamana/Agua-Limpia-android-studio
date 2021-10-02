@@ -1,5 +1,6 @@
 package edu.aha.agualimpiafinal.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -46,10 +47,31 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
                 .placeholder(R.drawable.loading_icon)
                 .into(holder.binding.roundedImageView);
 
+        setLikes(model, holder);
+
         setUserDetails(model, holder);
 
 
     }
+
+    private void setLikes(MoldeSustantivo model, ViewHolder holder) {
+
+        holder.binding.linearLayoutLike.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Log.e("COLOR","Cambio de Color Aplicado");
+
+                holder.binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
+                holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like
+
+                ));
+            }
+        });
+
+    }
+
 
     private void setUserDetails(MoldeSustantivo model, ViewHolder holder) {
 
