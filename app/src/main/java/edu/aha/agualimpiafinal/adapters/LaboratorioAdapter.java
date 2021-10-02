@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
+import edu.aha.agualimpiafinal.models.Like;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
@@ -28,6 +30,8 @@ import edu.aha.agualimpiafinal.utils.TextUtilsText;
 public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo, LaboratorioAdapter.ViewHolder> {
 
     Context context;
+    Like mLike;
+    String token;
 
     public LaboratorioAdapter(@NonNull FirestoreRecyclerOptions<MoldeSustantivo> options, Context context) {
         super(options);
@@ -40,21 +44,26 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull MoldeSustantivo model) {
 
         //asignar variables con firebase
-        holder.binding.name.setText(model.getName());
 
-        Glide.with(context)
-                .load(model.getUrl())
-                .placeholder(R.drawable.loading_icon)
-                .into(holder.binding.roundedImageView);
 
-        setLikes(model, holder);
+        cargarTokenLocalmente();
+
+        setColorLikes(model, holder);
 
         setUserDetails(model, holder);
 
 
     }
 
-    private void setLikes(MoldeSustantivo model, ViewHolder holder) {
+    private void cargarTokenLocalmente() {
+
+        SharedPreferences preferences = context.getSharedPreferences("token", Context.MODE_PRIVATE);
+        token= preferences.getString("token","");
+
+
+    }
+
+    private void setColorLikes(MoldeSustantivo model, ViewHolder holder) {
 
         holder.binding.linearLayoutLike.setOnClickListener(new View.OnClickListener() {
 
@@ -64,11 +73,19 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
                 Log.e("COLOR","Cambio de Color Aplicado");
 
                 holder.binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
-                holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like
+                holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like));
 
-                ));
+                createLike(model, holder);
             }
         });
+
+    }
+
+    private void createLike(MoldeSustantivo model, ViewHolder holder) {
+
+        Log.e("TOKEN", ""+ token);
+
+        //mLike.setId_token(model.get);
 
     }
 
@@ -79,6 +96,13 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         String nam=TextUtilsText.instance.replaceFirstCharInSequenceToUppercase(model.getAuthor_name());
 
         holder.binding.authorName.setText(nam+" "+ ape);
+
+        holder.binding.name.setText(model.getName());
+
+        Glide.with(context)
+                .load(model.getUrl())
+                .placeholder(R.drawable.loading_icon)
+                .into(holder.binding.roundedImageView);
 
     }
 
