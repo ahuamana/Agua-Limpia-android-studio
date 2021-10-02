@@ -1,6 +1,8 @@
-package edu.aha.agualimpiafinal.fragments;
+package edu.aha.agualimpiafinal.activities;
 
-import static android.app.Activity.RESULT_CANCELED;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -11,15 +13,8 @@ import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -38,17 +33,15 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.activities.LoginActivity;
-import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
-import edu.aha.agualimpiafinal.databinding.FragmentAnimalsBinding;
+import edu.aha.agualimpiafinal.databinding.ActivityButterflyChallengeBinding;
+import edu.aha.agualimpiafinal.fragments.AnimalsFragment;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.InsectosProvider;
 
+public class ButterflyChallengeActivity extends AppCompatActivity {
 
-public class AnimalsFragment extends Fragment {
-
-    private FragmentAnimalsBinding binding;
+    private ActivityButterflyChallengeBinding binding;
 
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
@@ -65,48 +58,40 @@ public class AnimalsFragment extends Fragment {
 
     String email, firstname, lastname;
 
-    public AnimalsFragment() {
-
-    }
-
-
-    public static AnimalsFragment newInstance(String param1, String param2) {
-        AnimalsFragment fragment = new AnimalsFragment();
-        Bundle args = new Bundle();
-
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityButterflyChallengeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        //All code here
 
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
 
         cargarPreferencias();
+        
+        getUserInfoAll();
 
-
+        goBackActivity();
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    private void goBackActivity() {
+        binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
-        binding = FragmentAnimalsBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-
-        setOnClickListeners();
-
+    private void getUserInfoAll() {
 
         getUserInfo(email, "cabeza mariposa", binding.circleImageViewPhoto);
         getUserInfo(email, "alas mariposa", binding.circleImageViewPhotoAlas);
         getUserInfo(email, "adbomen mariposa", binding.circleImageViewPhotoAbdomen);
-
-
-        return view;
     }
 
     private void getUserInfo(String emailReceiver, String nameSustantivo, final CircleImageView circleImageView) {
@@ -127,7 +112,7 @@ public class AnimalsFragment extends Fragment {
                         circleImageView.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
 
                         //Set image from db
-                        Glide.with(getActivity())
+                        Glide.with(ButterflyChallengeActivity.this)
                                 .load(url)
                                 .into(circleImageView);
                     }
@@ -140,7 +125,7 @@ public class AnimalsFragment extends Fragment {
 
     private void cargarPreferencias() {
 
-        SharedPreferences preferences = getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
 
         firstname= preferences.getString("spfirstname","");
         //middlename= preferences.getString("spmiddlename","");
@@ -223,7 +208,7 @@ public class AnimalsFragment extends Fragment {
 
     private void registrarData(final File mImageFileReciever) {
 
-        mDialog = new ProgressDialog(getContext());
+        mDialog = new ProgressDialog(ButterflyChallengeActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -233,7 +218,7 @@ public class AnimalsFragment extends Fragment {
             {
                 mDialog.show();
 
-                mImageProvider.save(getContext(), mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(ButterflyChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -255,7 +240,7 @@ public class AnimalsFragment extends Fragment {
                             });
                         }else {
                             mDialog.dismiss();
-                            Toast.makeText(getContext(), "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ButterflyChallengeActivity.this, "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -285,7 +270,7 @@ public class AnimalsFragment extends Fragment {
 
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(getActivity(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ButterflyChallengeActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
                     goToNextActivity();
@@ -309,7 +294,7 @@ public class AnimalsFragment extends Fragment {
     private void goToNextActivity() {
 
         //Intent i = new Intent(mContext, )
-        Intent i = new Intent(getActivity(), ResultadoCapturaImageActivity.class);
+        Intent i = new Intent(ButterflyChallengeActivity.this, ResultadoCapturaImageActivity.class);
         startActivity(i);
     }
 
@@ -327,7 +312,7 @@ public class AnimalsFragment extends Fragment {
                 .setPath("/pix/images");
 
 
-        Pix.start(AnimalsFragment.this, mOptions);
+        Pix.start(ButterflyChallengeActivity.this, mOptions);
 
     }
 
@@ -339,9 +324,9 @@ public class AnimalsFragment extends Fragment {
             case PermUtil.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Pix.start(getActivity(), mOptions);
+                    Pix.start(ButterflyChallengeActivity.this, mOptions);
                 } else {
-                    Toast.makeText(getActivity(), "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ButterflyChallengeActivity.this, "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -402,7 +387,7 @@ public class AnimalsFragment extends Fragment {
 
                         }else
                         {
-                            Toast.makeText(getContext(), "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ButterflyChallengeActivity.this, "error al seleccionar la foto", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -412,13 +397,10 @@ public class AnimalsFragment extends Fragment {
         }
         else
         {
-            Toast.makeText(getContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ButterflyChallengeActivity.this, "operacion Cancelado!", Toast.LENGTH_SHORT).show();
         }
 
 
     }
-
-
-
 
 }

@@ -44,9 +44,9 @@
 
     <fragment
         android:id="@+id/nav_sugerencias"
-        android:name="edu.aha.agualimpiafinal.fragments.SugerenciasFragment"
+        android:name="edu.aha.agualimpiafinal.fragments.BlankFragment"
         android:label=""
-        tools:layout="@layout/sugerencias_fragment"
+        tools:layout="@layout/blank_fragment"
         ></fragment>
 
     <fragment

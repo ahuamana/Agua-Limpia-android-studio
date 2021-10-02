@@ -8,9 +8,7 @@
         app:cardCornerRadius="5dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="13dp"
         app:contentPaddingTop="13dp"
-        app:contentPaddingBottom="10dp"
         app:contentPaddingRight="10dp"
         app:contentPaddingLeft="10dp">
 
@@ -26,6 +24,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="26dp"
@@ -55,24 +54,94 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"/>
 
-                </LinearLayout>
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/roundedImageView"
-                    android:layout_width="100dp"
-                    app:riv_corner_radius="3dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/image_test"/>
+
+                </LinearLayout>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/name"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
+                    android:layout_marginBottom="5dp"
+                    android:layout_width="wrap_content"
                     android:text="Escarabajo"
+                    android:layout_gravity="center"
                     android:textSize="10dp"
                     android:textColor="@color/primarystatusbar"
                     android:gravity="center"
                     android:layout_height="wrap_content"/>
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/roundedImageView"
+                    android:layout_width="120dp"
+                    app:riv_corner_radius="3dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/image_test"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#90a4ae"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity=""
+                        android:layout_gravity="center_horizontal"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="15dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/like"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#0f0f0f"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            style="@style/letra_editText"
+                            android:text="Like"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="15dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="2dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/comment"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#0f0f0f"
+                            android:layout_gravity="center"
+                            android:textSize="10dp"
+                            style="@style/letra_editText"
+                            android:text="Comentar"/>
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
 
 
             </LinearLayout>
