@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
@@ -24,6 +27,7 @@ import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
 import edu.aha.agualimpiafinal.models.Like;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
+import edu.aha.agualimpiafinal.providers.LikeProvider;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
 import edu.aha.agualimpiafinal.utils.TextUtilsText;
 
@@ -84,8 +88,31 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
     private void createLike(MoldeSustantivo model, ViewHolder holder) {
 
         Log.e("TOKEN", ""+ token);
+        String idLike = model.getId()+token;
 
-        //mLike.setId_token(model.get);
+        mLike.setId_token(idLike);
+        mLike.setToken(token);
+        mLike.setStatus(true);
+
+        if(token != null)
+        {
+            if(!token.equals(""))
+            {
+                LikeProvider mLikeProvider = new LikeProvider();
+
+                mLikeProvider.create(mLike).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if(task.isSuccessful())
+                        {
+                            Log.e("LIKE","CREADO LIKE CORRECTAMENTE");
+                        }
+
+                    }
+                });
+            }
+        }
 
     }
 
