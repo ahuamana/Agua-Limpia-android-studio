@@ -87,12 +87,18 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
     private void createLike(MoldeSustantivo model, ViewHolder holder) {
 
-        Log.e("TOKEN", ""+ token);
+        //Log.e("TOKEN", ""+ token);
+        //Log.e("ID", ""+ model.getId());
         String idLike = model.getId()+token;
+
+        Log.e("idLike", ""+ idLike);
+
+        mLike = new Like();
 
         mLike.setId_token(idLike);
         mLike.setToken(token);
         mLike.setStatus(true);
+        mLike.setId(model.getId());
 
         if(token != null)
         {
