@@ -75,7 +75,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         {
             if(!token.equals(""))
             {
-                mLikeProvider.getUserLikes(token,model.getId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                mLikeProvider.getUserLike(token,model.getId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
@@ -128,18 +128,58 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
             @Override
             public void onClick(View v) {
 
-                Log.e("COLOR","Cambio de Color Aplicado");
+                mLikeProvider.getUserLike(token, model.getId()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                holder.binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
-                holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like));
+                        if(queryDocumentSnapshots.size() == 0)
+                        {
+                            //Create like for first time
+                            createLike(model, holder);
 
-                createLike(model, holder);
+                        }else
+                        {
+                            //if already exist
+                            boolean status = Boolean.parseBoolean(queryDocumentSnapshots.getDocuments().get(0).get("status").toString());
+                            String idToken = queryDocumentSnapshots.getDocuments().get(0).get("id_token").toString();
+
+                            updateLike(idToken, status);
+
+
+                        }
+
+                    }
+                });
+
+
+
+
             }
         });
 
     }
 
+    private void updateLike(String idToken, boolean status) {
+
+        mLikeProvider.updateStatus(idToken,!status).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Log.e("STATUS","ACTUALIZADO");
+                }
+
+            }
+        });
+    }
+
     private void createLike(MoldeSustantivo model, ViewHolder holder) {
+
+        Log.e("COLOR","Cambio de Color Aplicado");
+
+        holder.binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
+        holder.binding.textViewLike.setTextColor(context.getResources().getColor(R.color.facebook_color_like));
 
         //Log.e("TOKEN", ""+ token);
         //Log.e("ID", ""+ model.getId());
