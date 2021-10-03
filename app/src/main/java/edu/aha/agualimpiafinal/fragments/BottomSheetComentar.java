@@ -44,4 +44,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.bottom_sheet_comentar, container, false);
     }
+
+
+
 }

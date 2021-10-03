@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
+import edu.aha.agualimpiafinal.fragments.BottomSheetComentar;
 import edu.aha.agualimpiafinal.models.Like;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
@@ -43,6 +46,8 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
     String token;
 
     LikeProvider mLikeProvider;
+
+    BottomSheetComentar mBottomSheetComentar;
 
     public LaboratorioAdapter(@NonNull FirestoreRecyclerOptions<MoldeSustantivo> options, Context context) {
         super(options);
@@ -66,6 +71,33 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         
         getInfoPhoto(model, holder);
 
+        openComentarios(holder);
+
+
+    }
+
+    private void openComentarios(ViewHolder holder) {
+
+        holder.binding.linearLayoutComentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                openBottomSheetComentar();
+
+            }
+        });
+
+    }
+
+    private void openBottomSheetComentar() {
+
+            if(token != null)
+            {
+                mBottomSheetComentar = BottomSheetComentar.newInstance("","");
+                mBottomSheetComentar.show(((FragmentActivity) context).getSupportFragmentManager(), mBottomSheetComentar.getTag());
+            }else {
+                Toast.makeText(context, "La informacion no se pudo cargar", Toast.LENGTH_SHORT).show();
+            }
 
     }
 
@@ -111,7 +143,6 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         }
 
     }
-
 
     private void cargarTokenLocalmente() {
 
