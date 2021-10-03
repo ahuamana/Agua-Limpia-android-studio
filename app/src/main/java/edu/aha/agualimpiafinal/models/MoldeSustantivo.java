@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.models;
 
 public class MoldeSustantivo {
 
+    private String id;
     private String name;
     private String tipo;
     private String url;
@@ -13,7 +14,8 @@ public class MoldeSustantivo {
     public MoldeSustantivo() {
     }
 
-    public MoldeSustantivo(String name, String tipo, String url, String author_email, String author_name, String author_lastname, long timestamp) {
+    public MoldeSustantivo(String id, String name, String tipo, String url, String author_email, String author_name, String author_lastname, long timestamp) {
+        this.id = id;
         this.name = name;
         this.tipo = tipo;
         this.url = url;
@@ -21,6 +23,14 @@ public class MoldeSustantivo {
         this.author_name = author_name;
         this.author_lastname = author_lastname;
         this.timestamp = timestamp;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

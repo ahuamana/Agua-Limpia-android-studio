@@ -113,8 +113,6 @@ public class PointsActivity extends AppCompatActivity {
 
     private void cargarTokenLocalmente() {
 
-
-
         SharedPreferences preferences = getSharedPreferences("token", Context.MODE_PRIVATE);
         String token= preferences.getString("token","");
 

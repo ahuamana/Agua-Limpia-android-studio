@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +24,22 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
 
         SetOnclickListeners();
 
+        goToPoints();
+
+
+    }
+
+    private void goToPoints() {
+
+        binding.fabPoints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(ResultadoCapturaImageActivity.this, PointsActivity.class);
+                startActivity(i);
+
+            }
+        });
 
     }
 
@@ -34,6 +51,8 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
 
     }
 }

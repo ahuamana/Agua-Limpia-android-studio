@@ -70,6 +70,8 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
 
+        setOnClickListeners();
+
         cargarPreferencias();
         
         getUserInfoAll();
@@ -114,6 +116,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                         //Set image from db
                         Glide.with(ButterflyChallengeActivity.this)
                                 .load(url)
+                                .placeholder(R.drawable.loading_icon)
                                 .into(circleImageView);
                     }
                 }
@@ -197,7 +200,10 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     private void setSustantivoData ()
     {
+        String documento =  mInsectosProvider.createDocument().getId();
         sustantivo = new MoldeSustantivo();
+
+        sustantivo.setId(documento);
         sustantivo.setAuthor_email(email);
         sustantivo.setAuthor_name(firstname);
         sustantivo.setAuthor_lastname(lastname);
