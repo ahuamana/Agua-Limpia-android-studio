@@ -78,12 +78,13 @@
                     <EditText
                         android:id="@+id/BEfirstname"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/edittext_graybackground"
                         android:hint="Nombre"
+                        android:padding="15dp"
                         style="@style/letra_editText"
                         android:paddingStart="20dp"
                         android:paddingEnd="20dp"
@@ -96,8 +97,9 @@
                     <EditText
                         android:id="@+id/BEmiddlename"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="20dp"
+                        android:padding="15dp"
                         android:layout_weight="1"
                         style="@style/letra_editText"
                         android:background="@drawable/edittext_graybackground"
@@ -122,12 +124,13 @@
                     <EditText
                         android:id="@+id/BElastname"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
                         android:background="@drawable/edittext_graybackground"
                         android:hint="Apellidos"
+                        android:padding="15dp"
                         android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789 "
                         style="@style/letra_editText"
                         android:paddingStart="20dp"
@@ -146,10 +149,10 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/BEemail"
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:layout_weight="1"
@@ -158,12 +161,14 @@
                         style="@style/letra_editText"
                         android:inputType="textEmailAddress"
                         android:paddingStart="20dp"
+                        android:padding="15dp"
                         android:digits="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXY0123456789@_.- "
                         android:paddingEnd="20dp"
                         android:singleLine="true"
                         android:textColor="@color/primaryDarkColor"
                         android:textColorHint="#9A9797"
-                        android:textSize="15dp"></EditText>
+                        android:textSize="15dp"/>
+
                 </LinearLayout>
 
 
