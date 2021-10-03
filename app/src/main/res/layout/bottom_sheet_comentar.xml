@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="?android:actionBarSize"
             android:orientation="vertical">
 
@@ -74,6 +74,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_margin="10dp"
                 android:layout_height="match_parent"
@@ -87,11 +88,9 @@
 
         </LinearLayout>
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:orientation="vertical">
 
@@ -105,20 +104,34 @@
                 android:layout_marginStart="10dp"
                 android:gravity="center"
                 android:layout_marginEnd="10dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:hint="Escribe un comentario..."
                     android:textColor="@color/colorBlack"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:padding="10dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:inputType="textMultiLine"
                     android:textSize="15dp"
                     android:gravity="center_vertical"
                     android:background="@drawable/custom_button_nocolor"
                     android:backgroundTint="@color/colorGrayLight"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_marginTop="4dp"
+                    android:layout_gravity="top"
+                    android:id="@+id/fab_send"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:fabCustomSize="40dp"
+                    android:src="@drawable/ic_send_white"
+                    app:backgroundTint="@color/greenPrimary"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
