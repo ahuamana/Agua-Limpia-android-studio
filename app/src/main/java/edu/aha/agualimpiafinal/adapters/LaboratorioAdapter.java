@@ -2,6 +2,7 @@ package edu.aha.agualimpiafinal.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -93,8 +97,13 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
             if(token != null)
             {
+
                 mBottomSheetComentar = BottomSheetComentar.newInstance("","");
                 mBottomSheetComentar.show(((FragmentActivity) context).getSupportFragmentManager(), mBottomSheetComentar.getTag());
+
+
+
+
             }else {
                 Toast.makeText(context, "La informacion no se pudo cargar", Toast.LENGTH_SHORT).show();
             }

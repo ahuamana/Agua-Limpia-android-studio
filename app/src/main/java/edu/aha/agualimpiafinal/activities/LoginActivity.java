@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -50,6 +51,14 @@ public class LoginActivity extends AppCompatActivity {
         implementedClickListener();
 
 
+        putKeywordOverLayout();
+
+    }
+
+    private void putKeywordOverLayout() {
+
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     private void implementedClickListener() {
