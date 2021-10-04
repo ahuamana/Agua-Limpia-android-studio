@@ -95,6 +95,7 @@ public class ComentariosActivity extends AppCompatActivity {
                 .setQuery(mSugerenciasProvider.getCommentsListOrderByTimeStamp(), MoldeComentarios.class)
                 .build();
 
+
         //asignar todos lo datos obtenidos al adaptador
         adapter = new PostAdapter(options, ComentariosActivity.this);
 

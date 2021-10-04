@@ -59,7 +59,6 @@ public class LaboratorioDigital extends Fragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false);
         binding.recyclerAnimales.setLayoutManager( mLinearLayoutManager);
 
-
         mInsectosProvider = new InsectosProvider();
 
         FirestoreRecyclerOptions<MoldeSustantivo> options = new FirestoreRecyclerOptions.Builder<MoldeSustantivo>()
@@ -67,7 +66,7 @@ public class LaboratorioDigital extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        //Log.e("TEST",""+ options.getSnapshots().get(0));
+        //Log.e("TEST",""+ options.getSnapshots().get(0).toString());
 
         mAdapter=new LaboratorioAdapter(options, getContext());
         //asignar datos al recyclerView

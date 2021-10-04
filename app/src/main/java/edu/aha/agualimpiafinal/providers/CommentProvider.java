@@ -26,7 +26,7 @@ public class CommentProvider {
 
     public Query getCommentsListOrderByTimeStamp()
     {
-        return mCollection.orderBy("timestamp", Query.Direction.ASCENDING);
+        return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
     }
 
 }

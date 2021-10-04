@@ -7,9 +7,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.DisplayMetrics;
@@ -19,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,20 +25,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.activities.ComentariosActivity;
 import edu.aha.agualimpiafinal.adapters.CommentariosAdapter;
-import edu.aha.agualimpiafinal.adapters.PostAdapter;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
-import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.Comment;
-import edu.aha.agualimpiafinal.models.MoldeComentarios;
-import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.providers.CommentProvider;
-import edu.aha.agualimpiafinal.providers.SugerenciasProvider;
 
 
 public class BottomSheetComentar extends BottomSheetDialogFragment {
@@ -54,7 +42,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private String id, id_token, token;
 
-    CommentariosAdapter adapter;
+    CommentariosAdapter mAdapter;
     LinearLayoutManager mLinearLayoutManager;
 
     public BottomSheetComentar() {
@@ -145,35 +133,30 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private void getCommentariosFromPost() {
 
-        //Inicializar Arraylist y asignar contenedor
-        binding.recyclerViewComentarios.setLayoutManager(mLinearLayoutManager);
-        mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
-        binding.recyclerViewComentarios.setHasFixedSize(true);
-
-        //traer los datos de la coleccion de firebase
+        mLinearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
+        binding.recyclerViewComentarios.setLayoutManager( mLinearLayoutManager);
 
         FirestoreRecyclerOptions<Comment> options = new FirestoreRecyclerOptions.Builder<Comment>()
-                .setQuery(mCommentProvider.getCommentsListOrderByTimeStamp(), Comment.class)
+                .setQuery(mCommentProvider.getCommentsListOrderByTimeStamp(),Comment.class)
                 .build();
 
-        //asignar todos lo datos obtenidos al adaptador
-        adapter = new CommentariosAdapter(options, getContext());
-
+        //enviar los datos al adapter
+        mAdapter=new CommentariosAdapter(options, getContext());
         //asignar datos al recyclerView
-        binding.recyclerViewComentarios.setAdapter(adapter);
+        binding.recyclerViewComentarios.setAdapter(mAdapter);
 
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adapter.startListening();
+        mAdapter.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adapter.startListening();
+        mAdapter.stopListening();
     }
 
     private void validateComment() {
