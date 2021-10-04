@@ -8,18 +8,18 @@ import com.google.firebase.firestore.Query;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.aha.agualimpiafinal.models.Like;
+import edu.aha.agualimpiafinal.models.Action;
 
-public class LikeProvider {
+public class ActionProvider {
 
     private CollectionReference mCollection;
 
-    public LikeProvider()
+    public ActionProvider()
     {
-        mCollection = FirebaseFirestore.getInstance().collection("Likes");
+        mCollection = FirebaseFirestore.getInstance().collection("Actions");
     }
 
-    public Task<Void> create (Like objeto)
+    public Task<Void> create (Action objeto)
     {
         return mCollection.document(objeto.getId_token()).set(objeto);
     }

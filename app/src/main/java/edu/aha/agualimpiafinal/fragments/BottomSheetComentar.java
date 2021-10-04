@@ -12,6 +12,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,23 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
+import edu.aha.agualimpiafinal.models.Action;
+import edu.aha.agualimpiafinal.providers.ActionProvider;
 
 
 public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private BottomSheetComentarBinding binding;
+
+    private ActionProvider mActionProvider;
+    private Action mAction;
+
+    private String id, id_token, token;
 
     public BottomSheetComentar() {
 
@@ -71,11 +82,12 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         return displayMetrics.heightPixels;
     }
 
-    public static BottomSheetComentar newInstance(String param1, String param2) {
+    public static BottomSheetComentar newInstance(String id, String id_token, String token) {
         BottomSheetComentar fragment = new BottomSheetComentar();
         Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
+        args.putString("id", id);
+        args.putString("id_token", id_token);
+        args.putString("token", token);
         fragment.setArguments(args);
         return fragment;
     }
@@ -84,8 +96,12 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-            //mParam2 = getArguments().getString(ARG_PARAM2);
+
+            id = getArguments().getString("id");
+            token = getArguments().getString("token");
+
+            Log.e("TOken", ""+ token);
+            Log.e("id", ""+ id);
         }
 
         putKeywordOverLayout();
@@ -98,13 +114,33 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     binding = BottomSheetComentarBinding.inflate(getLayoutInflater());
     View view = binding.getRoot();
 
+    mActionProvider = new ActionProvider();
 
+
+
+    validateComment();
 
 
 
     return view;
     }
 
+    private void validateComment() {
+
+       String texto = binding.editTextMessage.getText().toString();
+
+       if(!texto.equals(""))
+       {
+           createComment();
+       }
+
+    }
+
+    private void createComment() {
+
+
+
+    }
 
 
     private void putKeywordOverLayout() {
