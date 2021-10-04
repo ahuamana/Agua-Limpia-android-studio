@@ -1,20 +1,22 @@
 package edu.aha.agualimpiafinal.models;
 
-public class Like {
+public class Action {
 
     private String id_token;
     private String id;
     private String token;
     private boolean status;
+    private String type;
 
-    public Like() {
+    public Action() {
     }
 
-    public Like(String id_token, String id, String token, boolean status) {
+    public Action(String id_token, String id, String token, boolean status, String type) {
         this.id_token = id_token;
         this.id = id;
         this.token = token;
         this.status = status;
+        this.type = type;
     }
 
     public String getId_token() {
@@ -47,5 +49,13 @@ public class Like {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

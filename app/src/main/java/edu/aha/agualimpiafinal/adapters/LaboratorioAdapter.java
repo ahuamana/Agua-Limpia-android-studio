@@ -1,17 +1,11 @@
 package edu.aha.agualimpiafinal.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,31 +19,28 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
 import edu.aha.agualimpiafinal.fragments.BottomSheetComentar;
-import edu.aha.agualimpiafinal.models.Like;
-import edu.aha.agualimpiafinal.models.MoldeMuestra;
+import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
-import edu.aha.agualimpiafinal.providers.LikeProvider;
-import edu.aha.agualimpiafinal.utils.RelativeTime;
+import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.utils.TextUtilsText;
 
 public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo, LaboratorioAdapter.ViewHolder> {
 
     Context context;
-    Like mLike;
+    Action mAction;
     String token;
 
-    LikeProvider mLikeProvider;
+    ActionProvider mActionProvider;
 
     BottomSheetComentar mBottomSheetComentar;
 
@@ -65,7 +56,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
         //asignar variables con firebase
 
-        mLikeProvider = new LikeProvider();
+        mActionProvider = new ActionProvider();
 
         cargarTokenLocalmente();
 
@@ -75,34 +66,30 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         
         getInfoPhoto(model, holder);
 
-        openComentarios(holder);
+        openComentarios(model, holder);
 
 
     }
 
-    private void openComentarios(ViewHolder holder) {
+    private void openComentarios(MoldeSustantivo model, ViewHolder holder) {
 
         holder.binding.linearLayoutComentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                openBottomSheetComentar();
+                openBottomSheetComentar(model, holder);
 
             }
         });
 
     }
 
-    private void openBottomSheetComentar() {
+    private void openBottomSheetComentar(MoldeSustantivo model, ViewHolder holder) {
 
             if(token != null)
             {
-
-                mBottomSheetComentar = BottomSheetComentar.newInstance("","");
+                mBottomSheetComentar = BottomSheetComentar.newInstance(model.getId(),model.getId()+"_"+token,token);
                 mBottomSheetComentar.show(((FragmentActivity) context).getSupportFragmentManager(), mBottomSheetComentar.getTag());
-
-
-
 
             }else {
                 Toast.makeText(context, "La informacion no se pudo cargar", Toast.LENGTH_SHORT).show();
@@ -116,7 +103,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
         {
             if(!token.equals(""))
             {
-                mLikeProvider.getUserLike(token,model.getId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                mActionProvider.getUserLike(token,model.getId()).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
@@ -168,7 +155,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
             @Override
             public void onClick(View v) {
 
-                mLikeProvider.getUserLike(token, model.getId()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                mActionProvider.getUserLike(token, model.getId()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
@@ -201,7 +188,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
     private void updateLike(String idToken, boolean status) {
 
-        mLikeProvider.updateStatus(idToken,!status).addOnCompleteListener(new OnCompleteListener<Void>() {
+        mActionProvider.updateStatus(idToken,!status).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
@@ -223,16 +210,16 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
         //Log.e("TOKEN", ""+ token);
         //Log.e("ID", ""+ model.getId());
-        String idLike = model.getId()+token;
+        String idLike = model.getId()+"_"+token;
 
         Log.e("idLike", ""+ idLike);
 
-        mLike = new Like();
-
-        mLike.setId_token(idLike);
-        mLike.setToken(token);
-        mLike.setStatus(true);
-        mLike.setId(model.getId());
+        mAction = new Action();
+        mAction.setId_token(idLike);
+        mAction.setToken(token);
+        mAction.setStatus(true);
+        mAction.setId(model.getId());
+        mAction.setType("Like");
 
         if(token != null)
         {
@@ -240,7 +227,7 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
             {
 
 
-                mLikeProvider.create(mLike).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mActionProvider.create(mAction).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 

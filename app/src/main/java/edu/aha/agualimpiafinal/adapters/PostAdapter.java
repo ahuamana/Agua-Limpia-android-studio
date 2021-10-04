@@ -17,18 +17,18 @@ import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
 
-public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentarios,ComentariosAdapter.ComentariosHolder> {
+public class PostAdapter extends FirestoreRecyclerAdapter<MoldeComentarios, PostAdapter.PostHolder> {
 
     Context context;
 
-    public ComentariosAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options, Context context) {
+    public PostAdapter(@NonNull FirestoreRecyclerOptions<MoldeComentarios> options, Context context) {
         super(options);
 
             this.context = context;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ComentariosAdapter.ComentariosHolder holder, int position, @NonNull MoldeComentarios model) {
+    protected void onBindViewHolder(@NonNull PostHolder holder, int position, @NonNull MoldeComentarios model) {
 
         Log.e("DATA: ", "empezamos aqui");
         Log.e("DATA: ",""+ model.getSugerenciaMensaje());
@@ -71,20 +71,20 @@ public class ComentariosAdapter  extends FirestoreRecyclerAdapter<MoldeComentari
 
     @NonNull
     @Override
-    public ComentariosHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //Aqui se infla el contenedor del molde donde se cargaran todos los datos
-        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_comentarios,parent,false);
+        View vista = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_post,parent,false);
 
-        return new ComentariosHolder(vista);
+        return new PostHolder(vista);
     }
 
-    public class ComentariosHolder extends RecyclerView.ViewHolder {
+    public class PostHolder extends RecyclerView.ViewHolder {
 
         //crear variables del molde
         TextView comentariosAuthor, comentariosFecha, comentariosDescripcion;
 
-        public ComentariosHolder(@NonNull View vista) {
+        public PostHolder(@NonNull View vista) {
             super(vista);
 
             //referencias variables y vincularlos con las variables locales

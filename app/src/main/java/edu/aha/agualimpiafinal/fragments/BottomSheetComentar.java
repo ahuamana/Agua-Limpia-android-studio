@@ -7,29 +7,43 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.Date;
+
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.adapters.CommentariosAdapter;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
+import edu.aha.agualimpiafinal.models.Comment;
+import edu.aha.agualimpiafinal.providers.CommentProvider;
 
 
 public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private BottomSheetComentarBinding binding;
+
+    private CommentProvider mCommentProvider;
+    private Comment mComment;
+
+    private String id, id_token, token;
+
+    CommentariosAdapter mAdapter;
+    LinearLayoutManager mLinearLayoutManager;
 
     public BottomSheetComentar() {
 
@@ -71,11 +85,12 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         return displayMetrics.heightPixels;
     }
 
-    public static BottomSheetComentar newInstance(String param1, String param2) {
+    public static BottomSheetComentar newInstance(String id, String id_token, String token) {
         BottomSheetComentar fragment = new BottomSheetComentar();
         Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
+        args.putString("id", id);
+        args.putString("id_token", id_token);
+        args.putString("token", token);
         fragment.setArguments(args);
         return fragment;
     }
@@ -84,8 +99,15 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-            //mParam2 = getArguments().getString(ARG_PARAM2);
+
+            id = getArguments().getString("id");
+            token = getArguments().getString("token");
+            id_token = getArguments().getString("id_token");
+
+            Log.e("Token", ""+ token);
+            Log.e("id", ""+ id);
+            Log.e("id_token", ""+ id_token);
+
         }
 
         putKeywordOverLayout();
@@ -98,13 +120,93 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     binding = BottomSheetComentarBinding.inflate(getLayoutInflater());
     View view = binding.getRoot();
 
+        mCommentProvider = new CommentProvider();
 
+        validateComment();
+
+        getCommentariosFromPost();
 
 
 
     return view;
     }
 
+    private void getCommentariosFromPost() {
+
+        mLinearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
+        binding.recyclerViewComentarios.setLayoutManager( mLinearLayoutManager);
+
+        FirestoreRecyclerOptions<Comment> options = new FirestoreRecyclerOptions.Builder<Comment>()
+                .setQuery(mCommentProvider.getCommentsByIdPhoto(id),Comment.class)
+                .build();
+
+        //enviar los datos al adapter
+        mAdapter=new CommentariosAdapter(options, getContext());
+        //asignar datos al recyclerView
+        binding.recyclerViewComentarios.setAdapter(mAdapter);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.stopListening();
+    }
+
+    private void validateComment() {
+
+       binding.fabSend.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               String texto = binding.editTextMessage.getText().toString();
+               Log.e("TEXTO",""+texto);
+
+               if(!texto.equals(""))
+               {
+                   createComment();
+               }
+
+
+           }
+       });
+
+    }
+
+    private void createComment() {
+
+        mComment = new Comment();
+        mComment.setId_photo(id);
+        mComment.setStatus(true);
+        mComment.setToken(token);
+        mComment.setType("comment");
+        mComment.setTimestamp(new Date().getTime());
+        mComment.setMessage(binding.editTextMessage.getText().toString());
+
+        mCommentProvider.create(mComment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Log.e("Comment","Message Added");
+                    binding.editTextMessage.setText("");
+                }else
+                {
+                    Log.e("Comment","ERROR CREANDO COMENTARIO");
+                }
+
+            }
+        });
+
+
+    }
 
 
     private void putKeywordOverLayout() {
