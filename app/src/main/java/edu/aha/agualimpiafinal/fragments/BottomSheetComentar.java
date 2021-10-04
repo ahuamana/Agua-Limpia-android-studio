@@ -20,25 +20,30 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
 import edu.aha.agualimpiafinal.models.Action;
+import edu.aha.agualimpiafinal.models.Comment;
 import edu.aha.agualimpiafinal.providers.ActionProvider;
+import edu.aha.agualimpiafinal.providers.CommentProvider;
 
 
 public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private BottomSheetComentarBinding binding;
 
-    private ActionProvider mActionProvider;
-    private Action mAction;
+    private CommentProvider mCommentProvider;
+    private Comment mComment;
 
     private String id, id_token, token;
 
@@ -99,9 +104,12 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
             id = getArguments().getString("id");
             token = getArguments().getString("token");
+            id_token = getArguments().getString("id_token");
 
-            Log.e("TOken", ""+ token);
+            Log.e("Token", ""+ token);
             Log.e("id", ""+ id);
+            Log.e("id_token", ""+ id_token);
+
         }
 
         putKeywordOverLayout();
@@ -114,11 +122,9 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     binding = BottomSheetComentarBinding.inflate(getLayoutInflater());
     View view = binding.getRoot();
 
-    mActionProvider = new ActionProvider();
+        mCommentProvider = new CommentProvider();
 
-
-
-    validateComment();
+        validateComment();
 
 
 
@@ -127,17 +133,47 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
     private void validateComment() {
 
-       String texto = binding.editTextMessage.getText().toString();
+       binding.fabSend.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
 
-       if(!texto.equals(""))
-       {
-           createComment();
-       }
+               String texto = binding.editTextMessage.getText().toString();
+               Log.e("TEXTO",""+texto);
+
+               if(!texto.equals(""))
+               {
+                   createComment();
+               }
+
+
+           }
+       });
 
     }
 
     private void createComment() {
 
+        mComment = new Comment();
+        mComment.setId_photo(id);
+        mComment.setStatus(true);
+        mComment.setToken(token);
+        mComment.setType("Comment");
+        mComment.setTimestamp(new Date().getTime());
+
+        mCommentProvider.create(mComment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Log.e("Comment","Message Added");
+                }else
+                {
+                    Log.e("Comment","ERROR CREANDO COMENTARIO");
+                }
+
+            }
+        });
 
 
     }
