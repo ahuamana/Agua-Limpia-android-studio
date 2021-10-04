@@ -24,9 +24,11 @@ public class CommentProvider {
         return document.set(comment);
     }
 
-    public Query getCommentsListOrderByTimeStamp()
+    public Query getCommentsByIdPhoto(String idphoto)
     {
-        return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
+        return mCollection
+                .whereEqualTo("id_photo",idphoto)
+                .orderBy("timestamp", Query.Direction.DESCENDING);
     }
 
 }

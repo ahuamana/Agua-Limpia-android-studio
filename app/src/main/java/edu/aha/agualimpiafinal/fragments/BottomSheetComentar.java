@@ -137,7 +137,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         binding.recyclerViewComentarios.setLayoutManager( mLinearLayoutManager);
 
         FirestoreRecyclerOptions<Comment> options = new FirestoreRecyclerOptions.Builder<Comment>()
-                .setQuery(mCommentProvider.getCommentsListOrderByTimeStamp(),Comment.class)
+                .setQuery(mCommentProvider.getCommentsByIdPhoto(id),Comment.class)
                 .build();
 
         //enviar los datos al adapter
