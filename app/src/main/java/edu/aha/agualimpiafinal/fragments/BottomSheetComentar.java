@@ -157,8 +157,9 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         mComment.setId_photo(id);
         mComment.setStatus(true);
         mComment.setToken(token);
-        mComment.setType("Comment");
+        mComment.setType("comment");
         mComment.setTimestamp(new Date().getTime());
+        mComment.setMessage(binding.editTextMessage.getText().toString());
 
         mCommentProvider.create(mComment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -167,6 +168,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
                 if(task.isSuccessful())
                 {
                     Log.e("Comment","Message Added");
+                    binding.editTextMessage.setText("");
                 }else
                 {
                     Log.e("Comment","ERROR CREANDO COMENTARIO");

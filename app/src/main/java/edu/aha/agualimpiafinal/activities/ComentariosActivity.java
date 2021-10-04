@@ -19,8 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
-import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.adapters.ComentariosAdapter;
+import edu.aha.agualimpiafinal.adapters.PostAdapter;
 import edu.aha.agualimpiafinal.databinding.ActivityComentariosBinding;
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.providers.SugerenciasProvider;
@@ -30,7 +29,7 @@ public class ComentariosActivity extends AppCompatActivity {
 
     private ActivityComentariosBinding binding;
 
-    ComentariosAdapter adapter;
+    PostAdapter adapter;
     LinearLayoutManager mLinearLayoutManager;
     SugerenciasProvider mSugerenciasProvider;
     MoldeComentarios mMoldeComentarios;
@@ -97,7 +96,7 @@ public class ComentariosActivity extends AppCompatActivity {
                 .build();
 
         //asignar todos lo datos obtenidos al adaptador
-        adapter = new ComentariosAdapter(options, ComentariosActivity.this);
+        adapter = new PostAdapter(options, ComentariosActivity.this);
 
 
         //asignar datos al recyclerView

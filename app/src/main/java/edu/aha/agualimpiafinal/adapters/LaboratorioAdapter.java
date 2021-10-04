@@ -88,12 +88,8 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
             if(token != null)
             {
-
                 mBottomSheetComentar = BottomSheetComentar.newInstance(model.getId(),model.getId()+"_"+token,token);
                 mBottomSheetComentar.show(((FragmentActivity) context).getSupportFragmentManager(), mBottomSheetComentar.getTag());
-
-
-
 
             }else {
                 Toast.makeText(context, "La informacion no se pudo cargar", Toast.LENGTH_SHORT).show();

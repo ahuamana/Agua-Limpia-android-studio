@@ -6,17 +6,19 @@ public class Comment {
     private String id_photo;
     private String token;
     private String type;
+    private String message;
     private boolean status;
     private long timestamp;
 
     public Comment() {
     }
 
-    public Comment(String id, String id_photo, String token, String type, boolean status, long timestamp) {
+    public Comment(String id, String id_photo, String token, String type, String message, boolean status, long timestamp) {
         this.id = id;
         this.id_photo = id_photo;
         this.token = token;
         this.type = type;
+        this.message = message;
         this.status = status;
         this.timestamp = timestamp;
     }
@@ -51,6 +53,14 @@ public class Comment {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public boolean isStatus() {
