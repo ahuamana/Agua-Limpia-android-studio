@@ -28,7 +28,7 @@ public class CommentProvider {
     {
         return mCollection
                 .whereEqualTo("id_photo",idphoto)
-                .orderBy("timestamp", Query.Direction.DESCENDING);
+                .orderBy("timestamp", Query.Direction.ASCENDING);
     }
 
 }

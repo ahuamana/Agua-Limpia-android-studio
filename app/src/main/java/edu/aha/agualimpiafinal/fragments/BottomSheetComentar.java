@@ -23,7 +23,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import edu.aha.agualimpiafinal.R;
@@ -40,10 +45,12 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     private CommentProvider mCommentProvider;
     private Comment mComment;
 
-    private String id, id_token, token;
+    private String id_photo, token;
 
     CommentariosAdapter mAdapter;
     LinearLayoutManager mLinearLayoutManager;
+
+
 
     public BottomSheetComentar() {
 
@@ -85,11 +92,10 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         return displayMetrics.heightPixels;
     }
 
-    public static BottomSheetComentar newInstance(String id, String id_token, String token) {
+    public static BottomSheetComentar newInstance(String id_photo, String token) {
         BottomSheetComentar fragment = new BottomSheetComentar();
         Bundle args = new Bundle();
-        args.putString("id", id);
-        args.putString("id_token", id_token);
+        args.putString("id", id_photo);
         args.putString("token", token);
         fragment.setArguments(args);
         return fragment;
@@ -100,13 +106,11 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
 
-            id = getArguments().getString("id");
+            id_photo = getArguments().getString("id");
             token = getArguments().getString("token");
-            id_token = getArguments().getString("id_token");
 
             Log.e("Token", ""+ token);
-            Log.e("id", ""+ id);
-            Log.e("id_token", ""+ id_token);
+            Log.e("id", ""+ id_photo);
 
         }
 
@@ -136,27 +140,55 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         mLinearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false);
         binding.recyclerViewComentarios.setLayoutManager( mLinearLayoutManager);
 
-        FirestoreRecyclerOptions<Comment> options = new FirestoreRecyclerOptions.Builder<Comment>()
-                .setQuery(mCommentProvider.getCommentsByIdPhoto(id),Comment.class)
-                .build();
+        ArrayList<Comment> statusList = new ArrayList<>();
 
-        //enviar los datos al adapter
-        mAdapter=new CommentariosAdapter(options, getContext());
-        //asignar datos al recyclerView
-        binding.recyclerViewComentarios.setAdapter(mAdapter);
+        mCommentProvider.getCommentsByIdPhoto(id_photo).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                Log.e("SIZE BOTTOM","SIZE: "+ value.size());
+
+                if(value.size() > 0)
+                {
+                    binding.linearLayoutSinComentarios.setVisibility(View.GONE);
+
+                    for(DocumentSnapshot d : value.getDocuments())
+                    {
+                        Comment c = d.toObject(Comment.class);
+                        statusList.add(c);
+                    }
+
+                }else
+                {
+                    Log.e("TAMAÑO","SIZE: "+ value.size());
+                }
+
+                //enviar los datos al adapter
+                mAdapter=new CommentariosAdapter(statusList, getContext());
+                //asignar datos al recyclerView
+                binding.recyclerViewComentarios.setAdapter(mAdapter);
+
+
+            }
+        });
+
+
+
+
+
 
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mAdapter.startListening();
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mAdapter.stopListening();
+
     }
 
     private void validateComment() {
@@ -182,7 +214,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     private void createComment() {
 
         mComment = new Comment();
-        mComment.setId_photo(id);
+        mComment.setId_photo(id_photo);
         mComment.setStatus(true);
         mComment.setToken(token);
         mComment.setType("comment");
