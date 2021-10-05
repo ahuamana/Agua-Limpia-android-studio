@@ -170,7 +170,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                 setSustantivoData();
                 sustantivo.setName("cabeza mariposa");
 
-                registrarData(mImageFile);
+                registrarData(mImageFile, binding.textViewImagenNosubida);
 
             }
         });
@@ -182,7 +182,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                 setSustantivoData();
                 sustantivo.setName("alas mariposa");
 
-                registrarData(mImageFile2);
+                registrarData(mImageFile2, binding.textViewImagenNosubidaAlas);
             }
         });
 
@@ -194,7 +194,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                 sustantivo.setName("adbomen mariposa");
 
 
-                registrarData(mImageFile3);
+                registrarData(mImageFile3, binding.textViewImagenNosubidaAbdomen);
             }
         });
 
@@ -214,7 +214,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     }
 
-    private void registrarData(final File mImageFileReciever) {
+    private void registrarData(final File mImageFileReciever, TextView textView) {
 
         mDialog = new ProgressDialog(ButterflyChallengeActivity.this);
         mDialog.setTitle("Espere un momento");
@@ -242,7 +242,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
                                     sustantivo.setUrl(url);
 
-                                    SaveOnFirebase(url , sustantivo); //ACtualiza la informacion en firestorage
+                                    SaveOnFirebase(url , sustantivo, textView); //ACtualiza la informacion en firestorage
 
                                 }
                             });
@@ -268,7 +268,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     }
 
-    private void SaveOnFirebase(String url, MoldeSustantivo sus) {
+    private void SaveOnFirebase(String url, MoldeSustantivo sus, TextView textView) {
 
         Log.e("url","url reciever: "+url);
 
@@ -278,6 +278,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
                 if(task.isSuccessful())
                 {
+                    textView.setVisibility(View.GONE);
                     Toast.makeText(ButterflyChallengeActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
