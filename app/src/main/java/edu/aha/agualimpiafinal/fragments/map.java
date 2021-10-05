@@ -346,88 +346,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         });
 
 
-        //crear referencia a Firebase
-        mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                //Codigo si obtiene la ListaFragment
-
-                if (documentSnapshots.isEmpty()) {
-                    Log.d("TAG", "onSuccess: LIST EMPTY");
-                    return;
-                } else
-                    {
-                        //Asignar Datos de Firestore al molde
-                        List<MoldeMuestra> types = documentSnapshots.toObjects(MoldeMuestra.class);
-                        listaMuestras.addAll(types);
-                        Log.d("TAG", "onSuccess: " + listaMuestras);
-
-                        //Obtener datos del molde
-                        for (int i=0;i<listaMuestras.size();i++)
-                        {
-                            Log.e("Latitud "+i, String.valueOf(listaMuestras.get(i).getMuestraLatitud()));
-                            Log.e("Longitud" +i,String.valueOf(listaMuestras.get(i).getMuestraLongitud()));
-                            Log.e("unixtime" +i,String.valueOf(listaMuestras.get(i).getMuestraTimeStamp()));
-                            //Obtengo el Resultado de la muestra
-                            String muestraResultado= listaMuestras.get(i).getMuestraResultado();
-
-                            ////Horal Obtenida
-                            long time = listaMuestras.get(i).getMuestraTimeStamp()*1000;  //
-                            //Date df = new java.util.Date(time);
-                            //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
-                            //String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
-
-
-
-                            //Validar si la muestra es positivo
-                            if(muestraResultado.contains("Negativo"))
-                            {
-                                //Asignar un punto Azul en google maps con su latitud y longitud
-                                LatLng newlat = new LatLng(listaMuestras.get(i).getMuestraLatitud(),listaMuestras.get(i).getMuestraLongitud());
-                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                                myMarker=mMap.addMarker(new MarkerOptions()
-                                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
-                                                .position(newlat)
-                                                //.title("Muestra "+ i));
-                                                .title(RelativeTime.getTimeAgo(time, getContext())));
-
-                            }
-                            else {
-                                if(muestraResultado.contains("Positivo"))
-                                {
-                                    //Asignar un punto Rojo en google maps con su latitud y longitud
-                                    LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
-                                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                                    mMap.addMarker(new MarkerOptions()
-                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
-                                            .position(newlats)
-                                            //.title("Muestra "+ dateTime));
-                                            .title(RelativeTime.getTimeAgo(time, getContext())));
-
-
-                                }
-
-                            }
-                            ////Fin de Validar si la muestra es positivo
-
-                        }
-
-                    }
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                //Codigo si falla al obtener la ListaFragment
-                Toast.makeText(getActivity(), "Error getting data!!!", Toast.LENGTH_LONG).show();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                //limpiar marker
-               //googleMaps.clear();
-            }
-        });
+       setPointsOnGoogleMaps();
 
 
 
@@ -435,9 +354,97 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
         return vista;
     }
 
+    private void setPointsOnGoogleMaps() {
+
+       if(mMap != null)
+       {
+           //crear referencia a Firebase
+           mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+               @Override
+               public void onSuccess(QuerySnapshot documentSnapshots) {
+                   //Codigo si obtiene la ListaFragment
+
+                   if (documentSnapshots.isEmpty()) {
+                       Log.d("TAG", "onSuccess: LIST EMPTY");
+                       return;
+                   } else
+                   {
+                       //Asignar Datos de Firestore al molde
+                       List<MoldeMuestra> types = documentSnapshots.toObjects(MoldeMuestra.class);
+                       listaMuestras.addAll(types);
+                       Log.d("TAG", "onSuccess: " + listaMuestras);
+
+                       //Obtener datos del molde
+                       for (int i=0;i<listaMuestras.size();i++)
+                       {
+                           Log.e("Latitud "+i, String.valueOf(listaMuestras.get(i).getMuestraLatitud()));
+                           Log.e("Longitud" +i,String.valueOf(listaMuestras.get(i).getMuestraLongitud()));
+                           Log.e("unixtime" +i,String.valueOf(listaMuestras.get(i).getMuestraTimeStamp()));
+                           //Obtengo el Resultado de la muestra
+                           String muestraResultado= listaMuestras.get(i).getMuestraResultado();
+
+                           ////Horal Obtenida
+                           long time = listaMuestras.get(i).getMuestraTimeStamp()*1000;  //
+                           //Date df = new java.util.Date(time);
+                           //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
+                           //String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
 
 
 
+                           //Validar si la muestra es positivo
+                           if(muestraResultado.contains("Negativo"))
+                           {
+                               //Asignar un punto Azul en google maps con su latitud y longitud
+                               LatLng newlat = new LatLng(listaMuestras.get(i).getMuestraLatitud(),listaMuestras.get(i).getMuestraLongitud());
+                               mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                               myMarker=mMap.addMarker(new MarkerOptions()
+                                       .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
+                                       .position(newlat)
+                                       //.title("Muestra "+ i));
+                                       .title(RelativeTime.getTimeAgo(time, getContext())));
+
+                           }
+                           else {
+                               if(muestraResultado.contains("Positivo"))
+                               {
+                                   //Asignar un punto Rojo en google maps con su latitud y longitud
+                                   LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
+                                   mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                   mMap.addMarker(new MarkerOptions()
+                                           .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
+                                           .position(newlats)
+                                           //.title("Muestra "+ dateTime));
+                                           .title(RelativeTime.getTimeAgo(time, getContext())));
+
+
+                               }
+
+                           }
+                           ////Fin de Validar si la muestra es positivo
+
+                       }
+
+                   }
+
+               }
+           }).addOnFailureListener(new OnFailureListener() {
+               @Override
+               public void onFailure(@NonNull Exception e) {
+                   //Codigo si falla al obtener la ListaFragment
+                   Toast.makeText(getActivity(), "Error getting data!!!", Toast.LENGTH_LONG).show();
+               }
+           }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+               @Override
+               public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                   //limpiar marker
+                   //googleMaps.clear();
+               }
+           });
+
+       }
+
+
+    }
 
 
     @Override
