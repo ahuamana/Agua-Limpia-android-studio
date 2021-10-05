@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -91,12 +92,12 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     private void getUserInfoAll() {
 
-        getUserInfo(email, "cabeza mariposa", binding.circleImageViewPhoto);
-        getUserInfo(email, "alas mariposa", binding.circleImageViewPhotoAlas);
-        getUserInfo(email, "adbomen mariposa", binding.circleImageViewPhotoAbdomen);
+        getUserInfo(email, "cabeza mariposa", binding.circleImageViewPhoto, binding.textViewImagenNosubida);
+        getUserInfo(email, "alas mariposa", binding.circleImageViewPhotoAlas, binding.textViewImagenNosubidaAlas);
+        getUserInfo(email, "adbomen mariposa", binding.circleImageViewPhotoAbdomen, binding.textViewImagenNosubidaAbdomen);
     }
 
-    private void getUserInfo(String emailReceiver, String nameSustantivo, final CircleImageView circleImageView) {
+    private void getUserInfo(String emailReceiver, String nameSustantivo, final CircleImageView circleImageView, TextView textView) {
 
         //Log.e("TASK", "email" + email);
         mInsectosProvider.search(emailReceiver,nameSustantivo).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -112,6 +113,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                         String url = task.getResult().getDocuments().get(0).get("url").toString();
                         circleImageView.setBorderColor(0);//eliminar border color del XML para que se vea mas agradable
                         circleImageView.setBorderWidth(0);//eliminar ancho de border del XML para que se vea mas agradable
+                        textView.setVisibility(View.GONE);
 
                         //Set image from db
                         Glide.with(ButterflyChallengeActivity.this)
