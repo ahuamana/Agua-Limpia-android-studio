@@ -36,6 +36,7 @@ import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.CommentariosAdapter;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
 import edu.aha.agualimpiafinal.models.Comment;
+import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.providers.CommentProvider;
 
 
@@ -52,6 +53,9 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     LinearLayoutManager mLinearLayoutManager;
 
     ListenerRegistration mListener;
+    ListenerRegistration mListenerLikes;
+
+    ActionProvider mActionProvider;
 
     public BottomSheetComentar() {
 
@@ -131,9 +135,38 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
         getCommentariosFromPost();
 
-
+        //get like From user
+        getLikeFromUser();
 
     return view;
+    }
+
+    private void getLikeFromUser() {
+
+        mActionProvider = new ActionProvider();
+
+        mListenerLikes = mActionProvider.getUserLike(token,id_photo).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                if(value.size() == 0)
+                {
+                    //Create like for first time
+
+                }else
+                {
+                    //if already exist set color like
+                    boolean status = Boolean.parseBoolean(value.getDocuments().get(0).get("status").toString());
+
+                    if(status)
+                    {
+                        binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
+                    }
+                }
+
+            }
+        });
+
     }
 
     private void getCommentariosFromPost() {
@@ -257,6 +290,11 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         if(mListener != null)
         {
             mListener.remove();
+        }
+
+        if(mListenerLikes !=null)
+        {
+            mListenerLikes.remove();
         }
 
     }

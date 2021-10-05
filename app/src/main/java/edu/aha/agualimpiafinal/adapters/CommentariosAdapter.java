@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import edu.aha.agualimpiafinal.databinding.CardviewComentarioBinding;
 import edu.aha.agualimpiafinal.models.Comment;
+import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 import edu.aha.agualimpiafinal.utils.TextUtilsText;
 
@@ -26,6 +27,7 @@ public class CommentariosAdapter extends RecyclerView.Adapter<CommentariosAdapte
     Context context;
     UserProvider mUserProvider;
     ArrayList<Comment> commentArrayList;
+
 
     public CommentariosAdapter( ArrayList<Comment> commentArrayList, Context context) {
 
@@ -53,7 +55,11 @@ public class CommentariosAdapter extends RecyclerView.Adapter<CommentariosAdapte
 
         //All code here
         getUserInfoToken(holder,position);
+
     }
+
+
+
 
     private void getUserInfoToken(ViewHolder holder, int position) {
 
