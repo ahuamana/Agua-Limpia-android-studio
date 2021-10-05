@@ -50,6 +50,8 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     CommentariosAdapter mAdapter;
     LinearLayoutManager mLinearLayoutManager;
 
+
+
     public BottomSheetComentar() {
 
     }
@@ -148,6 +150,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
                 if(value.size() > 0)
                 {
+                    binding.linearLayoutSinComentarios.setVisibility(View.GONE);
 
                     for(DocumentSnapshot d : value.getDocuments())
                     {
