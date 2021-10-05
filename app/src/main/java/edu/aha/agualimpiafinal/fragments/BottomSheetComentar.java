@@ -26,6 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     CommentariosAdapter mAdapter;
     LinearLayoutManager mLinearLayoutManager;
 
-
+    ListenerRegistration mListener;
 
     public BottomSheetComentar() {
 
@@ -142,7 +143,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
 
         ArrayList<Comment> statusList = new ArrayList<>();
 
-        mCommentProvider.getCommentsByIdPhoto(id_photo).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mListener = mCommentProvider.getCommentsByIdPhoto(id_photo).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
@@ -167,6 +168,9 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
                 mAdapter=new CommentariosAdapter(statusList, getContext());
                 //asignar datos al recyclerView
                 binding.recyclerViewComentarios.setAdapter(mAdapter);
+
+                //Show recycler view
+                binding.recyclerViewComentarios.setVisibility(View.VISIBLE);
 
 
             }
@@ -246,6 +250,14 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
+        if(mListener != null)
+        {
+            mListener.remove();
+        }
 
+    }
 }
