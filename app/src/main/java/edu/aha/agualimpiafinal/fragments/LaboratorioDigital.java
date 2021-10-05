@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -46,11 +47,82 @@ public class LaboratorioDigital extends Fragment {
         binding = LaboratorioDigitalFragmentBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-        setOnclickListeners();
+        openAnimalsChallenge();
+
+        openFrutasChallenge();
+
+        openPlantasChallenge();
+
+        openSustanciasChallenge();
+
+        openObjetosChallenge();
+
+        openOtrosChallenge();
 
         getDataLaboratorio();
 
+
         return view;
+
+    }
+
+    private void openOtrosChallenge() {
+
+        binding.linearLayoutOtros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void openObjetosChallenge() {
+
+        binding.linearLayoutObjetos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void openSustanciasChallenge() {
+
+        binding.linearLayoutSustancias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    private void openPlantasChallenge() {
+
+        binding.linearLayoutPlantas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    private void openFrutasChallenge() {
+
+        binding.linearLayoutFrutas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -74,8 +146,7 @@ public class LaboratorioDigital extends Fragment {
 
     }
 
-    private void setOnclickListeners() {
-
+    private void openAnimalsChallenge() {
 
 
         binding.linearLayoutAnimales.setOnClickListener(new View.OnClickListener() {
