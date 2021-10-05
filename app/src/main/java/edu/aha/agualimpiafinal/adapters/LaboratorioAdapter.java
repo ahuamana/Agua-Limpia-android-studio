@@ -1,11 +1,16 @@
 package edu.aha.agualimpiafinal.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,7 +32,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.databinding.CardviewFullImageBinding;
 import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
+import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
 import edu.aha.agualimpiafinal.fragments.BottomSheetComentar;
 import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
@@ -68,6 +75,35 @@ public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo
 
         openComentarios(model, holder);
 
+
+        showImageFullScreen(model, holder);
+
+    }
+    private void showImageFullScreen(MoldeSustantivo model, ViewHolder holder)
+    {
+        holder.binding.roundedImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CardviewFullImageBinding customBinding = CardviewFullImageBinding.inflate(LayoutInflater.from(context));
+
+                Dialog dialog = new Dialog(context);
+                dialog.setCancelable(true);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setContentView(customBinding.getRoot());
+
+
+                Glide.with(context)
+                        .load(model.getUrl())
+                        .placeholder(R.drawable.loading_icon)
+                        .into(customBinding.roundedImageView);
+
+                dialog.show();
+
+
+            }
+        });
 
     }
 
