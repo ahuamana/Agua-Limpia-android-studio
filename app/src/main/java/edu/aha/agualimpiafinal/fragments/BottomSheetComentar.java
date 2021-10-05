@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -35,6 +36,7 @@ import java.util.Date;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.CommentariosAdapter;
 import edu.aha.agualimpiafinal.databinding.BottomSheetComentarBinding;
+import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.Comment;
 import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.providers.CommentProvider;
@@ -56,6 +58,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     ListenerRegistration mListenerLikes;
 
     ActionProvider mActionProvider;
+    Action mAction;
 
     public BottomSheetComentar() {
 
@@ -130,6 +133,7 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
     View view = binding.getRoot();
 
         mCommentProvider = new CommentProvider();
+        mActionProvider = new ActionProvider();
 
         validateComment();
 
@@ -138,12 +142,95 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
         //get like From user
         getLikeFromUser();
 
+        setLikePhoto();
+
     return view;
+    }
+
+    private void setLikePhoto() {
+
+        binding.imageViewLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mActionProvider.getUserLike(token, id_photo).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                        if(queryDocumentSnapshots.size() == 0)
+                        {
+                            //Create like for first time
+                            createLike();
+
+                        }else
+                        {
+                            //if already exist
+                            boolean status = Boolean.parseBoolean(queryDocumentSnapshots.getDocuments().get(0).get("status").toString());
+                            String idToken = queryDocumentSnapshots.getDocuments().get(0).get("id_token").toString();
+
+                            updateLike(idToken, status);
+
+
+                        }
+
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    private void updateLike(String idToken, boolean status) {
+
+        mActionProvider.updateStatus(idToken,!status).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                if(task.isSuccessful())
+                {
+                    Log.e("STATUS","ACTUALIZADO");
+                }
+
+            }
+        });
+
+    }
+
+    private void createLike() {
+
+        mAction = new Action();
+        mAction.setId_token(id_photo+"_"+token);
+        mAction.setToken(token);
+        mAction.setStatus(true);
+        mAction.setId(id_photo);
+        mAction.setType("Like");
+
+        if(token != null)
+        {
+            if(!token.equals(""))
+            {
+
+
+                mActionProvider.create(mAction).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if(task.isSuccessful())
+                        {
+                            Log.e("LIKE","CREADO LIKE CORRECTAMENTE");
+                        }
+
+                    }
+                });
+            }
+        }
+
     }
 
     private void getLikeFromUser() {
 
-        mActionProvider = new ActionProvider();
+
 
         mListenerLikes = mActionProvider.getUserLike(token,id_photo).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
