@@ -248,6 +248,10 @@ public class BottomSheetComentar extends BottomSheetDialogFragment {
                     if(status)
                     {
                         binding.imageViewLike.setImageResource(R.drawable.facebook_good_like_icon512);
+                    }else
+                    {
+                        Log.e("STATUS","STATUS FALSE");
+                        binding.imageViewLike.setImageResource(R.drawable.like);
                     }
                 }
 
