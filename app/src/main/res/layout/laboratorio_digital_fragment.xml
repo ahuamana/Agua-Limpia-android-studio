@@ -8,7 +8,7 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_anchorGravity="center">
@@ -83,6 +83,7 @@
 
 
                         <LinearLayout
+                            android:id="@+id/linearLayoutFrutas"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -113,6 +114,7 @@
 
 
                         <LinearLayout
+                            android:id="@+id/linearLayoutPlantas"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -152,6 +154,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutSustancias"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -181,6 +184,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutObjetos"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -211,6 +215,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutOtros"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -284,7 +289,6 @@
 
 
             <LinearLayout
-                android:id="@+id/linearLayoutPlantas"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:visibility="gone"

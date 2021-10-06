@@ -103,7 +103,7 @@ public class InsectosAdapter extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
 
-                        Log.e("POSITION","POSITION 3 ");
+                        //Log.e("POSITION","POSITION 3 ");
                         String text = "Al finalizar el reto podras conocer las partes de la mariposa y su importancia, asi que tendrás que buscar una mariposa para poder lograr todos los objetivos";
                         Intent intent = new Intent(context, ButterflyChallengeActivity.class);
 

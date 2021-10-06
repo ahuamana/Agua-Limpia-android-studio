@@ -31,7 +31,7 @@ public class InsectosProvider {
 
     public Query getMuestrasListOrderByTimeStamp()
     {
-        return mCollection.orderBy("timestamp", Query.Direction.ASCENDING);
+        return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
 
     }
 
