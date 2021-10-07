@@ -41,7 +41,7 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
         Log.e("position_image","position: "+ position_image);
 
 
-        binding.points.setText(points);
+        binding.points.setText(String.valueOf(points));
 
 
        if(position_image != 0)
@@ -53,7 +53,7 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
                    binding.textViewDescriptionSustantivo.setText(R.string.descripcion_mariposa1);
 
                    Glide.with(this)
-                           .load("https://www.nationalgeographic.com.es/medio/2018/02/27/mariposas__1280x720.jpg")
+                           .load("https://www.nationalgeographic.com.es/medio/2018/03/23/perdida-entre-la-multitud_86c63fc7_1016x648.jpg")
                            .placeholder(R.drawable.loading_icon)
                            .into(binding.roundedImageViewSustantivo);
                    break;
@@ -61,7 +61,7 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
                    binding.textViewDescriptionSustantivo.setText(R.string.descripcion_mariposa2);
 
                    Glide.with(this)
-                           .load("https://www.nationalgeographic.com.es/medio/2018/02/27/mariposas__1280x720.jpg")
+                           .load("https://www.nationalgeographic.com.es/medio/2021/08/31/apollo-landing_1a9abaa4_1280x853.jpg")
                            .placeholder(R.drawable.loading_icon)
                            .into(binding.roundedImageViewSustantivo);
                    break;

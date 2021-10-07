@@ -324,7 +324,9 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                     mDialog.dismiss();
 
                     int points = 0;
-                    int ramdom = new Random().nextInt(2)+1; //Generate numbers between 1 - 3
+                    final int min = 1;
+                    final int max = 3;
+                    int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
 
                     goToNextActivity(points, ramdom);
 
@@ -429,7 +431,9 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
 
                     int points = 1;
-                    int ramdom = new Random().nextInt(2)+1; //Generate numbers between 1 - 3
+                    final int min = 1;
+                    final int max = 3;
+                    int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
 
                     goToNextActivity(points, ramdom);
 
