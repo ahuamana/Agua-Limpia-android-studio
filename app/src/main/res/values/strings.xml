@@ -16,8 +16,13 @@
     <string name="title_desafios">DESAFIOS</string>
     <string name="subtitle_experiencias">EXPERIENCIAS PARA TI</string>
     <string name="congratulations">FELICIDADES!!</string>
-    <string name="descripcion_mariposa"><b>Sabías que, las mariposas</b>
+    <string name="descripcion_mariposa1"><b>Las alas de las mariposas son transparentes pero percibimos sus llamativos y distintos colores gracias a que su estructura está protegida con escamas</b>
+        muy finas que reflejan continuamente la luz.</string>
+
+    <string name="descripcion_mariposa2"><b>Sabías que, las mariposas</b>
         se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
+
+    <string name="descripcion_mariposa3">Pueden volar desde <b>8 a 20 km</b>  por hora.</string>
 
 
     <string name="steps_healthmetric_step1">Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.</string>

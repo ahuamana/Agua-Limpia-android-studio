@@ -33,6 +33,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
@@ -322,7 +323,11 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                     Toast.makeText(ButterflyChallengeActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
-                    //goToNextActivity();
+                    int points = 0;
+                    int ramdom = new Random().nextInt(2)+1; //Generate numbers between 1 - 3
+
+                    goToNextActivity(points, ramdom);
+
 
                 }else {
                     mDialog.dismiss();
@@ -422,7 +427,11 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                     Toast.makeText(ButterflyChallengeActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
-                    goToNextActivity();
+
+                    int points = 1;
+                    int ramdom = new Random().nextInt(2)+1; //Generate numbers between 1 - 3
+
+                    goToNextActivity(points, ramdom);
 
                 }else {
                     mDialog.dismiss();
@@ -440,11 +449,11 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     }
 
-    private void goToNextActivity() {
+    private void goToNextActivity(int points, int position_image) {
 
-        //Intent i = new Intent(mContext, )
         Intent i = new Intent(ButterflyChallengeActivity.this, ResultadoCapturaImageActivity.class);
-        i.putExtra("mensaje","");
+        i.putExtra("points",points);
+        i.putExtra("position_image",position_image);
         startActivity(i);
     }
 
