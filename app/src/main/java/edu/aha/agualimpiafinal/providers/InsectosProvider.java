@@ -29,6 +29,12 @@ public class InsectosProvider {
         return mCollection.document(sustantivo.getId()).set(sustantivo);
     }
 
+    public Task<Void> update(String id_photo, String url)
+    {
+        return mCollection.document(id_photo).update("url", url);
+    }
+
+
     public Query getMuestrasListOrderByTimeStamp()
     {
         return mCollection.orderBy("timestamp", Query.Direction.DESCENDING);
