@@ -356,8 +356,12 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
     private void setPointsOnGoogleMaps() {
 
-       if(mMap != null)
-       {
+        Log.e("MAP POINTS","METHOD");
+
+       //if(mMap != null)
+       //{
+           Log.e("MAP POINTS","NO ES NULO");
+
            //crear referencia a Firebase
            mMuestrasProvider.getCollectionDatosMuestra().get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                @Override
@@ -441,7 +445,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                }
            });
 
-       }
+       //}
 
 
     }

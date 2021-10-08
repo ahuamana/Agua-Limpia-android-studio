@@ -34,4 +34,9 @@ public class UserProvider {
         return mCollection.document(token).get();
     }
 
+    public Task<Void> updatePoints(String token, int points)
+    {
+        return mCollection.document(token).update("points",points);
+    }
+
 }

@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.UploadTask;
 
@@ -41,6 +42,7 @@ import edu.aha.agualimpiafinal.databinding.ActivityButterflyChallengeBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.InsectosProvider;
+import edu.aha.agualimpiafinal.providers.UserProvider;
 
 public class ButterflyChallengeActivity extends AppCompatActivity {
 
@@ -60,8 +62,11 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
     ImageProvider mImageProvider;
     MoldeSustantivo sustantivo;
     InsectosProvider mInsectosProvider;
+    UserProvider mUserProvider;
 
     String email, firstname, lastname;
+
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +162,10 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
         //middlename= preferences.getString("spmiddlename","");
         lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
+
+        SharedPreferences preferencesToken = getSharedPreferences("token", Context.MODE_PRIVATE);
+        token= preferencesToken.getString("token","");
+
 
     }
 
@@ -429,13 +438,9 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                     Toast.makeText(ButterflyChallengeActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
+                   getPointsFirebase();
 
-                    int points = 1;
-                    final int min = 1;
-                    final int max = 3;
-                    int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
 
-                    goToNextActivity(points, ramdom);
 
                 }else {
                     mDialog.dismiss();
@@ -451,6 +456,54 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getPointsFirebase() {
+
+        mUserProvider = new UserProvider();
+
+       if(token != null)
+       {
+           mUserProvider.searchUser(token).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+               @Override
+               public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful())
+                {
+                   int points = Integer.parseInt(task.getResult().get("points").toString());
+
+                   updatePoints(points);
+                }
+
+               }
+           });
+       }
+
+    }
+
+    private void updatePoints(int points) {
+
+        mUserProvider.updatePoints(token,points+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+                Log.e("POINTS","PUNTOS ACTUALIZADOS");
+
+                int points = 1;
+                final int min = 1;
+                final int max = 3;
+                int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
+
+                goToNextActivity(points, ramdom);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                Log.e("POINTS",""+e.getMessage());
+            }
+        });
     }
 
     private void goToNextActivity(int points, int position_image) {
@@ -565,5 +618,6 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
 
     }
+
 
 }
