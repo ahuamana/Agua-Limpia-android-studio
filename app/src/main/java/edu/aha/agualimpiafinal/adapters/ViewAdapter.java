@@ -105,7 +105,7 @@ public class ViewAdapter extends PagerAdapter {
                         .circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Toma foto de la muestra con la\n camara");
+                txtdescription.setText("Toma foto de la muestra con una\n camara");
                 txtnumber.setText("2");
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_selected);
