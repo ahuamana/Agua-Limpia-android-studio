@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 import edu.aha.agualimpiafinal.databinding.ListaFragmentBinding;
@@ -139,7 +141,22 @@ public class ListaFragment extends Fragment {
 
     private void updateSearchData(String toLowerCase) {
 
-        buscarAuthorAliasOnFirestorage(toLowerCase);
+        mMuestrasProvider.getMuestrasListOrderByDepartment(toLowerCase).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                if(queryDocumentSnapshots.size() > 0)
+                {
+                    buscarDepartamentoOnFirestorage(toLowerCase);
+                }else
+                {
+                    buscarProvinciaOnFirestorage(toLowerCase);
+                }
+
+            }
+        });
+
+        //buscarAuthorAliasOnFirestorage(toLowerCase);
 
     }
 
