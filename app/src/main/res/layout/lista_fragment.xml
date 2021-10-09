@@ -32,7 +32,7 @@
         android:layout_height="wrap_content">
 
         <com.mancj.materialsearchbar.MaterialSearchBar
-            android:id="@+id/searchProduct"
+            android:id="@+id/searchItem"
             android:layout_width="wrap_content"
             app:mt_searchBarColor="#daf3ed"
             app:mt_searchIconTint="@color/lightblue"

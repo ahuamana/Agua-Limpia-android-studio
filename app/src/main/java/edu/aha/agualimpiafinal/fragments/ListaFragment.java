@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,25 +20,25 @@ import android.view.ViewGroup;
 
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 
+import edu.aha.agualimpiafinal.databinding.ListaFragmentBinding;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
-import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.adapters.MuestrasAdapter;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.viewModels.ListaViewModel;
 
 public class ListaFragment extends Fragment {
 
-    RecyclerView recyclerUsuarios;
-    MuestrasAdapter adapter;
+
+    MuestrasAdapter mAdapter;
 
     MuestrasProvider mMuestrasProvider;
 
-    private SearchView svSearchDepartamento, svSearchProvincia, svSearchAuthorAlias;
 
     LinearLayoutManager mLinearLayoutManager;
+
+    private ListaFragmentBinding binding;
 
     private ListaViewModel mViewModel;
 
@@ -47,79 +49,27 @@ public class ListaFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        View vista = inflater.inflate(R.layout.lista_fragment, container, false);
+        binding = ListaFragmentBinding.inflate(getLayoutInflater());
+        View vista = binding.getRoot();
 
         //Instanciar variables
         mMuestrasProvider = new MuestrasProvider();
 
-        //inicializar variables para buscar
-        svSearchDepartamento= (SearchView) vista.findViewById(R.id.Isearch);
-        //Implementado segunda forma de buscar (provincia)
-        svSearchProvincia = vista.findViewById(R.id.IsearchProvincia);
-        //Implementado 3ra forma de buscar (authoralias)
-        svSearchAuthorAlias = vista.findViewById(R.id.IsearchAuthorAlias);
+        searchOnRecycler();
+
+        showFirstTimeRecyclerView();
 
 
-        svSearchDepartamento.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
+        return vista;
+    }
 
-                return false;
-            }
+    private void showFirstTimeRecyclerView() {
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                buscarDepartamentoOnFirestorage(newText);
-
-                return false;
-            }
-        });
-
-
-        svSearchProvincia.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                buscarProvinciaOnFirestorage(newText);
-
-                return false;
-            }
-        });
-
-
-        svSearchAuthorAlias.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                buscarAuthorAliasOnFirestorage(newText);
-
-                return false;
-            }
-        });
-        //fin de implementar buscar
-
-
-        //codigo
-        //iniciar arraylist y refrencia al contenedor
-
-        recyclerUsuarios= vista.findViewById(R.id.idRecycler);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setStackFromEnd(true);//messages on recycler put over keyboard
-        recyclerUsuarios.setLayoutManager( mLinearLayoutManager);
+        binding.idRecycler.setLayoutManager( mLinearLayoutManager);
 
-        recyclerUsuarios.setHasFixedSize(true);
+        binding.idRecycler.setHasFixedSize(true);
 
 
         //crear referencia a Firebase
@@ -130,13 +80,13 @@ public class ListaFragment extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(options, getContext());
+        mAdapter =new MuestrasAdapter(options, getContext());
         //asignar datos al recyclerView
-        recyclerUsuarios.setAdapter(adapter);
+        binding.idRecycler.setAdapter(mAdapter);
 
 
 
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
@@ -147,7 +97,7 @@ public class ListaFragment extends Fragment {
 
                 //updateStatusMessage();
                 //
-                int numberItems = adapter.getItemCount();
+                int numberItems = mAdapter.getItemCount();
                 Log.e("TAG-NUMBER-OF-ITEMS",String.valueOf(numberItems));
                 int lastItemPosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
                 Log.e("TAG-LASTITEM",String.valueOf(lastItemPosition));
@@ -155,34 +105,62 @@ public class ListaFragment extends Fragment {
                 if(lastItemPosition == -1 || (positionStart >= (numberItems - 1) && lastItemPosition == (positionStart - 1)))
                 {
                     Log.e("TAG","ENTRASTE");
-                    recyclerUsuarios.scrollToPosition(positionStart-1);
+                    binding.idRecycler.scrollToPosition(positionStart-1);
                     mLinearLayoutManager.setStackFromEnd(false);
                 }
 
             }
         });
 
-        return vista;
+    }
+
+    private void searchOnRecycler() {
+
+        binding.searchItem.addTextChangeListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                updateSearchData(binding.searchItem.getText().toLowerCase());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+    }
+
+    private void updateSearchData(String toLowerCase) {
+
+        buscarAuthorAliasOnFirestorage(toLowerCase);
+
     }
 
     private void buscarDepartamentoOnFirestorage(String newText) {
 
-        adapter=null;
+        mAdapter =null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
         FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
                 .setQuery(mMuestrasProvider.getMuestrasListOrderByDepartment(newText), MoldeMuestra.class)
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions, getContext());
+        mAdapter =new MuestrasAdapter(newoptions, getContext());
 
 
         //asignar datos al recyclerView
-        recyclerUsuarios.setAdapter(adapter);
+        binding.idRecycler.setAdapter(mAdapter);
 
-        adapter.startListening();//que escuche en timepo real los cambios
+        mAdapter.startListening();//que escuche en timepo real los cambios
 
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
 
 
 
@@ -192,7 +170,7 @@ public class ListaFragment extends Fragment {
     private void buscarAuthorAliasOnFirestorage(String newText) {
 
         //codigo
-        adapter=null;
+        mAdapter =null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
 
                 FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
@@ -200,11 +178,11 @@ public class ListaFragment extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions, getContext());
-        adapter.startListening();
+        mAdapter =new MuestrasAdapter(newoptions, getContext());
+        mAdapter.startListening();
 
         //asignar datos al recyclerView
-        recyclerUsuarios.setAdapter(adapter);
+        binding.idRecycler.setAdapter(mAdapter);
         ////
     }
 
@@ -212,7 +190,7 @@ public class ListaFragment extends Fragment {
         //codigo implementar
         //Log.e("data cambiado", "cambiando a provincia");
 
-        adapter=null;
+        mAdapter =null;
         Log.e("mensajebusqueda: ",newText.toLowerCase());
 
         FirestoreRecyclerOptions <MoldeMuestra> newoptions = new FirestoreRecyclerOptions.Builder<MoldeMuestra>()
@@ -220,11 +198,11 @@ public class ListaFragment extends Fragment {
                 .build();
 
         //enviar los datos al adapter
-        adapter=new MuestrasAdapter(newoptions, getContext());
-        adapter.startListening();
+        mAdapter =new MuestrasAdapter(newoptions, getContext());
+        mAdapter.startListening();
 
         //asignar datos al recyclerView
-        recyclerUsuarios.setAdapter(adapter);
+        binding.idRecycler.setAdapter(mAdapter);
         ////
     }
 
@@ -233,9 +211,9 @@ public class ListaFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        if(adapter != null)
+        if(mAdapter != null)
         {
-            adapter.startListening();
+            mAdapter.startListening();
         }
 
     }
@@ -244,9 +222,9 @@ public class ListaFragment extends Fragment {
     public void onStop() {
         super.onStop();
 
-        if(adapter != null)
+        if(mAdapter != null)
         {
-            adapter.stopListening();
+            mAdapter.stopListening();
         }
 
     }
