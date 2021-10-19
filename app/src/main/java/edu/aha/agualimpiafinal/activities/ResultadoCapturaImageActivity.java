@@ -36,14 +36,24 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
 
 
         int points = getIntent().getIntExtra("points",100);
-        int position_image = getIntent().getIntExtra("position_image",100);
+        int descripcion = getIntent().getIntExtra("descripcion",100);
+        String imageurl = getIntent().getStringExtra("imageurl");
+        String title = getIntent().getStringExtra("title");
 
-        Log.e("position_image","position: "+ position_image);
+        Log.e("imageurl","imageurl: "+ imageurl);
 
 
         binding.points.setText(String.valueOf(points));
+        binding.textViewDescriptionSustantivo.setText(descripcion);
+        binding.title.setText(title);
+
+        Glide.with(this)
+                .load(imageurl)
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.roundedImageViewSustantivo);
 
 
+        /*
        if(position_image != 0)
        {
            switch (position_image)
@@ -80,7 +90,7 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
                    Log.e("ERROR","NO CASE FOUND");
                    break;
            }
-       }
+       }*/
 
 
     }

@@ -131,7 +131,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
 
 
-
+            startLocation(googleMap); //getlocation
 
 
 

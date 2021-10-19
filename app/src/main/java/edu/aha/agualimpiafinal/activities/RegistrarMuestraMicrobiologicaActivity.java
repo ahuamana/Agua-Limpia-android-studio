@@ -108,7 +108,11 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
 
         showDepartamento();
 
+
+
     }
+
+
 
     private void showDepartamento() {
 
@@ -501,6 +505,9 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
                         //set longitud
                         binding.RIedtLongitud.setText(String.valueOf(location.getLongitude()));
 
+                        worksWithLocation(String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()) );
+
+
                         mDialogLocation.dismiss();
 
                     } else {
@@ -524,9 +531,11 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
                                 //Iniciar location
                                 Location location1 = locationResult.getLastLocation();
                                 //set latitude
-                                binding.RIedtLatitud.setText(String.valueOf(location1.getLatitude()));
+                                String latitud = String.valueOf(location1.getLatitude());
                                 //set longitud
-                                binding.RIedtLongitud.setText(String.valueOf(location1.getLongitude()));
+                                String longitud = String.valueOf(location1.getLongitude());
+
+                                worksWithLocation(latitud ,longitud);
 
                                 mDialogLocation.dismiss();
 
@@ -568,8 +577,14 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
 
     }
 
+    private void worksWithLocation(String latitud, String longitud) {
+
+        //setColor
+        Log.e("metodo","workswithlocation");
+        binding.RIbtnRegistrar.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.greenPrimary));
 
 
+    }
 
 
     private void openCamera() {
@@ -635,6 +650,14 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
         middlename= preferences.getString("spmiddlename","");
         lastname= preferences.getString("splastname","");
         email= preferences.getString("spEmail","");
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        validateLocation();
 
     }
 
