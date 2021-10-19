@@ -90,6 +90,13 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getUserInfoAll();
+    }
+
     private void goBackActivity() {
         binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -332,12 +339,9 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
                     Toast.makeText(ButterflyChallengeActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
-                    int points = 0;
-                    final int min = 1;
-                    final int max = 3;
-                    int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
+                    int pointsganados = 0;
 
-                    goToNextActivity(points, ramdom);
+                    senDataIntent(pointsganados);
 
 
                 }else {
@@ -487,14 +491,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Void unused) {
 
-                Log.e("POINTS","PUNTOS ACTUALIZADOS");
-
-                int points = 1;
-                final int min = 1;
-                final int max = 3;
-                int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
-
-                goToNextActivity(points, ramdom);
+                senDataIntent(1);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -506,11 +503,48 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
         });
     }
 
-    private void goToNextActivity(int points, int position_image) {
+    private void senDataIntent(int pointsganados) {
+        Log.e("POINTS","PUNTOS ACTUALIZADOS");
+
+
+        final int min = 1;
+        final int max = 3;
+        int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
+        String imageurl = null;
+        int descripcion = 0;
+        String title = "mariposa";
+
+        if(ramdom != 0)
+        {
+            switch (ramdom)
+            {
+                case 1:
+                    imageurl = "https://www.nationalgeographic.com.es/medio/2018/03/23/perdida-entre-la-multitud_86c63fc7_1016x648.jpg";
+                    descripcion = R.string.descripcion_mariposa1;
+                    break;
+
+                case 2:
+                    imageurl = "https://www.nationalgeographic.com.es/medio/2021/08/31/apollo-landing_1a9abaa4_1280x853.jpg";
+                    descripcion = R.string.descripcion_mariposa2;
+                    break;
+
+                case 3:
+                    imageurl = "https://www.nationalgeographic.com.es/medio/2019/06/13/danza-de-mariposas_a6a4af54_1280x853.jpg";
+                    descripcion = R.string.descripcion_mariposa3;
+                    break;
+            }
+        }
+
+        goToNextActivity(pointsganados, descripcion, imageurl,title);
+    }
+
+    private void goToNextActivity(int points, int descripcion, String imageurl, String title) {
 
         Intent i = new Intent(ButterflyChallengeActivity.this, ResultadoCapturaImageActivity.class);
         i.putExtra("points",points);
-        i.putExtra("position_image",position_image);
+        i.putExtra("descripcion",descripcion);
+        i.putExtra("imageurl",imageurl);
+        i.putExtra("title",title);
         startActivity(i);
     }
 
