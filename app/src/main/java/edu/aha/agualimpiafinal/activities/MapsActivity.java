@@ -72,9 +72,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.addMarker(new MarkerOptions().position(positionReceiver).title("Marker in Sydney"));
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(positionReceiver)
-                .zoom(15)
+                .zoom(16)
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.addMarker(new MarkerOptions()
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ahorrar_agua))
+                .position(positionReceiver)
+                .title(time));
 
 
         settingsMaps(googleMap);
@@ -85,6 +92,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void setPointsOnGoogleMaps(GoogleMap googleMap) {
 
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Toast.makeText(MapsActivity.this, "Info window clicked",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Log.e("MAP POINTS","METHOD");
         Log.e("MAP POINTS","NO ES NULO");
