@@ -684,7 +684,7 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
     public void onLocationChanged(@NonNull Location location) {
         locationManager.removeUpdates((LocationListener) getApplicationContext());
 
-        //open the map:
+        //open the MapFragment:
         //set latitude
         binding.RIedtLatitud.setText(String.valueOf(location.getLatitude()));
         //set longitud

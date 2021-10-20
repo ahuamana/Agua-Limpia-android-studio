@@ -26,7 +26,7 @@ public class SugerenciasProvider {
 
     public Task<Void> createSuggestion(MoldeComentarios comentarios)
     {
-        //Creamos un map con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el map
+        //Creamos un MapFragment con objetos strings y que no haya valores duplicados y lo guardamos todos los datos en el MapFragment
         Map<String, Object> sugerenciaData = new HashMap<>();
         sugerenciaData.put("sugerenciaFechaUnixtime",System.currentTimeMillis()/1000);
         sugerenciaData.put("sugerenciaMensaje",comentarios.getSugerenciaMensaje());

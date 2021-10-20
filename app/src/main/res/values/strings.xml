@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="text_anacroneuria">Es este reto tendrás que buscar este insecto debajo de las piedras, y lograr capturar una imagen completa</string>
 
 
     <string name="menu_home">Home</string>
@@ -391,6 +392,7 @@
     </array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
     <!--    Variables de entorno-->
 
