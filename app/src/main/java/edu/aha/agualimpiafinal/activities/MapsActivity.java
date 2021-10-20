@@ -61,36 +61,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        String lat = getIntent().getStringExtra("latitud");
-        String lon = getIntent().getStringExtra("longitud");
+        String latReceiver = getIntent().getStringExtra("latitud");
+        String lonReceiver = getIntent().getStringExtra("longitud");
         String time = getIntent().getStringExtra("timeago");
 
-        Log.e("LAT&LONG",""+ lat+":"+lon);
+        Log.e("LAT&LONG",""+ latReceiver+":"+lonReceiver);
 
         // Add a marker in Sydney and move the camera
-        LatLng positionReceiver = new LatLng(Double.parseDouble(lat), Double.parseDouble(lon));
+        LatLng positionReceiver = new LatLng(Double.parseDouble(latReceiver), Double.parseDouble(lonReceiver));
         //mMap.addMarker(new MarkerOptions().position(positionReceiver).title("Marker in Sydney"));
         CameraPosition cameraPosition = CameraPosition.builder()
                 .target(positionReceiver)
-                .zoom(16)
+                .zoom(18)
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
 
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ahorrar_agua))
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ahorrar_agua128))
                 .position(positionReceiver)
                 .title(time));
 
 
         settingsMaps(googleMap);
 
-        setPointsOnGoogleMaps(googleMap);
+        setPointsOnGoogleMaps(googleMap, latReceiver, lonReceiver);
 
     }
 
-    private void setPointsOnGoogleMaps(GoogleMap googleMap) {
+    private void setPointsOnGoogleMaps(GoogleMap googleMap, String latReciver, String lonReceiver) {
 
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -137,38 +137,43 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         //String vv = new SimpleDateFormat("MM dd, yyyy hh:mma").format(df);
                         //String HoraObtenida = new SimpleDateFormat("MM/dd/yyyy hh:mma").format(df);
 
-
-
-                        //Validar si la muestra es positivo
-                        if(muestraResultado.contains("Negativo"))
+                        if( listaMuestras.get(i).getMuestraLatitud() ==  Double.parseDouble(latReciver))
                         {
-                            //Asignar un punto Azul en google maps con su latitud y longitud
-                            LatLng newlat = new LatLng(listaMuestras.get(i).getMuestraLatitud(),listaMuestras.get(i).getMuestraLongitud());
-                            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                            myMarker=googleMap.addMarker(new MarkerOptions()
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
-                                    .position(newlat)
-                                    //.title("Muestra "+ i));
-                                    .title(RelativeTime.getTimeAgo(time, getApplicationContext())));
-
-                        }
-                        else {
-                            if(muestraResultado.contains("Positivo"))
+                            Log.e("UnaMuestra","Es igual a lo recibido");
+                        }else
+                        {
+                            //Validar si la muestra es positivo
+                            if(muestraResultado.contains("Negativo"))
                             {
-                                //Asignar un punto Rojo en google maps con su latitud y longitud
-                                LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
-                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-                                mMap.addMarker(new MarkerOptions()
-                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
-                                        .position(newlats)
-                                        //.title("Muestra "+ dateTime));
+                                //Asignar un punto Azul en google maps con su latitud y longitud
+                                LatLng newlat = new LatLng(listaMuestras.get(i).getMuestraLatitud(),listaMuestras.get(i).getMuestraLongitud());
+                                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                myMarker=googleMap.addMarker(new MarkerOptions()
+                                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterblue64))
+                                        .position(newlat)
+                                        //.title("Muestra "+ i));
                                         .title(RelativeTime.getTimeAgo(time, getApplicationContext())));
 
+                            }
+                            else {
+                                if(muestraResultado.contains("Positivo"))
+                                {
+                                    //Asignar un punto Rojo en google maps con su latitud y longitud
+                                    LatLng newlats = new LatLng(listaMuestras.get(i).getMuestraLatitud(), listaMuestras.get(i).getMuestraLongitud());
+                                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                    mMap.addMarker(new MarkerOptions()
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.waterred64))
+                                            .position(newlats)
+                                            //.title("Muestra "+ dateTime));
+                                            .title(RelativeTime.getTimeAgo(time, getApplicationContext())));
+
+
+                                }
 
                             }
+                            ////Fin de Validar si la muestra es positivo
 
                         }
-                        ////Fin de Validar si la muestra es positivo
 
                     }
 
