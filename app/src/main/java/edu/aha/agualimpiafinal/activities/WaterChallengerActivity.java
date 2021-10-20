@@ -33,6 +33,14 @@ public class WaterChallengerActivity extends AppCompatActivity {
 
         setPrimaryData();
 
+        openDialogs();
+
+
+
+    }
+
+    private void openDialogs() {
+
         binding.cardview1.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,9 +50,40 @@ public class WaterChallengerActivity extends AppCompatActivity {
             }
         });
 
+        binding.cardview2.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WaterChallengerActivity.this, AnacroneuriaActivity.class);
+                createDialog(R.drawable.macroinvertebrado_naucoridae,R.string.text_anacroneuria,intent,"Naucoridae");
+            }
+        });
+
+        binding.cardview3.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WaterChallengerActivity.this, AnacroneuriaActivity.class);
+                createDialog(R.drawable.macroinvertebrado_caracoldeagua,R.string.text_anacroneuria,intent,"Caracol de agua");
+            }
+        });
     }
 
     private void setPrimaryData() {
+
+        binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        experiemtsWithMicroinvertebrados();
+
+        experimentsWithWater();
+
+    }
+
+    private void experiemtsWithMicroinvertebrados() {
+
         binding.cardview1.name.setText("Anacroneuria");
         binding.cardview1.roundedImageView.setImageDrawable(getDrawable(R.drawable.macroinvertebrado_anacroneuria));
 
@@ -53,6 +92,23 @@ public class WaterChallengerActivity extends AppCompatActivity {
 
         binding.cardview3.name.setText("Lymnaeidae");
         binding.cardview3.roundedImageView.setImageDrawable(getDrawable(R.drawable.macroinvertebrado_caracoldeagua));
+
+    }
+
+    private void experimentsWithWater() {
+
+        binding.cardviewExperimento1.name.setText("Tension superficial");
+        binding.cardviewExperimento1.roundedImageView.setImageDrawable( getDrawable(R.drawable.tensionsuperficial) );
+
+        binding.cardviewExperimento2.name.setText("Difusion");
+        binding.cardviewExperimento2.roundedImageView.setImageDrawable( getDrawable(R.drawable.difusion_de_agua) );
+
+        binding.cardviewExperimento3.name.setText("Lampara lava");
+        binding.cardviewExperimento3.roundedImageView.setImageDrawable( getDrawable(R.drawable.lampara_lava) );
+
+        binding.cardviewExperimento4.name.setText("Fantasma espumante");
+        binding.cardviewExperimento4.roundedImageView.setImageDrawable( getDrawable(R.drawable.fantasmas_espumosos) );
+
     }
 
     private void createDialog(int drawable, int textChallenge, Intent intentReceiver, String title)
