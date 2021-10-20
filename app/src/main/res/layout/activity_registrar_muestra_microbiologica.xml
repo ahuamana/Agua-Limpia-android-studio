@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contenedorRegistroMicrobiologico"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.RegistrarMuestraMicrobiologicaActivity"
     android:orientation="vertical"
     android:padding="10dp">
 
     <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollHorizontally="true">
@@ -206,7 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/letra_editText"
+
                     android:background="@drawable/buttom_registrarmuestra"
                     android:backgroundTint="@color/colorGray"
                     android:text="REGISTRAR"
@@ -216,11 +219,24 @@
                     android:id="@+id/RIbtnLimpiar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/letra_editText"
-                    android:layout_marginBottom="25dp"
+
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/buttom_limpiar_campos"
                     android:text="LIMPIAR"
                     android:textColor="@color/white"></Button>
+
+                <Button
+                    android:id="@+id/button_verMuestra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/buttom_limpiar_campos"
+                    android:backgroundTint="#FE8F8F"
+                    android:text="IR A MI MUESTRA"
+                    android:visibility="gone"
+                    android:textColor="@color/white"></Button>
+
+
 
 
             </LinearLayout>
@@ -230,6 +246,27 @@
 
 
     </ScrollView>
+
+
+    <FrameLayout
+        android:id="@+id/contenededorParentFragment"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/linearlayoutContenedor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgBack"
+            android:layout_width="25dp"
+            android:src="@drawable/ic_back_arrow_black"
+            android:layout_height="25dp"/>
+
+
+    </FrameLayout>
 
 
 

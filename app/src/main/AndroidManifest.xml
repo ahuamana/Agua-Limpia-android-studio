@@ -63,7 +63,8 @@
         <activity
             android:name=".activities.RegistrarMuestraMicrobiologicaActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".activities.PointsActivity"
             android:exported="true"
