@@ -248,12 +248,10 @@
 
 
     <FrameLayout
-        android:id="@+id/contenededorFragment"
+        android:id="@+id/contenededorParentFragment"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-
-
 
         <FrameLayout
             android:id="@+id/linearlayoutContenedor"
