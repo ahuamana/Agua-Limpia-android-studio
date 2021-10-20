@@ -1,12 +1,29 @@
 package edu.aha.agualimpiafinal.activities;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -39,6 +56,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MuestrasProvider mMuestrasProvider;
     private Marker myMarker;
 
+    //getMyLocation
+    private FusedLocationProviderClient ubicacion;
+    double latitudActual, longitudActual;
+    LocationManager locationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +75,157 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        showMyLocation();
+
+    }
+
+    private void showMyLocation() {
+
+        binding.imageViewGpsFixed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(mMap != null)
+                {
+                    startLocation();
+                }
+
+            }
+        });
+
+
+
+    }
+
+    private void startLocation() {
+
+        //Obtener Permisos geolzalizacion
+        ubicacion = LocationServices.getFusedLocationProviderClient(this);
+        //permisos
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            ObtenerUbicationActual();
+
+        } else
+        {
+            ActivityCompat.requestPermissions(this,new String [] {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},100 );
+        }
+
+
+
+        //fin Permisos geolzalizacion
+
+        //asginarle variable para el mejor manejo
+    }
+
+
+    @SuppressLint("MissingPermission")
+    private void ObtenerUbicationActual() {
+
+        locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            //when location is enabled
+            //get last location
+
+            ubicacion.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @SuppressLint("MissingPermission")
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    //Inicialize location
+                    final Location location = task.getResult();
+
+                    //check condicion
+                    if (location != null) {
+                        //set latitude
+                        latitudActual= location.getLatitude();
+                        //set longitud
+                        longitudActual=location.getLongitude();
+
+
+                        /////LLevarme a mi ubicacion Actual
+                        Log.e( "DatosLatitud",String.valueOf(latitudActual)+" : "+String.valueOf(longitudActual));
+
+                        //Longitud inicial
+                        LatLng pichanaki = new LatLng(latitudActual,longitudActual);
+                        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                        myMarker=mMap.addMarker(new MarkerOptions().position(pichanaki).title("Mi Ubicacion"));
+
+                        //Ingresa a la posicion actual
+                        CameraPosition cameraPosition = CameraPosition.builder().target(pichanaki).zoom(15).build();
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                        //googleMap.moveCamera(CameraUpdateFactory.newLatLng(pichanaki));
+
+                        /////fin de llevarme a mi ubicacion Actual
+
+
+
+                    } else {
+
+
+                        LocationRequest locationRequest = new LocationRequest()
+                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(10000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+                        LocationCallback locationCallback = new LocationCallback() {
+
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                super.onLocationResult(locationResult);
+
+                                //Iniciar location
+                                Location location1 = locationResult.getLastLocation();
+                                //set latitude
+                                latitudActual=location1.getLatitude();
+                                //set longitud
+                                longitudActual=location1.getLongitude();
+
+                                /////LLevarme a mi ubicacion Actual
+                                Log.e( "DatosLatitud",String.valueOf(latitudActual)+" : "+String.valueOf(longitudActual));
+
+                                //Longitud inicial
+                                LatLng pichanaki = new LatLng(latitudActual,longitudActual);
+                                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                                myMarker=mMap.addMarker(new MarkerOptions().position(pichanaki).title("Mi ubicación"));
+
+                                //Ingresa a la posicion actual
+                                CameraPosition cameraPosition = CameraPosition.builder().target(pichanaki).zoom(10).build();
+                                mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                                //googleMap.moveCamera(CameraUpdateFactory.newLatLng(pichanaki));
+
+                                /////fin de llevarme a mi ubicacion Actual
+
+                            }
+                        };
+
+                        //fin else
+                        //Solicitar Location updates
+                        ubicacion.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+
+
+                    }
+                    //fin condition
+
+
+                }
+            });
+
+            //fin get last location
+
+        } else {
+
+            //when location services is not enabled
+            //Open Location  setting
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)  );
+
+
+        }
+
+
 
     }
 
