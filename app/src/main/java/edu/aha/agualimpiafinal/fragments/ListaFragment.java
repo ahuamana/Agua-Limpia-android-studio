@@ -61,7 +61,6 @@ public class ListaFragment extends Fragment {
 
         showFirstTimeRecyclerView();
 
-
         return vista;
     }
 

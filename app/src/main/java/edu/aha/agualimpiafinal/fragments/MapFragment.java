@@ -57,7 +57,7 @@ import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
 
-public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
+public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient ubicacion;
@@ -100,7 +100,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                         currentmarker.remove();
                     }
 
-                    //when click on map
+                    //when click on MapFragment
                     //Inicializar marker options
                     MarkerOptions markerOptions = new MarkerOptions();
                     //Set position of marker
@@ -116,7 +116,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
 
                     //animate to zoom the marker
                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
-                    //add marker on map
+                    //add marker on MapFragment
                     currentmarker=googleMap.addMarker(markerOptions);
 
 
@@ -216,7 +216,7 @@ public class map extends Fragment implements GoogleMap.OnMarkerClickListener {
                         currentmarker=googleMap.addMarker(new MarkerOptions().position(pichanaki).title("Oficina Principal"));
 
                         //Ingresa a la posicion actual
-                        CameraPosition cameraPosition = CameraPosition.builder().target(pichanaki).zoom(10).build();
+                        CameraPosition cameraPosition = CameraPosition.builder().target(pichanaki).zoom(15).build();
                         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                         //googleMap.moveCamera(CameraUpdateFactory.newLatLng(pichanaki));
 

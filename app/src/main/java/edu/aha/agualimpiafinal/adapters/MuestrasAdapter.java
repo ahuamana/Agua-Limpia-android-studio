@@ -1,6 +1,7 @@
 package edu.aha.agualimpiafinal.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import edu.aha.agualimpiafinal.activities.MapsActivity;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.utils.RelativeTime;
@@ -96,6 +98,29 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
                 .placeholder(R.drawable.loading_icon)
                 .into(holder.foto);
 
+       goToMaps(model, holder);
+
+    }
+
+    private void goToMaps(MoldeMuestra model, MuestrasHolder holder) {
+
+        holder.googlemaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Log.e("latitude","ENVIANDO:"+ model.getMuestraLatitud());
+                //Log.e("longitud","ENVIANDO:"+ model.getMuestraLongitud());
+
+                String time = RelativeTime.getTimeAgo(model.getMuestraTimeStamp(), context);
+
+                Intent i = new Intent(context, MapsActivity.class);
+                i.putExtra("latitud",String.valueOf(model.getMuestraLatitud()));
+                i.putExtra("longitud",String.valueOf(model.getMuestraLongitud()));
+                i.putExtra("timeago",time);
+                context.startActivity(i);
+
+            }
+        });
     }
 
     @NonNull
@@ -114,7 +139,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
         TextView txtnombrecompleto, txtcantidadmuestra, txttiempo, txtResultado, txtDepartamento, txtProvincia;
         String   txtidmuestra;
         CircleImageView foto;
-        Button btnmasinformacion;
+        Button googlemaps;
 
         public MuestrasHolder(@NonNull View vista) {
             super(vista);
@@ -126,6 +151,7 @@ public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,Muest
             txtDepartamento= vista.findViewById(R.id.MMtxtDepartamento);
             txtProvincia= vista.findViewById(R.id.MMtxtProvincia);
             foto=vista.findViewById(R.id.MMivImagen);
+            googlemaps = vista.findViewById(R.id.google_button);
 
 
         }
