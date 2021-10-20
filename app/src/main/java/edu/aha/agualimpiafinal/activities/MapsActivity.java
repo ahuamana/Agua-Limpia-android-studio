@@ -28,10 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String lat = getIntent().getStringExtra("latitud");
-        String lon = getIntent().getStringExtra("longitud");
 
-        Log.e("CREATE-LAT&LONG",""+ lat+":"+lon);
 
         // Obtain the SupportMapFragment and get notified when the MapFragment is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -59,5 +56,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .zoom(15)
                 .build();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+
+        settingsMaps(googleMap);
+
+    }
+
+    private void settingsMaps(GoogleMap googleMap) {
+
+        //añadir botones de + y - para hacer zoom
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+        //habilitar compass o brujula
+        //googleMap.setMyLocationEnabled(true);
+        //googleMap.getUiSettings().setMyLocationButtonEnabled(false);//ocultar boton de ubicacion
+        googleMap.getUiSettings().setCompassEnabled(true);
+
+
+        googleMap.getUiSettings().setAllGesturesEnabled(true); // habilitar gestos
+
+
+        //mostrar mi localizacion
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        //añadir la brujula
+        googleMap.getUiSettings().setCompassEnabled(true);
+
+        //añadir toolbar
+        googleMap.getUiSettings().setMapToolbarEnabled(true);
+
+
     }
 }
