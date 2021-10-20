@@ -230,6 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
+                    android:visibility="gone"
                     android:background="@drawable/buttom_limpiar_campos"
                     android:backgroundTint="#7AE3CA"
                     android:text="IR A MI MUESTRA"

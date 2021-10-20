@@ -111,7 +111,7 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
 
         showDepartamento();
 
-        verMiMuestra();
+
 
     }
 
