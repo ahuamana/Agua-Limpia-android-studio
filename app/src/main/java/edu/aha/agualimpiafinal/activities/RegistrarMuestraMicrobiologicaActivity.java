@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -47,6 +49,7 @@ import java.util.ArrayList;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityRegistrarMuestraMicrobiologicaBinding;
+import edu.aha.agualimpiafinal.fragments.ListaFragment;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
@@ -108,10 +111,36 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
 
         showDepartamento();
 
-
+        verMiMuestra();
 
     }
 
+    private void verMiMuestra() {
+
+        binding.buttonVerMuestra.setVisibility(View.VISIBLE);
+
+        binding.buttonVerMuestra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                binding.scrollview.setVisibility(View.GONE);
+
+                Fragment nuevofragmento = new ListaFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.add(R.id.linearlayoutContenedor, nuevofragmento);
+                transaction.commit();
+
+            }
+        });
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+    }
 
 
     private void showDepartamento() {
@@ -408,6 +437,9 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
                 {
                     Toast.makeText(RegistrarMuestraMicrobiologicaActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     clearFieldsWithoutButton();
+
+                    verMiMuestra();
+
                     mDialog.dismiss();
                 }else {
                     mDialog.dismiss();
