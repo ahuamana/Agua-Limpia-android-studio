@@ -209,7 +209,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    style="@style/letra_editText"
+
                     android:background="@drawable/buttom_registrarmuestra"
                     android:backgroundTint="@color/colorGray"
                     android:text="REGISTRAR"
@@ -219,7 +219,7 @@
                     android:id="@+id/RIbtnLimpiar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/letra_editText"
+
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/buttom_limpiar_campos"
                     android:text="LIMPIAR"
@@ -230,10 +230,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:visibility="gone"
                     android:background="@drawable/buttom_limpiar_campos"
-                    android:backgroundTint="#7AE3CA"
+                    android:backgroundTint="#FE8F8F"
                     android:text="IR A MI MUESTRA"
+                    android:visibility="gone"
                     android:textColor="@color/white"></Button>
 
 

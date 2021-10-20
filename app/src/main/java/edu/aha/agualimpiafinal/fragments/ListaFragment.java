@@ -34,14 +34,9 @@ public class ListaFragment extends Fragment {
 
 
     MuestrasAdapter mAdapter;
-
     MuestrasProvider mMuestrasProvider;
-
-
     LinearLayoutManager mLinearLayoutManager;
-
     private ListaFragmentBinding binding;
-
     private ListaViewModel mViewModel;
 
     public static ListaFragment newInstance() {

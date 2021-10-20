@@ -125,7 +125,8 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
 
                 binding.scrollview.setVisibility(View.GONE);
 
-                Fragment nuevofragmento = new ListaFragment();
+
+                Fragment nuevofragmento = ListaFragment.newInstance();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.add(R.id.linearlayoutContenedor, nuevofragmento);
                 transaction.commit();
