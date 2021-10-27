@@ -30,7 +30,9 @@ import edu.aha.agualimpiafinal.databinding.ActivityMainBinding;
 import edu.aha.agualimpiafinal.models.User;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
-public class MainActivity extends AppCompatActivity {
+public class
+
+MainActivity extends AppCompatActivity {
 
     UserProvider mUserProvider;
     User mUser;

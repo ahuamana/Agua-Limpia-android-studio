@@ -49,6 +49,14 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".activities.PlantsChallengerActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.plants.GirasolChallengeActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.ComentariosActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />

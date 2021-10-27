@@ -21,6 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.AnimalsListActivity;
+import edu.aha.agualimpiafinal.activities.PlantsChallengerActivity;
 import edu.aha.agualimpiafinal.activities.WaterChallengerActivity;
 import edu.aha.agualimpiafinal.adapters.LaboratorioAdapter;
 import edu.aha.agualimpiafinal.databinding.LaboratorioDigitalFragmentBinding;
@@ -112,7 +113,8 @@ public class LaboratorioDigital extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), PlantsChallengerActivity.class);
+                startActivity(i);
 
             }
         });
