@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityFirstBinding;
@@ -20,6 +21,8 @@ public class FirstActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        setFullStatusBarTransparent();
+
         binding.fabNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,5 +32,10 @@ public class FirstActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setFullStatusBarTransparent()
+    {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 }

@@ -25,9 +25,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.presentation.SecondActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
             android:name=".activities.presentation.FirstActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
