@@ -27,10 +27,23 @@
                 android:textColor="@color/primarystatusbar"
                 android:text="Tus muestras: "/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:text="Descargar"
+                android:background="@drawable/custom_button_nocolor"
+                android:backgroundTint="@color/greenPrimary"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:paddingStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:layout_height="wrap_content">
 
