@@ -15,6 +15,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.presentation.FirstActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                     goToLogin();
                 }else
                 {
-                    Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), FirstActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); //Remove activities that have been created before
                     startActivity(intent);
                 }
