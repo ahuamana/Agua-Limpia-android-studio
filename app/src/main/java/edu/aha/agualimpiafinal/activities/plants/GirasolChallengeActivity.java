@@ -93,7 +93,7 @@ public class GirasolChallengeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        getUserInfoAll();
+        //getUserInfoAll();
     }
 
     private void goBackActivity() {
@@ -126,18 +126,13 @@ public class GirasolChallengeActivity extends AppCompatActivity {
                         String id_photo = task.getResult().getDocuments().get(0).get("id").toString();
 
                         //Log.e("TASK", "URL DOCUMENTO 0:"+ task.getResult().getDocuments().get(0).get("url"));
-                        if(nameSustantivo.equals("cabeza mariposa"))
+                        if(nameSustantivo.equals("pistilo girasol"))
                         {
                             id_photo_cabeza = id_photo;
                         }else
                         {
-                            if(nameSustantivo.equals("alas mariposa"))
-                            {
-                                id_photo_alas = id_photo;
-                            }else
-                            {
-                                id_photo_abdomen = id_photo;
-                            }
+                             id_photo_alas = id_photo;
+
                         }
 
                         String url = task.getResult().getDocuments().get(0).get("url").toString();
@@ -266,6 +261,9 @@ public class GirasolChallengeActivity extends AppCompatActivity {
                 }
             }
 
+        }else
+        {
+            Log.e("TAG","ERROR IDPHOTO NULL");
         }
 
 
