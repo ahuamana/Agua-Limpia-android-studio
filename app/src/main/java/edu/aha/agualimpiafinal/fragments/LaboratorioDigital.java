@@ -1,6 +1,5 @@
 package edu.aha.agualimpiafinal.fragments;
 
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -11,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +17,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.AnimalsListActivity;
-import edu.aha.agualimpiafinal.activities.PlantsChallengerActivity;
+import edu.aha.agualimpiafinal.activities.PlantsChallengerActivity2;
 import edu.aha.agualimpiafinal.activities.WaterChallengerActivity;
 import edu.aha.agualimpiafinal.adapters.LaboratorioAdapter;
 import edu.aha.agualimpiafinal.databinding.LaboratorioDigitalFragmentBinding;
@@ -113,7 +110,7 @@ public class LaboratorioDigital extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getContext(), PlantsChallengerActivity.class);
+                Intent i = new Intent(getContext(), PlantsChallengerActivity2.class);
                 startActivity(i);
 
             }
