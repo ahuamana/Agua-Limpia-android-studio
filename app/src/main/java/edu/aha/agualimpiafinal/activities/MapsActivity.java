@@ -78,6 +78,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         showMyLocation();
 
+        binding.imageViewHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); //eliminar activities anteriores
+                startActivity(i);
+            }
+        });
+
     }
 
     private void showMyLocation() {

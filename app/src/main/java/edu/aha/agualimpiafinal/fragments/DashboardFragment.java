@@ -92,11 +92,7 @@ public class DashboardFragment extends Fragment {
 
         getPreferences();
 
-
         getDataForGroupedBarChart();
-
-
-
 
         return mView;
     }
@@ -246,7 +242,6 @@ public class DashboardFragment extends Fragment {
     private ArrayList<BarEntry> barEntriesPositives(int lastyearData)
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(0,0));
         barEntries.add(new BarEntry(1,0));
         barEntries.add(new BarEntry(2,0));
         barEntries.add(new BarEntry(3,0));
@@ -259,7 +254,6 @@ public class DashboardFragment extends Fragment {
     private ArrayList<BarEntry> barEntriesNegatives(int lastyearData)
     {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(0,0));
         barEntries.add(new BarEntry(1,0));
         barEntries.add(new BarEntry(2,0));
         barEntries.add(new BarEntry(3,0));

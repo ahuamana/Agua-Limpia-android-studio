@@ -89,7 +89,7 @@ MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio,
-                //R.id.nav_lista,
+                R.id.nav_lista,
                 //R.id.nav_comomedir,
                 //R.id.nav_nosotros,
                 //R.id.nav_registrar,

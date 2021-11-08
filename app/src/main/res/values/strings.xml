@@ -23,6 +23,9 @@
     <string name="descripcion_mariposa1"><b>Las alas de las mariposas son transparentes pero percibimos sus llamativos y distintos colores gracias a que su estructura está protegida con escamas</b>
         muy finas que reflejan continuamente la luz.</string>
 
+    <string name="descripcion_girasol1"><b>El girasol gigante</b> americano es uno de los girasoles más altos y sus caras pueden alcanzar las 12 pulgadas de ancho.</string>
+    <string name="descripcion_girasol2">Para producir un kilogramo de miel es necesario que una abeja visite unos cuatro millones de flores. Esto es recorrer una distancia equivalente a dar una vuelta al mundo cuatro veces</string>
+
     <string name="descripcion_mariposa2"><b>Sabías que, las mariposas</b>
         se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
 
@@ -64,6 +67,7 @@
 
     <array name="departamentos">
         <item>Seleccione</item>
+        <item>Veracruz</item>
         <item>Amazonas</item>
         <item>Ancash</item>
         <item>Apurimac</item>
@@ -95,6 +99,16 @@
 
     <array name="Seleccione">
         <item>Seleccione</item>
+    </array>
+
+    <array name="provinciasVeracruz">
+        <item>Seleccione</item>
+        <item>Acajeta</item>
+        <item>Benito Juarez</item>
+        <item>Cerro Azul</item>
+        <item>Espinal</item>
+        <item>Huatusco</item>
+
     </array>
 
     <array name="provinciasAmazonas">

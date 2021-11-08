@@ -457,25 +457,20 @@ public class GirasolChallengeActivity extends AppCompatActivity {
         int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
         String imageurl = null;
         int descripcion = 0;
-        String title = "mariposa";
+        String title = "girasol";
 
         if(ramdom != 0)
         {
             switch (ramdom)
             {
                 case 1:
-                    imageurl = "https://www.nationalgeographic.com.es/medio/2018/03/23/perdida-entre-la-multitud_86c63fc7_1016x648.jpg";
-                    descripcion = R.string.descripcion_mariposa1;
+                    imageurl = "https://dam.muyinteresante.com.mx/wp-content/uploads/2020/02/girasoles.jpg";
+                    descripcion = R.string.descripcion_girasol1;
                     break;
 
                 case 2:
-                    imageurl = "https://www.nationalgeographic.com.es/medio/2021/08/31/apollo-landing_1a9abaa4_1280x853.jpg";
-                    descripcion = R.string.descripcion_mariposa2;
-                    break;
-
-                case 3:
-                    imageurl = "https://www.nationalgeographic.com.es/medio/2019/06/13/danza-de-mariposas_a6a4af54_1280x853.jpg";
-                    descripcion = R.string.descripcion_mariposa3;
+                    imageurl = "https://mayasl.com/wp-content/uploads/2018/09/tipos-de-girasoles-1024x683.jpg";
+                    descripcion = R.string.descripcion_girasol2;
                     break;
             }
         }
