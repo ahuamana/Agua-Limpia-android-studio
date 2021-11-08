@@ -17,7 +17,6 @@ import android.widget.Toast;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.macroinvertebrados.AnacroneuriaActivity;
 import edu.aha.agualimpiafinal.activities.plants.GirasolActivity;
-import edu.aha.agualimpiafinal.activities.plants.GirasolChallengeActivity;
 import edu.aha.agualimpiafinal.databinding.ActivityPlantsChallenger2Binding;
 import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
 
