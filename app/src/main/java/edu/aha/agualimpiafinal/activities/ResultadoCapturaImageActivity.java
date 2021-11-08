@@ -118,7 +118,15 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
             }
         });
 
+        binding.fabHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent i = new Intent(ResultadoCapturaImageActivity.this, MainActivity.class);
+                startActivity(i);
+
+            }
+        });
 
     }
 }

@@ -3,6 +3,7 @@ package edu.aha.agualimpiafinal.providers;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -15,6 +16,12 @@ public class MuestrasProvider {
     public MuestrasProvider() {
 
     mCollection = FirebaseFirestore.getInstance().collection("DatosMuestra");
+
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+
+        FirebaseFirestore.getInstance().setFirestoreSettings(settings);
 
     }
 

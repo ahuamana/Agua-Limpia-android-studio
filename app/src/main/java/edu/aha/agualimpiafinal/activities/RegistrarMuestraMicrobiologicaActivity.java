@@ -177,8 +177,8 @@ public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity im
             }
 
             case 1:{
-                Log.e("Seleccionaste",": Amazonas");
-                spinnerArrayAdapter=datos.ObtenerArray(getApplicationContext(),R.array.provinciasAmazonas);
+                Log.e("Seleccionaste",": Veracruz");
+                spinnerArrayAdapter=datos.ObtenerArray(getApplicationContext(),R.array.provinciasVeracruz);
                 binding.RIedtProvincia.setAdapter(spinnerArrayAdapter);
                 break;
 

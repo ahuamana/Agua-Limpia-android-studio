@@ -30,7 +30,9 @@ import edu.aha.agualimpiafinal.databinding.ActivityMainBinding;
 import edu.aha.agualimpiafinal.models.User;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
-public class MainActivity extends AppCompatActivity {
+public class
+
+MainActivity extends AppCompatActivity {
 
     UserProvider mUserProvider;
     User mUser;
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio,
-                //R.id.nav_lista,
+                R.id.nav_lista,
                 //R.id.nav_comomedir,
                 //R.id.nav_nosotros,
                 //R.id.nav_registrar,
@@ -133,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
                                 goToCreateData(mUser);
                             }
 
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.e("ERROR","NO INTERNET CONECCTION");
                         }
                     });
 
