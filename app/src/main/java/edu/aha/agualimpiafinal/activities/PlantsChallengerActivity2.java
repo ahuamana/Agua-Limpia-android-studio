@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.macroinvertebrados.AnacroneuriaActivity;
 import edu.aha.agualimpiafinal.activities.plants.GirasolActivity;
@@ -31,10 +33,11 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        setPrimaryData();
+        setDataChallenges();
 
         openDialogs();
     }
+
 
     private void openDialogs() {
 
@@ -62,9 +65,6 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
                 createDialog(R.drawable.flower_new,R.string.text_flower_lirio,intent,"Lirio");
             }
         });
-    }
-
-    private void setPrimaryData() {
 
         binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,22 +72,32 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
                 finish();
             }
         });
-
-        setDataChallenges();
-
-
     }
+
 
     private void setDataChallenges() {
 
         binding.cardview1.name.setText("Girasol");
-        binding.cardview1.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_girasol));
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_girasol.png?alt=media&token=e9b3df21-ef52-41da-8161-e5a357423a04")
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardview1.roundedImageView);
+
+        //binding.cardview1.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_girasol));
 
         binding.cardview2.name.setText("Margarita");
-        binding.cardview2.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_margarita));
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_margarita.png?alt=media&token=d3daef5d-c724-40dc-8fd5-92c009924631")
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardview2.roundedImageView);
+        //binding.cardview2.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_margarita));
 
         binding.cardview3.name.setText("Lirio");
-        binding.cardview3.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_new));
+        Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_new.png?alt=media&token=5ddd2ad6-a8ef-41b8-a42c-81353b0b59ce")
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardview3.roundedImageView);
+        //binding.cardview3.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_new));
 
     }
 
@@ -134,4 +144,5 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
         dialog.show();
 
     }
+
 }

@@ -43,6 +43,7 @@
                     android:id="@+id/roundedImageView"
                     android:layout_width="wrap_content"
                     app:riv_corner_radius="3dp"
+                    android:scaleType="centerCrop"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
                     android:src="@drawable/image_test"/>
