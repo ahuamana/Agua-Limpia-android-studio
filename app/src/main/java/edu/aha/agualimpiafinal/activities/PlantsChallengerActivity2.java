@@ -15,6 +15,7 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.macroinvertebrados.AnacroneuriaActivity;
@@ -22,9 +23,15 @@ import edu.aha.agualimpiafinal.activities.plants.GirasolActivity;
 import edu.aha.agualimpiafinal.databinding.ActivityPlantsChallenger2Binding;
 import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
 
+
 public class PlantsChallengerActivity2 extends AppCompatActivity {
 
     ActivityPlantsChallenger2Binding binding;
+
+    //Flowers
+    String girasol = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_girasol.png?alt=media&token=e9b3df21-ef52-41da-8161-e5a357423a04";
+    String margarita = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_margarita.png?alt=media&token=d3daef5d-c724-40dc-8fd5-92c009924631";
+    String lirio = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_new.png?alt=media&token=5ddd2ad6-a8ef-41b8-a42c-81353b0b59ce";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), GirasolActivity.class); //Girasol Activity
-                createDialog(R.drawable.flower_girasol,R.string.text_flower_girasol,intent,"Girasol");
+                createDialog(girasol,R.string.text_flower_girasol,intent,"Girasol");
             }
         });
 
@@ -54,7 +61,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AnacroneuriaActivity.class);
-                createDialog(R.drawable.flower_margarita,R.string.text_flower_margarita,intent,"Margarita");
+                createDialog(margarita,R.string.text_flower_margarita,intent,"Margarita");
             }
         });
 
@@ -62,7 +69,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AnacroneuriaActivity.class);
-                createDialog(R.drawable.flower_new,R.string.text_flower_lirio,intent,"Lirio");
+                createDialog(lirio,R.string.text_flower_lirio,intent,"Lirio");
             }
         });
 
@@ -77,9 +84,14 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
 
     private void setDataChallenges() {
 
+        RequestOptions options = new RequestOptions();
+        options.centerCrop();
+        options.fitCenter();
+
         binding.cardview1.name.setText("Girasol");
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_girasol.png?alt=media&token=e9b3df21-ef52-41da-8161-e5a357423a04")
+                .load(girasol)
+                .apply(options)
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.cardview1.roundedImageView);
 
@@ -87,15 +99,17 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
 
         binding.cardview2.name.setText("Margarita");
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_margarita.png?alt=media&token=d3daef5d-c724-40dc-8fd5-92c009924631")
+                .load(margarita)
                 .placeholder(R.drawable.loading_icon)
+                .apply(options)
                 .into(binding.cardview2.roundedImageView);
         //binding.cardview2.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_margarita));
 
         binding.cardview3.name.setText("Lirio");
         Glide.with(this)
-                .load("https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_new.png?alt=media&token=5ddd2ad6-a8ef-41b8-a42c-81353b0b59ce")
+                .load(lirio)
                 .placeholder(R.drawable.loading_icon)
+                .apply(options)
                 .into(binding.cardview3.roundedImageView);
         //binding.cardview3.roundedImageView.setImageDrawable(getDrawable(R.drawable.flower_new));
 
@@ -103,7 +117,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
 
 
 
-    private void createDialog(int drawable, int textChallenge, Intent intentReceiver, String title)
+    private void createDialog(String image, int textChallenge, Intent intentReceiver, String title)
     {
         CustomDialogMoreinfoBinding customBinding = CustomDialogMoreinfoBinding.inflate(LayoutInflater.from(this));
 
@@ -114,7 +128,12 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
         dialog.setContentView(customBinding.getRoot());
 
         customBinding.textViewTittle.setText(title);
-        customBinding.imageViewChallenge.setImageResource(drawable);
+        //customBinding.imageViewChallenge.setImageResource(drawable);
+        Glide.with(this)
+                .load(image)
+                .placeholder(R.drawable.loading_icon)
+                .into(customBinding.imageViewChallenge);
+
         customBinding.textViewChallenge.setText(textChallenge);
 
         CardView.LayoutParams params = new CardView.LayoutParams(
