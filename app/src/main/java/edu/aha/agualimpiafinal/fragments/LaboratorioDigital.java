@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import edu.aha.agualimpiafinal.activities.AnimalsListActivity;
-import edu.aha.agualimpiafinal.activities.PlantsChallengerActivity2;
-import edu.aha.agualimpiafinal.activities.WaterChallengerActivity;
+import edu.aha.agualimpiafinal.activities.Challenges.AnimalsChallengerActivity;
+import edu.aha.agualimpiafinal.activities.Challenges.PlantsChallengerActivity2;
+import edu.aha.agualimpiafinal.activities.Challenges.WaterChallengerActivity;
 import edu.aha.agualimpiafinal.adapters.LaboratorioAdapter;
 import edu.aha.agualimpiafinal.databinding.LaboratorioDigitalFragmentBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
@@ -156,7 +156,7 @@ public class LaboratorioDigital extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getContext(), AnimalsListActivity.class);
+                Intent i = new Intent(getContext(), AnimalsChallengerActivity.class);
                 startActivity(i);
 
             }

@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.PlantsChallengerActivity2"
+            android:name=".activities.Challenges.PlantsChallengerActivity2"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
@@ -51,7 +51,7 @@
             android:name=".activities.macroinvertebrados.AnacroneuriaActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.WaterChallengerActivity"
+            android:name=".activities.Challenges.WaterChallengerActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -67,7 +67,7 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AnimalsListActivity"
+            android:name=".activities.Challenges.AnimalsChallengerActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

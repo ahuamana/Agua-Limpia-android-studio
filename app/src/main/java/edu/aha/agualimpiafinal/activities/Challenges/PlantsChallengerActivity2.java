@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities;
+package edu.aha.agualimpiafinal.activities.Challenges;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
