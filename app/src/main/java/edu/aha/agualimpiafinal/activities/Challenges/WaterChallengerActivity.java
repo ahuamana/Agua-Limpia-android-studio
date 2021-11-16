@@ -119,7 +119,7 @@ public class WaterChallengerActivity extends AppCompatActivity {
 
         binding.cardview3.name.setText(challenge_lymnaeidae_name);
         Glide.with(this)
-                .load(challenge_lampara_lava)
+                .load(challenge_lymnaeidae)
                 .apply(options)
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.cardview3.roundedImageView);
@@ -147,7 +147,11 @@ public class WaterChallengerActivity extends AppCompatActivity {
                 .into(binding.cardviewExperimento2.roundedImageView);
 
         binding.cardviewExperimento3.name.setText("Lampara lava");
-        binding.cardviewExperimento3.roundedImageView.setImageDrawable( getDrawable(R.drawable.lampara_lava) );
+        Glide.with(this)
+                .load(challenge_lampara_lava)
+                .apply(options)
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardviewExperimento3.roundedImageView);
 
         binding.cardviewExperimento4.name.setText("Fantasma espumante");
         binding.cardviewExperimento4.roundedImageView.setImageDrawable( getDrawable(R.drawable.fantasmas_espumosos) );
