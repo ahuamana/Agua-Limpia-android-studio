@@ -4,11 +4,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardElevation="5dp"
         app:cardCornerRadius="5dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="13dp"
         app:contentPaddingTop="13dp"
         app:contentPaddingRight="10dp"
@@ -16,7 +15,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
@@ -42,8 +41,10 @@
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/roundedImageView"
                     android:layout_width="wrap_content"
+                    android:layout_gravity="center"
                     app:riv_corner_radius="3dp"
-                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:layout_height="match_parent"
                     android:layout_marginBottom="15dp"
                     android:src="@drawable/image_test"/>
 

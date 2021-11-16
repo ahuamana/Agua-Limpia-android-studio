@@ -24,11 +24,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.presentation.SecondActivity"
+            android:name=".activities.Challenges.PlantsChallengerActivity2"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <activity
-            android:name=".activities.presentation.FirstActivity"
+            android:name=".activities.plants.GirasolActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true" />
         <!--
@@ -51,11 +51,7 @@
             android:name=".activities.macroinvertebrados.AnacroneuriaActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.WaterChallengerActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activities.PlantsChallengerActivity"
+            android:name=".activities.Challenges.WaterChallengerActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -71,7 +67,7 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.AnimalsListActivity"
+            android:name=".activities.Challenges.AnimalsChallengerActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -100,7 +96,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
