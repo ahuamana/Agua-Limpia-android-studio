@@ -29,8 +29,8 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
     ActivityPlantsChallenger2Binding binding;
 
     //Flowers
-    String girasol = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_girasol.png?alt=media&token=e9b3df21-ef52-41da-8161-e5a357423a04";
-    String margarita = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_margarita.png?alt=media&token=d3daef5d-c724-40dc-8fd5-92c009924631";
+    String challenge_girasol = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_girasol.png?alt=media&token=e9b3df21-ef52-41da-8161-e5a357423a04";
+    String challenge_margarita = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_margarita.png?alt=media&token=d3daef5d-c724-40dc-8fd5-92c009924631";
     String lirio = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FPlantsChallenge%2Fflower_new.png?alt=media&token=5ddd2ad6-a8ef-41b8-a42c-81353b0b59ce";
 
     @Override
@@ -53,7 +53,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), GirasolActivity.class); //Girasol Activity
-                createDialog(girasol,R.string.text_flower_girasol,intent,"Girasol");
+                createDialog(challenge_girasol,R.string.text_flower_girasol,intent,"Girasol");
             }
         });
 
@@ -61,7 +61,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AnacroneuriaActivity.class);
-                createDialog(margarita,R.string.text_flower_margarita,intent,"Margarita");
+                createDialog(challenge_margarita,R.string.text_flower_margarita,intent,"Margarita");
             }
         });
 
@@ -90,7 +90,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
 
         binding.cardview1.name.setText("Girasol");
         Glide.with(this)
-                .load(girasol)
+                .load(challenge_girasol)
                 .apply(options)
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.cardview1.roundedImageView);
@@ -99,7 +99,7 @@ public class PlantsChallengerActivity2 extends AppCompatActivity {
 
         binding.cardview2.name.setText("Margarita");
         Glide.with(this)
-                .load(margarita)
+                .load(challenge_margarita)
                 .placeholder(R.drawable.loading_icon)
                 .apply(options)
                 .into(binding.cardview2.roundedImageView);
