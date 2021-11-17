@@ -20,16 +20,21 @@
     <string name="title_desafios">DESAFIOS</string>
     <string name="subtitle_experiencias">EXPERIENCIAS PARA TI</string>
     <string name="congratulations">FELICIDADES!!</string>
+
     <string name="descripcion_mariposa1"><b>Las alas de las mariposas son transparentes pero percibimos sus llamativos y distintos colores gracias a que su estructura está protegida con escamas</b>
         muy finas que reflejan continuamente la luz.</string>
+    <string name="descripcion_mariposa2"><b>Sabías que, las mariposas</b>
+        se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
+    <string name="descripcion_mariposa3">Pueden volar desde <b>8 a 20 km</b>  por hora.</string>
 
     <string name="descripcion_girasol1"><b>El girasol gigante</b> americano es uno de los girasoles más altos y sus caras pueden alcanzar las 12 pulgadas de ancho.</string>
     <string name="descripcion_girasol2">Para producir un kilogramo de miel es necesario que una abeja visite unos cuatro millones de flores. Esto es recorrer una distancia equivalente a dar una vuelta al mundo cuatro veces</string>
 
-    <string name="descripcion_mariposa2"><b>Sabías que, las mariposas</b>
-        se alimentan de líquidos de las plantas, con su especie de lengua absorben el néctar de las flores y el agua interna de las plantas. </string>
+    <string name="descripcion_spider1">A pesar de que la mayor parte de arañas se alimentan de insectos; existe solo una araña que es completamente <b>herbívora</b></string>
+    <string name="descripcion_spider2">La telaraña es más resistente que el acero cuando estos tienen el mismo grosor.</string>
 
-    <string name="descripcion_mariposa3">Pueden volar desde <b>8 a 20 km</b>  por hora.</string>
+    <string name="descripcion_lombriz1">Las lombrices de tierra no tienen pulmones, de manera que respiran a través de su piel. Absorben los fluidos y el aire, siempre y cuando su piel esté húmeda.</string>
+    <string name="descripcion_lombriz2">Las lombrices juegan un papel fundamental en el ecosistema porque mejoran las propiedades tanto físicas y químicas de los suelos, al tiempo que estimulan la actividad bacteriana</string>
 
 
     <string name="steps_healthmetric_step1">Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.</string>

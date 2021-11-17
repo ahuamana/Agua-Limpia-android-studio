@@ -18,7 +18,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.activities.ButterflyChallengeActivity;
+import edu.aha.agualimpiafinal.activities.animals.ButterflyChallengeActivity;
+import edu.aha.agualimpiafinal.activities.animals.LombrizChallengeActivity;
+import edu.aha.agualimpiafinal.activities.animals.SpiderActivity;
 import edu.aha.agualimpiafinal.activities.macroinvertebrados.AnacroneuriaActivity;
 import edu.aha.agualimpiafinal.databinding.ActivityAnimalsChallengerBinding;
 import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
@@ -62,7 +64,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardview2.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AnacroneuriaActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SpiderActivity.class);
                 createDialog(challenge_spider,R.string.text_flower_margarita,intent,challenge_spider_name);
             }
         });
@@ -70,7 +72,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardview3.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AnacroneuriaActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LombrizChallengeActivity.class);
                 createDialog(challenge_worm,R.string.text_flower_lirio,intent,challenge_worm_name);
             }
         });

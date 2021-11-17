@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities.plants;
+package edu.aha.agualimpiafinal.activities.animals;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,15 +39,16 @@ import java.util.Random;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
-import edu.aha.agualimpiafinal.databinding.ActivityGirasolBinding;
+import edu.aha.agualimpiafinal.activities.plants.GirasolActivity;
+import edu.aha.agualimpiafinal.databinding.ActivitySpiderBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.InsectosProvider;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
-public class GirasolActivity extends AppCompatActivity {
+public class SpiderActivity extends AppCompatActivity {
 
-    ActivityGirasolBinding binding;
+    ActivitySpiderBinding binding;
 
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
@@ -72,7 +73,7 @@ public class GirasolActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityGirasolBinding.inflate(getLayoutInflater());
+        binding = ActivitySpiderBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -89,6 +90,8 @@ public class GirasolActivity extends AppCompatActivity {
     }
 
 
+
+
     private void goBackActivity() {
         binding.imageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +102,19 @@ public class GirasolActivity extends AppCompatActivity {
     }
 
     private void getUserInfoAll() {
+
+        //Challenge photo
+        Glide.with(getApplicationContext())
+                .load("https://i2.wp.com/codigoespagueti.com/wp-content/uploads/2021/03/Bautizan-como-Nemo-a-una-nueva-especie-de-arana-que-baila.jpg?resize=1280%2C720&quality=80&ssl=1")
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.challengeMainPhoto);
+
+        //SubChallenge photo
+        Glide.with(getApplicationContext())
+                .load("https://i1.wp.com/www.sopitas.com/wp-content/uploads/2017/09/arana-patita-portada.jpg")
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.challengeRoundedImageViewSubitem);
+
 
         getUserInfo(email, challenge_name, binding.circleImageViewPhoto, binding.textViewImagenNosubida, binding.btnregistrar);
 
@@ -186,7 +202,7 @@ public class GirasolActivity extends AppCompatActivity {
                 }else
                 {
                     setSustantivoData();
-                    sustantivo.setName(challenge_name);
+                    sustantivo.setName("pistilo girasol");
 
                     registrarData(mImageFile, binding.textViewImagenNosubida);
                 }
@@ -200,7 +216,7 @@ public class GirasolActivity extends AppCompatActivity {
 
     private void updatePhoto(final File mImageFileReciever, MaterialTextView textViewImagenNosubida, String idphoto) {
 
-        mDialog = new ProgressDialog(GirasolActivity.this);
+        mDialog = new ProgressDialog(SpiderActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -214,7 +230,7 @@ public class GirasolActivity extends AppCompatActivity {
                 {
                     mDialog.show();
 
-                    mImageProvider.save(GirasolActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    mImageProvider.save(SpiderActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -236,7 +252,7 @@ public class GirasolActivity extends AppCompatActivity {
                                 });
                             }else {
                                 mDialog.dismiss();
-                                Toast.makeText(GirasolActivity.this, "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
                             }
 
 
@@ -274,7 +290,7 @@ public class GirasolActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     textView.setVisibility(View.GONE);
-                    Toast.makeText(GirasolActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SpiderActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
                     int pointsganados = 0;
@@ -314,7 +330,7 @@ public class GirasolActivity extends AppCompatActivity {
 
     private void registrarData(final File mImageFileReciever, TextView textView) {
 
-        mDialog = new ProgressDialog(GirasolActivity.this);
+        mDialog = new ProgressDialog(SpiderActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -324,7 +340,7 @@ public class GirasolActivity extends AppCompatActivity {
             {
                 mDialog.show();
 
-                mImageProvider.save(GirasolActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(SpiderActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -346,7 +362,7 @@ public class GirasolActivity extends AppCompatActivity {
                             });
                         }else {
                             mDialog.dismiss();
-                            Toast.makeText(GirasolActivity.this, "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SpiderActivity.this, "No se pudo almacenar la imagen", Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -377,7 +393,7 @@ public class GirasolActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     textView.setVisibility(View.GONE);
-                    Toast.makeText(GirasolActivity.this, "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Datos registrados correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
                     getPointsFirebase();
@@ -450,20 +466,20 @@ public class GirasolActivity extends AppCompatActivity {
         int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
         String imageurl = null;
         int descripcion = 0;
-        String title = "girasol";
+        String title = "Araña";
 
         if(ramdom != 0)
         {
             switch (ramdom)
             {
                 case 1:
-                    imageurl = "https://dam.muyinteresante.com.mx/wp-content/uploads/2020/02/girasoles.jpg";
-                    descripcion = R.string.descripcion_girasol1;
+                    imageurl = "https://static.nationalgeographic.es/files/styles/image_3200/public/2263.600x450.jpg?w=1600";
+                    descripcion = R.string.descripcion_spider1;
                     break;
 
                 case 2:
-                    imageurl = "https://mayasl.com/wp-content/uploads/2018/09/tipos-de-girasoles-1024x683.jpg";
-                    descripcion = R.string.descripcion_girasol2;
+                    imageurl = "https://img.olhardigital.com.br/wp-content/uploads/2020/12/Novama.Shutterstock-1000x450.jpg";
+                    descripcion = R.string.descripcion_spider2;
                     break;
             }
         }
@@ -473,7 +489,7 @@ public class GirasolActivity extends AppCompatActivity {
 
     private void goToNextActivity(int points, int descripcion, String imageurl, String title) {
 
-        Intent i = new Intent(GirasolActivity.this, ResultadoCapturaImageActivity.class);
+        Intent i = new Intent(getApplicationContext(), ResultadoCapturaImageActivity.class);
         i.putExtra("points",points);
         i.putExtra("descripcion",descripcion);
         i.putExtra("imageurl",imageurl);
@@ -495,7 +511,7 @@ public class GirasolActivity extends AppCompatActivity {
                 .setPath("/pix/images");
 
 
-        Pix.start(GirasolActivity.this, mOptions);
+        Pix.start(SpiderActivity.this, mOptions);
 
     }
 
@@ -507,9 +523,9 @@ public class GirasolActivity extends AppCompatActivity {
             case PermUtil.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Pix.start(GirasolActivity.this, mOptions);
+                    Pix.start(SpiderActivity.this, mOptions);
                 } else {
-                    Toast.makeText(GirasolActivity.this, "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
                 }
                 return;
             }
@@ -543,10 +559,9 @@ public class GirasolActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(GirasolActivity.this, "operacion Cancelado!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "operacion Cancelado!", Toast.LENGTH_SHORT).show();
         }
 
 
     }
-
 }
