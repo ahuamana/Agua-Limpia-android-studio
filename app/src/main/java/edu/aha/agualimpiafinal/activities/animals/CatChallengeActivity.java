@@ -465,7 +465,7 @@ public class CatChallengeActivity extends AppCompatActivity {
         int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
         String imageurl = null;
         int descripcion = 0;
-        String title = "Lombriz";
+        String title = "Gato";
 
         if(ramdom != 0)
         {
