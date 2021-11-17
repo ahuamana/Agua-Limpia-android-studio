@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities;
+package edu.aha.agualimpiafinal.activities.animals;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +38,7 @@ import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
 import edu.aha.agualimpiafinal.databinding.ActivityButterflyChallengeBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
