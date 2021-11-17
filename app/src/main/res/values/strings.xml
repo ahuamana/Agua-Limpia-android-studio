@@ -7,9 +7,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="text_anacroneuria">Es este reto tendrás que buscar este insecto debajo de las piedras, y lograr capturar una imagen completa</string>
-    <string name="text_flower_girasol">Es este reto tendrás que buscar un girasol, y lograr capturar los pistilos de una flor</string>
-    <string name="text_flower_margarita">Es este reto tendrás que buscar un margarita, y lograr capturar los pistilos de una flor</string>
-    <string name="text_flower_lirio">Es este reto tendrás que buscar un lirio, y lograr capturar los pistilos de una flor</string>
+
+    <string name="text_animal_mariposa">Es este reto tendrás que lograr <b>capturar los ojos, alas y cabeza</b> de una mariposa </string>
+    <string name="text_flower_araña">Es este reto tendrás que lograr <b>capturar las patas de una araña</b></string>
+    <string name="text_flower_lombriz">Es este reto tendrás que lograr <b>capturar el cuerpo de una lombriz</b></string>
+
+    <string name="text_flower_girasol">Es este reto tendrás que lograr <b>capturar los pistilos de un girasol</b></string>
+    <string name="text_flower_margarita">Es este reto tendrás que lograr capturar los pistilos de una flor</string>
+    <string name="text_flower_lirio">Es este reto tendrás que lograr capturar los pistilos de una flor</string>
+
+    <string name="text_animal_cat">Es este reto tendrás que lograr <b>capturar las almohadillas</b> del gato</string>
+    <string name="text_animal_hen">Es este reto tendrás que lograr <b>capturar la crezta</b> de una gallina</string>
+    <string name="text_animal_duck">Es este reto tendrás que lograr <b>capturar las patas</b> de una gallina</string>
 
 
     <string name="menu_home">Home</string>

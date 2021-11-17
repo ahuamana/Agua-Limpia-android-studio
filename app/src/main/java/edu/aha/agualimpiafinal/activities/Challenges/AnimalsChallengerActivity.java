@@ -31,10 +31,24 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
 
     String challenge_butterfly = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2FButterfly%2Fmariposa_icon.png?alt=media&token=deb8226a-40b1-4cde-b300-0c37b7cfb66e";
     String challenge_butterfly_name="Mariposa";
+
     String challenge_spider = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2FSpider%2Ftarantula.png?alt=media&token=b28df6b7-2412-4769-ad79-2076a5e63f31";
     String challenge_spider_name="Araña";
+
     String challenge_worm = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2Fworm%2Fgusano.png?alt=media&token=b2fc2e49-06bc-48a5-a52a-cf1a0011b6ae";
     String challenge_worm_name="Lombriz";
+
+    String challenge_cat_image = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2Fcat%2Ffeliz.png?alt=media&token=28b127ba-2611-4027-a66e-ad83b92cefc8";
+    String challenge_cat_name= "Gato";
+
+    String challenge_hen_image = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2FHen%2Fgallina.png?alt=media&token=f8e97718-c137-4fcf-8640-52a66a9c52cf";
+    String challenge_hen_name= "Gallina";
+
+    String challenge_duck_image = "https://firebasestorage.googleapis.com/v0/b/agualimpiafinal.appspot.com/o/LaboratorioDigital%2FAnimalsChallenge%2Fduck%2Fpato.png?alt=media&token=a0d7c3d4-650e-46eb-bdd2-558d1dd66023";
+    String challenge_duck_name= "Pato";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +58,71 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         setContentView(view);
 
         //set all code here
-        setDataChallenges();
+        setDataChallengesInsectos();
+        setDataChallengesAnimals();
 
-        openDialogs();
+        //Dialogs
+        openDialogsInsectos();
+        openDialogsAnimals();
+    }
+
+    private void setDataChallengesAnimals(){
+        RequestOptions options = new RequestOptions();
+        options.centerCrop();
+        options.fitCenter();
+
+        binding.cardviewAnimales1.name.setText(challenge_cat_name);
+        Glide.with(this)
+                .load(challenge_cat_image)
+                .apply(options)
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardviewAnimales1.roundedImageView);
+
+        binding.cardviewAnimales2.name.setText(challenge_hen_name);
+        Glide.with(this)
+                .load(challenge_hen_image)
+                .apply(options)
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardviewAnimales2.roundedImageView);
+
+        binding.cardviewAnimales3.name.setText(challenge_hen_name);
+        Glide.with(this)
+                .load(challenge_duck_image)
+                .apply(options)
+                .placeholder(R.drawable.loading_icon)
+                .into(binding.cardviewAnimales3.roundedImageView);
+
+    }
+
+    private void openDialogsAnimals() {
+
+        binding.cardviewAnimales1.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                createDialog(challenge_cat_image,R.string.text_animal_cat,intent,challenge_cat_name);
+            }
+        });
+
+        binding.cardviewAnimales2.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                createDialog(challenge_hen_image,R.string.text_animal_hen,intent,challenge_hen_name);
+            }
+        });
+
+        binding.cardviewAnimales3.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                createDialog(challenge_duck_image,R.string.text_animal_duck,intent,challenge_duck_name);
+            }
+        });
     }
 
 
-    private void openDialogs() {
+    private void openDialogsInsectos() {
 
         binding.cardview1.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,10 +155,14 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
 
-    private void setDataChallenges() {
+
+
+    private void setDataChallengesInsectos() {
 
         RequestOptions options = new RequestOptions();
         options.centerCrop();
