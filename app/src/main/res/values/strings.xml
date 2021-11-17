@@ -45,6 +45,15 @@
     <string name="descripcion_lombriz1">Las lombrices de tierra no tienen pulmones, de manera que respiran a través de su piel. Absorben los fluidos y el aire, siempre y cuando su piel esté húmeda.</string>
     <string name="descripcion_lombriz2">Las lombrices juegan un papel fundamental en el ecosistema porque mejoran las propiedades tanto físicas y químicas de los suelos, al tiempo que estimulan la actividad bacteriana</string>
 
+    <string name="descripcion_cat1">Los maullidos no son un lenguaje innato para gatos: ¡los desarrollaron para comunicarse con los humanos!.</string>
+    <string name="descripcion_cat2">La audición del gato promedio es al menos cinco veces más aguda que la de un adulto humano.</string>
+
+    <string name="descripcion_hen1">Los maullidos no son un lenguaje innato para gatos: ¡los desarrollaron para comunicarse con los humanos!.</string>
+    <string name="descripcion_hen2">La audición del gato promedio es al menos cinco veces más aguda que la de un adulto humano.</string>
+
+    <string name="descripcion_duck1">Los patos tienen unas patas palmeadas diseñadas para nadar, que actúan como remos.</string>
+    <string name="descripcion_duck2">El color marrón de las hembras les permite camuflarse mucho mejor, lo que ayuda a proteger a las crías antes y después de nacer.</string>
+
 
     <string name="steps_healthmetric_step1">Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.</string>
     <string name="steps_healthmetric_step2">Coloque el frasco fuera de la luz solar directa a una temperatura mínima de 70 ° F y déjelo por 48 horas.</string>
