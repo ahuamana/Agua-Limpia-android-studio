@@ -9,8 +9,8 @@
     <string name="text_anacroneuria">Es este reto tendrás que buscar este insecto debajo de las piedras, y lograr capturar una imagen completa</string>
 
     <string name="text_animal_mariposa">Es este reto tendrás que lograr <b>capturar los ojos, alas y cabeza</b> de una mariposa </string>
-    <string name="text_flower_araña">Es este reto tendrás que lograr <b>capturar las patas de una araña</b></string>
-    <string name="text_flower_lombriz">Es este reto tendrás que lograr <b>capturar el cuerpo de una lombriz</b></string>
+    <string name="text_animal_araña">Es este reto tendrás que lograr <b>capturar las patas de una araña</b></string>
+    <string name="text_animal_lombriz">Es este reto tendrás que lograr <b>capturar el cuerpo de una lombriz</b></string>
 
     <string name="text_flower_girasol">Es este reto tendrás que lograr <b>capturar los pistilos de un girasol</b></string>
     <string name="text_flower_margarita">Es este reto tendrás que lograr capturar los pistilos de una flor</string>

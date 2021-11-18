@@ -129,7 +129,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
-                createDialog(challenge_butterfly,R.string.text_flower_girasol,intent,challenge_butterfly_name);
+                createDialog(challenge_butterfly,R.string.text_animal_mariposa,intent,challenge_butterfly_name);
             }
         });
 
@@ -137,7 +137,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SpiderActivity.class);
-                createDialog(challenge_spider,R.string.text_flower_margarita,intent,challenge_spider_name);
+                createDialog(challenge_spider,R.string.text_animal_araña,intent,challenge_spider_name);
             }
         });
 
@@ -145,7 +145,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), LombrizChallengeActivity.class);
-                createDialog(challenge_worm,R.string.text_flower_lirio,intent,challenge_worm_name);
+                createDialog(challenge_worm,R.string.text_animal_lombriz,intent,challenge_worm_name);
             }
         });
 
