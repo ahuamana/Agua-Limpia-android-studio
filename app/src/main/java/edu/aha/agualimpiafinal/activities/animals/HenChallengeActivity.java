@@ -39,23 +39,21 @@ import java.util.Random;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
-import edu.aha.agualimpiafinal.databinding.ActivityLombrizChallengeBinding;
+import edu.aha.agualimpiafinal.databinding.ActivityHenChallengeBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.InsectosProvider;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
-public class LombrizChallengeActivity extends AppCompatActivity {
+public class HenChallengeActivity extends AppCompatActivity {
 
-    //Data no implementar git reset
-
-    ActivityLombrizChallengeBinding binding;
+    ActivityHenChallengeBinding binding;
 
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
     File mImageFile;
 
-    String challenge_name = "cuerpo de lombriz";
+    String challenge_name = "cresta de gallina";
 
     String id_photo_alas, id_photo_cabeza;
 
@@ -74,9 +72,9 @@ public class LombrizChallengeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLombrizChallengeBinding.inflate(getLayoutInflater());
-        View view= binding.getRoot();
-        setContentView(view);
+        binding = ActivityHenChallengeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
 
 
         mImageProvider=new ImageProvider();
@@ -107,13 +105,13 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
         //Challenge photo - need to change for each challenge
         Glide.with(getApplicationContext())
-                .load("https://www.lacteoslatam.com/images/stories/2017/Agosto/harina-de-lombriz-.jpg")
+                .load("https://t2.ea.ltmcdn.com/es/images/8/0/5/por_que_las_gallinas_no_vuelan_24508_orig.jpg")
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.challengeMainPhoto);
 
         //SubChallenge photo - need to change for each challenge
         Glide.with(getApplicationContext())
-                .load("https://img.vixdata.io/pd/jpg-large/es/sites/default/files/btg/curiosidades.batanga.com/files/9-cosas-que-probablemente-no-sabias-sobre-la-lombriz-de-tierra-5.jpg")
+                .load("https://masgallinas.com/wp-content/uploads/2021/02/gallina-colorada-con-cresta-roja.jpg")
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.challengeRoundedImageViewSubitem);
 
@@ -218,7 +216,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
     private void updatePhoto(final File mImageFileReciever, MaterialTextView textViewImagenNosubida, String idphoto) {
 
-        mDialog = new ProgressDialog(LombrizChallengeActivity.this);
+        mDialog = new ProgressDialog(HenChallengeActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -232,7 +230,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 {
                     mDialog.show();
 
-                    mImageProvider.save(LombrizChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    mImageProvider.save(HenChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -292,7 +290,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     textView.setVisibility(View.GONE);
-                    Toast.makeText(LombrizChallengeActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HenChallengeActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
                     int pointsganados = 0;
@@ -332,7 +330,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
     private void registrarData(final File mImageFileReciever, TextView textView) {
 
-        mDialog = new ProgressDialog(LombrizChallengeActivity.this);
+        mDialog = new ProgressDialog(HenChallengeActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -342,7 +340,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
             {
                 mDialog.show();
 
-                mImageProvider.save(LombrizChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(HenChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -468,20 +466,20 @@ public class LombrizChallengeActivity extends AppCompatActivity {
         int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
         String imageurl = null;
         int descripcion = 0;
-        String title = "Lombriz";
+        String title = "Gallina";
 
         if(ramdom != 0)
         {
             switch (ramdom)
             {
                 case 1:
-                    imageurl = "https://ecoadn.com/wp-content/uploads/sites/3/2019/07/vermicompost.jpg";
-                    descripcion = R.string.descripcion_lombriz1;
+                    imageurl = "https://www.saccosystem.com/public/imgCat3/big/140-525402379-Pollame.jpg";
+                    descripcion = R.string.descripcion_hen1;
                     break;
 
                 case 2:
-                    imageurl = "https://www.infocampo.com.ar/wp-content/uploads/2020/02/lombriz-medio-ambiente-infocampo.jpg";
-                    descripcion = R.string.descripcion_lombriz2;
+                    imageurl = "https://animapedia.org/wp-content/uploads/2018/07/gallo-gallina-diferencias-animapedia.jpg";
+                    descripcion = R.string.descripcion_hen2;
                     break;
             }
         }
@@ -513,7 +511,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 .setPath("/pix/images");
 
 
-        Pix.start(LombrizChallengeActivity.this, mOptions);
+        Pix.start(HenChallengeActivity.this, mOptions);
 
     }
 
@@ -525,7 +523,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
             case PermUtil.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Pix.start(LombrizChallengeActivity.this, mOptions);
+                    Pix.start(HenChallengeActivity.this, mOptions);
                 } else {
                     Toast.makeText(getApplicationContext(), "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
                 }

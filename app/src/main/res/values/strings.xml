@@ -7,9 +7,18 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="text_anacroneuria">Es este reto tendrás que buscar este insecto debajo de las piedras, y lograr capturar una imagen completa</string>
-    <string name="text_flower_girasol">Es este reto tendrás que buscar un girasol, y lograr capturar los pistilos de una flor</string>
-    <string name="text_flower_margarita">Es este reto tendrás que buscar un margarita, y lograr capturar los pistilos de una flor</string>
-    <string name="text_flower_lirio">Es este reto tendrás que buscar un lirio, y lograr capturar los pistilos de una flor</string>
+
+    <string name="text_animal_mariposa">Es este reto tendrás que lograr <b>capturar los ojos, alas y cabeza</b> de una mariposa </string>
+    <string name="text_animal_araña">Es este reto tendrás que lograr <b>capturar las patas de una araña</b></string>
+    <string name="text_animal_lombriz">Es este reto tendrás que lograr <b>capturar el cuerpo de una lombriz</b></string>
+
+    <string name="text_flower_girasol">Es este reto tendrás que lograr <b>capturar los pistilos de un girasol</b></string>
+    <string name="text_flower_margarita">Es este reto tendrás que lograr capturar los pistilos de una flor</string>
+    <string name="text_flower_lirio">Es este reto tendrás que lograr capturar los pistilos de una flor</string>
+
+    <string name="text_animal_cat">Es este reto tendrás que lograr <b>capturar las almohadillas</b> del gato</string>
+    <string name="text_animal_hen">Es este reto tendrás que lograr <b>capturar la crezta</b> de una gallina</string>
+    <string name="text_animal_duck">Es este reto tendrás que lograr <b>capturar las patas</b> de una gallina</string>
 
 
     <string name="menu_home">Home</string>
@@ -35,6 +44,15 @@
 
     <string name="descripcion_lombriz1">Las lombrices de tierra no tienen pulmones, de manera que respiran a través de su piel. Absorben los fluidos y el aire, siempre y cuando su piel esté húmeda.</string>
     <string name="descripcion_lombriz2">Las lombrices juegan un papel fundamental en el ecosistema porque mejoran las propiedades tanto físicas y químicas de los suelos, al tiempo que estimulan la actividad bacteriana</string>
+
+    <string name="descripcion_cat1">Los maullidos no son un lenguaje innato para gatos: ¡los desarrollaron para comunicarse con los humanos!.</string>
+    <string name="descripcion_cat2">La audición del gato promedio es al menos cinco veces más aguda que la de un adulto humano.</string>
+
+    <string name="descripcion_hen1">Los maullidos no son un lenguaje innato para gatos: ¡los desarrollaron para comunicarse con los humanos!.</string>
+    <string name="descripcion_hen2">La audición del gato promedio es al menos cinco veces más aguda que la de un adulto humano.</string>
+
+    <string name="descripcion_duck1">Los patos tienen unas patas palmeadas diseñadas para nadar, que actúan como remos.</string>
+    <string name="descripcion_duck2">El color marrón de las hembras les permite camuflarse mucho mejor, lo que ayuda a proteger a las crías antes y después de nacer.</string>
 
 
     <string name="steps_healthmetric_step1">Simplemente llene el frasco con agua hasta el hombro, enrosque la tapa y agítelo durante 20 segundos.</string>

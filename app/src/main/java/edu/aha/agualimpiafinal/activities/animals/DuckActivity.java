@@ -39,23 +39,21 @@ import java.util.Random;
 import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
-import edu.aha.agualimpiafinal.databinding.ActivityLombrizChallengeBinding;
+import edu.aha.agualimpiafinal.databinding.ActivityDuckBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.InsectosProvider;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
-public class LombrizChallengeActivity extends AppCompatActivity {
+public class DuckActivity extends AppCompatActivity {
 
-    //Data no implementar git reset
-
-    ActivityLombrizChallengeBinding binding;
+    ActivityDuckBinding binding;
 
     Options mOptions;
     ArrayList<String> mReturnValues = new ArrayList<>();
     File mImageFile;
 
-    String challenge_name = "cuerpo de lombriz";
+    String challenge_name = "patas del pato";
 
     String id_photo_alas, id_photo_cabeza;
 
@@ -74,10 +72,8 @@ public class LombrizChallengeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityLombrizChallengeBinding.inflate(getLayoutInflater());
-        View view= binding.getRoot();
-        setContentView(view);
-
+        binding = ActivityDuckBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         mImageProvider=new ImageProvider();
         mInsectosProvider = new InsectosProvider();
@@ -107,13 +103,13 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
         //Challenge photo - need to change for each challenge
         Glide.with(getApplicationContext())
-                .load("https://www.lacteoslatam.com/images/stories/2017/Agosto/harina-de-lombriz-.jpg")
+                .load("https://www.caracteristicas.co/wp-content/uploads/2017/02/pato-4-e1560918286315.jpg")
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.challengeMainPhoto);
 
         //SubChallenge photo - need to change for each challenge
         Glide.with(getApplicationContext())
-                .load("https://img.vixdata.io/pd/jpg-large/es/sites/default/files/btg/curiosidades.batanga.com/files/9-cosas-que-probablemente-no-sabias-sobre-la-lombriz-de-tierra-5.jpg")
+                .load("https://i.pinimg.com/originals/b0/49/0d/b0490dcd16ddb81ad959265c02d8fea1.jpg")
                 .placeholder(R.drawable.loading_icon)
                 .into(binding.challengeRoundedImageViewSubitem);
 
@@ -218,7 +214,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
     private void updatePhoto(final File mImageFileReciever, MaterialTextView textViewImagenNosubida, String idphoto) {
 
-        mDialog = new ProgressDialog(LombrizChallengeActivity.this);
+        mDialog = new ProgressDialog(DuckActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -232,7 +228,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 {
                     mDialog.show();
 
-                    mImageProvider.save(LombrizChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    mImageProvider.save(DuckActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -292,7 +288,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     textView.setVisibility(View.GONE);
-                    Toast.makeText(LombrizChallengeActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DuckActivity.this, "Foto actualizado Correctamente", Toast.LENGTH_SHORT).show();
                     mDialog.dismiss();
 
                     int pointsganados = 0;
@@ -332,7 +328,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
 
     private void registrarData(final File mImageFileReciever, TextView textView) {
 
-        mDialog = new ProgressDialog(LombrizChallengeActivity.this);
+        mDialog = new ProgressDialog(DuckActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Guardando Información");
 
@@ -342,7 +338,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
             {
                 mDialog.show();
 
-                mImageProvider.save(LombrizChallengeActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                mImageProvider.save(DuckActivity.this, mImageFileReciever).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
@@ -468,20 +464,20 @@ public class LombrizChallengeActivity extends AppCompatActivity {
         int ramdom = new Random().nextInt((max-min)+1)+min; //Generate numbers between 1 - 3
         String imageurl = null;
         int descripcion = 0;
-        String title = "Lombriz";
+        String title = "Pato";
 
         if(ramdom != 0)
         {
             switch (ramdom)
             {
                 case 1:
-                    imageurl = "https://ecoadn.com/wp-content/uploads/sites/3/2019/07/vermicompost.jpg";
-                    descripcion = R.string.descripcion_lombriz1;
+                    imageurl = "https://hipertextual.com/wp-content/uploads/2021/10/vlad-tchompalov-wt5Y8VY_0bA-unsplash-1-1200x675.jpg";
+                    descripcion = R.string.descripcion_duck1;
                     break;
 
                 case 2:
-                    imageurl = "https://www.infocampo.com.ar/wp-content/uploads/2020/02/lombriz-medio-ambiente-infocampo.jpg";
-                    descripcion = R.string.descripcion_lombriz2;
+                    imageurl = "https://i.pinimg.com/originals/1a/ef/15/1aef15b3ea03ac0a1e8588be2b0bc1c0.jpg";
+                    descripcion = R.string.descripcion_duck2;
                     break;
             }
         }
@@ -513,7 +509,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
                 .setPath("/pix/images");
 
 
-        Pix.start(LombrizChallengeActivity.this, mOptions);
+        Pix.start(DuckActivity.this, mOptions);
 
     }
 
@@ -525,7 +521,7 @@ public class LombrizChallengeActivity extends AppCompatActivity {
             case PermUtil.REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Pix.start(LombrizChallengeActivity.this, mOptions);
+                    Pix.start(DuckActivity.this, mOptions);
                 } else {
                     Toast.makeText(getApplicationContext(), "Approve permissions to open Pix ImagePicker", Toast.LENGTH_LONG).show();
                 }

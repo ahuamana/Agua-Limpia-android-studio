@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.plants.GirasolActivity">
+    tools:context=".activities.animals.HenChallengeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="GIRASOL"
+                android:text="Gallina"
                 android:textStyle="bold"
                 android:textColor="@color/primarystatusbar"
                 android:textSize="20dp"/>
@@ -47,11 +46,12 @@
                     android:layout_height="wrap_content">
 
                     <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/challenge_main_photo"
                         android:layout_width="190dp"
                         android:layout_height="120dp"
                         app:riv_corner_radius="10dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/girasol_completo"/>
+                        android:src="@drawable/ic_image_gray_backgraound"/>
 
                 </LinearLayout>
 
@@ -59,12 +59,12 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:textSize="20dp"
+                android:text="Partes de la Gallina"
                 android:textColor="@color/primarystatusbar"
-                android:text="Parte del girasol"
-                android:layout_height="wrap_content"/>
+                android:textSize="20dp" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -110,16 +110,17 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:textColor="@color/greeDark"
-                                        android:text="Pistilo"
+                                        android:text="Cresta"
                                         android:textSize="20dp"/>
 
                                     <com.makeramen.roundedimageview.RoundedImageView
+                                        android:id="@+id/challenge_roundedImageView_subitem"
                                         android:layout_width="190dp"
                                         android:layout_height="120dp"
                                         app:riv_corner_radius="10dp"
                                         android:layout_gravity="center"
                                         android:layout_marginTop="10dp"
-                                        android:src="@drawable/pistiloo_girasol"/>
+                                        android:src="@drawable/ic_image_gray_backgraound"/>
 
                                 </LinearLayout>
 

@@ -202,7 +202,7 @@ public class SpiderActivity extends AppCompatActivity {
                 }else
                 {
                     setSustantivoData();
-                    sustantivo.setName("pistilo girasol");
+                    sustantivo.setName(challenge_name);
 
                     registrarData(mImageFile, binding.textViewImagenNosubida);
                 }

@@ -5,8 +5,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.animals.LombrizChallengeActivity">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_marginTop="13dp"
@@ -112,7 +110,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:textColor="@color/greeDark"
-                                        android:text="Patas"
+                                        android:text="Cuerpo de la lombriz"
                                         android:textSize="20dp"/>
 
                                     <com.makeramen.roundedimageview.RoundedImageView
