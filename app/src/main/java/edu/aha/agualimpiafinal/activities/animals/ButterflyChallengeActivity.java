@@ -371,7 +371,7 @@ public class ButterflyChallengeActivity extends AppCompatActivity {
         sustantivo.setAuthor_name(firstname);
         sustantivo.setAuthor_lastname(lastname);
         sustantivo.setTimestamp(System.currentTimeMillis()/1000);
-        sustantivo.setTipo("Insecto");
+        sustantivo.setTipo("insecto");
 
     }
 

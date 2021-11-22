@@ -322,7 +322,7 @@ public class DuckActivity extends AppCompatActivity {
         sustantivo.setAuthor_name(firstname);
         sustantivo.setAuthor_lastname(lastname);
         sustantivo.setTimestamp(System.currentTimeMillis()/1000);
-        sustantivo.setTipo("Flor");
+        sustantivo.setTipo("animal");
 
     }
 

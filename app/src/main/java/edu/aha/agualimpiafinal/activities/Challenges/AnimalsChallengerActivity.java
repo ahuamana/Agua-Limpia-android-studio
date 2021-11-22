@@ -19,6 +19,9 @@ import com.bumptech.glide.request.RequestOptions;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.animals.ButterflyChallengeActivity;
+import edu.aha.agualimpiafinal.activities.animals.CatChallengeActivity;
+import edu.aha.agualimpiafinal.activities.animals.DuckActivity;
+import edu.aha.agualimpiafinal.activities.animals.HenChallengeActivity;
 import edu.aha.agualimpiafinal.activities.animals.LombrizChallengeActivity;
 import edu.aha.agualimpiafinal.activities.animals.SpiderActivity;
 import edu.aha.agualimpiafinal.activities.macroinvertebrados.AnacroneuriaActivity;
@@ -99,7 +102,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardviewAnimales1.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                Intent intent = new Intent(getApplicationContext(), CatChallengeActivity.class); //Girasol Activity
                 createDialog(challenge_cat_image,R.string.text_animal_cat,intent,challenge_cat_name);
             }
         });
@@ -107,7 +110,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardviewAnimales2.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                Intent intent = new Intent(getApplicationContext(), HenChallengeActivity.class); //Girasol Activity
                 createDialog(challenge_hen_image,R.string.text_animal_hen,intent,challenge_hen_name);
             }
         });
@@ -115,7 +118,7 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardviewAnimales3.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ButterflyChallengeActivity.class); //Girasol Activity
+                Intent intent = new Intent(getApplicationContext(), DuckActivity.class); //Girasol Activity
                 createDialog(challenge_duck_image,R.string.text_animal_duck,intent,challenge_duck_name);
             }
         });
