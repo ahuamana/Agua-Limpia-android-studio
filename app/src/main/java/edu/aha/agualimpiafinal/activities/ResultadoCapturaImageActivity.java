@@ -53,6 +53,9 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
                     .placeholder(R.drawable.loading_icon)
                     .into(binding.roundedImageViewSustantivo);
 
+        }else
+        {
+            Log.e("TAG","Data from intent not received");
         }
 
     }

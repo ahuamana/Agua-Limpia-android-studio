@@ -53,7 +53,9 @@ public class ChallengeActivity extends AppCompatActivity {
     ArrayList<String> mReturnValues = new ArrayList<>();
     File mImageFile;
 
-    String challenge_name = "Almohadilla de gato";
+    String challenge_name;
+    String challenge_type;
+
 
     String id_photo_alas, id_photo_cabeza;
 
@@ -78,11 +80,7 @@ public class ChallengeActivity extends AppCompatActivity {
         mImageProvider = new ImageProvider();
         mInsectosProvider = new InsectosProvider();
 
-        setOnClickListeners();
-
         cargarPreferencias();
-
-        getUserInfoAll();
 
         goBackActivity();
 
@@ -99,6 +97,9 @@ public class ChallengeActivity extends AppCompatActivity {
             String main_title = getIntent().getStringExtra("main_title");
             String main_subtitle = getIntent().getStringExtra("main_subtitle");
             String main_subtitle_subitem = getIntent().getStringExtra("main_subtitle_subitem");
+
+            challenge_name = getIntent().getStringExtra("challenge_name");
+            challenge_type = getIntent().getStringExtra("challenge_type");
 
 
             //Challenge photo - need to change for each challenge
@@ -118,6 +119,9 @@ public class ChallengeActivity extends AppCompatActivity {
             binding.challengeMainSubtitle.setText(main_subtitle);
             binding.challengeMainSubtitleSubitem.setText(main_subtitle_subitem);
 
+            setOnClickListeners();
+
+            getUserInfo(email, challenge_name, binding.circleImageViewPhoto, binding.textViewImagenNosubida, binding.btnregistrar);
 
         } else {
             Log.e("TAG", "No data from intent");
@@ -135,11 +139,7 @@ public class ChallengeActivity extends AppCompatActivity {
         });
     }
 
-    private void getUserInfoAll() {
 
-        getUserInfo(email, challenge_name, binding.circleImageViewPhoto, binding.textViewImagenNosubida, binding.btnregistrar);
-
-    }
 
     private void getUserInfo(String emailReceiver, String nameSustantivo, final CircleImageView circleImageView, TextView textView, Button btnregistrar) {
 
@@ -211,7 +211,7 @@ public class ChallengeActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (binding.btnregistrar.getText().equals("ACTUALIZAR")) {
-                    Log.e("ACTUALIZAR", "TIENES QUE ACTUALIZAR CABEZA");
+                    Log.e("ACTUALIZAR", "TIENES QUE ACTUALIZAR CHALLENGE");
                     updatePhoto(mImageFile, binding.textViewImagenNosubida, id_photo_cabeza);
 
                 } else {
@@ -461,19 +461,19 @@ public class ChallengeActivity extends AppCompatActivity {
         final int max = 3;
         int ramdom = new Random().nextInt((max - min) + 1) + min; //Generate numbers between 1 - 3
         String imageurl = null;
-        int descripcion = 0;
-        String title = "Gato";
+        String descripcion = "";
+        String title = binding.challengeMainTitle.getText().toString();
 
         if (ramdom != 0) {
             switch (ramdom) {
                 case 1:
                     imageurl = "https://www.lavanguardia.com/files/image_948_465/uploads/2019/04/02/5fa523c44bc98.jpeg";
-                    descripcion = R.string.descripcion_cat1;
+                    descripcion = getIntent().getStringExtra("challenge_description1");
                     break;
 
                 case 2:
                     imageurl = "https://www.hogarmania.com/archivos/201510/gato-bengala-1-1280x720x80xX.jpg";
-                    descripcion = R.string.descripcion_cat2;
+                    descripcion = getIntent().getStringExtra("challenge_description2");
                     break;
             }
         }
@@ -481,7 +481,7 @@ public class ChallengeActivity extends AppCompatActivity {
         goToNextActivity(pointsganados, descripcion, imageurl, title);
     }
 
-    private void goToNextActivity(int points, int descripcion, String imageurl, String title) {
+    private void goToNextActivity(int points, String descripcion, String imageurl, String title) {
 
         Intent i = new Intent(getApplicationContext(), ResultadoCapturaImageActivity.class);
         i.putExtra("points", points);

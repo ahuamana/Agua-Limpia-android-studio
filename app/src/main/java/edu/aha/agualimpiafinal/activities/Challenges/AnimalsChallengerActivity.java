@@ -105,11 +105,22 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ChallengeActivity.class); //Girasol Activity
 
+                //XML images
                 intent.putExtra("url_image_subtitle_subitem","https://migatodomestico.es/wp-content/uploads/2021/07/las-almohadillas-de-los-gatos.jpg");
                 intent.putExtra("url_image_main","https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/01_%C2%BFQu%C3%A9-puedo-hacer-si-mi-gato-est%C3%A1-triste-.png?itok=w67Nhubc");
+
+                //Xml names
                 intent.putExtra("main_title","Gato");
                 intent.putExtra("main_subtitle","Partes del gato");
                 intent.putExtra("main_subtitle_subitem","Almohadillas");
+
+                //Firebase
+                intent.putExtra("challenge_name","Almohadilla de gato");
+                intent.putExtra("challenge_type","Animal");
+
+                //Backend Description
+                intent.putExtra("challenge_description1",R.string.descripcion_cat1);
+                intent.putExtra("challenge_description2",R.string.descripcion_cat2);
 
                 createDialog(challenge_cat_image,R.string.text_animal_cat,intent,challenge_cat_name);
             }
