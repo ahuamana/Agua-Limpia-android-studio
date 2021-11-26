@@ -93,8 +93,13 @@ public class ChallengeActivity extends AppCompatActivity {
     private void loadData() {
 
         if (getIntent().getExtras() != null) {
+
             String image_subitem = getIntent().getStringExtra("url_image_subtitle_subitem");
             String image_main = getIntent().getStringExtra("url_image_main");
+            String main_title = getIntent().getStringExtra("main_title");
+            String main_subtitle = getIntent().getStringExtra("main_subtitle");
+            String main_subtitle_subitem = getIntent().getStringExtra("main_subtitle_subitem");
+
 
             //Challenge photo - need to change for each challenge
             Glide.with(getApplicationContext())
@@ -108,6 +113,10 @@ public class ChallengeActivity extends AppCompatActivity {
                     .placeholder(R.drawable.loading_icon)
                     .into(binding.challengeRoundedImageViewSubitem);
 
+
+            binding.challengeMainTitle.setText(main_title);
+            binding.challengeMainSubtitle.setText(main_subtitle);
+            binding.challengeMainSubtitleSubitem.setText(main_subtitle_subitem);
 
 
         } else {

@@ -107,6 +107,9 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
 
                 intent.putExtra("url_image_subtitle_subitem","https://migatodomestico.es/wp-content/uploads/2021/07/las-almohadillas-de-los-gatos.jpg");
                 intent.putExtra("url_image_main","https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/01_%C2%BFQu%C3%A9-puedo-hacer-si-mi-gato-est%C3%A1-triste-.png?itok=w67Nhubc");
+                intent.putExtra("main_title","Gato");
+                intent.putExtra("main_subtitle","Partes del gato");
+                intent.putExtra("main_subtitle_subitem","Almohadillas");
 
                 createDialog(challenge_cat_image,R.string.text_animal_cat,intent,challenge_cat_name);
             }

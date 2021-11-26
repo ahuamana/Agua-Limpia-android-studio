@@ -115,6 +115,7 @@ public class CatChallengeActivity extends AppCompatActivity {
                 .into(binding.challengeRoundedImageViewSubitem);
 
 
+
         getUserInfo(email, challenge_name, binding.circleImageViewPhoto, binding.textViewImagenNosubida, binding.btnregistrar);
 
     }

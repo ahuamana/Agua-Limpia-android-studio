@@ -34,64 +34,26 @@ public class ResultadoCapturaImageActivity extends AppCompatActivity {
 
     private void getDataLastIntent() {
 
+        if(getIntent().getExtras() != null)
+        {
+            int points = getIntent().getIntExtra("points",100);
+            int descripcion = getIntent().getIntExtra("descripcion",100);
+            String imageurl = getIntent().getStringExtra("imageurl");
+            String title = getIntent().getStringExtra("title");
 
-        int points = getIntent().getIntExtra("points",100);
-        int descripcion = getIntent().getIntExtra("descripcion",100);
-        String imageurl = getIntent().getStringExtra("imageurl");
-        String title = getIntent().getStringExtra("title");
-
-        Log.e("imageurl","imageurl: "+ imageurl);
-
-
-        binding.points.setText(String.valueOf(points));
-        binding.textViewDescriptionSustantivo.setText(descripcion);
-        binding.title.setText(title);
-
-        Glide.with(this)
-                .load(imageurl)
-                .placeholder(R.drawable.loading_icon)
-                .into(binding.roundedImageViewSustantivo);
+            Log.e("imageurl","imageurl: "+ imageurl);
 
 
-        /*
-       if(position_image != 0)
-       {
-           switch (position_image)
-           {
-               case 1:
+            binding.points.setText(String.valueOf(points));
+            binding.textViewDescriptionSustantivo.setText(descripcion);
+            binding.title.setText(title);
 
-                   binding.textViewDescriptionSustantivo.setText(R.string.descripcion_mariposa1);
+            Glide.with(this)
+                    .load(imageurl)
+                    .placeholder(R.drawable.loading_icon)
+                    .into(binding.roundedImageViewSustantivo);
 
-                   Glide.with(this)
-                           .load("https://www.nationalgeographic.com.es/medio/2018/03/23/perdida-entre-la-multitud_86c63fc7_1016x648.jpg")
-                           .placeholder(R.drawable.loading_icon)
-                           .into(binding.roundedImageViewSustantivo);
-                   break;
-               case 2:
-                   binding.textViewDescriptionSustantivo.setText(R.string.descripcion_mariposa2);
-
-                   Glide.with(this)
-                           .load("https://www.nationalgeographic.com.es/medio/2021/08/31/apollo-landing_1a9abaa4_1280x853.jpg")
-                           .placeholder(R.drawable.loading_icon)
-                           .into(binding.roundedImageViewSustantivo);
-                   break;
-
-               case 3:
-
-                   binding.textViewDescriptionSustantivo.setText(R.string.descripcion_mariposa3);
-
-                   Glide.with(this)
-                           .load("https://www.nationalgeographic.com.es/medio/2019/06/13/danza-de-mariposas_a6a4af54_1280x853.jpg")
-                           .placeholder(R.drawable.loading_icon)
-                           .into(binding.roundedImageViewSustantivo);
-                   break;
-
-               default:
-                   Log.e("ERROR","NO CASE FOUND");
-                   break;
-           }
-       }*/
-
+        }
 
     }
 
