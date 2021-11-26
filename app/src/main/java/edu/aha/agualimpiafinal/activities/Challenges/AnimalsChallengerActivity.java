@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.ChallengeActivity;
 import edu.aha.agualimpiafinal.activities.animals.ButterflyChallengeActivity;
 import edu.aha.agualimpiafinal.activities.animals.CatChallengeActivity;
 import edu.aha.agualimpiafinal.activities.animals.DuckActivity;
@@ -102,7 +103,11 @@ public class AnimalsChallengerActivity extends AppCompatActivity {
         binding.cardviewAnimales1.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CatChallengeActivity.class); //Girasol Activity
+                Intent intent = new Intent(getApplicationContext(), ChallengeActivity.class); //Girasol Activity
+
+                intent.putExtra("url_image_subtitle_subitem","https://migatodomestico.es/wp-content/uploads/2021/07/las-almohadillas-de-los-gatos.jpg");
+                intent.putExtra("url_image_main","https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/01_%C2%BFQu%C3%A9-puedo-hacer-si-mi-gato-est%C3%A1-triste-.png?itok=w67Nhubc");
+
                 createDialog(challenge_cat_image,R.string.text_animal_cat,intent,challenge_cat_name);
             }
         });

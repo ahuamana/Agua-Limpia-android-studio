@@ -26,15 +26,20 @@
         <activity
             android:name=".activities.animals.DuckActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ChallengeActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".activities.animals.HenChallengeActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.animals.CatChallengeActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.animals.LombrizChallengeActivity"
             android:exported="true"
