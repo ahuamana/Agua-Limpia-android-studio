@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.activities.LoginActivity;
+import edu.aha.agualimpiafinal.modulos.login.views.LoginActivity;
 
 public class ViewAdapter extends PagerAdapter {
 

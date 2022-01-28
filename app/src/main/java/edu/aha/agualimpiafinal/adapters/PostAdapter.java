@@ -15,7 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import edu.aha.agualimpiafinal.models.MoldeComentarios;
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.utils.RelativeTime;
+import edu.aha.helper.RelativeTime;
 
 public class PostAdapter extends FirestoreRecyclerAdapter<MoldeComentarios, PostAdapter.PostHolder> {
 

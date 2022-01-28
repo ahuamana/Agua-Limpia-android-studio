@@ -105,7 +105,7 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.WelcomeActivity"
+            android:name=".modulos.login.views.WelcomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.inicioApp"
@@ -113,7 +113,7 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".modulos.login.views.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -122,7 +122,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".modulos.login.views.LoginActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activities.MainActivity"

@@ -33,5 +33,13 @@
     <color name="facebook_color_like">#0571ed</color>
 
 
+    <color name="color_input_box">#F5F5F5</color>
+    <color name="color_input_box_disable_curtain">#B3F5F5F5</color>
+    <color name="color_input_underline">#EBEBEB</color>
+    <color name="color_input_text">#898989</color>
+    <color name="color_input_hint">#626262</color>
+    <color name="color_transparent">#00FFFFFF</color>
+
+
 
 </resources>

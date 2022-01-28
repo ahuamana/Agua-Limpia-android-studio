@@ -53,8 +53,8 @@ import edu.aha.agualimpiafinal.fragments.ListaFragment;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.ImageProvider;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
-import edu.aha.agualimpiafinal.utils.arrays;
-import edu.aha.agualimpiafinal.utils.validaciones;
+import edu.aha.helper.arrays;
+import edu.aha.helper.validaciones;
 
 public class RegistrarMuestraMicrobiologicaActivity extends AppCompatActivity implements LocationListener {
 

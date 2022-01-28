@@ -2,7 +2,6 @@ package edu.aha.agualimpiafinal.adapters;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -28,18 +27,14 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.CardviewFullImageBinding;
 import edu.aha.agualimpiafinal.databinding.CardviewInsectosBinding;
-import edu.aha.agualimpiafinal.databinding.CustomDialogMoreinfoBinding;
 import edu.aha.agualimpiafinal.fragments.BottomSheetComentar;
 import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ActionProvider;
-import edu.aha.agualimpiafinal.utils.TextUtilsText;
+import edu.aha.helper.TextUtilsText;
 
 public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo, LaboratorioAdapter.ViewHolder> {
 

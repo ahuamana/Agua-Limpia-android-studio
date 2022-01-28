@@ -1,9 +1,6 @@
-package edu.aha.agualimpiafinal.utils;
-
-import android.util.Log;
+package edu.aha.helper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TextUtilsText {

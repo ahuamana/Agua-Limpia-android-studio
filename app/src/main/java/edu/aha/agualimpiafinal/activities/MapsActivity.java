@@ -46,7 +46,7 @@ import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityMapsBinding;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
-import edu.aha.agualimpiafinal.utils.RelativeTime;
+import edu.aha.helper.RelativeTime;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

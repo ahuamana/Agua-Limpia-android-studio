@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/lightblue</item>
         <item name="colorPrimaryDark">@color/primarystatusbar</item>
@@ -54,6 +54,13 @@
         <item name="colorPrimary">@color/lightblue</item>
         <item name="colorPrimaryDark">@color/primarystatusbar</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
+    <style name="CustomTextField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+
     </style>
 
 

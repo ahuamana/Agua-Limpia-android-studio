@@ -104,12 +104,14 @@ dependencies {
     //status bar util
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
-
     //https://github.com/lzyzsd/CircleProgress
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 
     //searchbar
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
+
+    //Shimmer Facebook Layout
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
@@ -118,5 +120,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
+
+
 
 }

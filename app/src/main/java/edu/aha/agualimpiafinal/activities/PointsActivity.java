@@ -17,7 +17,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityPointsBinding;
-import edu.aha.agualimpiafinal.models.User;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
 public class PointsActivity extends AppCompatActivity {

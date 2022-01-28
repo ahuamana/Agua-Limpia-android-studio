@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
-import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -18,9 +16,8 @@ import java.util.ArrayList;
 
 import edu.aha.agualimpiafinal.databinding.CardviewComentarioBinding;
 import edu.aha.agualimpiafinal.models.Comment;
-import edu.aha.agualimpiafinal.providers.ActionProvider;
 import edu.aha.agualimpiafinal.providers.UserProvider;
-import edu.aha.agualimpiafinal.utils.TextUtilsText;
+import edu.aha.helper.TextUtilsText;
 
 public class CommentariosAdapter extends RecyclerView.Adapter<CommentariosAdapter.ViewHolder> {
 

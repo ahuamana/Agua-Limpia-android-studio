@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities;
+package edu.aha.agualimpiafinal.modulos.login.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.inicioApp;
 import edu.aha.agualimpiafinal.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity {

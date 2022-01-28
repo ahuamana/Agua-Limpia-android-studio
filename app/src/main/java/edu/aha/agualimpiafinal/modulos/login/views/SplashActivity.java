@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities;
+package edu.aha.agualimpiafinal.modulos.login.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 

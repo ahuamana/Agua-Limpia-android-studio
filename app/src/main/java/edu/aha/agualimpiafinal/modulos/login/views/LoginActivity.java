@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.activities;
+package edu.aha.agualimpiafinal.modulos.login.views;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,51 +19,41 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.utils.validaciones;
+import edu.aha.agualimpiafinal.activities.MainActivity;
+import edu.aha.agualimpiafinal.databinding.ActivityLoginBinding;
+import edu.aha.helper.validaciones;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText BEedtfirstname, BEedtlastname,BEedtmiddlename,BEedtEmail;
-    TextView BEtxtcontactSupport;
     validaciones rules= new validaciones();
-
-    Button btnbegin;
+    ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        //Hide action bar
-        getSupportActionBar().hide();
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
+
         //Vincular variables con ids del activity
-        BEedtfirstname=findViewById(R.id.BEfirstname);
-        BEedtmiddlename=findViewById(R.id.BEmiddlename);
-        BEedtlastname=findViewById(R.id.BElastname);
-        BEedtEmail= findViewById(R.id.BEemail);
-        btnbegin= findViewById(R.id.btnbegining);
-        BEtxtcontactSupport = findViewById(R.id.BEtxtcontactSupport);
+
 
         //cargar metodo de los datos guardados en el telefono
         cargarPreferencias();
-
         getPermissionsMaps();
-
         implementedClickListener();
-
-
         putKeywordOverLayout();
 
     }
 
     private void putKeywordOverLayout() {
-
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     private void implementedClickListener() {
 
-        btnbegin.setOnClickListener(new View.OnClickListener() {
+        binding.signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -74,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        BEtxtcontactSupport.setOnClickListener(new View.OnClickListener() {
+        binding.contactsupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Inicio de contacte soporte
@@ -90,10 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         boolean valid_firstname=false, valid_middlename=false,valid_lastname=false, valid_email=false;
 
         //Validar los campos vacios
-        valid_firstname=rules.checkField(BEedtfirstname);
-        valid_lastname=rules.checkField(BEedtlastname);
+        valid_firstname=rules.checkField(binding.fistname);
+        valid_lastname=rules.checkField(binding.lastname);
         //valid_middlename=rules.checkField(BEedtfirstname);
-        valid_email=rules.checkField(BEedtEmail);
+        valid_email=rules.checkField(binding.email);
 
         if(valid_firstname)
         {
@@ -101,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             if(valid_lastname)
             {
 
-                if(isValidEmail(BEedtEmail.getText().toString()))
+                if(isValidEmail(binding.email.getText().toString()))
                 {
                     //Guardar las preferencias
                     guardarPreferencias();
@@ -111,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }else
                 {
-                    BEedtEmail.setError("Ingrese un correo válido!");
+                    binding.email.setError("Ingrese un correo válido!");
                 }
             }
 
@@ -137,10 +127,10 @@ public class LoginActivity extends AppCompatActivity {
         String email= preferences.getString("spEmail","");
 
         //asignar datos guardados a los respectivos campos
-        BEedtfirstname.setText(firstname);
-        BEedtmiddlename.setText(middlename);
-        BEedtlastname.setText(lastname);
-        BEedtEmail.setText(email);
+        binding.fistname.setText(firstname);
+        binding.middlename.setText(middlename);
+        binding.lastname.setText(lastname);
+        binding.email.setText(email);
 
     }
 
@@ -148,10 +138,10 @@ public class LoginActivity extends AppCompatActivity {
     private void guardarPreferencias(){
 
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        String spfirstname = BEedtfirstname.getText().toString();
-        String spmiddlename = BEedtmiddlename.getText().toString();
-        String splastname = BEedtlastname.getText().toString();
-        String spEmail= BEedtEmail.getText().toString();
+        String spfirstname = binding.fistname.getText().toString();
+        String spmiddlename = binding.middlename.getText().toString();
+        String splastname =  binding.lastname.getText().toString();
+        String spEmail=  binding.email.getText().toString();
 
         //editor permite editar y almacenar las variables
         SharedPreferences.Editor editor=preferences.edit();
@@ -161,10 +151,10 @@ public class LoginActivity extends AppCompatActivity {
         editor.putString("spEmail",spEmail);
 
         //asignar datos de los campos a las variables para almacenarlos
-        BEedtfirstname.setText(spfirstname);
-        BEedtmiddlename.setText(spmiddlename);
-        BEedtlastname.setText(splastname);
-        BEedtEmail.setText(spEmail);
+        binding.fistname.setText(spfirstname);
+        binding.middlename.setText(spmiddlename);
+        binding.lastname.setText(splastname);
+        binding.email.setText(spEmail);
 
         editor.commit();
 

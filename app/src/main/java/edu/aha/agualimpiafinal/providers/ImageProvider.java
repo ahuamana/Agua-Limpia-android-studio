@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -12,7 +11,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.util.Date;
 
-import edu.aha.agualimpiafinal.utils.CompressorBitmapImage;
+import edu.aha.helper.CompressorBitmapImage;
 
 public class ImageProvider {
 

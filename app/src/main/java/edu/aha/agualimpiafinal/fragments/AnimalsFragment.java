@@ -37,8 +37,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.activities.LoginActivity;
 import edu.aha.agualimpiafinal.activities.ResultadoCapturaImageActivity;
 import edu.aha.agualimpiafinal.databinding.FragmentAnimalsBinding;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;

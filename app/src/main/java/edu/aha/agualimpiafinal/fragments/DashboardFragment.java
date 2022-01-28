@@ -3,12 +3,10 @@ package edu.aha.agualimpiafinal.fragments;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -25,10 +23,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -37,7 +33,7 @@ import java.util.List;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
-import edu.aha.agualimpiafinal.utils.Converters;
+import edu.aha.helper.Converters;
 
 
 public class DashboardFragment extends Fragment {

@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.utils;
+package edu.aha.helper;
 
 
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Converters extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package edu.aha.agualimpiafinal.models;
+package edu.aha.agualimpiafinal.modulos.login.model;
 
 public class User {
 
