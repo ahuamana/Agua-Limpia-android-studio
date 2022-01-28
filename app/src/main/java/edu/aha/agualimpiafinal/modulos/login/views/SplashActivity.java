@@ -14,52 +14,52 @@ import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import edu.aha.agualimpiafinal.BuildConfig;
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.databinding.ActivitySplashBinding;
 
 public class SplashActivity extends AppCompatActivity {
 
-    ImageView logo;
-    Animation animacion;
 
+    Animation animacion;
     boolean skip;
+
+    ActivitySplashBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-
-        setFullStatusBarTransparent();//set status bar
-
-        logo = findViewById(R.id.imglogo);
-        animacion = AnimationUtils.loadAnimation(this ,R.anim.animacionsplash);
-        logo.startAnimation(animacion);
+        binding = ActivitySplashBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         skip = cargarPreferencias();
 
+        loadFirstSettings();
+        loadnextActivity();
+    }
 
+    private void loadFirstSettings() {
+        binding.versioncode.setText("Versión "+ BuildConfig.VERSION_NAME);
+        binding.poweredby.setText("Powered by "+ getText(R.string.app_name));
+        animacion = AnimationUtils.loadAnimation(this ,R.anim.animacionsplash);
+        binding.imglogo.startAnimation(animacion);
+    }
 
+    private void loadnextActivity() {
 
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
 
                 if(skip != false)
-                {
-                    goToLogin();
-                }else
+                { goToLogin(); }else
                 {
                     Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK); //Remove activities that have been created before
                     startActivity(intent);
                 }
-
-
-
-
             }
         },2000);
-
-
     }
 
     private void setFullStatusBarTransparent()
@@ -74,13 +74,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean cargarPreferencias() {
-
         SharedPreferences preferences = getSharedPreferences("SaltarBienvenida", Context.MODE_PRIVATE);
-
         boolean bypass= preferences.getBoolean("bypass",false);
-
         return bypass;
-
     }
 
 

@@ -104,7 +104,6 @@
                                 android:id="@+id/middlename"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textPassword"
                                 android:lines="1"
                                 android:hint="Alias"
                                 android:maxLength="50"/>
@@ -120,6 +119,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lines="1"
+                                android:inputType="textEmailAddress"
                                 android:hint="Correo Electrónico"
                                 android:maxLength="50"/>
                         </com.google.android.material.textfield.TextInputLayout>
