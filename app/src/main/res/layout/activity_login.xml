@@ -28,42 +28,27 @@
                 android:orientation="vertical">
 
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="162dp"
-                    android:layout_height="160dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:layout_marginTop="36dp"
-                    android:src="@drawable/yaku_agua128"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageView>
-
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3"
                     tools:layout_editor_absoluteX="16dp"></Space>
 
                 <LinearLayout
-
                     android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3"
                     app:layout_constraintVertical_bias="1.0">
 
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -71,177 +56,112 @@
                         android:layout_marginBottom="30dp"
                         style="@style/letra_titulos"
                         android:gravity="center_vertical|center_horizontal"
-                        android:text="BIENVENIDO"
-                        android:textSize="25dp"></TextView>
+                        android:text="Registro"
+                        android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
                             style="@style/CustomTextField">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/fistname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:hint="Nombres"
+                                android:maxLength="50"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:lines="1"
-                            android:hint="User"
-                            android:maxLength="50"/>
-
-
+                            app:errorEnabled="true"
+                            style="@style/CustomTextField">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/lastname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:hint="Apellidos"
+                                android:maxLength="50"/>
                         </com.google.android.material.textfield.TextInputLayout>
-                        
-                        <EditText
-                            android:id="@+id/fistname"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edittext_graybackground"
-                            android:hint="Nombre"
-                            android:padding="15dp"
-                            style="@style/letra_editText"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:singleLine="true"
-                            android:textColor="@color/primaryDarkColor"
-                            android:textColorHint="#9A9797"
-                            android:textSize="15dp"></EditText>
 
-                        <EditText
-                            android:id="@+id/middlename"
-                            android:layout_width="0dp"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="20dp"
-                            android:padding="15dp"
-                            android:layout_weight="1"
-                            style="@style/letra_editText"
-                            android:background="@drawable/edittext_graybackground"
-                            android:hint="Alias"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:singleLine="true"
-                            android:textColor="@color/primaryDarkColor"
-                            android:textColorHint="#9A9797"
-                            android:textSize="15dp"></EditText>
+                            app:errorEnabled="true"
+                            style="@style/CustomTextField">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/middlename"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:hint="Alias"
+                                android:maxLength="50"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true"
+                            style="@style/CustomTextField">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/email"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:hint="Correo Electrónico"
+                                android:maxLength="50"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true"
+                            style="@style/CustomTextField">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/password"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword"
+                                android:lines="1"
+                                android:hint="Contraseña"
+                                android:maxLength="50"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/lastname"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edittext_graybackground"
-                            android:hint="Apellidos"
-                            android:padding="15dp"
-                            style="@style/letra_editText"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="20dp"
-                            android:singleLine="true"
-                            android:textColor="@color/primaryDarkColor"
-                            android:textColorHint="#9A9797"
-                            android:textSize="15dp"></EditText>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edittext_graybackground"
-                            android:hint="Correo electrónico"
-                            style="@style/letra_editText"
-                            android:inputType="textEmailAddress"
-                            android:paddingStart="20dp"
-                            android:padding="15dp"
-                            android:paddingEnd="20dp"
-                            android:singleLine="true"
-                            android:textColor="@color/primaryDarkColor"
-                            android:textColorHint="#9A9797"
-                            android:textSize="15dp"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/pass"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edittext_graybackground"
-                            android:hint="Contraseña"
-                            style="@style/letra_editText"
-                            android:inputType="textEmailAddress"
-                            android:paddingStart="20dp"
-                            android:padding="15dp"
-                            android:paddingEnd="20dp"
-                            android:singleLine="true"
-                            android:textColor="@color/primaryDarkColor"
-                            android:textColorHint="#9A9797"
-                            android:textSize="15dp"/>
-
-                    </LinearLayout>
-
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/sign_up"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/custom_botom"
+                        android:background="@drawable/custom_button_nocolor"
+                        app:backgroundTint="@color/greenPrimary"
                         android:scrollHorizontally="true"
                         style="@style/letra_editText"
                         android:text="Registrarse"
                         android:layout_marginBottom="30dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="10dp"
                         android:textColor="@color/white" />
 
-                    <TextView
-                        android:id="@+id/contactsupport"
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/contact_support"
                         android:layout_width="wrap_content"
-                        android:textColor="@color/color_input_hint"
-                        style="@style/letra_editText"
-                        android:text="Contacte soporte si no puedes ingresar"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="30dp"
-                        android:layout_height="wrap_content"></TextView>
+                        android:textAlignment="center"
+                        android:text="@string/app_terms_conditions"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -249,8 +169,5 @@
         </ScrollView>
 
     </LinearLayout>
-
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

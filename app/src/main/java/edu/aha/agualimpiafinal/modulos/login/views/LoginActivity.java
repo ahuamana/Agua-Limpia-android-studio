@@ -34,11 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-
-        //Vincular variables con ids del activity
-
-
         //cargar metodo de los datos guardados en el telefono
         cargarPreferencias();
         getPermissionsMaps();
@@ -64,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        binding.contactsupport.setOnClickListener(new View.OnClickListener() {
+        binding.contactSupport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Inicio de contacte soporte

@@ -60,6 +60,10 @@
 
         <item name="boxCornerRadiusTopStart">12dp</item>
         <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxStrokeWidth">1.5dp</item>
+        <item name="errorIconDrawable">@null</item>
+        <item name="boxBackgroundColor">@color/color_input_box</item>
+        <item name="android:textColor">@color/color_input_text</item>
 
     </style>
 

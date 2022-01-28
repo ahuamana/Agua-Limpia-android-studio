@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Yaku Limpia</string>
+    <string name="app_terms_conditions">Haciendo click en "registrarse", estoy de acuerdo con los Términos y condiciones de <b>Yaku Limpia</b>, y su <b>Política de privacidad</b></string>
+
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
