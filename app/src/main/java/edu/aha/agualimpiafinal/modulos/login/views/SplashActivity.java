@@ -36,7 +36,12 @@ public class SplashActivity extends AppCompatActivity {
 
         loadFirstSettings();
         loadnextActivity();
+
+
+
     }
+
+
 
     private void loadFirstSettings() {
         binding.versioncode.setText("Versión "+ BuildConfig.VERSION_NAME);
@@ -59,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        },2000);
+        },4000);
     }
 
     private void setFullStatusBarTransparent()

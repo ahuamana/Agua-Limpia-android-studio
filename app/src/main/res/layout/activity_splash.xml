@@ -7,23 +7,54 @@
     tools:context=".modulos.login.views.SplashActivity"
     android:padding="15dp">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imglogo"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-
-            android:src="@drawable/yaku_agua"
+            android:orientation="vertical"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             app:layout_constraintBottom_toTopOf="@+id/poweredby"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="50dp">
+
+
+            <ImageView
+                android:id="@+id/imglogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/yaku_agua" />
+
+
+            <ProgressBar
+                android:id="@+id/p_Bar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:indeterminate="true"
+                android:max="00"
+                android:minHeight="25dp"
+                android:progress="0"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Bienvenido a yakulimpia" />
+
+
+        </LinearLayout>
+
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/poweredby"
@@ -44,7 +75,7 @@
             android:textSize="12dp"
             android:textColor="@color/color_input_text"
             android:layout_gravity="center|bottom"
-            android:text="Versión"
+            android:text="Versión 0.0.0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
