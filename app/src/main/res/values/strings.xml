@@ -2,7 +2,7 @@
     <string name="app_name">Yaku Limpia</string>
     <string name="app_terms_conditions">Haciendo click en "registrarse", estoy de acuerdo con los Términos y condiciones de <b>Yaku Limpia</b>, y su <b>Política de privacidad</b></string>
     <string name="forget_pass">¿Has olvidado como ingresar?</string>
-    <string name="otra_conexion">O conectar con</string>
+    <string name="otra_conexion">O</string>
     <string name="terms_conditions_acepto">Al hacer click en el botón "Ingresar" , Aceptas nuestras <b>políticas de privacidad</b> y <b>términos de condición</b>.</string>
 
     <string name="doesnt_have_account">¿No tienes una cuenta?</string>
