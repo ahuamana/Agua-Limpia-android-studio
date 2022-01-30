@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 
 import edu.aha.agualimpiafinal.R;
-import edu.aha.agualimpiafinal.modulos.login.views.LoginActivity;
+import edu.aha.agualimpiafinal.modulos.login.views.RegisterActivity;
 
 public class ViewAdapter extends PagerAdapter {
 
@@ -64,7 +64,7 @@ public class ViewAdapter extends PagerAdapter {
         txtsaltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, LoginActivity.class);
+                Intent i = new Intent(context, RegisterActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
@@ -140,7 +140,7 @@ public class ViewAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         //Al hacer click en el botom
-                        Intent i = new Intent(context, LoginActivity.class);
+                        Intent i = new Intent(context, RegisterActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
                     }

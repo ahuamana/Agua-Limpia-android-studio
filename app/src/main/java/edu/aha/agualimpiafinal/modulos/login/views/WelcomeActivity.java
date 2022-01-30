@@ -59,7 +59,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void goToLogin() {
-        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+        Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

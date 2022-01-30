@@ -39,6 +39,9 @@
     <color name="color_input_text">#898989</color>
     <color name="color_input_hint">#626262</color>
     <color name="color_transparent">#00FFFFFF</color>
+    <color name="color_line">#E7E7E7</color>
+    <color name="colorTransparent">#00FFFFFF</color>
+    <color name="color_text_web">#A0A0A0</color>
 
 
 

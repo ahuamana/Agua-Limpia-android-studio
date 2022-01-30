@@ -24,6 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".modulos.login.views.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.animals.DuckActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -31,7 +34,6 @@
             android:name=".activities.ChallengeActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".activities.animals.HenChallengeActivity"
             android:exported="true"
@@ -122,7 +124,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".modulos.login.views.LoginActivity"
+            android:name=".modulos.login.views.RegisterActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activities.MainActivity"
