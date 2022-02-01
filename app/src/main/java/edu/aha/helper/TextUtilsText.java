@@ -1,5 +1,8 @@
 package edu.aha.helper;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,10 @@ public class TextUtilsText {
         //Log.e("REPLACE","DATA: "+ datafinal);
 
         return datafinal;
+    }
+
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
 
