@@ -1,26 +1,33 @@
 package edu.aha.agualimpiafinal.modulos.login.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityLoginBinding;
+import edu.aha.agualimpiafinal.viewModels.LoginActivityViewModel;
 import edu.aha.helper.TextUtilsText;
 
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     boolean isValidEmail= false,isValidPass=false;
-
+    LoginActivityViewModel viewmodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +35,39 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        viewmodel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
+
         validateFields();
+        loginFirebase();
 
+        showObservables();
 
+    }
+
+    private void showObservables() {
+
+        viewmodel.showMessage().observe(this, message -> {
+            _showMessageMainThread(message);
+        });
+
+    }
+
+    private void loginFirebase() {
+
+        binding.ingresarLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextUtilsText.hideKeyboard(LoginActivity.this);
+                viewmodel.loginWithEmail(binding.email.toString().trim(),binding.pass.toString().trim());
+            }
+        });
+
+        binding.continuarAnonimoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewmodel.loginAnonymous();
+            }
+        });
     }
 
     private void validateFields() {
@@ -108,6 +145,8 @@ public class LoginActivity extends AppCompatActivity {
             binding.ingresarLoginButton.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
             binding.ingresarLoginButton.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.greenPrimary));
             binding.ingresarLoginButton.setTextColor(ContextCompat.getColor(this,R.color.white));
+            //Login
+
         }else
         {
             binding.ingresarLoginButton.setEnabled(false);
@@ -117,10 +156,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void _showMessage(String message)
+    private void _showMessageMainThread(String message)
     {
-        Snackbar.make(findViewById(android.R.id.content),""+message, Snackbar.LENGTH_SHORT).show();
+       Snackbar.make(findViewById(android.R.id.content),""+message, Snackbar.LENGTH_SHORT).show();
     }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+
+    }
 }
