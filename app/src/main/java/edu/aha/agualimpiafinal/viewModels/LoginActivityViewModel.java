@@ -80,7 +80,7 @@ public class LoginActivityViewModel extends ViewModel {
 
                 }else
                 {
-                    _message.setValue("No es posible ingresar. Contacta con soporte");
+                    _message.setValue("No es posible ingresar. Porfavor contacta con soporte");
                 }
             }
         });

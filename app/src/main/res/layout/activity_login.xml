@@ -132,18 +132,18 @@
                         android:background="@color/color_text_web" />
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/continuar_anonimo_button"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/corner_boton_outline"
-                    android:textColor="@color/white"
-                    android:text="Continuar anonimamente"
-                    android:backgroundTint="@color/greenPrimary"
-                    app:backgroundTintMode="screen"
                     app:backgroundTint="@color/greenPrimary"
-                    android:drawableStart="@drawable/ic_google_color"
+                    android:backgroundTintMode="screen"
+                    android:textColor="@color/white"
+                    android:background="@drawable/corner_boton_outline"
+                    android:text="Continuar anonimamente"
+                    android:paddingLeft="15dp"
+                    android:drawableStart="@drawable/ic_person_white"
                     style="?android:textAppearanceSmall"/>
 
                 <LinearLayout
@@ -159,6 +159,7 @@
                         android:layout_height="wrap_content"/>
 
                     <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/btnRegister"
                         android:layout_width="wrap_content"
                         android:paddingStart="8dp"
                         android:textSize="15dp"

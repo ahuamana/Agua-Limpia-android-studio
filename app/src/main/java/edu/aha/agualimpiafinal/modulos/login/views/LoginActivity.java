@@ -39,9 +39,14 @@ public class LoginActivity extends AppCompatActivity {
 
         validateFields();
         loginFirebase();
-
+        registerNewAccount();
         showObservables();
 
+    }
+
+    private void registerNewAccount() {
+
+      startActivity(new Intent(this,RegisterActivity.class));
     }
 
     private void showObservables() {
@@ -74,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void validateFields() {
-
 
         binding.email.addTextChangedListener(new TextWatcher() {
             @Override
