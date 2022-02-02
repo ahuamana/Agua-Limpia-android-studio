@@ -1,10 +1,17 @@
 package edu.aha.helper;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import com.google.android.datatransport.cct.internal.NetworkConnectionInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +54,26 @@ public class TextUtilsText {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public static boolean isConnected(Context context)
+    {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        try {
+            if(activeNetwork!= null)
+            {
+                NetworkCapabilities caps = cm.getNetworkCapabilities(cm.getActiveNetwork());
+                MySharedPreferences.instance.setMobile(caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
+                MySharedPreferences.instance.setWifi(caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI));
+            }
+
+        }catch (Exception e)
+        {
+            Log.e("ERROR",""+e.getMessage());
+        }
+
+        return activeNetwork != null && activeNetwork.isConnected();
     }
 
 

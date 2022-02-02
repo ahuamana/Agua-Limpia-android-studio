@@ -58,14 +58,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextUtilsText.hideKeyboard(LoginActivity.this);
-                viewmodel.loginWithEmail(binding.email.toString().trim(),binding.pass.toString().trim());
+
+                if(TextUtilsText.isConnected(getApplicationContext())) viewmodel.loginWithEmail(binding.email.toString().trim(),binding.pass.toString().trim());
+                else _showMessageMainThread("Sin conexion a internet");
             }
         });
 
         binding.continuarAnonimoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewmodel.loginAnonymous();
+                if(TextUtilsText.isConnected(getApplicationContext())) viewmodel.loginAnonymous();
+                else _showMessageMainThread("Sin conexion a internet");
             }
         });
     }
@@ -145,7 +148,6 @@ public class LoginActivity extends AppCompatActivity {
             binding.ingresarLoginButton.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
             binding.ingresarLoginButton.setBackgroundTintList(ContextCompat.getColorStateList(this,R.color.greenPrimary));
             binding.ingresarLoginButton.setTextColor(ContextCompat.getColor(this,R.color.white));
-            //Login
 
         }else
         {
