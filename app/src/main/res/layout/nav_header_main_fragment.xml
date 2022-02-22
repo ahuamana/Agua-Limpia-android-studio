@@ -24,7 +24,7 @@
         android:layout_height="31dp"
         android:layout_gravity="center"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="YAKU LIMPIA"
+        android:text="YAKU LAB"
         android:gravity="center"
         android:fontFamily="@font/neuegrot_text_round_bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

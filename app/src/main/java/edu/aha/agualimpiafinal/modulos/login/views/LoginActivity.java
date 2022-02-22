@@ -1,33 +1,39 @@
 package edu.aha.agualimpiafinal.modulos.login.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.RelativeLayout;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.activities.MainActivity;
 import edu.aha.agualimpiafinal.databinding.ActivityLoginBinding;
 import edu.aha.agualimpiafinal.viewModels.LoginActivityViewModel;
-import edu.aha.helper.TextUtilsText;
+import edu.aha.agualimpiafinal.helper.TextUtilsText;
 
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     boolean isValidEmail= false,isValidPass=false;
     LoginActivityViewModel viewmodel;
+    Activity thisActivity;
+
+    AppCompatButton btnAnonimo;
+    MaterialButton btnLoginEmail;
+    MaterialTextView lblRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,42 +43,99 @@ public class LoginActivity extends AppCompatActivity {
 
         viewmodel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
 
+        //Vincular vistas
+        btnAnonimo  = binding.continuarAnonimoButton;
+        btnLoginEmail  = binding.ingresarLoginButton;
+        lblRegister  = binding.btnRegister;
+        thisActivity = LoginActivity.this;
+
+
+        //Validate Data
         validateFields();
+
+        //Login Firebase
         loginFirebase();
-        registerNewAccount();
+        registerNewAccount(); //Register
+
+        //Observables with MVVM
         showObservables();
 
     }
 
     private void registerNewAccount() {
 
-      startActivity(new Intent(this,RegisterActivity.class));
+        lblRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(thisActivity,RegisterActivity.class));
+            }
+        });
+
     }
 
     private void showObservables() {
 
         viewmodel.showMessage().observe(this, message -> {
-            _showMessageMainThread(message);
+            if(message!= null)
+            {
+                _showMessageMainThread(message);
+            }
+        });
+
+        viewmodel.getIsLoginAnonymous().observe(this, isLoginAnonymous-> {
+            if(isLoginAnonymous)
+            {
+                startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+
+        });
+
+        viewmodel.getIsLoginEmail().observe(this,isLoginEmail ->{
+            if(isLoginEmail)
+            {
+                startActivity(new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK));
+            }
+        });
+
+        viewmodel.getIsLoading().observe(this, isLoading -> {
+
+            Log.e("ISLOADING", "ISLOADING:"+isLoading);
+
+            if(isLoading)
+            {
+                binding.cortinaLayout.setVisibility(View.VISIBLE);
+            }else
+            {
+                binding.cortinaLayout.setVisibility(View.GONE);
+            }
+
         });
 
     }
 
+
     private void loginFirebase() {
 
-        binding.ingresarLoginButton.setOnClickListener(new View.OnClickListener() {
+        btnLoginEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextUtilsText.hideKeyboard(LoginActivity.this);
 
-                if(TextUtilsText.isConnected(getApplicationContext())) viewmodel.loginWithEmail(binding.email.toString().trim(),binding.pass.toString().trim());
+                if(TextUtilsText.isConnected(getApplicationContext()))
+                {
+                    viewmodel.loginWithEmail(binding.email.toString().trim(), binding.pass.toString().trim());
+                }
                 else _showMessageMainThread("Sin conexion a internet");
             }
         });
 
-        binding.continuarAnonimoButton.setOnClickListener(new View.OnClickListener() {
+        btnAnonimo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtilsText.isConnected(getApplicationContext())) viewmodel.loginAnonymous();
+                if(TextUtilsText.isConnected(getApplicationContext()))
+                {
+                    viewmodel.loginAnonymous();
+                }
                 else _showMessageMainThread("Sin conexion a internet");
             }
         });

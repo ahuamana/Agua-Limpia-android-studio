@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 
 import edu.aha.agualimpiafinal.R;
+import edu.aha.agualimpiafinal.modulos.login.views.LoginActivity;
 import edu.aha.agualimpiafinal.modulos.login.views.RegisterActivity;
 
 public class ViewAdapter extends PagerAdapter {
@@ -64,7 +65,7 @@ public class ViewAdapter extends PagerAdapter {
         txtsaltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context, RegisterActivity.class);
+                Intent i = new Intent(context, LoginActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(i);
             }
@@ -78,11 +79,11 @@ public class ViewAdapter extends PagerAdapter {
             case 0:
             {
                 Glide.with(context)
-                        .load(R.drawable.background_tomarmuestra)
-                        .circleCrop()
+                        .load(R.drawable.pick_flaticon)
+                        //.circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Recoger la muestra");
+                txtdescription.setText("Elige un reto");
                 txtnumber.setText("1");
                 txtcircle1.setBackgroundResource(R.drawable.circle_selected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);
@@ -101,11 +102,11 @@ public class ViewAdapter extends PagerAdapter {
             case 1:
             {
                 Glide.with(context)
-                        .load(R.drawable.photography_background)
-                        .circleCrop()
+                        .load(R.drawable.puzzle_freepick)
+                        //.circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Toma foto de la muestra con una\n camara");
+                txtdescription.setText("Completa el reto");
                 txtnumber.setText("2");
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_selected);
@@ -125,11 +126,11 @@ public class ViewAdapter extends PagerAdapter {
             case 2:
             {
                 Glide.with(context)
-                        .load(R.drawable.background_transferdata)
-                        .circleCrop()
+                        .load(R.drawable.trophy_flaticon)
+                        //.circleCrop()
                         .into(logo);
 
-                txtdescription.setText("Registra los datos \n en el aplicativo");
+                txtdescription.setText("Gana trofeos y premios");
                 txtnumber.setText("3");
                 txtcircle1.setBackgroundResource(R.drawable.circle_unselected);
                 txtcircle2.setBackgroundResource(R.drawable.circle_unselected);
@@ -140,7 +141,7 @@ public class ViewAdapter extends PagerAdapter {
                     @Override
                     public void onClick(View v) {
                         //Al hacer click en el botom
-                        Intent i = new Intent(context, RegisterActivity.class);
+                        Intent i = new Intent(context, LoginActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(i);
                     }

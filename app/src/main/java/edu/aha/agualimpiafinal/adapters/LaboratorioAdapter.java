@@ -34,7 +34,7 @@ import edu.aha.agualimpiafinal.fragments.BottomSheetComentar;
 import edu.aha.agualimpiafinal.models.Action;
 import edu.aha.agualimpiafinal.models.MoldeSustantivo;
 import edu.aha.agualimpiafinal.providers.ActionProvider;
-import edu.aha.helper.TextUtilsText;
+import edu.aha.agualimpiafinal.helper.TextUtilsText;
 
 public class LaboratorioAdapter extends FirestoreRecyclerAdapter<MoldeSustantivo, LaboratorioAdapter.ViewHolder> {
 

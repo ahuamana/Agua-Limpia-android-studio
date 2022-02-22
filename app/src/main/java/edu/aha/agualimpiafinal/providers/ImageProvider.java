@@ -11,7 +11,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.util.Date;
 
-import edu.aha.helper.CompressorBitmapImage;
+import edu.aha.agualimpiafinal.helper.CompressorBitmapImage;
 
 public class ImageProvider {
 

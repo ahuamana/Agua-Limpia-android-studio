@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import edu.aha.agualimpiafinal.databinding.CardviewComentarioBinding;
 import edu.aha.agualimpiafinal.models.Comment;
 import edu.aha.agualimpiafinal.providers.UserProvider;
-import edu.aha.helper.TextUtilsText;
+import edu.aha.agualimpiafinal.helper.TextUtilsText;
 
 public class CommentariosAdapter extends RecyclerView.Adapter<CommentariosAdapter.ViewHolder> {
 

@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/yaku_agua" />
+                android:src="@drawable/logo_yakulab" />
 
 
             <ProgressBar
@@ -38,6 +38,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="50dp"
+                android:outlineAmbientShadowColor="@color/color_input_text"
+                android:outlineSpotShadowColor="@color/color_input_text"
                 android:layout_marginEnd="50dp"
                 android:indeterminate="true"
                 android:max="00"
@@ -49,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Bienvenido a yakulimpia" />
+                android:text="Bienvenido a yaku-lab" />
 
 
         </LinearLayout>
@@ -61,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:text="Powered by Yaku Limpia"
+            android:text="Powered by Yaku Lab"
             android:textColor="@color/color_input_text"
             app:layout_constraintBottom_toTopOf="@+id/versioncode"
             app:layout_constraintEnd_toEndOf="parent"

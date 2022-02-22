@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import edu.aha.agualimpiafinal.R;
@@ -59,7 +60,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void goToLogin() {
-        Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

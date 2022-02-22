@@ -33,7 +33,7 @@ import java.util.List;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
-import edu.aha.helper.Converters;
+import edu.aha.agualimpiafinal.helper.Converters;
 
 
 public class DashboardFragment extends Fragment {

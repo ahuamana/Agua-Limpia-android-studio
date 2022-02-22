@@ -22,7 +22,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import edu.aha.agualimpiafinal.activities.MapsActivity;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
-import edu.aha.helper.RelativeTime;
+import edu.aha.agualimpiafinal.helper.RelativeTime;
 
 public class MuestrasAdapter extends FirestoreRecyclerAdapter<MoldeMuestra,MuestrasAdapter.MuestrasHolder> {
 

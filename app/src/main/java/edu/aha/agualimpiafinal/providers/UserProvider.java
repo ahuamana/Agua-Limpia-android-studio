@@ -24,8 +24,6 @@ public class UserProvider {
         FirebaseFirestore.getInstance().setFirestoreSettings(settings);
     }
 
-
-
     public Task<String> createToken ()
     {
         return FirebaseMessaging.getInstance().getToken();

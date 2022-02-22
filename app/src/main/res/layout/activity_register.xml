@@ -26,8 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -39,8 +37,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -54,10 +52,11 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="30dp"
+                        app:textAllCaps="true"
                         style="@style/letra_titulos"
                         android:gravity="center_vertical|center_horizontal"
                         android:text="Registro"
-                        android:textSize="25dp"></com.google.android.material.textview.MaterialTextView>
+                        android:textSize="20dp"></com.google.android.material.textview.MaterialTextView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -67,21 +66,23 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutFullname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
                             style="@style/CustomTextField">
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/fistname"
+                                android:id="@+id/fullname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lines="1"
-                                android:hint="Nombres"
+                                android:hint="Nombre(s)"
                                 android:maxLength="50"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutLastname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
@@ -96,12 +97,13 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutAlias"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
                             style="@style/CustomTextField">
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/middlename"
+                                android:id="@+id/alias"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:lines="1"
@@ -110,6 +112,7 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
@@ -126,6 +129,7 @@
 
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/layoutPass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:errorEnabled="true"
@@ -148,14 +152,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/custom_button_nocolor"
-                        app:backgroundTint="@color/greenPrimary"
+                        android:textColor="@color/color_input_text"
+                        android:background="@drawable/corner_boton_outline"
+                        app:backgroundTint="@color/color_input_text"
                         android:scrollHorizontally="true"
                         style="@style/letra_editText"
+                        android:enabled="false"
                         android:text="Registrarse"
                         android:layout_marginBottom="30dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/white" />
+                        android:layout_marginTop="10dp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/contact_support"
@@ -170,5 +175,49 @@
         </ScrollView>
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cortinaLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dcffffff"
+        android:elevation="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:id="@+id/progressbar_change_user"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:elevation="20dp"
+            android:progressDrawable="@drawable/custom_progress_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+        <View
+            android:id="@+id/view_agenda_docentes"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:elevation="8dp"
+            android:backgroundTint="@color/white"
+            />
+        <TextView
+            android:layout_height="25dp"
+            android:text="Cargando..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/progressbar_change_user"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -51,7 +51,7 @@ import java.util.List;
 import edu.aha.agualimpiafinal.models.MoldeMuestra;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.providers.MuestrasProvider;
-import edu.aha.helper.RelativeTime;
+import edu.aha.agualimpiafinal.helper.RelativeTime;
 
 public class MapFragment extends Fragment implements GoogleMap.OnMarkerClickListener {
 
