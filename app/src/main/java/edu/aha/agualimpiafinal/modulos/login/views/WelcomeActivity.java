@@ -23,13 +23,9 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
         setContentView(view);
-
-
-
         setStatusBarColor();
-
-
         setOnClickListeners();
 
     }
