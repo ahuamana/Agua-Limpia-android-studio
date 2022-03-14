@@ -1,5 +1,6 @@
 package edu.aha.agualimpiafinal.fragments;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -10,13 +11,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 
+import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.activities.Challenges.AnimalsChallengerActivity;
 import edu.aha.agualimpiafinal.activities.Challenges.PlantsChallengerActivity2;
 import edu.aha.agualimpiafinal.activities.Challenges.WaterChallengerActivity;
@@ -35,9 +39,16 @@ public class LaboratorioDigital extends Fragment {
     InsectosProvider mInsectosProvider;
     LinearLayoutManager mLinearLayoutManager;
 
+    private Toolbar myToolbar;
 
     public static LaboratorioDigital newInstance() {
         return new LaboratorioDigital();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -45,6 +56,8 @@ public class LaboratorioDigital extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = LaboratorioDigitalFragmentBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+
+        toolbarPrincipal();
 
         openAnimalsChallenge();
 
@@ -63,6 +76,14 @@ public class LaboratorioDigital extends Fragment {
 
         return view;
 
+    }
+
+    private void toolbarPrincipal() {
+
+        myToolbar = getActivity().findViewById(R.id.toolbar);
+        myToolbar.setTitle("Desafios");
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        myToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_menu));
     }
 
     private void openOtrosChallenge() {
@@ -85,7 +106,7 @@ public class LaboratorioDigital extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+                showDefaultMessage("Pronto Implementaremos esta seccion :)");
             }
         });
 
@@ -97,7 +118,7 @@ public class LaboratorioDigital extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+                showDefaultMessage("Pronto Implementaremos esta seccion :)");
 
             }
         });
@@ -123,10 +144,17 @@ public class LaboratorioDigital extends Fragment {
         binding.linearLayoutFrutas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Pronto Implementaremos esta seccion :)",Toast.LENGTH_SHORT).show();
+               showDefaultMessage("Pronto Implementaremos esta seccion :)");
             }
         });
 
+    }
+
+    private void showDefaultMessage(String message)
+    {
+        Snackbar.make(getActivity().findViewById(android.R.id.content),""+message, Snackbar.LENGTH_SHORT).show();
+
+        Base64.decode("micontraseña",0);
     }
 
     private void getDataLaboratorio() {

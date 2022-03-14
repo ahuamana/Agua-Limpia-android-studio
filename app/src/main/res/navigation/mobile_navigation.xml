@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_inicio"
         android:name="edu.aha.agualimpiafinal.fragments.InicioFragment"
-        android:label=""
+        android:label="Como vamos"
         tools:layout="@layout/inicio_fragment" />
 
     <fragment
@@ -59,7 +59,7 @@
     <fragment
         android:id="@+id/nav_laboratorio"
         android:name="edu.aha.agualimpiafinal.fragments.LaboratorioDigital"
-        android:label=""
+        android:label="Pagos"
         tools:layout="@layout/laboratorio_digital_fragment"
         ></fragment>
 

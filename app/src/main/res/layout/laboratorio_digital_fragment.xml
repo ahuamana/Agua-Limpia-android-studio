@@ -8,7 +8,6 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_anchorGravity="center">
@@ -35,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:text="@string/title_desafios"
                 android:textColor="@color/primarystatusbar"
                 android:textSize="20dp"
@@ -49,7 +49,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -72,7 +71,7 @@
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical">
 
-                                        <de.hdodenhof.circleimageview.CircleImageView
+                                        <com.google.android.material.imageview.ShapeableImageView
                                             android:layout_width="match_parent"
                                             android:layout_height="100dp"
                                             android:padding="5dp"
@@ -83,7 +82,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
                                             android:gravity="center"
-                                            android:layout_marginBottom="10dp"
+                                            android:layout_margin="5dp"
                                             android:textSize="12dp"
                                             android:text="Animales"
                                             android:textColor="@color/colorBlack"
@@ -120,12 +119,11 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
 
-                                    <de.hdodenhof.circleimageview.CircleImageView
+                                    <com.google.android.material.imageview.ShapeableImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="100dp"
                                         android:padding="5dp"
                                         android:scaleType="centerInside"
-                                        app:civ_border_color="@color/background_icon_color"
                                         android:layout_gravity="center"
                                         android:src="@drawable/fruits_various" />
 
@@ -134,7 +132,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_margin="5dp"
                                         android:textSize="12dp"
                                         android:text="Frutas"
                                         android:textColor="@color/colorBlack"
@@ -169,13 +167,11 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical">
 
-                                    <de.hdodenhof.circleimageview.CircleImageView
+                                    <com.google.android.material.imageview.ShapeableImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="100dp"
-                                        app:civ_border_width="15dp"
                                         android:scaleType="centerInside"
                                         android:padding="5dp"
-                                        app:civ_border_color="@color/background_icon_color"
                                         android:layout_gravity="center"
                                         android:src="@drawable/plants_various" />
 
@@ -184,7 +180,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:layout_marginBottom="10dp"
+                                        android:layout_margin="5dp"
                                         android:textSize="12dp"
                                         android:text="Plantas"
                                         android:textColor="@color/colorBlack"
@@ -227,12 +223,11 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <com.google.android.material.imageview.ShapeableImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="100dp"
                                     android:padding="5dp"
                                     android:scaleType="centerInside"
-                                    app:civ_border_color="@color/background_icon_color"
                                     android:layout_gravity="center"
                                     android:src="@drawable/objetos_science" />
 
@@ -241,7 +236,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_margin="5dp"
                                     android:textSize="12dp"
                                     android:text="Sustancias"
                                     android:textColor="@color/colorBlack"
@@ -266,6 +261,7 @@
                             android:backgroundTint="@color/background_icon_color"
                             app:cardCornerRadius="8dp"
                             android:elevation="6dp"
+                            android:padding="5dp"
                             android:layout_margin="16dp"
                             android:layout_height="wrap_content">
 
@@ -274,22 +270,20 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <com.google.android.material.imageview.ShapeableImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="100dp"
-                                    app:civ_border_width="15dp"
-                                    android:scaleType="centerInside"
                                     android:padding="5dp"
-                                    app:civ_border_color="@color/background_icon_color"
+                                    android:scaleType="centerInside"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/objects_schools" />
+                                    android:src="@drawable/education_items" />
 
                                 <com.google.android.material.textview.MaterialTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_margin="5dp"
                                     android:textSize="12dp"
                                     android:text="Objetos"
                                     android:textColor="@color/colorBlack"
@@ -321,13 +315,11 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <de.hdodenhof.circleimageview.CircleImageView
+                                <com.google.android.material.imageview.ShapeableImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="100dp"
-                                    app:civ_border_width="15dp"
                                     android:padding="5dp"
                                     android:scaleType="centerInside"
-                                    app:civ_border_color="@color/background_icon_color"
                                     android:layout_gravity="center"
                                     android:src="@drawable/water_various" />
 
@@ -336,7 +328,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:layout_marginBottom="10dp"
+                                    android:layout_margin="5dp"
                                     android:textSize="12dp"
                                     android:text="Agua"
                                     android:textColor="@color/colorBlack"
@@ -372,11 +364,13 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/normal_button"
-                    app:backgroundTint="#00c691"
+                    app:backgroundTint="@color/greenPrimary"
                     android:padding="8dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="30dp"
+                    android:textAllCaps="false"
                     android:text="Insectos"
+                    android:textSize="15dp"
                     android:textColor="@color/white" />
 
                 <androidx.recyclerview.widget.RecyclerView
