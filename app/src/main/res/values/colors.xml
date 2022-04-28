@@ -18,6 +18,13 @@
     <color name="colorBlack">#000000</color>
     <color name="secondaryTextColor">#000000</color>
 
+    <color name="color">#376b1d</color>
+    <color name="colorPrimaryNew">#82C46D</color>
+    <color name="colorPrimaryDarkNew">#8DBB5D</color>
+    <color name="colorSecondaryDark">#69AA52</color>
+    <color name="colorSecondaryLightNew">#E2F4ED</color>
+
+
 
     <color name="white">#ffffff</color>
     <color name="lightblue">#3a79de</color>

@@ -6,33 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".activities.PointsActivity">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDarkNew"
+            app:navigationIcon="@drawable/ic_arrow_back_white"
+            app:titleTextColor="@color/white"
+            app:popupTheme="@style/MyToolbar_TextAppearance"/>
+
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_height="wrap_content">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/back_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:paddingStart="5dp"
-                android:backgroundTint="@color/greenPrimary"
-                android:background="@drawable/ic_back_white"/>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="90dp"
                 android:orientation="vertical">
-
 
 
                 <LinearLayout
@@ -46,7 +45,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         app:cardCornerRadius="5dp"
-                        android:backgroundTint="@color/greenPrimary"
+                        android:backgroundTint="@color/colorSecondaryLightNew"
                         android:layout_height="wrap_content">
 
                         <LinearLayout

@@ -1,19 +1,27 @@
 package edu.aha.agualimpiafinal.activities;
 
+import static java.sql.DriverManager.println;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.Objects;
 
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityPointsBinding;
@@ -24,6 +32,7 @@ public class PointsActivity extends AppCompatActivity {
     private ActivityPointsBinding binding;
 
     UserProvider mUserProvider;
+    Toolbar myToolbar;
 
     ProgressDialog mDialog;
 
@@ -34,17 +43,21 @@ public class PointsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        //Vincular vistas
+        myToolbar = binding.toolbarActivity;
+
         mDialog = new ProgressDialog(PointsActivity.this);
         mDialog.setTitle("Espere un momento");
         mDialog.setMessage("Cargando Información!");
         mDialog.setCancelable(false);
         mDialog.show();
 
-        SetOnClickListeners();
 
+        setToolbar();
         cargarTokenLocalmente();
 
     }
+
 
     private void getUserInfo(String token) {
 
@@ -97,18 +110,24 @@ public class PointsActivity extends AppCompatActivity {
 
     }
 
-    private void SetOnClickListeners() {
 
-        binding.backImage.setOnClickListener(new View.OnClickListener() {
+    private void setToolbar() {
+
+        setSupportActionBar(myToolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        binding.toolbarActivity.setNavigationIcon(getDrawable(R.drawable.ic_arrow_back));
+        binding.toolbarActivity.setTitleTextColor(getColor(R.color.white));
+        binding.toolbarActivity.setTitle("Puntos");
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Log.e("TAG","CLICKED ON BACK");
+                onBackPressed();
             }
         });
-
-
-
     }
+
 
     private void cargarTokenLocalmente() {
 

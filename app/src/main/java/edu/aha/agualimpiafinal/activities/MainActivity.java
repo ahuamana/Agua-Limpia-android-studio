@@ -28,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 import edu.aha.agualimpiafinal.R;
 import edu.aha.agualimpiafinal.databinding.ActivityMainBinding;
 import edu.aha.agualimpiafinal.modulos.login.model.User;
+import edu.aha.agualimpiafinal.modulos.puntaje.views.PuntajeActivity;
 import edu.aha.agualimpiafinal.providers.UserProvider;
 
 public class

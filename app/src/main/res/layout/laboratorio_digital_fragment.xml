@@ -364,7 +364,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/normal_button"
-                    app:backgroundTint="@color/greenPrimary"
+                    app:backgroundTint="@color/colorPrimaryNew"
                     android:padding="8dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="30dp"
